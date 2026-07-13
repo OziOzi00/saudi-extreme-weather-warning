@@ -12,6 +12,9 @@ dependencies = [
   "numpy>=1.26",
   "pandas>=2.1",
   "xarray>=2024.1",
+  "fsspec[http]>=2024.6",
+  "zarr>=2.18",
+  "netCDF4>=1.6",
   "pyyaml>=6.0",
 ]
 

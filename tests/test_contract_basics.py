@@ -1,5 +1,5 @@
 from saudi_warning.forecasting.graphcast_loader import requested_lead_steps
-from saudi_warning.forecasting.indicator_converter import ensure_supported_lead
+from saudi_warning.forecasting.indicator_converter import _window_steps, ensure_supported_lead
 
 
 def test_72_hour_window_has_twelve_six_hour_steps() -> None:
@@ -9,3 +9,7 @@ def test_72_hour_window_has_twelve_six_hour_steps() -> None:
 def test_supported_leads_are_accepted() -> None:
     for lead in (24, 48, 72):
         ensure_supported_lead(lead)
+
+
+def test_lead_24_window_is_six_to_24_hours() -> None:
+    assert _window_steps(24) == ["6h", "12h", "18h", "24h"]
