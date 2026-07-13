@@ -1,14 +1,19 @@
 """Read the minimal GraphCast 2020 subset required by MAZU-like v1."""
 
 from collections.abc import Sequence
+from pathlib import Path
 
-import fsspec
+import gcsfs
 import numpy as np
 import xarray as xr
 
 
 GRAPHCAST_2020_ZARR = (
     "https://storage.googleapis.com/weatherbench2/datasets/graphcast/2020/"
+    "date_range_2019-11-16_2021-02-01_12_hours_derived.zarr"
+)
+GRAPHCAST_2020_GCS_PATH = (
+    "weatherbench2/datasets/graphcast/2020/"
     "date_range_2019-11-16_2021-02-01_12_hours_derived.zarr"
 )
 
@@ -42,10 +47,10 @@ def required_variables() -> Sequence[str]:
 def open_graphcast_2020() -> xr.Dataset:
     """Open the public consolidated Zarr metadata without downloading global fields.
 
-    The HTTP mapper is intentionally used instead of a local data download. Array chunks
-    are fetched only when a selected subset is loaded by :func:`load_case_subset`.
+    The anonymous GCS mapper accesses WeatherBench directly. Array chunks are fetched
+    only when a selected subset is loaded by :func:`load_case_subset`.
     """
-    mapper = fsspec.get_mapper(GRAPHCAST_2020_ZARR)
+    mapper = gcsfs.GCSFileSystem(token="anon").get_mapper(GRAPHCAST_2020_GCS_PATH)
     return xr.open_zarr(mapper, consolidated=True)
 
 
@@ -63,17 +68,52 @@ def load_case_subset(initial_time: str, max_lead_hours: int = 24) -> xr.Dataset:
     # The public WeatherBench coordinate is stored as integer hours, even though
     # its semantic meaning is a forecast timedelta.
     lead_steps = [int(step.removesuffix("h")) for step in requested_lead_steps(max_lead_hours)]
+    return load_case_with_cache(initial_time, lead_steps)
+
+
+def _case_stamp(initial_time: str) -> str:
+    """Create the stable filename portion for one UTC initialization time."""
+    return initial_time.replace("-", "").replace(":", "").replace("T", "_").replace("Z", "")
+
+
+def _cache_path(cache_dir: Path, initial_time: str, lead_step_hours: int) -> Path:
+    return cache_dir / f"graphcast_{_case_stamp(initial_time)}_step{lead_step_hours:03d}.nc"
+
+
+def load_case_with_cache(
+    initial_time: str,
+    lead_steps: Sequence[int],
+    cache_dir: Path = Path("data/raw/graphcast_2020"),
+) -> xr.Dataset:
+    """Load selected forecast steps, caching each cropped step locally.
+
+    WeatherBench's 3-D arrays use global chunks. Caching after the first remote
+    read makes conversion and rule-development iterations local and fast, while
+    retaining only the Saudi-context crop rather than global fields.
+    """
     # WeatherBench stores UTC timestamps as timezone-naive datetime64 values.
     source_time = np.datetime64(initial_time.replace("Z", "+00:00").replace("+00:00", ""))
-    source = open_graphcast_2020()
-    return (
-        source[list(required_variables())]
-        .sel(
-            time=source_time,
-            prediction_timedelta=lead_steps,
-            lat=slice(SAUDI_CONTEXT_BBOX["lat_min"], SAUDI_CONTEXT_BBOX["lat_max"]),
-            lon=slice(SAUDI_CONTEXT_BBOX["lon_min"], SAUDI_CONTEXT_BBOX["lon_max"]),
-            level=PRESSURE_LEVELS_HPA,
-        )
-        .load()
-    )
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    source: xr.Dataset | None = None
+    cached_steps: list[xr.Dataset] = []
+    for step in lead_steps:
+        path = _cache_path(cache_dir, initial_time, step)
+        if path.exists():
+            cropped = xr.open_dataset(path, engine="scipy").load()
+        else:
+            source = source if source is not None else open_graphcast_2020()
+            cropped = (
+                source[list(required_variables())]
+                .sel(
+                    time=source_time,
+                    prediction_timedelta=step,
+                    lat=slice(SAUDI_CONTEXT_BBOX["lat_min"], SAUDI_CONTEXT_BBOX["lat_max"]),
+                    lon=slice(SAUDI_CONTEXT_BBOX["lon_min"], SAUDI_CONTEXT_BBOX["lon_max"]),
+                    level=PRESSURE_LEVELS_HPA,
+                )
+                .drop_vars(["time", "prediction_timedelta"])
+                .load()
+            )
+            cropped.to_netcdf(path, engine="scipy")
+        cached_steps.append(cropped.expand_dims(prediction_timedelta=[step]))
+    return xr.concat(cached_steps, dim="prediction_timedelta")

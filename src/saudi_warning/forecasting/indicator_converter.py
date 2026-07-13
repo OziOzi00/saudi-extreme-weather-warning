@@ -43,7 +43,8 @@ def convert_window(case: xr.Dataset, initial_time: str, lead_time_hours: int) ->
     24-hour window.
     """
     steps = _window_steps(lead_time_hours)
-    window = case.sel(prediction_timedelta=steps)
+    # Cached GraphCast steps use WeatherBench's native integer-hour coordinate.
+    window = case.sel(prediction_timedelta=[int(step.removesuffix("h")) for step in steps])
     t2m_k = window["2m_temperature"]
     u10 = window["10m_u_component_of_wind"]
     v10 = window["10m_v_component_of_wind"]
@@ -54,8 +55,7 @@ def convert_window(case: xr.Dataset, initial_time: str, lead_time_hours: int) ->
     ivt_u = _pressure_integral(q * u)
     ivt_v = _pressure_integral(q * v)
 
-    output = xr.Dataset(
-        {
+    derived = {
             # Small negative ML precipitation artefacts have no physical meaning.
             "daily_precip_total": (
                 window["total_precipitation_6hr"].sum("prediction_timedelta") * 1000.0
@@ -74,8 +74,11 @@ def convert_window(case: xr.Dataset, initial_time: str, lead_time_hours: int) ->
             "geopotential_height500": (
                 window["geopotential"].sel(level=500).mean("prediction_timedelta") / STANDARD_GRAVITY
             ),
-        }
-    )
+    }
+    # Selections at 850/500 hPa leave scalar ``level`` coordinates behind.
+    # They conflict when fields from different levels are assembled, while the
+    # level is already encoded in each indicator name.
+    output = xr.Dataset({name: value.reset_coords(drop=True) for name, value in derived.items()})
     output = output.drop_vars([name for name in output.coords if name not in {"lat", "lon"}], errors="ignore")
     output = output.rename({"lat": "latitude", "lon": "longitude"})
     output["daily_precip_total"].attrs["units"] = "mm"
