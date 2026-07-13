@@ -1,0 +1,10 @@
+# Placeholder only. Member B calibrates thresholds with MAZU 2025, then freezes this file before 2020 replay.
+version: v1-draft
+hazard: heatwave
+status: draft
+required_indicators:
+  - tmax_c
+  - tmin_c
+  - heatwave_day_flag
+  - heatwave_duration_days
+scoring: {}

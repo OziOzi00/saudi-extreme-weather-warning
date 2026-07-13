@@ -1,0 +1,54 @@
+# Shared MAZU-like v1 interface. Member A owns formulas; all changes require A/B/C review.
+version: mazu_like_v1
+source_model: GraphCast
+source_resolution: "0.25 degree"
+forecast_leads_hours: [24, 48, 72]
+indicators:
+  daily_precip_total:
+    unit: mm
+    source: total_precipitation_6hr
+    method: sum_four_6h_steps_per_24h_window
+  t2m_c:
+    unit: degC
+    source: 2m_temperature
+    method: mean_four_6h_steps_kelvin_to_celsius
+  tmax_c:
+    unit: degC
+    source: 2m_temperature
+    method: max_four_6h_steps_kelvin_to_celsius
+  tmin_c:
+    unit: degC
+    source: 2m_temperature
+    method: min_four_6h_steps_kelvin_to_celsius
+  wind10_speed:
+    unit: m s-1
+    source: [10m_u_component_of_wind, 10m_v_component_of_wind]
+    method: vector_magnitude
+  pwat:
+    unit: kg m-2
+    source: specific_humidity
+    method: pressure_integral
+  ivt:
+    unit: kg m-1 s-1
+    source: [specific_humidity, u_component_of_wind, v_component_of_wind]
+    method: pressure_integral_of_moisture_flux_magnitude
+  wind850_speed:
+    unit: m s-1
+    source: [u_component_of_wind, v_component_of_wind]
+    level_hpa: 850
+    method: vector_magnitude
+  wind_shear_850_200:
+    unit: m s-1
+    source: [u_component_of_wind, v_component_of_wind]
+    levels_hpa: [850, 200]
+    method: vector_difference_magnitude
+  omega500:
+    unit: Pa s-1
+    source: vertical_velocity
+    level_hpa: 500
+    method: direct
+  geopotential_height500:
+    unit: gpm
+    source: geopotential
+    level_hpa: 500
+    method: divide_by_standard_gravity

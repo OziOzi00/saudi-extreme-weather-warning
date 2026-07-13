@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Large local data and generated results
+data/raw/
+data/interim/
+data/processed/
+data/external/
+outputs/
+*.nc
+*.zarr/
+*.grib
+*.grb
+*.h5
+*.hdf5
+*.npz
+
+# Keep structure, but do not commit local MAZU data or teacher source files
+MAZU指标/indicators/
+老师的资料/
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
