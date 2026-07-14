@@ -26,6 +26,11 @@ outputs/
 *.hdf5
 *.npz
 
+# Small, versioned integration fixtures only (never put raw/cached data here)
+!examples/
+!examples/data/
+!examples/data/*.nc
+
 # Keep structure, but do not commit local MAZU data or teacher source files
 MAZU指标/indicators/
 老师的资料/
