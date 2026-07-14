@@ -22,7 +22,8 @@ case_id,initial_time,event_type,notes
 $env:PYTHONPATH = "$PWD\src"
 python -m saudi_warning.forecasting.run_batch `
   --catalog data/external/case_catalog.csv `
-  --manifest outputs/processing_manifest.csv
+  --output-dir handoff/mazu_like `
+  --manifest manifests/processing_manifest.csv
 ```
 
 每个个例会：
@@ -32,4 +33,4 @@ python -m saudi_warning.forecasting.run_batch `
 3. 由缓存生成 `lead024`、`lead048`、`lead072` 三个 MAZU-like NetCDF；
 4. 将处理状态、输出路径或错误信息立即写入处理清单。
 
-再次运行时，三个输出均存在的个例会标记为 `skipped`，不会重复下载或计算。`outputs/` 与实际 NetCDF 均不提交 Git。
+再次运行时，三个输出均存在的个例会标记为 `skipped`，不会重复下载或计算。正式、体积可控的 MAZU-like 输出位于 `handoff/mazu_like/`，需要随代码提交；原始缓存和其他大数据仍不提交 Git。

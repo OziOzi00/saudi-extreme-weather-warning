@@ -44,6 +44,10 @@ tests/                # 单元和接口测试
 
 成员 A 的事件清单批处理方式见 [批处理说明](docs/batch_processing.md)。
 
+## 协作数据策略
+
+`handoff/mazu_like/` 中的正式 MAZU-like 输出和 `handoff/risk_results/` 中的风险 JSON 随 GitHub 同步，供成员 B/C 直接使用。MAZU 全量指标、GraphCast 缓存、IMERG/GHCN 原始数据等大文件仍只保留本地；详见 [协作交付物说明](handoff/README.md)。
+
 ## 协作约定
 
 - 从 `main` 拉取最新代码后创建功能分支：`feature/a-graphcast-loader`、`feature/b-risk-engine`、`feature/c-knowledge-graph`。

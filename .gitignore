@@ -31,6 +31,15 @@ outputs/
 !examples/data/
 !examples/data/*.nc
 
+# Versioned collaboration handoffs: stable, derived artifacts only
+!handoff/
+!handoff/mazu_like/
+!handoff/mazu_like/*.nc
+!handoff/risk_results/
+!handoff/risk_results/*.json
+!manifests/
+!manifests/*.csv
+
 # Keep structure, but do not commit local MAZU data or teacher source files
 MAZU指标/indicators/
 老师的资料/
