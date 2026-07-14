@@ -16,6 +16,12 @@ python -m saudi_warning.forecasting.run_case --initial-time 2020-08-20T00:00:00Z
 
 首次运行会将每个 6 小时时次裁剪后缓存至 `data/raw/graphcast_2020/`；同一个个例再次运行会直接使用这些本地缓存。缓存和产出的 NetCDF 均不提交 Git。
 
+对网络不稳定或可能进入睡眠的电脑，用独立进程缓存未完成时次，并允许重试：
+
+```powershell
+python -m saudi_warning.forecasting.cache_pending_steps --steps 54 60 66 72 --retries 3
+```
+
 首次网络与文件输出验证（只处理降水，避免在尚未验证链路时下载全球高空场）：
 
 ```powershell
