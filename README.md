@@ -42,6 +42,8 @@ tests/                # 单元和接口测试
 
 字段、单位、时间语义和文件命名以 [数据契约](docs/data_contract.md) 为准。总体方案见根目录的 [统一技术路线_v1.md](统一技术路线_v1.md)。
 
+成员 A 的事件清单批处理方式见 [批处理说明](docs/batch_processing.md)。
+
 ## 协作约定
 
 - 从 `main` 拉取最新代码后创建功能分支：`feature/a-graphcast-loader`、`feature/b-risk-engine`、`feature/c-knowledge-graph`。
