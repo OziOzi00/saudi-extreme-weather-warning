@@ -1,10 +1,49 @@
-# Placeholder only. Member B calibrates thresholds with MAZU 2025, then freezes this file before 2020 replay.
-version: v1-draft
+# Candidate only. It is a three-window forecast proxy, not a frozen heatwave definition.
+version: heatwave_candidate_20260715
 hazard: heatwave
 status: draft
-required_indicators:
+rule_id: heatwave_candidate_region_season_duration
+calibration_source: handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv
+temporal_semantics: docs/指标时间语义与聚合口径.md
+primary_indicators:
   - tmax_c
+supporting_indicators:
   - tmin_c
-  - heatwave_day_flag
-  - heatwave_duration_days
-scoring: {}
+derived_indicators:
+  - forecast_hot_day_flag
+  - forecast_hot_day_duration
+aggregation:
+  tmax_c: spatial_p95
+  tmin_c: spatial_p95
+thresholds:
+  hot_day:
+    reference_column: daily_spatial_p95_p90
+    absolute_floor: 40.0
+    unit: degC
+  severe_hot_day:
+    reference_column: daily_spatial_p95_p95
+    absolute_floor: 43.0
+    unit: degC
+  warm_night:
+    reference_column: daily_spatial_p95_p90
+    absolute_floor: 28.0
+    unit: degC
+scoring:
+  hot_day: 3.0
+  severe_hot_day: 5.0
+  warm_night_support: 1.0
+  each_forecast_duration_day: 1.0
+classification:
+  low: no_hot_day_or_only_one_non_severe_hot_day
+  medium: two_consecutive_hot_days_or_one_severe_hot_day
+  high: three_consecutive_hot_days_with_current_severe_hot_day
+missing_policy:
+  tmax_missing: low_confidence_and_no_positive_classification
+  tmin_missing: record_missing_without_cancelling_hot_day
+  pre_initialization_duration: always_unknown
+confidence_cap: medium
+notes:
+  - MAZU heatwave_day_flag uses tmax >= max(40 degC, climatological Tmax + 5 degC).
+  - The compact regional statistics do not contain gridded daily climatology, so P90 plus an absolute floor is only a candidate proxy.
+  - GraphCast Tmax/Tmin are extrema of four 6-hour samples and may underestimate true daily extrema.
+  - The engine counts contiguous lead024/048/072 windows; it cannot determine duration before initialization.

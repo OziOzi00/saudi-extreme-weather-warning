@@ -1,10 +1,13 @@
-# 本地数据目录
+# 数据目录说明
 
-此目录仅保存本地或共享存储的数据挂载点，实际数据被 Git 忽略。
+- `raw/graphcast_2020/`：成员 A 的 GraphCast 本地缓存，不提交 Git。
+- `raw/imerg/`、`raw/ghcn/`：成员 B 用于天气层验证的本地观测，不提交 Git。
+- `processed/`：本地中间结果，不提交 Git。
+- `external/`：尚未版本化的外部资料和正式 case 清单，不提交 Git。
+- `reference/`：体积可控、许可清晰、需要跨成员统一使用的版本化参考数据。
 
-- `raw/graphcast_2020/`：成员 A 的 GraphCast 个例缓存。
-- `processed/mazu_2025/`：老师提供的 MAZU 指标副本或链接。
-- `raw/imerg/`、`raw/ghcn/`：成员 C 的观测数据。
-- `external/`：行政区边界、事件表等外部资料。
+当前 `reference/` 中的 ADM1 GeoJSON 是 A 协助 B/C 准备的原型边界。来源、许可和限制见 [`reference/README.md`](reference/README.md)。MAZU 2025 原始日文件位于 `MAZU指标/indicators/`，不复制进本目录，也不提交 Git。
 
-数据来源、裁剪范围、变量、日期和下载方法应记录在对应 PR 或 `docs/` 中。
+任何新增数据都应记录来源、许可、时间范围、变量、空间范围和生成方法。
+
+GraphCast 缓存若存在但无法读取或缺少必需变量/层次，A 的加载器会把它保留为相邻 `.invalid[.N]` 文件后重新获取；`.partial` 文件表示尚未完成原子交付，不能交给 B。

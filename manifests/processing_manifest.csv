@@ -1,2 +1,2 @@
 case_id,initial_time,event_type,status,lead024_file,lead048_file,lead072_file,message,updated_at_utc
-20200820_00,2020-08-20T00:00:00Z,demo,completed,handoff\mazu_like\mazu_like_20200820_00_lead024.nc,handoff\mazu_like\mazu_like_20200820_00_lead048.nc,handoff\mazu_like\mazu_like_20200820_00_lead072.nc,,2026-07-14T02:14:37.179665Z
+20200820_00,2020-08-20T00:00:00Z,demo,skipped,handoff/mazu_like/mazu_like_20200820_00_lead024.nc,handoff/mazu_like/mazu_like_20200820_00_lead048.nc,handoff/mazu_like/mazu_like_20200820_00_lead072.nc,all lead outputs already exist and passed validation,2026-07-15T11:24:36.365463Z

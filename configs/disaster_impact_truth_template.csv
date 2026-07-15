@@ -1,0 +1,2 @@
+record_id,event_id,case_id,region_id,hazard,event_start_time,event_end_time,impact_status,impact_category,impact_description_zh,fatalities_min,fatalities_max,affected_households_min,source_id,evidence_tier,review_status,review_notes
+EXAMPLE-001,EVT-YYYY-MM-NAME,YYYYMMDD_00,SA-00,heavy_rain,YYYY-MM-DDT00:00:00Z,YYYY-MM-DDT23:59:59Z,unknown,unknown,仅为字段模板,,,,SRC-EXAMPLE,unrated,pending,不得把未找到资料写成no

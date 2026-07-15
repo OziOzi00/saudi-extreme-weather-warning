@@ -56,30 +56,37 @@ def convert_window(case: xr.Dataset, initial_time: str, lead_time_hours: int) ->
     ivt_v = _pressure_integral(q * v)
 
     derived = {
-            # Small negative ML precipitation artefacts have no physical meaning.
-            "daily_precip_total": (
-                window["total_precipitation_6hr"].sum("prediction_timedelta") * 1000.0
-            ).clip(min=0.0),
-            "t2m_c": t2m_k.mean("prediction_timedelta") - 273.15,
-            "tmax_c": t2m_k.max("prediction_timedelta") - 273.15,
-            "tmin_c": t2m_k.min("prediction_timedelta") - 273.15,
-            "wind10_speed": np.hypot(u10, v10).mean("prediction_timedelta"),
-            "pwat": _pressure_integral(q).mean("prediction_timedelta"),
-            "ivt": np.hypot(ivt_u, ivt_v).mean("prediction_timedelta"),
-            "wind850_speed": np.hypot(u.sel(level=850), v.sel(level=850)).mean("prediction_timedelta"),
-            "wind_shear_850_200": np.hypot(
-                u.sel(level=200) - u.sel(level=850), v.sel(level=200) - v.sel(level=850)
-            ).mean("prediction_timedelta"),
-            "omega500": window["vertical_velocity"].sel(level=500).mean("prediction_timedelta"),
-            "geopotential_height500": (
-                window["geopotential"].sel(level=500).mean("prediction_timedelta") / STANDARD_GRAVITY
-            ),
+        # Small negative ML precipitation artefacts have no physical meaning.
+        "daily_precip_total": (
+            window["total_precipitation_6hr"].sum("prediction_timedelta") * 1000.0
+        ).clip(min=0.0),
+        "t2m_c": t2m_k.mean("prediction_timedelta") - 273.15,
+        "tmax_c": t2m_k.max("prediction_timedelta") - 273.15,
+        "tmin_c": t2m_k.min("prediction_timedelta") - 273.15,
+        "wind10_speed": np.hypot(u10, v10).mean("prediction_timedelta"),
+        "pwat": _pressure_integral(q).mean("prediction_timedelta"),
+        "ivt": np.hypot(ivt_u, ivt_v).mean("prediction_timedelta"),
+        "wind850_speed": np.hypot(u.sel(level=850), v.sel(level=850)).mean(
+            "prediction_timedelta"
+        ),
+        "wind_shear_850_200": np.hypot(
+            u.sel(level=200) - u.sel(level=850), v.sel(level=200) - v.sel(level=850)
+        ).mean("prediction_timedelta"),
+        "omega500": window["vertical_velocity"].sel(level=500).mean(
+            "prediction_timedelta"
+        ),
+        "geopotential_height500": (
+            window["geopotential"].sel(level=500).mean("prediction_timedelta")
+            / STANDARD_GRAVITY
+        ),
     }
     # Selections at 850/500 hPa leave scalar ``level`` coordinates behind.
     # They conflict when fields from different levels are assembled, while the
     # level is already encoded in each indicator name.
     output = xr.Dataset({name: value.reset_coords(drop=True) for name, value in derived.items()})
-    output = output.drop_vars([name for name in output.coords if name not in {"lat", "lon"}], errors="ignore")
+    output = output.drop_vars(
+        [name for name in output.coords if name not in {"lat", "lon"}], errors="ignore"
+    )
     output = output.rename({"lat": "latitude", "lon": "longitude"})
     output["daily_precip_total"].attrs["units"] = "mm"
     output["t2m_c"].attrs["units"] = "degC"

@@ -21,6 +21,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff>=0.6"]
 graph = ["neo4j>=5.0"]
+analysis = ["matplotlib>=3.8"]
+verification = ["matplotlib>=3.8"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

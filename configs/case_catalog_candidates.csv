@@ -1,0 +1,6 @@
+case_id,initial_time,event_id,case_role,hazard,target_region_ids,event_start_time,event_end_time,selection_status,weather_screening_status,impact_evidence_status,selection_reason_zh,source_ids
+20200725_00,2020-07-25T00:00:00Z,EVT-2020-07-SW-FLOOD,event,heavy_rain,SA-09;SA-14,2020-07-26T00:00:00Z,2020-07-29T23:59:59Z,candidate,weather_confirmed,impact_confirmed,覆盖7月26日起西南部强降雨与山洪影响；起报时间仍需全队确认,SRC-SPA-20200726-RAIN;SRC-SPA-20200727-PREP;SRC-WATAN-20200727;SRC-MOWATEN-20200728
+20200729_00,2020-07-29T00:00:00Z,EVT-2020-07-NORTH-EAST-HEAT,event,heatwave,SA-08;SA-04,2020-07-30T00:00:00Z,2020-07-31T23:59:59Z,candidate,weather_confirmed,impact_unknown,覆盖Rafha与Al-Qaisumah站点的极端高温记录；尚无可靠影响证据,SRC-SG-20260624-NCM-JULY
+20200711_00,2020-07-11T00:00:00Z,CTRL-2020-07-SW-RAIN,control,heavy_rain,SA-09;SA-14,2020-07-12T00:00:00Z,2020-07-14T23:59:59Z,candidate,needs_b_observation_screening,unknown,同月同区域候选对照；不得在IMERG和影响资料筛查前称为正常天气,
+20200715_00,2020-07-15T00:00:00Z,CTRL-2020-07-NORTH-EAST-HEAT,control,heatwave,SA-08;SA-04,2020-07-16T00:00:00Z,2020-07-18T23:59:59Z,candidate,needs_b_observation_screening,unknown,同月同区域候选对照；不得在GHCN和影响资料筛查前称为正常天气,
+20200820_00,2020-08-20T00:00:00Z,DEMO-20200820,demo,unspecified,SA-01,2020-08-20T00:00:00Z,2020-08-23T00:00:00Z,demo_only,not_applicable,unknown,现有链路演示日期；不声明为灾害或对照案例,

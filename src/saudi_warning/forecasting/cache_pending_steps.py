@@ -7,7 +7,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from saudi_warning.forecasting.graphcast_loader import _cache_path
+from saudi_warning.forecasting.graphcast_loader import _cache_path, cache_file_is_valid
 
 
 def main() -> None:
@@ -21,7 +21,7 @@ def main() -> None:
 
     for step in args.steps:
         cache_file = _cache_path(args.cache_dir, args.initial_time, step)
-        if cache_file.exists() and cache_file.stat().st_size > 0:
+        if cache_file_is_valid(cache_file):
             print(f"skip cached step={step:03d}h path={cache_file}", flush=True)
             continue
         command = [
@@ -42,7 +42,7 @@ def main() -> None:
             except subprocess.TimeoutExpired:
                 print(f"timeout step={step:03d}h attempt={attempt}", flush=True)
                 continue
-            if completed.returncode == 0 and cache_file.exists() and cache_file.stat().st_size > 0:
+            if completed.returncode == 0 and cache_file_is_valid(cache_file):
                 print(f"complete step={step:03d}h path={cache_file}", flush=True)
                 break
             print(f"retry step={step:03d}h exit_code={completed.returncode}", flush=True)

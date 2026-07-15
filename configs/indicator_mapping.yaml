@@ -3,6 +3,39 @@ version: mazu_like_v1
 source_model: GraphCast
 source_resolution: "0.25 degree"
 forecast_leads_hours: [24, 48, 72]
+mazu_2025_audit:
+  status: temporal_comparability_classes_documented_rule_review_pending
+  audited_at: "2026-07-15"
+  source_pattern: MAZU指标/indicators/saudi_indicators_YYYYMMDD.nc
+  coverage_manifest: manifests/mazu_2025_indicator_coverage.csv
+  field_mapping:
+    daily_precip_total: daily_precip_total
+    t2m_c: t2m_c
+    tmax_c: tmax_c
+    tmin_c: tmin_c
+    wind10_speed: wind10_speed
+    pwat: pwat
+    ivt: ivt
+    wind850_speed: wind850_speed
+    wind_shear_850_200: wind_shear_850_200
+    omega500: omega500
+    geopotential_height500: geopotential_height500
+  temporal_semantics_document: docs/指标时间语义与聚合口径.md
+  comparability:
+    hard_gate:
+      - daily_precip_total
+    cautious_primary:
+      - tmax_c
+      - tmin_c
+    supporting_only:
+      - t2m_c
+      - wind10_speed
+      - pwat
+      - ivt
+      - wind850_speed
+      - wind_shear_850_200
+      - omega500
+      - geopotential_height500
 indicators:
   daily_precip_total:
     unit: mm

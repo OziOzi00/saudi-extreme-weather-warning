@@ -5,18 +5,28 @@ from __future__ import annotations
 import argparse
 import csv
 import os
+import re
 import subprocess
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-from saudi_warning.forecasting.graphcast_loader import _cache_path, load_case_with_cache
+from saudi_warning.forecasting.graphcast_loader import (
+    _cache_path,
+    cache_file_is_valid,
+    load_case_with_cache,
+)
 from saudi_warning.forecasting.indicator_converter import convert_window
+from saudi_warning.forecasting.validation import (
+    validate_mazu_like_file,
+    validate_mazu_like_sequence,
+)
 
 
 LEADS = (24, 48, 72)
 REQUIRED_STEPS = tuple(range(6, 73, 6))
+CASE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 
 
 @dataclass(frozen=True)
@@ -41,6 +51,7 @@ def load_catalog(path: Path) -> list[CaseRecord]:
 
     records: list[CaseRecord] = []
     seen_case_ids: set[str] = set()
+    seen_initial_times: set[str] = set()
     for row_number, row in enumerate(rows, start=2):
         case_id = (row.get("case_id") or "").strip()
         initial_time = (row.get("initial_time") or "").strip()
@@ -48,15 +59,33 @@ def load_catalog(path: Path) -> list[CaseRecord]:
             raise ValueError(f"row {row_number} needs case_id and initial_time")
         if case_id in seen_case_ids:
             raise ValueError(f"duplicate case_id: {case_id}")
+        if not CASE_ID_PATTERN.fullmatch(case_id):
+            raise ValueError(f"invalid case_id at row {row_number}: {case_id}")
+        if not initial_time.endswith("Z"):
+            raise ValueError(f"initial_time must be explicit UTC ending in Z at row {row_number}")
         try:
-            datetime.fromisoformat(initial_time.replace("Z", "+00:00"))
+            initial = datetime.fromisoformat(initial_time.replace("Z", "+00:00"))
         except ValueError as error:
             raise ValueError(f"invalid initial_time at row {row_number}: {initial_time}") from error
+        initial = initial.astimezone(timezone.utc)
+        if initial.year != 2020:
+            raise ValueError(
+                f"initial_time must be in the v1 GraphCast 2020 replay year: {initial_time}"
+            )
+        clock = (initial.minute, initial.second, initial.microsecond)
+        if initial.hour not in {0, 12} or any(clock):
+            raise ValueError(f"initial_time must be a 00 or 12 UTC cycle: {initial_time}")
+        normalized_initial = initial.isoformat().replace("+00:00", "Z")
+        if normalized_initial in seen_initial_times:
+            raise ValueError(
+                f"duplicate initial_time would overwrite outputs: {normalized_initial}"
+            )
         seen_case_ids.add(case_id)
+        seen_initial_times.add(normalized_initial)
         records.append(
             CaseRecord(
                 case_id=case_id,
-                initial_time=initial_time,
+                initial_time=normalized_initial,
                 event_type=(row.get("event_type") or "").strip(),
                 notes=(row.get("notes") or "").strip(),
             )
@@ -80,7 +109,7 @@ def cache_missing_steps(
     missing_steps = [
         step
         for step in REQUIRED_STEPS
-        if not _cache_path(cache_dir, case.initial_time, step).exists()
+        if not cache_file_is_valid(_cache_path(cache_dir, case.initial_time, step))
     ]
     if not missing_steps:
         return
@@ -117,15 +146,42 @@ def process_case(
 ) -> tuple[str, dict[int, Path], str]:
     """Create all v1 outputs for one case and return status plus an optional error."""
     paths = output_paths(output_dir, case.initial_time)
-    if all(path.exists() and path.stat().st_size > 0 for path in paths.values()):
-        return "skipped", paths, "all lead outputs already exist"
+    valid_leads = {
+        lead
+        for lead, path in paths.items()
+        if path.exists()
+        and validate_mazu_like_file(path, case.initial_time, lead).valid
+    }
+    if valid_leads == set(LEADS):
+        sequence_errors = validate_mazu_like_sequence(list(paths.values()))
+        if not sequence_errors:
+            return "skipped", paths, "all lead outputs already exist and passed validation"
+        valid_leads = set()
 
     cache_missing_steps(case, cache_dir, retries, timeout_seconds)
     full_case = load_case_with_cache(case.initial_time, REQUIRED_STEPS, cache_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     for lead, path in paths.items():
-        convert_window(full_case, case.initial_time, lead).to_netcdf(path, engine="scipy")
-    return "completed", paths, ""
+        if lead in valid_leads:
+            continue
+        temporary = path.with_suffix(path.suffix + ".partial")
+        convert_window(full_case, case.initial_time, lead).to_netcdf(temporary, engine="scipy")
+        report = validate_mazu_like_file(
+            temporary,
+            expected_initial_time=case.initial_time,
+            expected_lead=lead,
+            check_filename=False,
+        )
+        if not report.valid:
+            raise RuntimeError(
+                f"generated lead{lead:03d} failed validation: {' | '.join(report.errors)}"
+            )
+        temporary.replace(path)
+    sequence_errors = validate_mazu_like_sequence(list(paths.values()))
+    if sequence_errors:
+        raise RuntimeError(f"generated sequence failed validation: {' | '.join(sequence_errors)}")
+    generated = ",".join(f"lead{lead:03d}" for lead in LEADS if lead not in valid_leads)
+    return "completed", paths, f"generated and validated {generated}"
 
 
 def write_manifest(path: Path, records: list[dict[str, str]]) -> None:
@@ -175,9 +231,9 @@ def main() -> None:
                 "initial_time": case.initial_time,
                 "event_type": case.event_type,
                 "status": status,
-                "lead024_file": str(paths[24]),
-                "lead048_file": str(paths[48]),
-                "lead072_file": str(paths[72]),
+                "lead024_file": paths[24].as_posix(),
+                "lead048_file": paths[48].as_posix(),
+                "lead072_file": paths[72].as_posix(),
                 "message": message,
                 "updated_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             }

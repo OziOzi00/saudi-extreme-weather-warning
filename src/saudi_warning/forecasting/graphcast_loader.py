@@ -80,6 +80,38 @@ def _cache_path(cache_dir: Path, initial_time: str, lead_step_hours: int) -> Pat
     return cache_dir / f"graphcast_{_case_stamp(initial_time)}_step{lead_step_hours:03d}.nc"
 
 
+def cache_file_is_valid(path: Path) -> bool:
+    """Return whether one derived step cache is readable and structurally complete."""
+    if not path.exists() or not path.is_file() or path.stat().st_size == 0:
+        return False
+    try:
+        with xr.open_dataset(path, engine="scipy") as dataset:
+            if not set(required_variables()).issubset(dataset.data_vars):
+                return False
+            if not {"lat", "lon", "level"}.issubset(dataset.coords):
+                return False
+            if any(dataset.sizes.get(name, 0) == 0 for name in ("lat", "lon", "level")):
+                return False
+            if not set(PRESSURE_LEVELS_HPA).issubset(
+                {int(value) for value in dataset["level"].values}
+            ):
+                return False
+    except Exception:
+        return False
+    return True
+
+
+def _quarantine_invalid_cache(path: Path) -> Path:
+    """Preserve an invalid derived cache beside its original path before refetching."""
+    candidate = path.with_suffix(path.suffix + ".invalid")
+    index = 1
+    while candidate.exists():
+        candidate = path.with_suffix(path.suffix + f".invalid.{index}")
+        index += 1
+    path.replace(candidate)
+    return candidate
+
+
 def load_case_with_cache(
     initial_time: str,
     lead_steps: Sequence[int],
@@ -98,9 +130,11 @@ def load_case_with_cache(
     cached_steps: list[xr.Dataset] = []
     for step in lead_steps:
         path = _cache_path(cache_dir, initial_time, step)
-        if path.exists():
+        if cache_file_is_valid(path):
             cropped = xr.open_dataset(path, engine="scipy").load()
         else:
+            if path.exists():
+                _quarantine_invalid_cache(path)
             source = source if source is not None else open_graphcast_2020()
             cropped = (
                 source[list(required_variables())]
@@ -114,6 +148,10 @@ def load_case_with_cache(
                 .drop_vars(["time", "prediction_timedelta"])
                 .load()
             )
-            cropped.to_netcdf(path, engine="scipy")
+            temporary = path.with_suffix(path.suffix + ".partial")
+            cropped.to_netcdf(temporary, engine="scipy")
+            if not cache_file_is_valid(temporary):
+                raise RuntimeError(f"generated cache failed validation: {temporary}")
+            temporary.replace(path)
         cached_steps.append(cropped.expand_dims(prediction_timedelta=[step]))
     return xr.concat(cached_steps, dim="prediction_timedelta")

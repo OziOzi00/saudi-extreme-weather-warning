@@ -35,10 +35,24 @@ outputs/
 !handoff/
 !handoff/mazu_like/
 !handoff/mazu_like/*.nc
+!handoff/mazu_statistics/
+!handoff/mazu_statistics/*.csv
+!handoff/region_summaries/
+!handoff/region_summaries/*.csv
 !handoff/risk_results/
 !handoff/risk_results/*.json
+!handoff/risk_dry_runs/
+!handoff/risk_dry_runs/*.csv
+!handoff/risk_dry_runs/*.md
+!handoff/risk_dry_runs/results/
+!handoff/risk_dry_runs/results/*.json
 !manifests/
 !manifests/*.csv
+
+# Small, licensed reference layers used by every member
+!data/reference/
+!data/reference/*.geojson
+!data/reference/*.md
 
 # Keep structure, but do not commit local MAZU data or teacher source files
 MAZU指标/indicators/

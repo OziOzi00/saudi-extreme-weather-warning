@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "weather_verification_pair.schema.json",
+  "title": "Standardized region-level forecast-observation pair",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "initial_time", "lead_time_hours", "valid_start_time", "valid_end_time", "region_id", "variable", "aggregation", "forecast_value", "observed_value", "unit", "event_threshold", "observation_source", "observation_id", "coverage_fraction", "station_count", "qc_status"],
+  "properties": {
+    "case_id": {"type": "string", "minLength": 1},
+    "initial_time": {"type": "string", "format": "date-time"},
+    "lead_time_hours": {"enum": [24, 48, 72]},
+    "valid_start_time": {"type": "string", "format": "date-time"},
+    "valid_end_time": {"type": "string", "format": "date-time"},
+    "region_id": {"type": "string", "minLength": 1},
+    "variable": {"enum": ["daily_precip_total", "tmax_c", "tmin_c"]},
+    "aggregation": {"enum": ["weighted_mean", "spatial_p95", "maximum", "station_mean", "station_max", "station_min"]},
+    "forecast_value": {"type": "number"},
+    "observed_value": {"type": "number"},
+    "unit": {"enum": ["mm", "degC"]},
+    "event_threshold": {"type": ["number", "null"]},
+    "observation_source": {"enum": ["IMERG", "GHCN_DAILY", "other"]},
+    "observation_id": {"type": "string", "minLength": 1},
+    "coverage_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+    "station_count": {"type": ["integer", "null"], "minimum": 0},
+    "qc_status": {"enum": ["accepted", "provisional", "rejected"]}
+  }
+}

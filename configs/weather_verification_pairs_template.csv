@@ -1,0 +1,1 @@
+case_id,initial_time,lead_time_hours,valid_start_time,valid_end_time,region_id,variable,aggregation,forecast_value,observed_value,unit,event_threshold,observation_source,observation_id,coverage_fraction,station_count,qc_status

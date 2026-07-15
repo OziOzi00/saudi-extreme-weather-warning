@@ -1,11 +1,52 @@
-# Placeholder only. Member B calibrates thresholds with MAZU 2025, then freezes this file before 2020 replay.
-version: v1-draft
+# Candidate only. Team review and independent observations are required before freezing v1.
+version: heavy_rain_candidate_20260715
 hazard: heavy_rain
 status: draft
-required_indicators:
+rule_id: heavy_rain_candidate_region_season_p90_p95
+calibration_source: handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv
+temporal_semantics: docs/指标时间语义与聚合口径.md
+primary_indicators:
   - daily_precip_total
+supporting_indicators:
   - pwat
   - ivt
   - wind850_speed
   - omega500
-scoring: {}
+aggregation:
+  daily_precip_total: spatial_p95
+  pwat: weighted_mean
+  ivt: weighted_mean
+  wind850_speed: weighted_mean
+  omega500: weighted_mean
+thresholds:
+  precipitation:
+    medium:
+      reference_column: daily_spatial_p95_p90
+      absolute_floor: 10.0
+      unit: mm
+    high:
+      reference_column: daily_spatial_p95_p95
+      absolute_floor: 20.0
+      unit: mm
+  supporting_percentile:
+    reference_column: daily_region_mean_p90
+  upward_motion:
+    maximum: 0.0
+    unit: Pa s-1
+scoring:
+  precipitation_medium: 3.0
+  precipitation_high: 5.0
+  each_supporting_indicator: 1.0
+classification:
+  low: precipitation_below_medium
+  medium: precipitation_at_or_above_medium
+  high: precipitation_at_or_above_high_and_support_count_at_least
+  high_minimum_support_count: 1
+confidence_cap: medium
+missing_policy:
+  primary_missing: low_confidence_and_no_positive_classification
+  supporting_missing: record_missing_and_do_not_replace_with_zero
+notes:
+  - Thresholds are region- and season-specific MAZU 2025 candidate quantiles with absolute floors.
+  - Instantaneous MAZU support fields are not used as hard risk gates because GraphCast uses 24-hour means.
+  - This draft must not be used as a frozen 2020 independent-evaluation rule.

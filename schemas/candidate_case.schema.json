@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "candidate_case.schema.json",
+  "title": "Member C candidate forecast case v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id", "initial_time", "event_id", "case_role", "hazard",
+    "target_region_ids", "event_start_time", "event_end_time",
+    "selection_status", "weather_screening_status", "impact_evidence_status",
+    "selection_reason_zh", "source_ids"
+  ],
+  "properties": {
+    "case_id": {"type": "string", "pattern": "^2020[0-1][0-9][0-3][0-9]_(00|12)$"},
+    "initial_time": {"type": "string", "format": "date-time"},
+    "event_id": {"type": "string", "minLength": 1},
+    "case_role": {"enum": ["event", "control", "demo"]},
+    "hazard": {"enum": ["heavy_rain", "heatwave", "unspecified"]},
+    "target_region_ids": {"type": "string", "minLength": 1},
+    "event_start_time": {"type": "string", "format": "date-time"},
+    "event_end_time": {"type": "string", "format": "date-time"},
+    "selection_status": {"enum": ["candidate", "approved", "rejected", "demo_only"]},
+    "weather_screening_status": {
+      "enum": ["weather_confirmed", "needs_b_observation_screening", "not_applicable"]
+    },
+    "impact_evidence_status": {"enum": ["impact_confirmed", "unknown", "no_impact_confirmed"]},
+    "selection_reason_zh": {"type": "string", "minLength": 1},
+    "source_ids": {"type": "string"}
+  }
+}

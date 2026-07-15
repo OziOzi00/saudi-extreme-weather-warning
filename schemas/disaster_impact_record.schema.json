@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "disaster_impact_record.schema.json",
+  "title": "Disaster impact truth evidence record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_id", "event_id", "case_id", "region_id", "hazard",
+    "event_start_time", "event_end_time", "impact_status", "impact_category",
+    "impact_description_zh", "fatalities_min", "fatalities_max",
+    "affected_households_min", "source_id", "evidence_tier", "review_status",
+    "review_notes"
+  ],
+  "properties": {
+    "record_id": {"type": "string", "minLength": 1},
+    "event_id": {"type": "string", "minLength": 1},
+    "case_id": {"type": "string", "pattern": "^2020[0-1][0-9][0-3][0-9]_(00|12)$"},
+    "region_id": {"type": "string", "pattern": "^SA-[0-9]{2}$"},
+    "hazard": {"enum": ["heavy_rain", "heatwave"]},
+    "event_start_time": {"type": "string", "format": "date-time"},
+    "event_end_time": {"type": "string", "format": "date-time"},
+    "impact_status": {"enum": ["yes", "no", "unknown"]},
+    "impact_category": {
+      "enum": ["fatality", "injury", "housing", "transport", "power", "agriculture", "unknown"]
+    },
+    "impact_description_zh": {"type": "string", "minLength": 1},
+    "fatalities_min": {"type": ["integer", "null"], "minimum": 0},
+    "fatalities_max": {"type": ["integer", "null"], "minimum": 0},
+    "affected_households_min": {"type": ["integer", "null"], "minimum": 0},
+    "source_id": {"type": "string", "minLength": 1},
+    "evidence_tier": {"enum": ["official", "licensed_local_media", "secondary", "unrated"]},
+    "review_status": {"enum": ["pending", "reviewed", "disputed"]},
+    "review_notes": {"type": "string"}
+  }
+}
