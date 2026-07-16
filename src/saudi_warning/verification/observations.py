@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import json
+import zipfile
+from dataclasses import dataclass
 from datetime import datetime, timezone
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +25,86 @@ GHCN_BY_YEAR_COLUMNS = [
     "s_flag",
     "observation_time",
 ]
+
+IMERG_GIS_MISSING_VALUE = 29999
+IMERG_GIS_SCALE_FACTOR = 0.1
+
+
+@dataclass(frozen=True)
+class IMERGRegionGrid:
+    latitude_name: str
+    longitude_name: str
+    latitudes: np.ndarray
+    longitudes: np.ndarray
+    masks: dict[str, np.ndarray]
+    weights: np.ndarray
+
+
+def read_imerg_gis_daily_zip(
+    path: Path,
+    bounds: tuple[float, float, float, float] | None = None,
+) -> xr.DataArray:
+    """Read the Final Run daily total accumulation GeoTIFF from a PPS ZIP.
+
+    Bounds use ``(west, south, east, north)`` and select pixel centers. The V07 GIS
+    two-byte precipitation fields use 29999 for missing data and 0.1 mm per count.
+    """
+
+    from PIL import Image
+
+    with zipfile.ZipFile(path) as archive:
+        tif_names = [
+            name for name in archive.namelist() if name.endswith(".total.accum.tif")
+        ]
+        if len(tif_names) != 1:
+            raise ValueError(
+                f"expected one total accumulation GeoTIFF in {path}, found {tif_names}"
+            )
+        tif_name = tif_names[0]
+        world_name = tif_name[:-4] + ".tfw"
+        if world_name not in archive.namelist():
+            raise ValueError(f"IMERG archive lacks world file: {world_name}")
+        with Image.open(BytesIO(archive.read(tif_name))) as image:
+            raw = np.asarray(image).copy()
+        world_values = [
+            float(value) for value in archive.read(world_name).decode("ascii").split()
+        ]
+
+    if len(world_values) != 6:
+        raise ValueError(f"invalid IMERG world file in {path}")
+    pixel_x, rotation_y, rotation_x, pixel_y, center_x, center_y = world_values
+    if rotation_x != 0 or rotation_y != 0 or pixel_x <= 0 or pixel_y >= 0:
+        raise ValueError(f"unsupported IMERG grid transform in {path}")
+    latitudes = center_y + np.arange(raw.shape[0]) * pixel_y
+    longitudes = center_x + np.arange(raw.shape[1]) * pixel_x
+    if bounds is not None:
+        west, south, east, north = bounds
+        latitude_indices = np.flatnonzero((latitudes >= south) & (latitudes <= north))
+        longitude_indices = np.flatnonzero(
+            (longitudes >= west) & (longitudes <= east)
+        )
+        if not len(latitude_indices) or not len(longitude_indices):
+            raise ValueError(f"IMERG bounds do not intersect the grid: {bounds}")
+        raw = raw[np.ix_(latitude_indices, longitude_indices)]
+        latitudes = latitudes[latitude_indices]
+        longitudes = longitudes[longitude_indices]
+    values = raw.astype(np.float32)
+    values[raw == IMERG_GIS_MISSING_VALUE] = np.nan
+    values *= IMERG_GIS_SCALE_FACTOR
+    field = xr.DataArray(
+        values,
+        coords={"latitude": latitudes, "longitude": longitudes},
+        dims=("latitude", "longitude"),
+        name="daily_precip_total",
+    )
+    field.attrs = {
+        "units": "mm",
+        "source_file": str(path),
+        "source_member": tif_name,
+        "product": "IMERG Final Run daily GIS accumulation",
+        "version": "V07B",
+    }
+    return field
 
 
 def ghcn_year_url(year: int) -> str:
@@ -252,38 +335,83 @@ def aggregate_imerg_regions(
     """Aggregate a 2-D IMERG precipitation field to versioned ADM1 regions."""
     if aggregation not in {"weighted_mean", "spatial_p95", "maximum"}:
         raise ValueError("unsupported IMERG aggregation")
+    summaries = summarize_imerg_regions(precipitation, geojson_path)
+    result = summaries[
+        ["region_id", f"{aggregation}_mm", "coverage_fraction"]
+    ].rename(columns={f"{aggregation}_mm": "observed_value"})
+    result["unit"] = "mm"
+    result["aggregation"] = aggregation
+    result["observation_source"] = "IMERG"
+    return result
+
+
+def summarize_imerg_regions(
+    precipitation: xr.DataArray,
+    geojson_path: Path,
+    region_grid: IMERGRegionGrid | None = None,
+) -> pd.DataFrame:
+    """Calculate all standard ADM1 precipitation statistics with one mask pass."""
+
+    if region_grid is None:
+        region_grid = prepare_imerg_region_grid(precipitation, geojson_path)
+    latitude_name = region_grid.latitude_name
+    longitude_name = region_grid.longitude_name
+    if not np.array_equal(
+        precipitation[latitude_name].values, region_grid.latitudes
+    ) or not np.array_equal(
+        precipitation[longitude_name].values, region_grid.longitudes
+    ):
+        raise ValueError("IMERG field coordinates do not match the prepared region grid")
+    values = np.asarray(
+        precipitation.transpose(latitude_name, longitude_name).values, dtype=float
+    ).ravel()
+    rows: list[dict[str, Any]] = []
+    for region_id, mask in region_grid.masks.items():
+        region_values = values[mask]
+        finite = np.isfinite(region_values)
+        if not finite.any():
+            weighted_mean = None
+            spatial_p95 = None
+            maximum = None
+        else:
+            weighted_mean = float(
+                np.average(
+                    region_values[finite],
+                    weights=region_grid.weights[mask][finite],
+                )
+            )
+            spatial_p95 = float(np.quantile(region_values[finite], 0.95))
+            maximum = float(np.max(region_values[finite]))
+        rows.append(
+            {
+                "region_id": region_id,
+                "weighted_mean_mm": weighted_mean,
+                "spatial_p95_mm": spatial_p95,
+                "maximum_mm": maximum,
+                "coverage_fraction": float(finite.mean()),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def prepare_imerg_region_grid(
+    precipitation: xr.DataArray,
+    geojson_path: Path,
+) -> IMERGRegionGrid:
+    """Prepare reusable ADM1 masks and latitude weights for a fixed IMERG grid."""
+
     latitude_name = "lat" if "lat" in precipitation.coords else "latitude"
     longitude_name = "lon" if "lon" in precipitation.coords else "longitude"
     latitudes = np.asarray(precipitation[latitude_name].values)
     longitudes = np.asarray(precipitation[longitude_name].values)
     longitude_grid, latitude_grid = np.meshgrid(longitudes, latitudes)
-    masks = _geometry_masks(
-        latitude_grid.ravel(), longitude_grid.ravel(), geojson_path
+    return IMERGRegionGrid(
+        latitude_name=latitude_name,
+        longitude_name=longitude_name,
+        latitudes=latitudes,
+        longitudes=longitudes,
+        masks=_geometry_masks(
+            latitude_grid.ravel(), longitude_grid.ravel(), geojson_path
+        ),
+        weights=np.cos(np.deg2rad(latitude_grid)).ravel(),
     )
-    values = np.asarray(
-        precipitation.transpose(latitude_name, longitude_name).values, dtype=float
-    ).ravel()
-    weights = np.cos(np.deg2rad(latitude_grid)).ravel()
-    rows: list[dict[str, Any]] = []
-    for region_id, mask in masks.items():
-        region_values = values[mask]
-        finite = np.isfinite(region_values)
-        if not finite.any():
-            observed = None
-        elif aggregation == "spatial_p95":
-            observed = float(np.quantile(region_values[finite], 0.95))
-        elif aggregation == "maximum":
-            observed = float(np.max(region_values[finite]))
-        else:
-            observed = float(np.average(region_values[finite], weights=weights[mask][finite]))
-        rows.append(
-            {
-                "region_id": region_id,
-                "observed_value": observed,
-                "unit": "mm",
-                "aggregation": aggregation,
-                "coverage_fraction": float(finite.mean()),
-                "observation_source": "IMERG",
-            }
-        )
-    return pd.DataFrame(rows)

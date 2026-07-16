@@ -14,14 +14,14 @@ case_id,initial_time,event_type,notes
 - `initial_time`：GraphCast 的 00 或 12 UTC 起报时间，ISO-8601 UTC。
 - `event_type` 和 `notes`：可选的追溯信息。
 
-正式清单由成员 C 基于真实 2020 灾害事件和普通天气对照日确定，保存在 `data/external/case_catalog.csv`（本地、不提交 Git）。当前模板的 `20200820_00` 是已跑通的 `demo`，不声明为确认灾害事件。
+版本化正式清单为 `configs/case_catalog_candidates.csv`：12 个真实案例已于 2026-07-16 批准并冻结 development/independent_test 划分；`20200820_00` 仍只是已跑通的 demo，不声明为极端灾害事件。若试验其他未批准日期，应使用 `data/external/` 下的本地清单，不提交 Git。
 
 清单预检查会拒绝重复 `case_id`、重复起报时间、非 UTC `Z` 时间、非 00/12 UTC 起报、非 2020 回放年份和不安全的标识符，并报告已有输出是否真正通过契约验收：
 
 ```powershell
 $env:PYTHONPATH = "$PWD\src"
 python -m saudi_warning.forecasting.preflight_catalog `
-  --catalog data/external/case_catalog.csv
+  --catalog configs/case_catalog_candidates.csv
 ```
 
 ## 运行

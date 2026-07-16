@@ -23,16 +23,22 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 def test_member_c_contracts_are_cross_referenced() -> None:
     counts = validate_member_c_inputs(REGIONS, CASES, TRUTH, SOURCES)
-    assert counts == {"regions": 13, "cases": 5, "truth_records": 5, "sources": 7}
+    assert counts == {"regions": 13, "cases": 13, "truth_records": 12, "sources": 14}
     regions = read_csv(REGIONS)
     assert all(row["region_name_ar"] for row in regions)
     controls = [row for row in read_csv(CASES) if row["case_role"] == "control"]
     assert controls
-    assert all(
-        row["weather_screening_status"] == "needs_b_observation_screening"
-        for row in controls
-    )
+    assert {row["weather_screening_status"] for row in controls} <= {
+        "needs_b_observation_screening",
+        "ghcn_screened_lower_intensity",
+        "imerg_screened_lower_intensity",
+    }
     assert all(row["impact_evidence_status"] == "unknown" for row in controls)
+    assert all(row["selection_status"] == "approved" for row in controls)
+    assert {row["dataset_split"] for row in controls} <= {
+        "development",
+        "independent_test",
+    }
 
 
 def test_truth_never_converts_missing_evidence_to_no() -> None:

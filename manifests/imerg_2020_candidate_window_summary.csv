@@ -1,0 +1,12 @@
+case_id,case_role,dataset_split,region_id,window_start_date,window_end_date,window_days,weighted_mean_mm,spatial_p95_mm,maximum_mm,coverage_fraction,product,version
+20200501_00,event,proposed_development,SA-09,2020-05-01,2020-05-02,2,1.779,11.3,27.1,1.0,IMERG Final Run daily GIS accumulation,V07B
+20200505_00,event,proposed_development,SA-09,2020-05-06,2020-05-06,1,4.819,18.92,32.9,1.0,IMERG Final Run daily GIS accumulation,V07B
+20200515_00,control,proposed_development,SA-09,2020-05-16,2020-05-18,3,1.808,6.235,8.1,1.0,IMERG Final Run daily GIS accumulation,V07B
+20200725_00,event,proposed_independent_test,SA-09,2020-07-26,2020-07-29,4,49.158,66.04,105.7,1.0,IMERG Final Run daily GIS accumulation,V07B
+20200725_00,event,proposed_independent_test,SA-14,2020-07-26,2020-07-29,4,16.21,40.69,85.5,1.0,IMERG Final Run daily GIS accumulation,V07B
+20200711_00,control,proposed_independent_test,SA-09,2020-07-12,2020-07-14,3,0.583,2.97,5.2,1.0,IMERG Final Run daily GIS accumulation,V07B
+20200711_00,control,proposed_independent_test,SA-14,2020-07-12,2020-07-14,3,0.027,0.0,1.9,1.0,IMERG Final Run daily GIS accumulation,V07B
+20201109_00,control,proposed_development,SA-03,2020-11-10,2020-11-12,3,0.092,0.545,3.8,1.0,IMERG Final Run daily GIS accumulation,V07B
+20201119_00,event,proposed_development,SA-03,2020-11-20,2020-11-21,2,3.332,9.445,15.2,1.0,IMERG Final Run daily GIS accumulation,V07B
+20201112_00,control,proposed_independent_test,SA-02,2020-11-13,2020-11-15,3,0.001,0.0,0.6,1.0,IMERG Final Run daily GIS accumulation,V07B
+20201125_00,event,proposed_independent_test,SA-02,2020-11-26,2020-11-26,1,4.021,14.7,49.5,1.0,IMERG Final Run daily GIS accumulation,V07B

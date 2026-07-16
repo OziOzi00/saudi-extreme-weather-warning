@@ -1,0 +1,23 @@
+date,case_ids,case_roles,dataset_splits,directory_url,product,version,status
+2020-05-01,20200501_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/01/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-05-02,20200501_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/02/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-05-06,20200505_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/06/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-05-16,20200515_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/16/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-05-17,20200515_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/17/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-05-18,20200515_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/18/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-07-12,20200711_00,control,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/12/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-07-13,20200711_00,control,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/13/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-07-14,20200711_00,control,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/14/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-07-26,20200725_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/26/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-07-27,20200725_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/27/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-07-28,20200725_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/28/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-07-29,20200725_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/29/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-10,20201109_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/10/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-11,20201109_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/11/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-12,20201109_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/12/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-13,20201112_00,control,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/13/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-14,20201112_00,control,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/14/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-15,20201112_00,control,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/15/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-20,20201119_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/20/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-21,20201119_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/21/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration
+2020-11-26,20201125_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/26/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_requires_pps_registration

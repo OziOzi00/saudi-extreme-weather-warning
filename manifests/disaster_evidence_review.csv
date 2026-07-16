@@ -1,0 +1,13 @@
+record_id,source_id,source_access_status,published_date_match,region_match,impact_statement_match,review_decision,corroboration_status,corroborating_url,limitations,reviewed_date
+IMP-202007-ASIR-001,SRC-WATAN-20200727,accessible,yes,yes,yes,reviewed,independent_media_corroboration_found,https://www.al-madina.com/article/694491,primary record remains licensed local media rather than official source,2026-07-16
+IMP-202007-JAZAN-001,SRC-MOWATEN-20200728,accessible,yes,yes,yes,reviewed,quotes_named_civil_defense_spokesperson,,housing severity is not quantified beyond 26 homes receiving water,2026-07-16
+IMP-202007-JAZAN-002,SRC-WATAN-20200727,accessible,yes,yes,yes,reviewed,single_direct_media_article,,transport is the primary category while power and rockfall remain descriptive,2026-07-16
+IMP-202007-NORTH-HEAT-001,SRC-SG-20260624-NCM-JULY,accessible,yes,yes,yes,reviewed,secondary_summary_of_ncm,,supports temperature only and does not establish impact,2026-07-16
+IMP-202007-EAST-HEAT-001,SRC-SG-20260624-NCM-JULY,accessible,yes,yes,yes,reviewed,secondary_summary_of_ncm,,supports temperature only and does not establish impact,2026-07-16
+IMP-202005-JAZAN-001,SRC-WATAN-20200502,accessible,yes,yes,yes,reviewed,single_direct_media_article,,no independent or archived official source currently linked,2026-07-16
+IMP-202005-JAZAN-002,SRC-WATAN-20200502,accessible,yes,yes,yes,reviewed,single_direct_media_article,,same article as fatality record and must not be double-counted,2026-07-16
+IMP-202005-JAZAN-003,SRC-WATAN-20200506,accessible,yes,yes,yes,reviewed,single_direct_media_article,,no independent or archived official source currently linked,2026-07-16
+IMP-202005-JAZAN-004,SRC-WATAN-20200506,accessible,yes,yes,yes,reviewed,single_direct_media_article,,road names retain source transliteration,2026-07-16
+IMP-202007-EAST-HEAT-EARLY-001,SRC-ALBAYAN-20200708,accessible,yes,yes,yes,reviewed,secondary_summary_of_met_authority,,supports temperature only and does not establish impact,2026-07-16
+IMP-202011-MADINAH-001,SRC-WATAN-20201121,accessible,yes,yes,yes,reviewed,single_direct_media_article,,road and vehicle impacts are not quantitatively enumerated,2026-07-16
+IMP-202011-MAKKAH-001,SRC-WATAN-20201126,accessible,yes,yes,yes,reviewed,single_direct_media_article,,affected locations are listed but severity and casualties are not reported,2026-07-16

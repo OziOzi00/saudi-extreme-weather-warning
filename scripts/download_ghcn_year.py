@@ -18,6 +18,31 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _download(url: str, output: Path) -> str:
+    """Download atomically and return SHA-256, recovering empty failed outputs."""
+
+    if output.exists() and output.stat().st_size > 0:
+        raise SystemExit(f"refusing to overwrite existing file: {output}")
+    if output.exists():
+        output.unlink()
+    partial = output.with_suffix(output.suffix + ".partial")
+    if partial.exists():
+        partial.unlink()
+    try:
+        urllib.request.urlretrieve(url, partial)
+        if partial.stat().st_size == 0:
+            raise RuntimeError(f"download returned an empty file: {url}")
+        partial.replace(output)
+    finally:
+        if partial.exists():
+            partial.unlink()
+    checksum = _sha256(output)
+    (output.with_suffix(output.suffix + ".sha256")).write_text(
+        f"{checksum}  {output.name}\n", encoding="ascii"
+    )
+    return checksum
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("year", type=int)
@@ -29,29 +54,23 @@ def main() -> None:
         action="store_true",
         help="also download the current official station inventory",
     )
+    parser.add_argument(
+        "--skip-year",
+        action="store_true",
+        help="skip the yearly archive; useful for recovering the station inventory",
+    )
     args = parser.parse_args()
     url = ghcn_year_url(args.year)
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    output = args.output_dir / f"{args.year}.csv.gz"
-    if output.exists():
-        raise SystemExit(f"refusing to overwrite existing file: {output}")
-    urllib.request.urlretrieve(url, output)
-    checksum = _sha256(output)
-    (output.with_suffix(output.suffix + ".sha256")).write_text(
-        f"{checksum}  {output.name}\n", encoding="ascii"
-    )
-    print(output)
-    print(checksum)
+    if not args.skip_year:
+        output = args.output_dir / f"{args.year}.csv.gz"
+        checksum = _download(url, output)
+        print(output)
+        print(checksum)
     if args.include_stations:
         station_url = "https://www.ncei.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt"
         station_output = args.output_dir / "ghcnd-stations.txt"
-        if station_output.exists():
-            raise SystemExit(f"refusing to overwrite existing file: {station_output}")
-        urllib.request.urlretrieve(station_url, station_output)
-        station_checksum = _sha256(station_output)
-        (station_output.with_suffix(station_output.suffix + ".sha256")).write_text(
-            f"{station_checksum}  {station_output.name}\n", encoding="ascii"
-        )
+        station_checksum = _download(station_url, station_output)
         print(station_output)
         print(station_checksum)
 

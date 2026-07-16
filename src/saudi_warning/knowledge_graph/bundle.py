@@ -20,6 +20,14 @@ CASE_ROLES = {"event", "control", "demo"}
 CASE_SELECTION_STATUSES = {"candidate", "approved", "rejected", "demo_only"}
 IMPACT_STATUSES = {"yes", "no", "unknown"}
 REVIEW_STATUSES = {"pending", "reviewed", "disputed"}
+WEATHER_SCREENING_STATUSES = {
+    "weather_confirmed",
+    "ghcn_confirmed",
+    "ghcn_screened_lower_intensity",
+    "imerg_screened_lower_intensity",
+    "needs_b_observation_screening",
+    "not_applicable",
+}
 ALLOWED_NODE_LABELS = {
     "Evidence",
     "ForecastCase",
@@ -94,6 +102,7 @@ def validate_member_c_inputs(
             "event_start_time",
             "event_end_time",
             "selection_status",
+            "dataset_split",
             "weather_screening_status",
             "impact_evidence_status",
             "selection_reason_zh",
@@ -141,6 +150,25 @@ def validate_member_c_inputs(
             raise ValueError(f"invalid case_role for {row['case_id']}")
         if row["selection_status"] not in CASE_SELECTION_STATUSES:
             raise ValueError(f"invalid selection_status for {row['case_id']}")
+        if row["dataset_split"] not in {
+            "proposed_development",
+            "proposed_independent_test",
+            "development",
+            "independent_test",
+            "demo",
+        }:
+            raise ValueError(f"invalid dataset_split for {row['case_id']}")
+        if row["weather_screening_status"] not in WEATHER_SCREENING_STATUSES:
+            raise ValueError(f"invalid weather_screening_status for {row['case_id']}")
+        if row["selection_status"] == "candidate" and not row["dataset_split"].startswith(
+            "proposed_"
+        ):
+            raise ValueError("candidate cases must use a proposed dataset split")
+        if row["selection_status"] == "approved" and row["dataset_split"] not in {
+            "development",
+            "independent_test",
+        }:
+            raise ValueError("approved cases require a frozen dataset split")
         initial = _parse_utc(row["initial_time"], "initial_time")
         start = _parse_utc(row["event_start_time"], "event_start_time")
         end = _parse_utc(row["event_end_time"], "event_end_time")
@@ -155,10 +183,12 @@ def validate_member_c_inputs(
         listed_sources = {value for value in row["source_ids"].split(";") if value}
         if listed_sources - source_ids:
             raise ValueError(f"unknown case sources: {sorted(listed_sources - source_ids)}")
-        if row["case_role"] == "control" and row["weather_screening_status"] != (
-            "needs_b_observation_screening"
-        ):
-            raise ValueError("control candidates must remain pending B observation screening")
+        if row["case_role"] == "control" and row["weather_screening_status"] not in {
+            "needs_b_observation_screening",
+            "ghcn_screened_lower_intensity",
+            "imerg_screened_lower_intensity",
+        }:
+            raise ValueError("control candidates must remain pending or explicitly screened")
         if row["case_role"] == "event" and not listed_sources:
             raise ValueError(f"event candidate has no evidence source: {row['case_id']}")
     for row in truth:
