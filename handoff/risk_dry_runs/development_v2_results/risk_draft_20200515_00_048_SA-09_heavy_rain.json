@@ -1,0 +1,86 @@
+{
+  "schema_version": "risk_result_v1",
+  "case_id": "20200515_00_048",
+  "source_file": "handoff/mazu_like/mazu_like_20200515_00_lead048.nc",
+  "initial_time": "2020-05-15T00:00:00Z",
+  "lead_time_hours": 48,
+  "valid_start_time": "2020-05-16T00:00:00Z",
+  "valid_end_time": "2020-05-17T00:00:00Z",
+  "region_id": "SA-09",
+  "region_name": "Jazan Region",
+  "hazard": "heavy_rain",
+  "rule_id": "heavy_rain_graphcast_scale_v2",
+  "rule_status": "frozen",
+  "indicator_summary": {
+    "reference_period": "MAM",
+    "precip_spatial_p95_mm": 2.2452143,
+    "precip_medium_threshold_mm": 5.0,
+    "precip_high_threshold_mm": 10.0,
+    "precipitation_stage": "below_medium",
+    "pwat_weighted_mean": 40.910478,
+    "ivt_weighted_mean": 40.998438,
+    "wind850_speed_weighted_mean": 2.1728894,
+    "omega500_weighted_mean_pa_s-1": -0.058421199,
+    "support_count": 2
+  },
+  "supporting_evidence": [
+    {
+      "indicator": "pwat",
+      "metric": "weighted_mean",
+      "value": 40.910478,
+      "comparison": ">=",
+      "threshold": 39.97816,
+      "unit": "kg m-2",
+      "role": "support",
+      "reference_period": "MAM"
+    },
+    {
+      "indicator": "omega500",
+      "metric": "weighted_mean",
+      "value": -0.058421199,
+      "comparison": "<",
+      "threshold": 0.0,
+      "unit": "Pa s-1",
+      "role": "support"
+    }
+  ],
+  "contradicting_evidence": [
+    {
+      "indicator": "daily_precip_total",
+      "metric": "spatial_p95",
+      "value": 2.2452143,
+      "comparison": ">=",
+      "threshold": 5.0,
+      "unit": "mm",
+      "role": "primary",
+      "reference_period": "MAM"
+    },
+    {
+      "indicator": "ivt",
+      "metric": "weighted_mean",
+      "value": 40.998438,
+      "comparison": ">=",
+      "threshold": 98.274788,
+      "unit": "kg m-1 s-1",
+      "role": "support",
+      "reference_period": "MAM"
+    },
+    {
+      "indicator": "wind850_speed",
+      "metric": "weighted_mean",
+      "value": 2.1728894,
+      "comparison": ">=",
+      "threshold": 3.6882299,
+      "unit": "m s-1",
+      "role": "support",
+      "reference_period": "MAM"
+    }
+  ],
+  "missing_evidence": [],
+  "verification": null,
+  "created_at": "2026-07-17T00:00:00Z",
+  "risk_level": "low",
+  "risk_score": 0.0,
+  "confidence": "medium",
+  "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 2/4。"
+}

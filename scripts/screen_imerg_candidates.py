@@ -88,13 +88,14 @@ def process(
     cases: list[dict[str, str]],
     files: dict[date, Path],
     regions_path: Path,
+    additional_dates: list[date] | None = None,
 ) -> tuple[list[dict[str, object]], list[dict[str, object]], list[dict[str, object]]]:
     rainfall_cases = [
         row
         for row in cases
         if row["hazard"] == "heavy_rain" and row["case_role"] in {"event", "control"}
     ]
-    required_dates = sorted(
+    window_dates = sorted(
         {
             day
             for case in rainfall_cases
@@ -104,6 +105,7 @@ def process(
             )
         }
     )
+    required_dates = sorted(set(window_dates) | set(additional_dates or []))
     missing = [day for day in required_dates if day not in files]
     if missing:
         raise FileNotFoundError(f"missing IMERG daily files: {missing}")
@@ -306,10 +308,27 @@ def main() -> None:
         type=Path,
         default=Path("manifests/imerg_2020_control_screening.csv"),
     )
+    parser.add_argument(
+        "--additional-plan",
+        type=Path,
+        action="append",
+        default=[],
+        help="include extra UTC dates in daily/file summaries without changing case windows",
+    )
     args = parser.parse_args()
 
+    additional_dates = sorted(
+        {
+            date.fromisoformat(row["date"])
+            for plan in args.additional_plan
+            for row in read_csv(plan)
+        }
+    )
     daily_rows, window_rows, file_rows = process(
-        read_csv(args.catalog), find_daily_files(args.input_root), args.regions
+        read_csv(args.catalog),
+        find_daily_files(args.input_root),
+        args.regions,
+        additional_dates,
     )
     write_csv(args.daily_output, daily_rows)
     write_csv(args.window_output, window_rows)

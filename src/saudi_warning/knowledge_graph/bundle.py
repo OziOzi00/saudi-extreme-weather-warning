@@ -335,11 +335,17 @@ def build_bundle(
         )
 
     risks = []
+    risk_statuses: set[str] = set()
+    risk_dataset_splits: set[str] = set()
     for path in _risk_files(risk_paths):
         with path.open(encoding="utf-8") as stream:
             risk = json.load(stream)
         risk_id = f"{risk['case_id']}:{risk['region_id']}:{risk['hazard']}"
         rule_id = risk["rule_id"]
+        risk_statuses.add(str(risk.get("rule_status", "unknown")))
+        verification = risk.get("verification")
+        if isinstance(verification, dict) and verification.get("dataset_split"):
+            risk_dataset_splits.add(str(verification["dataset_split"]))
         scalar_risk = {
             key: value
             for key, value in risk.items()
@@ -398,11 +404,20 @@ def build_bundle(
             item["end_id"],
         ),
     )
+    if "independent_test" in risk_dataset_splits:
+        warning = (
+            "含冻结暴雨规则的development与一次性independent_test结果；"
+            "高温规则、Neo4j实机和影响层评估尚未完成。"
+        )
+    elif risks and risk_statuses == {"frozen"}:
+        warning = "含冻结规则的development风险结果；尚未执行独立测试，不代表最终效果结论。"
+    else:
+        warning = "含候选案例和示例风险结果，不代表正式预警或完成效果验证。"
     payload = {
         "schema_version": "kg_bundle_v1",
         "generated_at": generated_at,
         "status": "development_bundle",
-        "warning_zh": "含候选案例和示例风险结果，不代表正式预警或完成效果验证。",
+        "warning_zh": warning,
         "input_counts": {**counts, "risk_files": len(risks)},
         "nodes": ordered_nodes,
         "relations": ordered_relations,

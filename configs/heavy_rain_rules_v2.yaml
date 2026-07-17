@@ -1,0 +1,67 @@
+# Development-calibrated prototype rule. Independent-test data were not used.
+version: heavy_rain_frozen_v2_20260717
+hazard: heavy_rain
+status: frozen
+rule_id: heavy_rain_graphcast_scale_v2
+calibration_source: handoff/risk_dry_runs/development_v2_rule_review.csv
+reference_source: handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv
+temporal_semantics: docs/指标时间语义与聚合口径.md
+freeze_decision:
+  frozen_on: "2026-07-17"
+  frozen_by: member_A_single_operator_workflow
+  evidence: manifests/development_v2_freeze_assessment.csv
+  independent_test_used_at_freeze_time: false
+  scope: prototype_heavy_rain_only
+primary_indicators:
+  - daily_precip_total
+supporting_indicators:
+  - pwat
+  - ivt
+  - wind850_speed
+  - omega500
+aggregation:
+  daily_precip_total: spatial_p95
+  pwat: weighted_mean
+  ivt: weighted_mean
+  wind850_speed: weighted_mean
+  omega500: weighted_mean
+thresholds:
+  precipitation:
+    medium:
+      reference_column: daily_spatial_p95_p50
+      absolute_floor: 5.0
+      unit: mm
+    high:
+      reference_column: daily_spatial_p95_p90
+      absolute_floor: 10.0
+      unit: mm
+  supporting_percentile:
+    reference_column: daily_region_mean_p90
+  upward_motion:
+    maximum: 0.0
+    unit: Pa s-1
+scoring:
+  precipitation_medium: 3.0
+  precipitation_high: 5.0
+  each_supporting_indicator: 1.0
+classification:
+  low: precipitation_below_medium
+  medium: precipitation_at_or_above_medium
+  high: precipitation_at_or_above_high_and_support_count_at_least
+  high_minimum_support_count: 1
+confidence_cap: medium
+missing_policy:
+  primary_missing: low_confidence_and_no_positive_classification
+  supporting_missing: record_missing_and_do_not_replace_with_zero
+freeze_gates:
+  minimum_event_cases: 3
+  minimum_control_cases: 2
+  minimum_target_window_recall: 0.60
+  minimum_target_window_specificity: 0.75
+  minimum_event_case_detection_fraction: 0.66
+  required_control_case_rejection_fraction: 1.0
+notes:
+  - Medium trigger uses the larger of the MAZU 2025 seasonal P50 and 5 mm.
+  - High trigger uses the larger of the seasonal P90 and 10 mm plus support evidence.
+  - Values are calibrated to GraphCast ADM1 spatial-P95 scale using development only.
+  - Independent-test cases remain sealed until a separate freeze decision is recorded.

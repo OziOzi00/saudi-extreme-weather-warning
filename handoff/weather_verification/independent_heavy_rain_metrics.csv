@@ -1,0 +1,13 @@
+dataset_split,evaluation_status,rule_id,variable,aggregation,scope,pair_count,mae,rmse,bias,unit,hits,misses,false_alarms,correct_negatives,pod,far,csi
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,maximum,all_leads,18,12.066711,22.987356,-11.120306,mm,,,,,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,maximum,lead024,6,1.4091624,1.5480867,0.49789094,mm,,,,,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,maximum,lead048,6,25.960375,37.103041,-25.775811,mm,,,,,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,maximum,lead072,6,8.8305965,14.36048,-8.0829987,mm,,,,,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,spatial_p95,all_leads,18,2.4370442,5.1034596,-0.83225505,mm,6,0,0,12,1,0,1
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,spatial_p95,lead024,6,0.65796987,0.7218842,0.4224337,mm,0,0,0,6,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,spatial_p95,lead048,6,5.0541841,8.4679158,-4.3240464,mm,3,0,0,3,1,0,1
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,spatial_p95,lead072,6,1.5989786,2.4308815,1.4048476,mm,3,0,0,3,1,0,1
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,weighted_mean,all_leads,18,1.904171,4.5510369,-0.090594952,mm,,,,,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,weighted_mean,lead024,6,0.26172912,0.30152078,0.23966482,mm,,,,,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,weighted_mean,lead048,6,3.373677,7.0553684,-2.5885565,mm,,,,,,,
+independent_test,one_time_locked,heavy_rain_graphcast_scale_v2,daily_precip_total,weighted_mean,lead072,6,2.0771068,3.502381,2.0771068,mm,,,,,,,

@@ -5,15 +5,19 @@ from __future__ import annotations
 import argparse
 import base64
 import csv
+import getpass
 import hashlib
 import os
 import re
+import time
 import urllib.request
 import zipfile
 from collections import defaultdict
 from datetime import date, datetime, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
+
+import yaml
 
 
 PPS_ROOT = "https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata"
@@ -96,6 +100,56 @@ def build_plan(cases: list[dict[str, str]], version: str = "V07B") -> list[dict[
     return rows
 
 
+def build_gap_plan(
+    cases: list[dict[str, str]],
+    coverage_rows: list[dict[str, str]],
+    version: str = "V07B",
+    allowed_split: str = "development",
+) -> list[dict[str, str]]:
+    """Build a deduplicated download plan from missing IMERG pairing rows."""
+
+    case_lookup = {row["case_id"]: row for row in cases}
+    by_date: dict[str, set[str]] = defaultdict(set)
+    for row in coverage_rows:
+        if row["observation_source"] != "IMERG" or row["pair_status"] != "missing":
+            continue
+        case_id = row["case_id"]
+        if case_id not in case_lookup:
+            raise ValueError(f"coverage gap references unknown case: {case_id}")
+        if case_lookup[case_id]["dataset_split"] != allowed_split:
+            raise ValueError(f"gap plan may only expose {allowed_split} cases")
+        day = row["valid_start_time"][:10]
+        date.fromisoformat(day)
+        by_date[day].add(case_id)
+    rows = []
+    for day, case_ids in sorted(by_date.items()):
+        matching_cases = [case_lookup[case_id] for case_id in sorted(case_ids)]
+        parsed = date.fromisoformat(day)
+        rows.append(
+            {
+                "date": day,
+                "case_ids": ";".join(sorted(case_ids)),
+                "case_roles": ";".join(
+                    sorted({item["case_role"] for item in matching_cases})
+                ),
+                "dataset_splits": ";".join(
+                    sorted({item["dataset_split"] for item in matching_cases})
+                ),
+                "directory_url": f"{PPS_ROOT}/{parsed:%Y/%m/%d}/gis/",
+                "product": "IMERG Final Run daily GIS accumulation",
+                "version": version,
+                "status": (
+                    "planned_development_pairing_gap"
+                    if allowed_split == "development"
+                    else "planned_independent_after_rule_freeze"
+                ),
+            }
+        )
+    if not rows:
+        raise ValueError("coverage audit contains no missing IMERG development rows")
+    return rows
+
+
 def write_plan(rows: list[dict[str, str]], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as stream:
@@ -149,6 +203,36 @@ def _validate_zip(path: Path) -> None:
             raise RuntimeError(f"corrupt member {bad_member!r} in {path}")
 
 
+def _download_with_retries(
+    source_url: str,
+    target: Path,
+    authorization: str,
+    attempts: int = 3,
+) -> None:
+    partial = target.with_suffix(target.suffix + ".partial")
+    for attempt in range(1, attempts + 1):
+        if partial.exists():
+            partial.unlink()
+        try:
+            with urllib.request.urlopen(_request(source_url, authorization)) as response:
+                with partial.open("wb") as stream:
+                    while chunk := response.read(1024 * 1024):
+                        stream.write(chunk)
+            _validate_zip(partial)
+            partial.replace(target)
+            return
+        except (OSError, RuntimeError, zipfile.BadZipFile) as exc:
+            if partial.exists():
+                partial.unlink()
+            if attempt == attempts:
+                raise RuntimeError(
+                    f"download failed after {attempts} attempts: {source_url}"
+                ) from exc
+            delay = 2**attempt
+            print(f"retry {attempt}/{attempts - 1} after invalid response; wait={delay}s")
+            time.sleep(delay)
+
+
 def download(
     rows: list[dict[str, str]],
     output_dir: Path,
@@ -173,19 +257,7 @@ def download(
             _validate_zip(target)
             status = "existing_verified"
         else:
-            partial = target.with_suffix(target.suffix + ".partial")
-            if partial.exists():
-                partial.unlink()
-            try:
-                with urllib.request.urlopen(_request(source_url, authorization)) as response:
-                    with partial.open("wb") as stream:
-                        while chunk := response.read(1024 * 1024):
-                            stream.write(chunk)
-                _validate_zip(partial)
-                partial.replace(target)
-            finally:
-                if partial.exists():
-                    partial.unlink()
+            _download_with_retries(source_url, target, authorization)
             status = "downloaded_verified"
         manifest_rows.append(
             {
@@ -217,7 +289,28 @@ def main() -> None:
         "--plan", type=Path, default=Path("configs/imerg_daily_download_plan.csv")
     )
     parser.add_argument("--version", default="V07B")
+    parser.add_argument(
+        "--coverage-gaps",
+        type=Path,
+        help="build the plan only from missing IMERG rows in a pairing coverage audit",
+    )
+    parser.add_argument(
+        "--allowed-split",
+        choices=["development", "independent_test"],
+        default="development",
+        help="defaults to development; independent_test also requires --frozen-rule",
+    )
+    parser.add_argument(
+        "--frozen-rule",
+        type=Path,
+        help="required authorization evidence when planning independent_test downloads",
+    )
     parser.add_argument("--download", action="store_true")
+    parser.add_argument(
+        "--prompt-email",
+        action="store_true",
+        help="securely prompt for PPS email instead of reading PPS_EMAIL",
+    )
     parser.add_argument(
         "--output-dir", type=Path, default=Path("data/external/imerg_final_v07b")
     )
@@ -226,13 +319,34 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    rows = build_plan(read_cases(args.catalog), args.version)
+    if args.allowed_split == "independent_test":
+        if args.frozen_rule is None:
+            raise SystemExit("--frozen-rule is required for independent_test planning")
+        rule = yaml.safe_load(args.frozen_rule.read_text(encoding="utf-8"))
+        if rule.get("hazard") != "heavy_rain" or rule.get("status") != "frozen":
+            raise SystemExit("independent_test planning requires a frozen heavy-rain rule")
+
+    cases = read_cases(args.catalog)
+    rows = (
+        build_gap_plan(
+            cases,
+            read_cases(args.coverage_gaps),
+            args.version,
+            allowed_split=args.allowed_split,
+        )
+        if args.coverage_gaps
+        else build_plan(cases, args.version)
+    )
     write_plan(rows, args.plan)
     print(f"wrote {args.plan}: {len(rows)} UTC days")
     if not args.download:
         print("plan only; pass --download after PPS registration")
         return
-    email = os.environ.get("PPS_EMAIL", "").strip().lower()
+    email = (
+        getpass.getpass("NASA PPS email (input hidden): ").strip().lower()
+        if args.prompt_email
+        else os.environ.get("PPS_EMAIL", "").strip().lower()
+    )
     password = os.environ.get("PPS_PASSWORD", "").strip() or email
     if not email:
         raise SystemExit("PPS_EMAIL is required for --download; do not commit credentials")

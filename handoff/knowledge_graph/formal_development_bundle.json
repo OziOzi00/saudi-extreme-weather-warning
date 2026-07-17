@@ -1,0 +1,2181 @@
+{
+  "schema_version": "kg_bundle_v1",
+  "generated_at": "2026-07-17T00:00:00Z",
+  "status": "development_bundle",
+  "warning_zh": "含冻结规则的development风险结果；尚未执行独立测试，不代表最终效果结论。",
+  "input_counts": {
+    "regions": 13,
+    "cases": 13,
+    "truth_records": 12,
+    "sources": 14,
+    "risk_files": 15
+  },
+  "nodes": [
+    {
+      "label": "Evidence",
+      "id": "SRC-ALBAYAN-20200708",
+      "properties": {
+        "source_id": "SRC-ALBAYAN-20200708",
+        "publisher": "Al Bayan",
+        "title": "Severe heat in Saudi Arabia with two cities above 49 degrees",
+        "published_date": "2020-07-08",
+        "accessed_date": "2026-07-16",
+        "language": "ar",
+        "source_type": "secondary_official_summary",
+        "url": "https://www.albayan.ae/one-world/arabs/2020-07-08-1.3906514",
+        "reliability_note_zh": "转述沙特气象部门7月7日城市最高温；Al-Ahsa 49.8和Dammam 49.4摄氏度"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-ARABNEWS-20200805",
+      "properties": {
+        "source_id": "SRC-ARABNEWS-20200805",
+        "publisher": "Arab News",
+        "title": "Saudi civil defense rescues hundreds after torrential rain",
+        "published_date": "2020-08-05",
+        "accessed_date": "2026-07-16",
+        "language": "en",
+        "source_type": "licensed_local_media",
+        "url": "https://www.arabnews.com/node/1715221/saudi-arabia",
+        "reliability_note_zh": "转述民防媒体中心；7月26日至8月4日多区域救援和安置"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-MOI-REGIONS",
+      "properties": {
+        "source_id": "SRC-MOI-REGIONS",
+        "publisher": "Saudi Ministry of Interior",
+        "title": "Emirates and Governorates",
+        "accessed_date": "2026-07-15",
+        "language": "en",
+        "source_type": "official",
+        "url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/",
+        "reliability_note_zh": "沙特内政部区域总部与省份页面"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-MOWATEN-20200728",
+      "properties": {
+        "source_id": "SRC-MOWATEN-20200728",
+        "publisher": "Al Mowaten",
+        "title": "Jazan floods sweep body and Civil Defense warns",
+        "published_date": "2020-07-28",
+        "accessed_date": "2026-07-15",
+        "language": "ar",
+        "source_type": "licensed_local_media",
+        "url": "https://www.almowaten.net/2020/07/%D8%B3%D9%8A%D9%88%D9%84-%D8%AC%D8%A7%D8%B2%D8%A7%D9%86-%D8%AA%D8%AC%D8%B1%D9%81-%D8%AC%D8%AB%D8%A9-%D8%A5%D9%81%D8%B1%D9%8A%D9%82%D9%8A-%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A-%D9%8A%D8%AD%D8%B0/",
+        "reliability_note_zh": "报道引述Jazan民防发言人；确认26户进水和一例死亡记录"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-NCAR-REGIONS",
+      "properties": {
+        "source_id": "SRC-NCAR-REGIONS",
+        "publisher": "National Center for Archives and Records",
+        "title": "Unified guide to coding regions governorates and administrative centers",
+        "accessed_date": "2026-07-15",
+        "language": "ar",
+        "source_type": "official",
+        "url": "https://ncar.gov.sa/regions-coding",
+        "reliability_note_zh": "沙特政府行政区编码页面；用于阿拉伯语区域名称"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-SG-20260624-NCM-JULY",
+      "properties": {
+        "source_id": "SRC-SG-20260624-NCM-JULY",
+        "publisher": "Saudi Gazette",
+        "title": "July is Saudi Arabia's hottest month: What 40 years of climate data reveals",
+        "published_date": "2026-06-24",
+        "accessed_date": "2026-07-15",
+        "language": "en",
+        "source_type": "secondary_official_summary",
+        "url": "https://saudigazette.com.sa/article/662461/saudi-arabia/july-is-saudi-arabias-hottest-month-what-40-years-of-climate-data-reveals",
+        "reliability_note_zh": "转述NCM 1985至2025年7月气候分析；列出2020年Rafha和Al-Qaisumah极值"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-SPA-20200726-RAIN",
+      "properties": {
+        "source_id": "SRC-SPA-20200726-RAIN",
+        "publisher": "Saudi Press Agency",
+        "title": "Scattered rain in Jazan Region",
+        "published_date": "2020-07-26",
+        "accessed_date": "2026-07-15",
+        "language": "ar",
+        "source_type": "official_media",
+        "url": "https://www.spa.gov.sa/2114434",
+        "reliability_note_zh": "确认7月26日Jazan多地出现中到大雨"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-SPA-20200727-PREP",
+      "properties": {
+        "source_id": "SRC-SPA-20200727-PREP",
+        "publisher": "Saudi Press Agency",
+        "title": "Jazan Civil Defense emergency committee meets for rainy conditions",
+        "published_date": "2020-07-27",
+        "accessed_date": "2026-07-15",
+        "language": "ar",
+        "source_type": "official_media",
+        "url": "https://www.spa.gov.sa/w1379260",
+        "reliability_note_zh": "确认雷暴雨和山洪风险以及政府应急准备"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-WATAN-20200502",
+      "properties": {
+        "source_id": "SRC-WATAN-20200502",
+        "publisher": "Al Watan Saudi",
+        "title": "One death and six injuries in Jazan rain",
+        "published_date": "2020-05-02",
+        "accessed_date": "2026-07-16",
+        "language": "ar",
+        "source_type": "licensed_local_media",
+        "url": "https://www.alwatan.com.sa/article/1044914",
+        "reliability_note_zh": "报道Jazan山地雷暴雨并引述地方应急信息；记录车辆被冲走和人员影响"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-WATAN-20200506",
+      "properties": {
+        "source_id": "SRC-WATAN-20200506",
+        "publisher": "Al Watan Saudi",
+        "title": "Southern border floods sweep a man away",
+        "published_date": "2020-05-06",
+        "accessed_date": "2026-07-16",
+        "language": "ar",
+        "source_type": "licensed_local_media",
+        "url": "https://www.alwatan.com.sa/article/1045376",
+        "reliability_note_zh": "记录Wadi Dhahban山洪死亡和道路中断"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-WATAN-20200727",
+      "properties": {
+        "source_id": "SRC-WATAN-20200727",
+        "publisher": "Al Watan Saudi",
+        "title": "Family dies in Asir floods and roads and electricity cut in Jazan",
+        "published_date": "2020-07-27",
+        "accessed_date": "2026-07-15",
+        "language": "ar",
+        "source_type": "licensed_local_media",
+        "url": "https://www.alwatan.com.sa/article/1052289",
+        "reliability_note_zh": "报道引述Asir民防发言人并列出人员和基础设施影响"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-WATAN-20201120",
+      "properties": {
+        "source_id": "SRC-WATAN-20201120",
+        "publisher": "Al Watan Saudi",
+        "title": "Rain falls on Madinah and Tabuk and Civil Defense warns",
+        "published_date": "2020-11-20",
+        "accessed_date": "2026-07-16",
+        "language": "ar",
+        "source_type": "licensed_local_media",
+        "url": "https://www.alwatan.com.sa/article/1061811",
+        "reliability_note_zh": "确认Madinah和Tabuk多地中到大雨及河谷径流"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-WATAN-20201121",
+      "properties": {
+        "source_id": "SRC-WATAN-20201121",
+        "publisher": "Al Watan Saudi",
+        "title": "Road collapses and vehicles trapped in Madinah rain",
+        "published_date": "2020-11-21",
+        "accessed_date": "2026-07-16",
+        "language": "ar",
+        "source_type": "licensed_local_media",
+        "url": "https://www.alwatan.com.sa/article/1061847",
+        "reliability_note_zh": "记录Madinah道路坍塌和车辆冲移受困"
+      }
+    },
+    {
+      "label": "Evidence",
+      "id": "SRC-WATAN-20201126",
+      "properties": {
+        "source_id": "SRC-WATAN-20201126",
+        "publisher": "Al Watan Saudi",
+        "title": "Makkah authorities respond to rain",
+        "published_date": "2020-11-26",
+        "accessed_date": "2026-07-16",
+        "language": "ar",
+        "source_type": "licensed_local_media",
+        "url": "https://www.alwatan.com.sa/article/1062338",
+        "reliability_note_zh": "记录Makkah中到大雨以及多个受影响城区和道路点位的处置"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200501_00",
+      "properties": {
+        "case_id": "20200501_00",
+        "initial_time": "2020-05-01T00:00:00Z",
+        "event_id": "EVT-2020-05-JAZAN-FLOOD-EARLY",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-09",
+        "event_start_time": "2020-05-01T00:00:00Z",
+        "event_end_time": "2020-05-02T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "development",
+        "weather_screening_status": "weather_confirmed",
+        "impact_evidence_status": "impact_confirmed",
+        "selection_reason_zh": "覆盖Jazan山地连续雷暴雨及车辆被冲走造成死亡和受伤的过程",
+        "source_ids": "SRC-WATAN-20200502"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200505_00",
+      "properties": {
+        "case_id": "20200505_00",
+        "initial_time": "2020-05-05T00:00:00Z",
+        "event_id": "EVT-2020-05-JAZAN-FLOOD-LATE",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-09",
+        "event_start_time": "2020-05-06T00:00:00Z",
+        "event_end_time": "2020-05-06T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "development",
+        "weather_screening_status": "weather_confirmed",
+        "impact_evidence_status": "impact_confirmed",
+        "selection_reason_zh": "覆盖Wadi Dhahban山洪死亡和道路中断过程",
+        "source_ids": "SRC-WATAN-20200506"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200515_00",
+      "properties": {
+        "case_id": "20200515_00",
+        "initial_time": "2020-05-15T00:00:00Z",
+        "event_id": "CTRL-2020-05-JAZAN-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-09",
+        "event_start_time": "2020-05-16T00:00:00Z",
+        "event_end_time": "2020-05-18T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "development",
+        "weather_screening_status": "imerg_screened_lower_intensity",
+        "impact_evidence_status": "unknown",
+        "selection_reason_zh": "IMERG确认P95和最大值均低于同区域两个事件窗口；影响层仍排除至取得可靠无影响证据"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200706_00",
+      "properties": {
+        "case_id": "20200706_00",
+        "initial_time": "2020-07-06T00:00:00Z",
+        "event_id": "EVT-2020-07-EAST-HEAT-EARLY",
+        "case_role": "event",
+        "hazard": "heatwave",
+        "target_region_ids": "SA-04",
+        "event_start_time": "2020-07-07T00:00:00Z",
+        "event_end_time": "2020-07-07T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "development",
+        "weather_screening_status": "weather_confirmed",
+        "impact_evidence_status": "impact_unknown",
+        "selection_reason_zh": "覆盖Al-Ahsa和Dammam接近50摄氏度的高温过程；仅批准天气层，影响层仍排除",
+        "source_ids": "SRC-ALBAYAN-20200708"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200711_00",
+      "properties": {
+        "case_id": "20200711_00",
+        "initial_time": "2020-07-11T00:00:00Z",
+        "event_id": "CTRL-2020-07-SW-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-09;SA-14",
+        "event_start_time": "2020-07-12T00:00:00Z",
+        "event_end_time": "2020-07-14T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "independent_test",
+        "weather_screening_status": "imerg_screened_lower_intensity",
+        "impact_evidence_status": "unknown",
+        "selection_reason_zh": "IMERG确认两个目标区域的P95和最大值均低于同区域事件窗口；独立测试不得参与阈值调整"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200715_00",
+      "properties": {
+        "case_id": "20200715_00",
+        "initial_time": "2020-07-15T00:00:00Z",
+        "event_id": "CTRL-2020-07-EAST-HEAT",
+        "case_role": "control",
+        "hazard": "heatwave",
+        "target_region_ids": "SA-04",
+        "event_start_time": "2020-07-16T00:00:00Z",
+        "event_end_time": "2020-07-18T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "development",
+        "weather_screening_status": "ghcn_screened_lower_intensity",
+        "impact_evidence_status": "unknown",
+        "selection_reason_zh": "GHCN显示区域TMAX最高47.0摄氏度；仅批准为天气层相对低强度对照"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200725_00",
+      "properties": {
+        "case_id": "20200725_00",
+        "initial_time": "2020-07-25T00:00:00Z",
+        "event_id": "EVT-2020-07-SW-FLOOD",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-09;SA-14",
+        "event_start_time": "2020-07-26T00:00:00Z",
+        "event_end_time": "2020-07-29T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "independent_test",
+        "weather_screening_status": "weather_confirmed",
+        "impact_evidence_status": "impact_confirmed",
+        "selection_reason_zh": "覆盖7月26日起西南部强降雨与山洪影响；独立测试不得参与阈值调整",
+        "source_ids": "SRC-SPA-20200726-RAIN;SRC-SPA-20200727-PREP;SRC-WATAN-20200727;SRC-MOWATEN-20200728;SRC-ARABNEWS-20200805"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200729_00",
+      "properties": {
+        "case_id": "20200729_00",
+        "initial_time": "2020-07-29T00:00:00Z",
+        "event_id": "EVT-2020-07-NORTH-EAST-HEAT",
+        "case_role": "event",
+        "hazard": "heatwave",
+        "target_region_ids": "SA-08;SA-04",
+        "event_start_time": "2020-07-30T00:00:00Z",
+        "event_end_time": "2020-07-31T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "independent_test",
+        "weather_screening_status": "ghcn_confirmed",
+        "impact_evidence_status": "impact_unknown",
+        "selection_reason_zh": "GHCN确认目标区域TMAX分别达到50.0和50.6摄氏度；仅批准天气层且不得参与阈值调整",
+        "source_ids": "SRC-SG-20260624-NCM-JULY"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20200820_00",
+      "properties": {
+        "case_id": "20200820_00",
+        "initial_time": "2020-08-20T00:00:00Z",
+        "event_id": "DEMO-20200820",
+        "case_role": "demo",
+        "hazard": "unspecified",
+        "target_region_ids": "SA-01",
+        "event_start_time": "2020-08-20T00:00:00Z",
+        "event_end_time": "2020-08-23T00:00:00Z",
+        "selection_status": "demo_only",
+        "dataset_split": "demo",
+        "weather_screening_status": "not_applicable",
+        "impact_evidence_status": "unknown",
+        "selection_reason_zh": "现有链路演示日期；不声明为灾害或对照案例"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20201109_00",
+      "properties": {
+        "case_id": "20201109_00",
+        "initial_time": "2020-11-09T00:00:00Z",
+        "event_id": "CTRL-2020-11-MADINAH-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-03",
+        "event_start_time": "2020-11-10T00:00:00Z",
+        "event_end_time": "2020-11-12T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "development",
+        "weather_screening_status": "imerg_screened_lower_intensity",
+        "impact_evidence_status": "unknown",
+        "selection_reason_zh": "IMERG确认P95和最大值均低于同区域事件窗口；影响层仍排除至取得可靠无影响证据"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20201112_00",
+      "properties": {
+        "case_id": "20201112_00",
+        "initial_time": "2020-11-12T00:00:00Z",
+        "event_id": "CTRL-2020-11-MAKKAH-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-02",
+        "event_start_time": "2020-11-13T00:00:00Z",
+        "event_end_time": "2020-11-15T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "independent_test",
+        "weather_screening_status": "imerg_screened_lower_intensity",
+        "impact_evidence_status": "unknown",
+        "selection_reason_zh": "IMERG确认P95和最大值均低于同区域事件窗口；仅批准天气层且不得参与阈值调整"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20201119_00",
+      "properties": {
+        "case_id": "20201119_00",
+        "initial_time": "2020-11-19T00:00:00Z",
+        "event_id": "EVT-2020-11-MADINAH-FLOOD",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-03",
+        "event_start_time": "2020-11-20T00:00:00Z",
+        "event_end_time": "2020-11-21T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "development",
+        "weather_screening_status": "weather_confirmed",
+        "impact_evidence_status": "impact_confirmed",
+        "selection_reason_zh": "覆盖Madinah和Yanbu中到大雨引发道路坍塌及车辆受困",
+        "source_ids": "SRC-WATAN-20201120;SRC-WATAN-20201121"
+      }
+    },
+    {
+      "label": "ForecastCase",
+      "id": "20201125_00",
+      "properties": {
+        "case_id": "20201125_00",
+        "initial_time": "2020-11-25T00:00:00Z",
+        "event_id": "EVT-2020-11-MAKKAH-RAIN",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "target_region_ids": "SA-02",
+        "event_start_time": "2020-11-26T00:00:00Z",
+        "event_end_time": "2020-11-26T23:59:59Z",
+        "selection_status": "approved",
+        "dataset_split": "independent_test",
+        "weather_screening_status": "weather_confirmed",
+        "impact_evidence_status": "impact_confirmed",
+        "selection_reason_zh": "覆盖Makkah中到大雨及多个城区和道路点位的雨后处置；独立测试不得参与阈值调整",
+        "source_ids": "SRC-WATAN-20201126"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "CTRL-2020-05-JAZAN-RAIN",
+      "properties": {
+        "event_id": "CTRL-2020-05-JAZAN-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-05-16T00:00:00Z",
+        "event_end_time": "2020-05-18T23:59:59Z",
+        "impact_evidence_status": "unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "CTRL-2020-07-EAST-HEAT",
+      "properties": {
+        "event_id": "CTRL-2020-07-EAST-HEAT",
+        "case_role": "control",
+        "hazard": "heatwave",
+        "event_start_time": "2020-07-16T00:00:00Z",
+        "event_end_time": "2020-07-18T23:59:59Z",
+        "impact_evidence_status": "unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "CTRL-2020-07-SW-RAIN",
+      "properties": {
+        "event_id": "CTRL-2020-07-SW-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-07-12T00:00:00Z",
+        "event_end_time": "2020-07-14T23:59:59Z",
+        "impact_evidence_status": "unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "CTRL-2020-11-MADINAH-RAIN",
+      "properties": {
+        "event_id": "CTRL-2020-11-MADINAH-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-11-10T00:00:00Z",
+        "event_end_time": "2020-11-12T23:59:59Z",
+        "impact_evidence_status": "unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "CTRL-2020-11-MAKKAH-RAIN",
+      "properties": {
+        "event_id": "CTRL-2020-11-MAKKAH-RAIN",
+        "case_role": "control",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-11-13T00:00:00Z",
+        "event_end_time": "2020-11-15T23:59:59Z",
+        "impact_evidence_status": "unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "DEMO-20200820",
+      "properties": {
+        "event_id": "DEMO-20200820",
+        "case_role": "demo",
+        "hazard": "unspecified",
+        "event_start_time": "2020-08-20T00:00:00Z",
+        "event_end_time": "2020-08-23T00:00:00Z",
+        "impact_evidence_status": "unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "EVT-2020-05-JAZAN-FLOOD-EARLY",
+      "properties": {
+        "event_id": "EVT-2020-05-JAZAN-FLOOD-EARLY",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-05-01T00:00:00Z",
+        "event_end_time": "2020-05-02T23:59:59Z",
+        "impact_evidence_status": "impact_confirmed"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "EVT-2020-05-JAZAN-FLOOD-LATE",
+      "properties": {
+        "event_id": "EVT-2020-05-JAZAN-FLOOD-LATE",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-05-06T00:00:00Z",
+        "event_end_time": "2020-05-06T23:59:59Z",
+        "impact_evidence_status": "impact_confirmed"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "EVT-2020-07-EAST-HEAT-EARLY",
+      "properties": {
+        "event_id": "EVT-2020-07-EAST-HEAT-EARLY",
+        "case_role": "event",
+        "hazard": "heatwave",
+        "event_start_time": "2020-07-07T00:00:00Z",
+        "event_end_time": "2020-07-07T23:59:59Z",
+        "impact_evidence_status": "impact_unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "EVT-2020-07-NORTH-EAST-HEAT",
+      "properties": {
+        "event_id": "EVT-2020-07-NORTH-EAST-HEAT",
+        "case_role": "event",
+        "hazard": "heatwave",
+        "event_start_time": "2020-07-30T00:00:00Z",
+        "event_end_time": "2020-07-31T23:59:59Z",
+        "impact_evidence_status": "impact_unknown"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "EVT-2020-07-SW-FLOOD",
+      "properties": {
+        "event_id": "EVT-2020-07-SW-FLOOD",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-07-26T00:00:00Z",
+        "event_end_time": "2020-07-29T23:59:59Z",
+        "impact_evidence_status": "impact_confirmed"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "EVT-2020-11-MADINAH-FLOOD",
+      "properties": {
+        "event_id": "EVT-2020-11-MADINAH-FLOOD",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-11-20T00:00:00Z",
+        "event_end_time": "2020-11-21T23:59:59Z",
+        "impact_evidence_status": "impact_confirmed"
+      }
+    },
+    {
+      "label": "HistoricalEvent",
+      "id": "EVT-2020-11-MAKKAH-RAIN",
+      "properties": {
+        "event_id": "EVT-2020-11-MAKKAH-RAIN",
+        "case_role": "event",
+        "hazard": "heavy_rain",
+        "event_start_time": "2020-11-26T00:00:00Z",
+        "event_end_time": "2020-11-26T23:59:59Z",
+        "impact_evidence_status": "impact_confirmed"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-01",
+      "properties": {
+        "region_id": "SA-01",
+        "region_name_en": "Riyadh Region",
+        "region_name_ar": "منطقة الرياض",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Riyadh",
+        "headquarters_ar": "الرياض",
+        "source_shape_id": "25081817B56088895138556",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-02",
+      "properties": {
+        "region_id": "SA-02",
+        "region_name_en": "Makkah Region",
+        "region_name_ar": "منطقة مكة المكرمة",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Makkah",
+        "headquarters_ar": "مكة المكرمة",
+        "source_shape_id": "25081817B13159281784364",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-03",
+      "properties": {
+        "region_id": "SA-03",
+        "region_name_en": "Al Madinah Region",
+        "region_name_ar": "منطقة المدينة المنورة",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Al Madinah",
+        "headquarters_ar": "المدينة المنورة",
+        "source_shape_id": "25081817B5326875801694",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-04",
+      "properties": {
+        "region_id": "SA-04",
+        "region_name_en": "Eastern Region",
+        "region_name_ar": "المنطقة الشرقية",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Dammam",
+        "headquarters_ar": "الدمام",
+        "source_shape_id": "25081817B34473806557189",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-05",
+      "properties": {
+        "region_id": "SA-05",
+        "region_name_en": "Al-Qassim Region",
+        "region_name_ar": "منطقة القصيم",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Buraidah",
+        "headquarters_ar": "بريدة",
+        "source_shape_id": "25081817B98761102949945",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-06",
+      "properties": {
+        "region_id": "SA-06",
+        "region_name_en": "Hail Region",
+        "region_name_ar": "منطقة حائل",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Hail",
+        "headquarters_ar": "حائل",
+        "source_shape_id": "25081817B30843703179747",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-07",
+      "properties": {
+        "region_id": "SA-07",
+        "region_name_en": "Tabuk Region",
+        "region_name_ar": "منطقة تبوك",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Tabuk",
+        "headquarters_ar": "تبوك",
+        "source_shape_id": "25081817B21311317754967",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-08",
+      "properties": {
+        "region_id": "SA-08",
+        "region_name_en": "Northern Borders Region",
+        "region_name_ar": "منطقة الحدود الشمالية",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Arar",
+        "headquarters_ar": "عرعر",
+        "source_shape_id": "25081817B61333239611232",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-09",
+      "properties": {
+        "region_id": "SA-09",
+        "region_name_en": "Jazan Region",
+        "region_name_ar": "منطقة جازان",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Jazan",
+        "headquarters_ar": "جازان",
+        "source_shape_id": "25081817B72054791986965",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-10",
+      "properties": {
+        "region_id": "SA-10",
+        "region_name_en": "Najran Region",
+        "region_name_ar": "منطقة نجران",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Najran",
+        "headquarters_ar": "نجران",
+        "source_shape_id": "25081817B54479367627811",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-11",
+      "properties": {
+        "region_id": "SA-11",
+        "region_name_en": "Al Bahah Region",
+        "region_name_ar": "منطقة الباحة",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Al Bahah",
+        "headquarters_ar": "الباحة",
+        "source_shape_id": "25081817B90917209203250",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-12",
+      "properties": {
+        "region_id": "SA-12",
+        "region_name_en": "Al Jawf Region",
+        "region_name_ar": "منطقة الجوف",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Sakaka",
+        "headquarters_ar": "سكاكا",
+        "source_shape_id": "25081817B5742042673291",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-14",
+      "properties": {
+        "region_id": "SA-14",
+        "region_name_en": "Asir Region",
+        "region_name_ar": "منطقة عسير",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "headquarters_en": "Abha",
+        "headquarters_ar": "أبها",
+        "source_shape_id": "25081817B79414847265706",
+        "boundary_year_represented": "2017",
+        "source_license": "Open Data Commons Open Database License 1.0",
+        "name_source_url": "https://ncar.gov.sa/regions-coding",
+        "headquarters_source_url": "https://www.moi.gov.sa/wps/portal/Home/sectors/moidiwan/regions/contents/"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200501_00_024:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200501_00_024",
+        "source_file": "handoff/mazu_like/mazu_like_20200501_00_lead024.nc",
+        "initial_time": "2020-05-01T00:00:00Z",
+        "lead_time_hours": 24,
+        "valid_start_time": "2020-05-01T00:00:00Z",
+        "valid_end_time": "2020-05-02T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 2/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 71.520951, \"omega500_weighted_mean_pa_s-1\": -0.034127045, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 1.51291, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 44.772222, \"reference_period\": \"MAM\", \"support_count\": 2, \"wind850_speed_weighted_mean\": 1.5192351}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 44.772222}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.034127045}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 1.51291}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 71.520951}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 1.5192351}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200501_00_024_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200501_00_048:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200501_00_048",
+        "source_file": "handoff/mazu_like/mazu_like_20200501_00_lead048.nc",
+        "initial_time": "2020-05-01T00:00:00Z",
+        "lead_time_hours": 48,
+        "valid_start_time": "2020-05-02T00:00:00Z",
+        "valid_end_time": "2020-05-03T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 2/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 77.053787, \"omega500_weighted_mean_pa_s-1\": -0.0045434943, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 2.8983252, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 44.220799, \"reference_period\": \"MAM\", \"support_count\": 2, \"wind850_speed_weighted_mean\": 1.9868161}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 44.220799}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.0045434943}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 2.8983252}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 77.053787}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 1.9868161}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200501_00_048_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200501_00_072:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200501_00_072",
+        "source_file": "handoff/mazu_like/mazu_like_20200501_00_lead072.nc",
+        "initial_time": "2020-05-01T00:00:00Z",
+        "lead_time_hours": 72,
+        "valid_start_time": "2020-05-03T00:00:00Z",
+        "valid_end_time": "2020-05-04T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 1/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 54.82658, \"omega500_weighted_mean_pa_s-1\": 0.017276567, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 2.6438292, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 43.583611, \"reference_period\": \"MAM\", \"support_count\": 1, \"wind850_speed_weighted_mean\": 1.8011377}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 43.583611}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 2.6438292}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 54.82658}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 1.8011377}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": 0.017276567}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200501_00_072_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200505_00_024:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200505_00_024",
+        "source_file": "handoff/mazu_like/mazu_like_20200505_00_lead024.nc",
+        "initial_time": "2020-05-05T00:00:00Z",
+        "lead_time_hours": 24,
+        "valid_start_time": "2020-05-05T00:00:00Z",
+        "valid_end_time": "2020-05-06T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 2/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 109.47364, \"omega500_weighted_mean_pa_s-1\": 0.038389853, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 2.9664848, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 52.405119, \"reference_period\": \"MAM\", \"support_count\": 2, \"wind850_speed_weighted_mean\": 2.3702699}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 52.405119}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 109.47364}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 2.9664848}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 2.3702699}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": 0.038389853}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200505_00_024_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200505_00_048:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200505_00_048",
+        "source_file": "handoff/mazu_like/mazu_like_20200505_00_lead048.nc",
+        "initial_time": "2020-05-05T00:00:00Z",
+        "lead_time_hours": 48,
+        "valid_start_time": "2020-05-06T00:00:00Z",
+        "valid_end_time": "2020-05-07T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "high",
+        "risk_score": 7.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 high，辅助支持 2/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 62.524432, \"omega500_weighted_mean_pa_s-1\": -0.066953995, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 12.604136, \"precipitation_stage\": \"high\", \"pwat_weighted_mean\": 55.075757, \"reference_period\": \"MAM\", \"support_count\": 2, \"wind850_speed_weighted_mean\": 1.8681687}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 10.0, \"unit\": \"mm\", \"value\": 12.604136}, {\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 55.075757}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.066953995}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 62.524432}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 1.8681687}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200505_00_048_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200505_00_072:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200505_00_072",
+        "source_file": "handoff/mazu_like/mazu_like_20200505_00_lead072.nc",
+        "initial_time": "2020-05-05T00:00:00Z",
+        "lead_time_hours": 72,
+        "valid_start_time": "2020-05-07T00:00:00Z",
+        "valid_end_time": "2020-05-08T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "medium",
+        "risk_score": 5.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 medium，辅助支持 2/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 85.515912, \"omega500_weighted_mean_pa_s-1\": -0.018340264, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 6.9301516, \"precipitation_stage\": \"medium\", \"pwat_weighted_mean\": 53.056287, \"reference_period\": \"MAM\", \"support_count\": 2, \"wind850_speed_weighted_mean\": 1.4430482}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 6.9301516}, {\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 53.056287}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.018340264}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 85.515912}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 1.4430482}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200505_00_072_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200515_00_024:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200515_00_024",
+        "source_file": "handoff/mazu_like/mazu_like_20200515_00_lead024.nc",
+        "initial_time": "2020-05-15T00:00:00Z",
+        "lead_time_hours": 24,
+        "valid_start_time": "2020-05-15T00:00:00Z",
+        "valid_end_time": "2020-05-16T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 1/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 50.758861, \"omega500_weighted_mean_pa_s-1\": -0.056898814, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 2.1433459, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 39.546371, \"reference_period\": \"MAM\", \"support_count\": 1, \"wind850_speed_weighted_mean\": 2.0989894}",
+        "supporting_evidence_json": "[{\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.056898814}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 2.1433459}, {\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 39.546371}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 50.758861}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 2.0989894}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200515_00_024_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200515_00_048:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200515_00_048",
+        "source_file": "handoff/mazu_like/mazu_like_20200515_00_lead048.nc",
+        "initial_time": "2020-05-15T00:00:00Z",
+        "lead_time_hours": 48,
+        "valid_start_time": "2020-05-16T00:00:00Z",
+        "valid_end_time": "2020-05-17T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 2/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 40.998438, \"omega500_weighted_mean_pa_s-1\": -0.058421199, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 2.2452143, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 40.910478, \"reference_period\": \"MAM\", \"support_count\": 2, \"wind850_speed_weighted_mean\": 2.1728894}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 40.910478}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.058421199}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 2.2452143}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 40.998438}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 2.1728894}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200515_00_048_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200515_00_072:SA-09:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20200515_00_072",
+        "source_file": "handoff/mazu_like/mazu_like_20200515_00_lead072.nc",
+        "initial_time": "2020-05-15T00:00:00Z",
+        "lead_time_hours": 72,
+        "valid_start_time": "2020-05-17T00:00:00Z",
+        "valid_end_time": "2020-05-18T00:00:00Z",
+        "region_id": "SA-09",
+        "region_name": "Jazan Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 1/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 33.562159, \"omega500_weighted_mean_pa_s-1\": -0.027486923, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 0.76575482, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 38.786124, \"reference_period\": \"MAM\", \"support_count\": 1, \"wind850_speed_weighted_mean\": 2.094085}",
+        "supporting_evidence_json": "[{\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.027486923}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"MAM\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 0.76575482}, {\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 39.97816, \"unit\": \"kg m-2\", \"value\": 38.786124}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 98.274788, \"unit\": \"kg m-1 s-1\", \"value\": 33.562159}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"MAM\", \"role\": \"support\", \"threshold\": 3.6882299, \"unit\": \"m s-1\", \"value\": 2.094085}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20200515_00_072_SA-09_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20201109_00_024:SA-03:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20201109_00_024",
+        "source_file": "handoff/mazu_like/mazu_like_20201109_00_lead024.nc",
+        "initial_time": "2020-11-09T00:00:00Z",
+        "lead_time_hours": 24,
+        "valid_start_time": "2020-11-09T00:00:00Z",
+        "valid_end_time": "2020-11-10T00:00:00Z",
+        "region_id": "SA-03",
+        "region_name": "Al Madinah Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 3/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 215.68469, \"omega500_weighted_mean_pa_s-1\": -0.046142131, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 2.297279, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 32.621234, \"reference_period\": \"SON\", \"support_count\": 3, \"wind850_speed_weighted_mean\": 4.8161296}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 18.608421, \"unit\": \"kg m-2\", \"value\": 32.621234}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 101.93671, \"unit\": \"kg m-1 s-1\", \"value\": 215.68469}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.046142131}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"SON\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 2.297279}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 7.6788144, \"unit\": \"m s-1\", \"value\": 4.8161296}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20201109_00_024_SA-03_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20201109_00_048:SA-03:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20201109_00_048",
+        "source_file": "handoff/mazu_like/mazu_like_20201109_00_lead048.nc",
+        "initial_time": "2020-11-09T00:00:00Z",
+        "lead_time_hours": 48,
+        "valid_start_time": "2020-11-10T00:00:00Z",
+        "valid_end_time": "2020-11-11T00:00:00Z",
+        "region_id": "SA-03",
+        "region_name": "Al Madinah Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 3/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 193.93426, \"omega500_weighted_mean_pa_s-1\": -0.026204852, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 0.97316161, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 31.000865, \"reference_period\": \"SON\", \"support_count\": 3, \"wind850_speed_weighted_mean\": 4.7473603}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 18.608421, \"unit\": \"kg m-2\", \"value\": 31.000865}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 101.93671, \"unit\": \"kg m-1 s-1\", \"value\": 193.93426}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.026204852}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"SON\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 0.97316161}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 7.6788144, \"unit\": \"m s-1\", \"value\": 4.7473603}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20201109_00_048_SA-03_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20201109_00_072:SA-03:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20201109_00_072",
+        "source_file": "handoff/mazu_like/mazu_like_20201109_00_lead072.nc",
+        "initial_time": "2020-11-09T00:00:00Z",
+        "lead_time_hours": 72,
+        "valid_start_time": "2020-11-11T00:00:00Z",
+        "valid_end_time": "2020-11-12T00:00:00Z",
+        "region_id": "SA-03",
+        "region_name": "Al Madinah Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 3/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 149.35628, \"omega500_weighted_mean_pa_s-1\": -0.0010948768, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 0.5552113, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 25.961393, \"reference_period\": \"SON\", \"support_count\": 3, \"wind850_speed_weighted_mean\": 4.3567962}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 18.608421, \"unit\": \"kg m-2\", \"value\": 25.961393}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 101.93671, \"unit\": \"kg m-1 s-1\", \"value\": 149.35628}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.0010948768}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"SON\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 0.5552113}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 7.6788144, \"unit\": \"m s-1\", \"value\": 4.3567962}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20201109_00_072_SA-03_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20201119_00_024:SA-03:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20201119_00_024",
+        "source_file": "handoff/mazu_like/mazu_like_20201119_00_lead024.nc",
+        "initial_time": "2020-11-19T00:00:00Z",
+        "lead_time_hours": 24,
+        "valid_start_time": "2020-11-19T00:00:00Z",
+        "valid_end_time": "2020-11-20T00:00:00Z",
+        "region_id": "SA-03",
+        "region_name": "Al Madinah Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "low",
+        "risk_score": 0.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 4/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 180.66631, \"omega500_weighted_mean_pa_s-1\": -0.08025451, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 0.20034789, \"precipitation_stage\": \"below_medium\", \"pwat_weighted_mean\": 24.605902, \"reference_period\": \"SON\", \"support_count\": 4, \"wind850_speed_weighted_mean\": 8.662681}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 18.608421, \"unit\": \"kg m-2\", \"value\": 24.605902}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 101.93671, \"unit\": \"kg m-1 s-1\", \"value\": 180.66631}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 7.6788144, \"unit\": \"m s-1\", \"value\": 8.662681}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.08025451}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"SON\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 0.20034789}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20201119_00_024_SA-03_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20201119_00_048:SA-03:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20201119_00_048",
+        "source_file": "handoff/mazu_like/mazu_like_20201119_00_lead048.nc",
+        "initial_time": "2020-11-19T00:00:00Z",
+        "lead_time_hours": 48,
+        "valid_start_time": "2020-11-20T00:00:00Z",
+        "valid_end_time": "2020-11-21T00:00:00Z",
+        "region_id": "SA-03",
+        "region_name": "Al Madinah Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "medium",
+        "risk_score": 7.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 medium，辅助支持 4/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 324.52936, \"omega500_weighted_mean_pa_s-1\": -0.095543091, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 7.9009696, \"precipitation_stage\": \"medium\", \"pwat_weighted_mean\": 32.074654, \"reference_period\": \"SON\", \"support_count\": 4, \"wind850_speed_weighted_mean\": 10.23363}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"SON\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 7.9009696}, {\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 18.608421, \"unit\": \"kg m-2\", \"value\": 32.074654}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 101.93671, \"unit\": \"kg m-1 s-1\", \"value\": 324.52936}, {\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 7.6788144, \"unit\": \"m s-1\", \"value\": 10.23363}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.095543091}]",
+        "contradicting_evidence_json": "[]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20201119_00_048_SA-03_heavy_rain.json"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20201119_00_072:SA-03:heavy_rain",
+      "properties": {
+        "schema_version": "risk_result_v1",
+        "case_id": "20201119_00_072",
+        "source_file": "handoff/mazu_like/mazu_like_20201119_00_lead072.nc",
+        "initial_time": "2020-11-19T00:00:00Z",
+        "lead_time_hours": 72,
+        "valid_start_time": "2020-11-21T00:00:00Z",
+        "valid_end_time": "2020-11-22T00:00:00Z",
+        "region_id": "SA-03",
+        "region_name": "Al Madinah Region",
+        "hazard": "heavy_rain",
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "created_at": "2026-07-17T00:00:00Z",
+        "risk_level": "medium",
+        "risk_score": 6.0,
+        "confidence": "medium",
+        "description_zh": "候选暴雨规则草案：降水阶段 medium，辅助支持 3/4。",
+        "indicator_summary_json": "{\"ivt_weighted_mean\": 176.72393, \"omega500_weighted_mean_pa_s-1\": -0.0097100889, \"precip_high_threshold_mm\": 10.0, \"precip_medium_threshold_mm\": 5.0, \"precip_spatial_p95_mm\": 6.8408438, \"precipitation_stage\": \"medium\", \"pwat_weighted_mean\": 27.386835, \"reference_period\": \"SON\", \"support_count\": 3, \"wind850_speed_weighted_mean\": 5.231662}",
+        "supporting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"daily_precip_total\", \"metric\": \"spatial_p95\", \"reference_period\": \"SON\", \"role\": \"primary\", \"threshold\": 5.0, \"unit\": \"mm\", \"value\": 6.8408438}, {\"comparison\": \">=\", \"indicator\": \"pwat\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 18.608421, \"unit\": \"kg m-2\", \"value\": 27.386835}, {\"comparison\": \">=\", \"indicator\": \"ivt\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 101.93671, \"unit\": \"kg m-1 s-1\", \"value\": 176.72393}, {\"comparison\": \"<\", \"indicator\": \"omega500\", \"metric\": \"weighted_mean\", \"role\": \"support\", \"threshold\": 0.0, \"unit\": \"Pa s-1\", \"value\": -0.0097100889}]",
+        "contradicting_evidence_json": "[{\"comparison\": \">=\", \"indicator\": \"wind850_speed\", \"metric\": \"weighted_mean\", \"reference_period\": \"SON\", \"role\": \"support\", \"threshold\": 7.6788144, \"unit\": \"m s-1\", \"value\": 5.231662}]",
+        "missing_evidence_json": "[]",
+        "verification_json": "{\"continuous_metrics_file\": \"handoff/weather_verification/development_continuous_metrics.csv\", \"dataset_split\": \"development\", \"independent_test_status\": \"not_opened_missing_four_imerg_dates\", \"limitation\": \"development-only evidence; not an independent performance claim\", \"observation_source\": \"IMERG Final Run V07B\", \"pair_qc_status\": \"accepted\", \"rule_review_file\": \"handoff/risk_dry_runs/development_v2_rule_review.csv\", \"status\": \"development_evidence_available\"}",
+        "input_path": "handoff/risk_results/development_heavy_rain/risk_20201119_00_072_SA-03_heavy_rain.json"
+      }
+    },
+    {
+      "label": "Rule",
+      "id": "heavy_rain_graphcast_scale_v2",
+      "properties": {
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_024:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200501_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_048:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200501_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_072:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200501_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_024:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200505_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_048:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200505_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_072:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200505_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_024:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200515_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_048:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200515_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_072:SA-09:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20200515_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_024:SA-03:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20201109_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_048:SA-03:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20201109_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_072:SA-03:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20201109_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_024:SA-03:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20201119_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_048:SA-03:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20201119_00",
+      "properties": {}
+    },
+    {
+      "type": "BASED_ON",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_072:SA-03:heavy_rain",
+      "end_label": "ForecastCase",
+      "end_id": "20201119_00",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200501_00",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200505_00",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200515_00",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200706_00",
+      "end_label": "Region",
+      "end_id": "SA-04",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200711_00",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200711_00",
+      "end_label": "Region",
+      "end_id": "SA-14",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200715_00",
+      "end_label": "Region",
+      "end_id": "SA-04",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200725_00",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200725_00",
+      "end_label": "Region",
+      "end_id": "SA-14",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200729_00",
+      "end_label": "Region",
+      "end_id": "SA-04",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200729_00",
+      "end_label": "Region",
+      "end_id": "SA-08",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20200820_00",
+      "end_label": "Region",
+      "end_id": "SA-01",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20201109_00",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20201112_00",
+      "end_label": "Region",
+      "end_id": "SA-02",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20201119_00",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "ForecastCase",
+      "start_id": "20201125_00",
+      "end_label": "Region",
+      "end_id": "SA-02",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_024:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_048:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_072:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_024:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_048:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_072:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_024:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_048:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_072:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_024:SA-03:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_048:SA-03:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_072:SA-03:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_024:SA-03:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_048:SA-03:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_072:SA-03:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-03",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-05-JAZAN-FLOOD-EARLY",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200502",
+      "properties": {
+        "record_id": "IMP-202005-JAZAN-001",
+        "region_id": "SA-09",
+        "impact_status": "yes",
+        "impact_category": "fatality",
+        "review_status": "reviewed",
+        "description_zh": "Jazan山地洪水冲走车辆并造成一人死亡"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-05-JAZAN-FLOOD-EARLY",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200502",
+      "properties": {
+        "record_id": "IMP-202005-JAZAN-002",
+        "region_id": "SA-09",
+        "impact_status": "yes",
+        "impact_category": "injury",
+        "review_status": "reviewed",
+        "description_zh": "同一过程报道六人受伤"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-05-JAZAN-FLOOD-LATE",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200506",
+      "properties": {
+        "record_id": "IMP-202005-JAZAN-003",
+        "region_id": "SA-09",
+        "impact_status": "yes",
+        "impact_category": "fatality",
+        "review_status": "reviewed",
+        "description_zh": "Wadi Dhahban山洪冲走一名约四十岁男子并确认死亡"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-05-JAZAN-FLOOD-LATE",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200506",
+      "properties": {
+        "record_id": "IMP-202005-JAZAN-004",
+        "region_id": "SA-09",
+        "impact_status": "yes",
+        "impact_category": "transport",
+        "review_status": "reviewed",
+        "description_zh": "洪水切断水泥厂至Al-Khubah和Al-Dagharir方向道路"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-EAST-HEAT-EARLY",
+      "end_label": "Evidence",
+      "end_id": "SRC-ALBAYAN-20200708",
+      "properties": {
+        "record_id": "IMP-202007-EAST-HEAT-EARLY-001",
+        "region_id": "SA-04",
+        "impact_status": "unknown",
+        "impact_category": "unknown",
+        "review_status": "reviewed",
+        "description_zh": "Al-Ahsa和Dammam分别报告49.8和49.4摄氏度；未找到可归因影响资料"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-NORTH-EAST-HEAT",
+      "end_label": "Evidence",
+      "end_id": "SRC-SG-20260624-NCM-JULY",
+      "properties": {
+        "record_id": "IMP-202007-NORTH-HEAT-001",
+        "region_id": "SA-08",
+        "impact_status": "unknown",
+        "impact_category": "unknown",
+        "review_status": "reviewed",
+        "description_zh": "Rafha记录51.1摄氏度；现有来源未提供可归因的人员或基础设施影响"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-NORTH-EAST-HEAT",
+      "end_label": "Evidence",
+      "end_id": "SRC-SG-20260624-NCM-JULY",
+      "properties": {
+        "record_id": "IMP-202007-EAST-HEAT-001",
+        "region_id": "SA-04",
+        "impact_status": "unknown",
+        "impact_category": "unknown",
+        "review_status": "reviewed",
+        "description_zh": "Al-Qaisumah记录50.6摄氏度；现有来源未提供可归因的人员或基础设施影响"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-MOWATEN-20200728",
+      "properties": {
+        "record_id": "IMP-202007-JAZAN-001",
+        "region_id": "SA-09",
+        "impact_status": "yes",
+        "impact_category": "housing",
+        "review_status": "reviewed",
+        "description_zh": "Jazan的Ahad Al Masarih有26户住宅进水；报道引述Jazan民防发言人"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200727",
+      "properties": {
+        "record_id": "IMP-202007-ASIR-001",
+        "region_id": "SA-14",
+        "impact_status": "yes",
+        "impact_category": "fatality",
+        "review_status": "reviewed",
+        "description_zh": "Asir的Wadi Abla山洪冲走一辆载有一家三口的车辆；报道引述当地民防发言人称找到三具遗体"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200727",
+      "properties": {
+        "record_id": "IMP-202007-JAZAN-002",
+        "region_id": "SA-09",
+        "impact_status": "yes",
+        "impact_category": "transport",
+        "review_status": "reviewed",
+        "description_zh": "持续强降雨造成道路中断并伴随供电中断和山体落石"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-11-MADINAH-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20201121",
+      "properties": {
+        "record_id": "IMP-202011-MADINAH-001",
+        "region_id": "SA-03",
+        "impact_status": "yes",
+        "impact_category": "transport",
+        "review_status": "reviewed",
+        "description_zh": "Madinah多地中到大雨引发道路坍塌并冲移和困住车辆"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-11-MAKKAH-RAIN",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20201126",
+      "properties": {
+        "record_id": "IMP-202011-MAKKAH-001",
+        "region_id": "SA-02",
+        "impact_status": "yes",
+        "impact_category": "transport",
+        "review_status": "reviewed",
+        "description_zh": "Makkah中到大雨后多个城区及环路点位被列为受影响和雨后处置地点"
+      }
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_024:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_048:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_072:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_024:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_048:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200505_00_072:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_024:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_048:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200515_00_072:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_024:SA-03:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_048:SA-03:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20201109_00_072:SA-03:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_024:SA-03:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_048:SA-03:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "EVALUATED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20201119_00_072:SA-03:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-05-JAZAN-FLOOD-EARLY",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200502",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-05-JAZAN-FLOOD-LATE",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200506",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-EAST-HEAT-EARLY",
+      "end_label": "Evidence",
+      "end_id": "SRC-ALBAYAN-20200708",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-NORTH-EAST-HEAT",
+      "end_label": "Evidence",
+      "end_id": "SRC-SG-20260624-NCM-JULY",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-ARABNEWS-20200805",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-MOWATEN-20200728",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-SPA-20200726-RAIN",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-SPA-20200727-PREP",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-07-SW-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20200727",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-11-MADINAH-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20201120",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-11-MADINAH-FLOOD",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20201121",
+      "properties": {}
+    },
+    {
+      "type": "HAS_EVIDENCE",
+      "start_label": "HistoricalEvent",
+      "start_id": "EVT-2020-11-MAKKAH-RAIN",
+      "end_label": "Evidence",
+      "end_id": "SRC-WATAN-20201126",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200501_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "EVT-2020-05-JAZAN-FLOOD-EARLY",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200505_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "EVT-2020-05-JAZAN-FLOOD-LATE",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200515_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "CTRL-2020-05-JAZAN-RAIN",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200706_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "EVT-2020-07-EAST-HEAT-EARLY",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200711_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "CTRL-2020-07-SW-RAIN",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200715_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "CTRL-2020-07-EAST-HEAT",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200725_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "EVT-2020-07-SW-FLOOD",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200729_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "EVT-2020-07-NORTH-EAST-HEAT",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20200820_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "DEMO-20200820",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20201109_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "CTRL-2020-11-MADINAH-RAIN",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20201112_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "CTRL-2020-11-MAKKAH-RAIN",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20201119_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "EVT-2020-11-MADINAH-FLOOD",
+      "properties": {}
+    },
+    {
+      "type": "VALID_FOR",
+      "start_label": "ForecastCase",
+      "start_id": "20201125_00",
+      "end_label": "HistoricalEvent",
+      "end_id": "EVT-2020-11-MAKKAH-RAIN",
+      "properties": {}
+    }
+  ],
+  "content_sha256": "fd4693ea87ad7de7881b2ed9d75dbf406823e7bd5219ed60151932303b4723b6"
+}

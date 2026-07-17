@@ -1,0 +1,10 @@
+gate,status,evidence,blocking_reason,required_action
+development_partition_sealed,passed,"7 development cases; 5 independent_test cases remain partitioned",,Keep the split unchanged
+development_pairing_complete,passed,"81/81 pairs; 45 IMERG accepted; 36 GHCN provisional; missing=0",,Preserve QC labels
+temporal_scoring_corrected,passed,"12 target-window decisions scored; 9 pre/post-event context windows excluded",,Keep interval-overlap scoring
+heavy_rain_v2_freeze,passed,"3/5 target event windows detected; 4/4 control windows low; 2/3 event cases detected; IMERG accepted",,Do not tune heavy-rain v2 after independent test opens
+heatwave_v2_freeze,blocked,"1/1 event window detected and 2/2 control windows low","Only 1 event and 1 control case; GHCN remains provisional",Keep heatwave v2 draft and independent heat case sealed
+formal_development_heavy_rain,passed,"15 frozen Risk JSON files validated; 15 controlled reports; 69-node/98-relation bundle",,Treat as development evidence rather than independent performance
+independent_heavy_rain,passed,"54/54 accepted pairs; 6 hits 0 misses 0 false alarms 12 correct negatives; 18 frozen Risk JSON files","Small selected sample limits generalization",Keep heavy-rain v2 locked and report limitations without retuning
+independent_heatwave,blocked,"Heatwave rule is not frozen; GHCN timing is provisional","Freeze prerequisites are not met",Do not open the independent heatwave case
+neo4j_live_import,blocked,"Formal development bundle is ready","No running Neo4j service has been verified",Deploy locally then execute schema import and fixed queries

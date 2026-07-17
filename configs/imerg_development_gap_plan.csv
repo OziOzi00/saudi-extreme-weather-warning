@@ -1,0 +1,7 @@
+date,case_ids,case_roles,dataset_splits,directory_url,product,version,status
+2020-05-03,20200501_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/03/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_development_pairing_gap
+2020-05-05,20200505_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/05/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_development_pairing_gap
+2020-05-07,20200505_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/07/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_development_pairing_gap
+2020-05-15,20200515_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/05/15/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_development_pairing_gap
+2020-11-09,20201109_00,control,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/09/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_development_pairing_gap
+2020-11-19,20201119_00,event,development,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/19/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_development_pairing_gap

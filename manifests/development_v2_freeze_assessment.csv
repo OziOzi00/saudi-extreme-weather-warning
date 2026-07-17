@@ -1,0 +1,3 @@
+hazard,rule_id,rule_status,event_cases,control_cases,event_target_windows,candidate_hits,target_window_recall,control_target_windows,candidate_correct_negatives,target_window_specificity,event_case_detection_fraction,control_case_rejection_fraction,observation_qc_statuses,freeze_recommendation,blocking_reasons
+heavy_rain,heavy_rain_graphcast_scale_v2,frozen,3,2,5,3,0.6,4,4,1,0.666667,1,accepted,eligible_to_freeze,
+heatwave,heatwave_candidate_graphcast_scale_v2,draft,1,1,1,1,1,2,2,1,1,1,provisional,blocked,insufficient_event_cases;insufficient_control_cases;observation_qc_not_accepted

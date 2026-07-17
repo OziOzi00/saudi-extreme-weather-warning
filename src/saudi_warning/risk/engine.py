@@ -515,11 +515,14 @@ def evaluate_all(
     return results
 
 
-def write_results(results: list[dict[str, Any]], output_dir: Path) -> None:
+def write_results(
+    results: list[dict[str, Any]], output_dir: Path, filename_prefix: str = "risk_draft"
+) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     for result in results:
         filename = (
-            f"risk_draft_{result['case_id']}_{result['region_id']}_{result['hazard']}.json"
+            f"{filename_prefix}_{result['case_id']}_{result['region_id']}_"
+            f"{result['hazard']}.json"
         )
         (output_dir / filename).write_text(
             json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"

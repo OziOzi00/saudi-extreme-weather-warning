@@ -1,0 +1,54 @@
+# Sensitivity candidate only. GHCN time alignment and sample size block freezing.
+version: heatwave_candidate_v2_20260717
+hazard: heatwave
+status: draft
+rule_id: heatwave_candidate_graphcast_scale_v2
+calibration_source: handoff/risk_dry_runs/development_rule_review.csv
+reference_source: handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv
+temporal_semantics: docs/指标时间语义与聚合口径.md
+primary_indicators:
+  - tmax_c
+supporting_indicators:
+  - tmin_c
+derived_indicators:
+  - forecast_hot_day_flag
+  - forecast_hot_day_duration
+aggregation:
+  tmax_c: spatial_p95
+  tmin_c: spatial_p95
+thresholds:
+  hot_day:
+    reference_column: daily_spatial_p95_p50
+    absolute_floor: 47.0
+    unit: degC
+  severe_hot_day:
+    reference_column: daily_spatial_p95_p90
+    absolute_floor: 49.0
+    unit: degC
+  warm_night:
+    reference_column: daily_spatial_p95_p90
+    absolute_floor: 28.0
+    unit: degC
+scoring:
+  hot_day: 3.0
+  severe_hot_day: 5.0
+  warm_night_support: 1.0
+  each_forecast_duration_day: 1.0
+classification:
+  low: no_hot_day_or_only_one_non_severe_hot_day
+  medium: two_consecutive_hot_days_or_one_severe_hot_day
+  high: three_consecutive_hot_days_with_current_severe_hot_day
+missing_policy:
+  tmax_missing: low_confidence_and_no_positive_classification
+  tmin_missing: record_missing_without_cancelling_hot_day
+  pre_initialization_duration: always_unknown
+confidence_cap: medium
+freeze_gates:
+  minimum_event_cases: 3
+  minimum_control_cases: 2
+  observation_qc_required: accepted
+notes:
+  - Hot-day sensitivity uses the larger of seasonal P50 and 47 degC.
+  - The only development event/control pair is insufficient for freezing.
+  - GHCN pairs remain provisional because OBS-TIME is missing.
+  - Independent-test cases must not be used to compensate for the small sample.

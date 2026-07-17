@@ -1,0 +1,95 @@
+{
+  "schema_version": "risk_result_v1",
+  "case_id": "20201109_00_048",
+  "source_file": "handoff/mazu_like/mazu_like_20201109_00_lead048.nc",
+  "initial_time": "2020-11-09T00:00:00Z",
+  "lead_time_hours": 48,
+  "valid_start_time": "2020-11-10T00:00:00Z",
+  "valid_end_time": "2020-11-11T00:00:00Z",
+  "region_id": "SA-03",
+  "region_name": "Al Madinah Region",
+  "hazard": "heavy_rain",
+  "rule_id": "heavy_rain_graphcast_scale_v2",
+  "rule_status": "frozen",
+  "indicator_summary": {
+    "reference_period": "SON",
+    "precip_spatial_p95_mm": 0.97316161,
+    "precip_medium_threshold_mm": 5.0,
+    "precip_high_threshold_mm": 10.0,
+    "precipitation_stage": "below_medium",
+    "pwat_weighted_mean": 31.000865,
+    "ivt_weighted_mean": 193.93426,
+    "wind850_speed_weighted_mean": 4.7473603,
+    "omega500_weighted_mean_pa_s-1": -0.026204852,
+    "support_count": 3
+  },
+  "supporting_evidence": [
+    {
+      "indicator": "pwat",
+      "metric": "weighted_mean",
+      "value": 31.000865,
+      "comparison": ">=",
+      "threshold": 18.608421,
+      "unit": "kg m-2",
+      "role": "support",
+      "reference_period": "SON"
+    },
+    {
+      "indicator": "ivt",
+      "metric": "weighted_mean",
+      "value": 193.93426,
+      "comparison": ">=",
+      "threshold": 101.93671,
+      "unit": "kg m-1 s-1",
+      "role": "support",
+      "reference_period": "SON"
+    },
+    {
+      "indicator": "omega500",
+      "metric": "weighted_mean",
+      "value": -0.026204852,
+      "comparison": "<",
+      "threshold": 0.0,
+      "unit": "Pa s-1",
+      "role": "support"
+    }
+  ],
+  "contradicting_evidence": [
+    {
+      "indicator": "daily_precip_total",
+      "metric": "spatial_p95",
+      "value": 0.97316161,
+      "comparison": ">=",
+      "threshold": 5.0,
+      "unit": "mm",
+      "role": "primary",
+      "reference_period": "SON"
+    },
+    {
+      "indicator": "wind850_speed",
+      "metric": "weighted_mean",
+      "value": 4.7473603,
+      "comparison": ">=",
+      "threshold": 7.6788144,
+      "unit": "m s-1",
+      "role": "support",
+      "reference_period": "SON"
+    }
+  ],
+  "missing_evidence": [],
+  "verification": {
+    "status": "development_evidence_available",
+    "dataset_split": "development",
+    "observation_source": "IMERG Final Run V07B",
+    "pair_qc_status": "accepted",
+    "continuous_metrics_file": "handoff/weather_verification/development_continuous_metrics.csv",
+    "rule_review_file": "handoff/risk_dry_runs/development_v2_rule_review.csv",
+    "independent_test_status": "not_opened_missing_four_imerg_dates",
+    "limitation": "development-only evidence; not an independent performance claim"
+  },
+  "created_at": "2026-07-17T00:00:00Z",
+  "risk_level": "low",
+  "risk_score": 0.0,
+  "confidence": "medium",
+  "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 3/4。"
+}

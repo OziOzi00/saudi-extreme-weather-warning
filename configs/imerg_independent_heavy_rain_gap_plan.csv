@@ -1,0 +1,5 @@
+date,case_ids,case_roles,dataset_splits,directory_url,product,version,status
+2020-07-11,20200711_00,control,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/11/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_independent_after_rule_freeze
+2020-07-25,20200725_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/07/25/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_independent_after_rule_freeze
+2020-11-25,20201125_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/25/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_independent_after_rule_freeze
+2020-11-27,20201125_00,event,independent_test,https://arthurhouhttps.pps.eosdis.nasa.gov/gpmdata/2020/11/27/gis/,IMERG Final Run daily GIS accumulation,V07B,planned_independent_after_rule_freeze

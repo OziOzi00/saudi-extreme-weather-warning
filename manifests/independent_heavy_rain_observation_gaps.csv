@@ -1,0 +1,5 @@
+case_id,observation_source,pair_status,valid_start_time,reason
+20200711_00,IMERG,missing,2020-07-11T00:00:00Z,required lead024 UTC day is not present locally
+20200725_00,IMERG,missing,2020-07-25T00:00:00Z,required lead024 UTC day is not present locally
+20201125_00,IMERG,missing,2020-11-25T00:00:00Z,required lead024 UTC day is not present locally
+20201125_00,IMERG,missing,2020-11-27T00:00:00Z,required lead072 UTC day is not present locally

@@ -21,7 +21,7 @@ def test_observation_source_manifest_is_well_formed() -> None:
     assert imerg["access_status"] == "downloaded_local_not_versioned"
     assert imerg["version"] == "V07B"
     imerg_files = read_csv(ROOT / "manifests" / "imerg_v07b_daily_files.csv")
-    assert len(imerg_files) == 22
+    assert len(imerg_files) == 32
     assert all(len(row["sha256"]) == 64 for row in imerg_files)
 
 

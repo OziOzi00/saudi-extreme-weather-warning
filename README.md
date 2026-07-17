@@ -20,9 +20,14 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **已完成的演示交接个例**：`2020-08-20T00:00:00Z` 的 lead024、lead048、lead072，位于 [`handoff/mazu_like/`](handoff/mazu_like/)；它仅是流程演示，不声明为已确认极端灾害事件。
 - **观测、案例与证据已继续推进**：候选目录已扩展为 7 个事件、5 个对照和 1 个 demo；GHCN/IMERG 候选筛选已完成；12 条影响真值已逐条复核，并形成天气层、影响层和数据集划分批准建议。
 - **案例已批准**：成员 A 在单人继续推进的工作方式下，已按审计建议批准 12 个真实案例并冻结为 7 个 development、5 个 independent_test；该决定不虚构为其他成员分别验收。
-- **正式批处理已启动**：成员 A 正在为 12 个批准案例缓存 GraphCast +6 至 +72 小时历史预报并生成 24/48/72h MAZU-like 交付；运行结束和 QC 完成前不声明整个批次完成。
+- **A侧正式批处理与交付收尾已完成**：12 个批准案例的144个 GraphCast时次缓存齐全，36份24/48/72h MAZU-like NetCDF全部通过契约验收；ADM1区域摘要和39份文件（含3份demo）的SHA-256交付清单已重建。
 - **B/C 归属任务已继续推进**：A 已代为完成 GHCN/IMERG 观测准备、对照筛选、灾害证据复核、案例批准材料和知识图谱开发骨架；这些产物可复验，但不表示 B/C 本人已验收。
-- **仍待正式完成**：完成 GraphCast 批处理、天气层评估、规则冻结、正式 Risk JSON、Neo4j 实机联调及影响层评估。
+- **B侧development配对已闭合**：7个development案例形成81/81条配对；45条IMERG记录accepted、36条GHCN记录因日界线未知保持provisional。之后仅在暴雨v2冻结后打开4个独立暴雨案例，高温独立案例继续封存。
+- **development连续指标已分层生成**：12行IMERG accepted降水指标可用于开发检查；24行GHCN温度结果明确标为provisional非正式诊断，分类技能与热浪序列未提前计算。
+- **风险规则已按灾种分层推进**：暴雨v2达到development预设闸门后冻结；高温v2因仅1组事件/对照且GHCN仍provisional，继续保持draft。
+- **正式development链路已形成**：15份冻结暴雨Risk JSON、15份受控报告，以及69节点/98关系的图谱bundle均已生成并验收。
+- **独立暴雨评估已锁定完成**：54/54条IMERG配对accepted；冻结P95门槛得到6命中、0漏报、0空报、12正确否定。结果样本较小，规则不得回调。
+- **仍待正式完成**：解决高温样本/QC后再冻结；Neo4j实机导入及最终影响层评估仍未完成。
 
 更完整的事实清单见 [项目状态](docs/项目状态.md)。
 
@@ -59,6 +64,10 @@ python -m pytest -q
 成员 A 的完整交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_a_delivery.ps1`；默认以版本化 demo catalog 复验现有三份 lead。当前批准案例位于 `configs/case_catalog_candidates.csv`，正式批处理必须保持冻结的 development/independent_test 划分。
 
 成员 C 的开发交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_c_development.ps1`；它校验案例/真值、生成图谱 bundle 和示例报告，并运行 C 侧测试，不会启动或修改本地 Neo4j 服务。
+
+冻结暴雨development链可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_frozen_development_pipeline.ps1`，它复验v2闸门、生成并验收15份Risk JSON、图谱bundle和15份报告；不会读取独立测试观测或启动Neo4j。
+
+已锁定的独立暴雨链可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_locked_independent_heavy_rain.ps1`复验；脚本会核对既有锁文件中的规则/观测SHA，不允许更换输入或回调规则。
 
 ## 仓库与数据边界
 
