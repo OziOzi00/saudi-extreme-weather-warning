@@ -1,0 +1,51 @@
+{
+  "status": "complete_with_scope_limitations",
+  "protocol_version": "impact_layer_descriptive_v1",
+  "minimum_alerting_risk_level": "medium",
+  "evaluation_unit": "case_region_hazard",
+  "eligible_truth": "reviewed_and_impact_status_yes",
+  "reviewed_positive_record_count": 9,
+  "excluded_unknown_record_count": 3,
+  "excluded_nonreviewed_record_count": 0,
+  "reviewed_negative_record_count": 0,
+  "partitions": {
+    "development": {
+      "eligible_positive_units": 3,
+      "detected_positive_units": 2,
+      "positive_coverage_fraction": 0.6666666666666666
+    },
+    "independent_test": {
+      "eligible_positive_units": 3,
+      "detected_positive_units": 3,
+      "positive_coverage_fraction": 1.0
+    },
+    "all": {
+      "eligible_positive_units": 6,
+      "detected_positive_units": 5,
+      "positive_coverage_fraction": 0.8333333333333334
+    }
+  },
+  "negative_class_metrics_status": "unavailable_no_reviewed_no_impact_truth",
+  "precision": null,
+  "specificity": null,
+  "false_alarm_ratio": null,
+  "impact_evaluation_independence": "not_blind_cases_were_selected_using_known_impact_evidence",
+  "interpretation": "descriptive_positive_coverage_not_population_accuracy",
+  "retuning_performed": false,
+  "generated_at": "2026-07-17T09:46:37.723775+00:00",
+  "inputs": {
+    "truth": {
+      "path": "handoff/disaster_truth/disaster_impact_truth.csv",
+      "sha256": "f72781f97cce41547fcac736543a8a419645e1c6504ac73aa2ce4794d7b875de"
+    },
+    "catalog": {
+      "path": "configs/case_catalog_candidates.csv",
+      "sha256": "e9aebdc52d28bba8c7899cb7b19450e7597cfe7f2ca0e5b3172e079b0549379c"
+    },
+    "development_risk_directory": "handoff/risk_results/development_heavy_rain",
+    "independent_risk_directory": "handoff/risk_results/independent_heavy_rain",
+    "frozen_risk_result_count": 33,
+    "frozen_risk_result_set_sha256": "5cc24be40ce7efe7135a6897016c4d76ef9faf94de8d031998837e16068b8a3a"
+  },
+  "units_output": "handoff/impact_verification/positive_impact_units.csv"
+}
