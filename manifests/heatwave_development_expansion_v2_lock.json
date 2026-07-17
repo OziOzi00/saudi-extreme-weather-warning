@@ -1,0 +1,36 @@
+{
+  "schema_version": "heatwave_development_expansion_lock_v1",
+  "locked_at": "2026-07-18T00:00:00Z",
+  "status": "preregistered_before_forecast_access",
+  "dataset_split": "development",
+  "hazard": "heatwave",
+  "selection_method": "observation_only_matched_event_control",
+  "selected_case_ids": [
+    "20200622_00",
+    "20200627_00"
+  ],
+  "selection_rules": {
+    "utc_days_per_window": 3,
+    "minimum_station_count_per_day": 2,
+    "event_station_max_minimum_degc_each_day": 47.0,
+    "control_station_max_maximum_degc_each_day": 45.0,
+    "minimum_below_event_threshold_days_between_hot_processes": 3,
+    "independent_heatwave_embargo_buffer_days": 7
+  },
+  "input_fingerprints": {
+    "ssod_daily_summary": {
+      "path": "manifests/ssod_v2_saudi_2020_daily_summary.csv",
+      "sha256": "030308228dbb95794163c1188cd1ee0b26cb4d44b5e7416acd97b4f7d43369ba"
+    },
+    "baseline_case_catalog": {
+      "path": "configs/case_catalog_candidates.csv",
+      "sha256": "e9aebdc52d28bba8c7899cb7b19450e7597cfe7f2ca0e5b3172e079b0549379c"
+    }
+  },
+  "selection_file": "manifests/heatwave_development_expansion_v2_selection.csv",
+  "batch_catalog": "configs/heatwave_development_expansion_v2_catalog.csv",
+  "independent_heatwave_opened": false,
+  "forecast_results_read_during_selection": false,
+  "rule_modified": false,
+  "next_gate": "complete_graphcast_to_mazu_like_delivery_then_reestimate_development_only_cv"
+}

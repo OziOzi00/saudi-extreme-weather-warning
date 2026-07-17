@@ -1,0 +1,3 @@
+case_id,initial_time,event_type,notes
+20200622_00,2020-06-22T00:00:00Z,heatwave_control,"Pre-registered SSODv2 SA-04 control; target UTC days 2020-06-23 through 2020-06-25 are all <=45 degC."
+20200627_00,2020-06-27T00:00:00Z,heatwave_event,"Pre-registered SSODv2 SA-04 event; target UTC days 2020-06-28 through 2020-06-30 are all >=47 degC."
