@@ -16,6 +16,7 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 
 ## 真实项目状态（2026-07-17）
 
+- **阶段版本已收束**：当前成果作为 `v0.1.0-prototype` 稳定研究原型发布；提供无需原始数据的一键验收、机器可读快照、正向案例和已知漏报案例。它不是实时业务预报服务。
 - **已完成（成员 A）**：GraphCast → MAZU-like 主流程，以及 catalog 预检查、可恢复缓存、原子写入、NetCDF 自动验收、ADM1 摘要、SHA-256 溯源和一键交付；并协助完成 MAZU 2025 统计与 B 侧草案。
 - **已完成的演示交接个例**：`2020-08-20T00:00:00Z` 的 lead024、lead048、lead072，位于 [`handoff/mazu_like/`](handoff/mazu_like/)；它仅是流程演示，不声明为已确认极端灾害事件。
 - **观测、案例与证据已继续推进**：目录现有10个事件、6个对照和1个demo；IMERG/GHCN/SSOD筛选已完成；影响真值仍保持逐条复核和天气层/影响层分离。
@@ -63,6 +64,14 @@ $env:PYTHONPATH = "$PWD\src"
 python -m pytest -q
 ```
 
+安装依赖后，队友可直接运行稳定原型验收（不下载原始数据、不要求启动 Neo4j）：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_prototype_demo.ps1
+```
+
+命令会生成 [`handoff/prototype_demo/demo_summary.json`](handoff/prototype_demo/demo_summary.json)，并验收全部33份冻结暴雨Risk JSON和阶段边界。发布口径与演示案例见 [v0.1.0 原型发布说明](docs/2026-07-17_v0.1.0原型发布说明.md)。
+
 成员 A 新增个例的批处理命令见 [成员 A 批处理说明](docs/成员A批处理说明.md)。成员 B/C 的任务和当前完成边界见 [团队协作流程](docs/团队协作流程.md)。
 
 成员 A 的完整交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_a_delivery.ps1`；默认以版本化 demo catalog 复验现有三份 lead。当前批准案例位于 `configs/case_catalog_candidates.csv`，正式批处理必须保持冻结的 development/independent_test 划分。
@@ -98,4 +107,5 @@ python -m pytest -q
 - [2026-07-17 高温冷偏差修正预注册方案与结果](docs/2026-07-17_高温冷偏差修正预注册方案.md)
 - [2026-07-17 Neo4j 实机联调结果](docs/2026-07-17_Neo4j实机联调结果.md)
 - [2026-07-17 灾害影响层描述性评估](docs/2026-07-17_灾害影响层描述性评估.md)
+- [2026-07-17 v0.1.0 稳定研究原型发布说明](docs/2026-07-17_v0.1.0原型发布说明.md)
 - [变更记录](docs/变更记录.md)
