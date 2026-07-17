@@ -33,6 +33,6 @@
 
 1. 4个缺失IMERG日文件已补齐，独立暴雨评估已一次性执行并锁定；结果不得用于回调v2。
 2. 高温独立案例继续封存。预注册的6折留一案例冷偏差修正已经完成且未通过；下一步需要新增不参与本轮方法选择的development证据，或在看到新结果前预注册有物理依据的新候选方法，不得对同一结果反复试算法或降低冻结规则阈值。
-3. Neo4j图谱bundle和报告已生成，但实机服务尚未验证，不能声明数据库已部署。
+3. Neo4j图谱bundle和报告已生成，本地Community 2026.06.0实机导入及固定查询已经通过；该结论仅为development联调，不声明生产数据库已经部署。
 
 机器可读闸门状态见`manifests/rule_freeze_readiness.csv`，原始v2定量评估见`manifests/development_v2_freeze_assessment.csv`，偏差修正交叉验证见`manifests/heatwave_bias_cv_assessment.csv`。

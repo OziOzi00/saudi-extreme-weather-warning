@@ -32,3 +32,5 @@ python -m saudi_warning.knowledge_graph.load_neo4j
 ```
 
 密码、Neo4j 数据目录和原始灾害材料不得提交 Git。固定查询位于 `neo4j/queries/`。
+
+2026-07-17已使用`heavy_rain_evaluation_bundle.json`完成本地Community 2026.06.0实机联调：87个节点、152条关系、6个约束和三组固定查询均通过。机器结果见`manifests/neo4j_live_verification.json`，完整边界见`docs/2026-07-17_Neo4j实机联调结果.md`。可复验脚本为`scripts/run_neo4j_live_integration.ps1`；脚本要求服务已启动且`.env.neo4j.local`只存在本机。

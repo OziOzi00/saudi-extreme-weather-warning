@@ -29,6 +29,50 @@ def _group(items: list[dict[str, Any]], keys: tuple[str, ...]) -> dict[tuple[str
     return grouped
 
 
+def _group_relations(
+    relations: list[dict[str, Any]],
+) -> dict[tuple[str, str, str, str | None], list[dict[str, Any]]]:
+    """Group relations by Cypher shape and optional stable relationship identity.
+
+    Impact evidence can legitimately contain multiple records between the same
+    event and source.  Those records carry ``record_id`` and must not collapse
+    into one relationship during an idempotent import.
+    """
+
+    grouped: dict[
+        tuple[str, str, str, str | None], list[dict[str, Any]]
+    ] = defaultdict(list)
+    seen: set[tuple[str, str, str, str, str, str | None, Any]] = set()
+    for item in relations:
+        identity_property = (
+            "record_id" if "record_id" in item.get("properties", {}) else None
+        )
+        identity_value = (
+            item["properties"][identity_property] if identity_property else None
+        )
+        identity = (
+            item["type"],
+            item["start_label"],
+            item["start_id"],
+            item["end_label"],
+            item["end_id"],
+            identity_property,
+            identity_value,
+        )
+        if identity in seen:
+            raise ValueError(f"duplicate relationship identity: {identity}")
+        seen.add(identity)
+        grouped[
+            (
+                item["type"],
+                item["start_label"],
+                item["end_label"],
+                identity_property,
+            )
+        ].append(item)
+    return grouped
+
+
 def load_bundle(bundle: dict[str, Any], uri: str, user: str, password: str) -> None:
     try:
         from neo4j import GraphDatabase
@@ -50,18 +94,27 @@ def load_bundle(bundle: dict[str, Any], uri: str, user: str, password: str) -> N
                     "SET n += row.properties"
                 )
                 session.run(query, rows=rows).consume()
-            relation_groups = _group(
-                bundle["relations"], ("type", "start_label", "end_label")
-            )
-            for (rel_type, start_label, end_label), rows in relation_groups.items():
+            relation_groups = _group_relations(bundle["relations"])
+            for (
+                rel_type,
+                start_label,
+                end_label,
+                identity_property,
+            ), rows in relation_groups.items():
                 if rel_type not in ALLOWED_RELATION_TYPES:
                     raise ValueError(f"unsafe relation type: {rel_type}")
                 if start_label not in ALLOWED_NODE_LABELS or end_label not in ALLOWED_NODE_LABELS:
                     raise ValueError("unsafe relation label")
+                merge_properties = (
+                    f" {{{identity_property}: row.properties.{identity_property}}}"
+                    if identity_property
+                    else ""
+                )
                 query = (
                     f"UNWIND $rows AS row MATCH (a:{start_label} {{id: row.start_id}}) "
                     f"MATCH (b:{end_label} {{id: row.end_id}}) "
-                    f"MERGE (a)-[r:{rel_type}]->(b) SET r += row.properties"
+                    f"MERGE (a)-[r:{rel_type}{merge_properties}]->(b) "
+                    "SET r += row.properties"
                 )
                 session.run(query, rows=rows).consume()
 

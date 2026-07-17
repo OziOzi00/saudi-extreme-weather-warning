@@ -8,4 +8,4 @@ heatwave_bias_cv_v1,blocked,"Preregistered 6-fold leave-one-case-out median corr
 formal_development_heavy_rain,passed,"15 frozen Risk JSON files validated; 15 controlled reports; 69-node/98-relation bundle",,Treat as development evidence rather than independent performance
 independent_heavy_rain,passed,"54/54 accepted pairs; 6 hits 0 misses 0 false alarms 12 correct negatives; 18 frozen Risk JSON files","Small selected sample limits generalization",Keep heavy-rain v2 locked and report limitations without retuning
 independent_heatwave,blocked,"Heatwave rule remains draft after accepted SSOD development evaluation","Recall and event-case detection freeze prerequisites are not met",Do not open the independent heatwave case
-neo4j_live_import,blocked,"Formal development bundle is ready","No running Neo4j service has been verified",Deploy locally then execute schema import and fixed queries
+neo4j_live_import,passed,"Neo4j Community 2026.06.0; 87/87 nodes; 152/152 relationships; 6/6 constraints; three fixed queries passed",,Preserve the verification manifest and do not describe the local development instance as production deployment

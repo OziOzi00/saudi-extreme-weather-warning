@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "verified_at": "2026-07-17T09:36:18.374817+00:00",
+  "database_uri": "bolt://localhost:7687",
+  "database_components": [
+    {
+      "name": "Neo4j Kernel",
+      "version": "2026.06.0",
+      "edition": "community"
+    },
+    {
+      "name": "Cypher",
+      "version": "5",
+      "edition": ""
+    }
+  ],
+  "node_count": 87,
+  "relationship_count": 152,
+  "constraint_count": 6,
+  "constraints": [
+    "evidence_id",
+    "forecast_case_id",
+    "historical_event_id",
+    "region_id",
+    "risk_assessment_id",
+    "rule_id"
+  ],
+  "node_counts_by_label": {
+    "Evidence": 14,
+    "ForecastCase": 13,
+    "HistoricalEvent": 13,
+    "Region": 13,
+    "RiskAssessment": 33,
+    "Rule": 1
+  },
+  "relationship_counts_by_type": {
+    "BASED_ON": 33,
+    "CONCERNS": 49,
+    "EVALUATED_BY": 45,
+    "HAS_EVIDENCE": 12,
+    "VALID_FOR": 13
+  },
+  "fixed_queries": {
+    "case_trace": {
+      "parameters": {
+        "case_id": "20200501_00"
+      },
+      "row_count": 1,
+      "status": "passed"
+    },
+    "risk_trace": {
+      "parameters": {
+        "risk_id": "20200501_00_024:SA-09:heavy_rain"
+      },
+      "row_count": 1,
+      "status": "passed"
+    },
+    "region_events": {
+      "parameters": {
+        "region_id": "SA-01"
+      },
+      "row_count": 1,
+      "status": "passed"
+    }
+  },
+  "password_recorded": false,
+  "bundle_path": "handoff/knowledge_graph/heavy_rain_evaluation_bundle.json",
+  "bundle_sha256": "4904385bcd9278f2fd618153f2f765f6e4455b595269f419f1851e9f0279aedd"
+}
