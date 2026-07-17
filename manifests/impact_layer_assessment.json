@@ -32,7 +32,7 @@
   "impact_evaluation_independence": "not_blind_cases_were_selected_using_known_impact_evidence",
   "interpretation": "descriptive_positive_coverage_not_population_accuracy",
   "retuning_performed": false,
-  "generated_at": "2026-07-17T09:46:37.723775+00:00",
+  "generated_at": "2026-07-17T09:53:41.668917+00:00",
   "inputs": {
     "truth": {
       "path": "handoff/disaster_truth/disaster_impact_truth.csv",

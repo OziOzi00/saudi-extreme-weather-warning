@@ -1,0 +1,26 @@
+{
+  "status": "completed_without_rule_retuning",
+  "missed_positive_unit_count": 1,
+  "attributed_overlapping_window_count": 2,
+  "primary_attribution_counts": {
+    "risk_rule_error": 1,
+    "weather_model_error": 1
+  },
+  "overall_interpretation": "primary_weather_underprediction_with_secondary_rule_scale_gap",
+  "frozen_rule_modified": false,
+  "inputs": {
+    "positive_impact_units.csv": {
+      "path": "handoff/impact_verification/positive_impact_units.csv",
+      "sha256": "5312294c3f9683aeb4a64d79955f8e88cd449369c1458d1ca7ad2c2bfa163382"
+    },
+    "development_pairs.csv": {
+      "path": "handoff/weather_verification/development_pairs.csv",
+      "sha256": "099a730c6bd294fbb872f6ec075bf69f82a91145f7b77d521399a3705bd66521"
+    },
+    "development_v2_rule_review.csv": {
+      "path": "handoff/risk_dry_runs/development_v2_rule_review.csv",
+      "sha256": "8c350c273b1fdb5344fe8253b72b8427803f59dca94f945af67ca9a7d4c1e60b"
+    }
+  },
+  "output": "handoff/impact_verification/missed_impact_attribution.csv"
+}

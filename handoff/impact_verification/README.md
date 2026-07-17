@@ -11,3 +11,7 @@
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/run_impact_evaluation.ps1
 ```
+
+`missed_impact_attribution.csv`进一步拆解唯一未覆盖单位`20200501_00 / SA-09`。lead024为高置信度`weather_model_error`；lead048为中置信度`risk_rule_error`并伴随`weather_model_error`。归因只解释既有结果，不修改冻结规则。
+
+四个天气对照的无影响证据检索记录在`../../manifests/control_impact_evidence_search.csv`。当前只找到事前预警或不匹配材料，没有过程结束后的明确无影响陈述，因此对照仍为`unknown`。
