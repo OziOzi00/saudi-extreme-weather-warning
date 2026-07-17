@@ -13,7 +13,7 @@ locked_inputs:
     sha256: ec9343d4096a8bb31c7797e78be3dc88020f632694abeea1614d309cedabb56d
   case_catalog:
     path: configs/case_catalog_candidates.csv
-    sha256: e9aebdc52d28bba8c7899cb7b19450e7597cfef2ca0e5b3172e079b0549379c
+    sha256: e9aebdc52d28bba8c7899cb7b19450e7597cfe7f2ca0e5b3172e079b0549379c
   base_heatwave_rule:
     path: configs/heatwave_rules_v2.yaml
     sha256: 810a829a0a2e3afc25a73f52022e5f05468f36e9492bc4d6cef20df9d3ca09c1
