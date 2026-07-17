@@ -44,39 +44,111 @@ case_id,dataset_split,hazard,region_id,lead_time_hours,valid_start_time,valid_en
 20201119_00,development,heavy_rain,SA-03,72,2020-11-21T00:00:00Z,2020-11-22T00:00:00Z,daily_precip_total,weighted_mean,IMERG,paired_accepted,1.0,,exact UTC daily window and coverage >= 0.95
 20201119_00,development,heavy_rain,SA-03,72,2020-11-21T00:00:00Z,2020-11-22T00:00:00Z,daily_precip_total,spatial_p95,IMERG,paired_accepted,1.0,,exact UTC daily window and coverage >= 0.95
 20201119_00,development,heavy_rain,SA-03,72,2020-11-21T00:00:00Z,2020-11-22T00:00:00Z,daily_precip_total,maximum,IMERG,paired_accepted,1.0,,exact UTC daily window and coverage >= 0.95
-20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmax_c,station_mean,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmax_c,station_max,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmax_c,station_min,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmin_c,station_mean,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmin_c,station_max,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmin_c,station_min,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmax_c,station_mean,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmax_c,station_max,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmax_c,station_min,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmin_c,station_mean,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmin_c,station_max,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmin_c,station_min,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmax_c,station_mean,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmax_c,station_max,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmax_c,station_min,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmin_c,station_mean,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmin_c,station_max,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmin_c,station_min,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmax_c,station_mean,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmax_c,station_max,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmax_c,station_min,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmin_c,station_mean,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmin_c,station_max,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmin_c,station_min,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmax_c,station_mean,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmax_c,station_max,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmax_c,station_min,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmin_c,station_mean,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmin_c,station_max,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmin_c,station_min,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmax_c,station_mean,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmax_c,station_max,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmax_c,station_min,GHCN_DAILY,paired_provisional,0.4,2,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmin_c,station_mean,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmin_c,station_max,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
-20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmin_c,station_min,GHCN_DAILY,paired_provisional,0.2,1,GHCN observation time is missing; UTC daily alignment unverified
+20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,24,2020-07-06T00:00:00Z,2020-07-07T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,48,2020-07-07T00:00:00Z,2020-07-08T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200706_00,development,heatwave,SA-04,72,2020-07-08T00:00:00Z,2020-07-09T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,24,2020-07-15T00:00:00Z,2020-07-16T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,48,2020-07-16T00:00:00Z,2020-07-17T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200715_00,development,heatwave,SA-04,72,2020-07-17T00:00:00Z,2020-07-18T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,24,2020-06-19T00:00:00Z,2020-06-20T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,24,2020-06-19T00:00:00Z,2020-06-20T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,24,2020-06-19T00:00:00Z,2020-06-20T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,24,2020-06-19T00:00:00Z,2020-06-20T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,24,2020-06-19T00:00:00Z,2020-06-20T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,24,2020-06-19T00:00:00Z,2020-06-20T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,48,2020-06-20T00:00:00Z,2020-06-21T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,48,2020-06-20T00:00:00Z,2020-06-21T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,48,2020-06-20T00:00:00Z,2020-06-21T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,48,2020-06-20T00:00:00Z,2020-06-21T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,48,2020-06-20T00:00:00Z,2020-06-21T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,48,2020-06-20T00:00:00Z,2020-06-21T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,72,2020-06-21T00:00:00Z,2020-06-22T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,72,2020-06-21T00:00:00Z,2020-06-22T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,72,2020-06-21T00:00:00Z,2020-06-22T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,72,2020-06-21T00:00:00Z,2020-06-22T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,72,2020-06-21T00:00:00Z,2020-06-22T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200619_00,development,heatwave,SA-04,72,2020-06-21T00:00:00Z,2020-06-22T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,24,2020-09-08T00:00:00Z,2020-09-09T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,24,2020-09-08T00:00:00Z,2020-09-09T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,24,2020-09-08T00:00:00Z,2020-09-09T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,24,2020-09-08T00:00:00Z,2020-09-09T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,24,2020-09-08T00:00:00Z,2020-09-09T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,24,2020-09-08T00:00:00Z,2020-09-09T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,48,2020-09-09T00:00:00Z,2020-09-10T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,48,2020-09-09T00:00:00Z,2020-09-10T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,48,2020-09-09T00:00:00Z,2020-09-10T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,48,2020-09-09T00:00:00Z,2020-09-10T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,48,2020-09-09T00:00:00Z,2020-09-10T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,48,2020-09-09T00:00:00Z,2020-09-10T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,72,2020-09-10T00:00:00Z,2020-09-11T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,72,2020-09-10T00:00:00Z,2020-09-11T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,72,2020-09-10T00:00:00Z,2020-09-11T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,72,2020-09-10T00:00:00Z,2020-09-11T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,72,2020-09-10T00:00:00Z,2020-09-11T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200908_00,development,heatwave,SA-04,72,2020-09-10T00:00:00Z,2020-09-11T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,24,2020-08-06T00:00:00Z,2020-08-07T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,24,2020-08-06T00:00:00Z,2020-08-07T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,24,2020-08-06T00:00:00Z,2020-08-07T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,24,2020-08-06T00:00:00Z,2020-08-07T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,24,2020-08-06T00:00:00Z,2020-08-07T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,24,2020-08-06T00:00:00Z,2020-08-07T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,48,2020-08-07T00:00:00Z,2020-08-08T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,48,2020-08-07T00:00:00Z,2020-08-08T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,48,2020-08-07T00:00:00Z,2020-08-08T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,48,2020-08-07T00:00:00Z,2020-08-08T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,48,2020-08-07T00:00:00Z,2020-08-08T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,48,2020-08-07T00:00:00Z,2020-08-08T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,72,2020-08-08T00:00:00Z,2020-08-09T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,72,2020-08-08T00:00:00Z,2020-08-09T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,72,2020-08-08T00:00:00Z,2020-08-09T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,72,2020-08-08T00:00:00Z,2020-08-09T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,72,2020-08-08T00:00:00Z,2020-08-09T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200806_00,development,heatwave,SA-04,72,2020-08-08T00:00:00Z,2020-08-09T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,24,2020-09-27T00:00:00Z,2020-09-28T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,24,2020-09-27T00:00:00Z,2020-09-28T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,24,2020-09-27T00:00:00Z,2020-09-28T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,24,2020-09-27T00:00:00Z,2020-09-28T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,24,2020-09-27T00:00:00Z,2020-09-28T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,24,2020-09-27T00:00:00Z,2020-09-28T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,48,2020-09-28T00:00:00Z,2020-09-29T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,48,2020-09-28T00:00:00Z,2020-09-29T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,48,2020-09-28T00:00:00Z,2020-09-29T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,48,2020-09-28T00:00:00Z,2020-09-29T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,48,2020-09-28T00:00:00Z,2020-09-29T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,48,2020-09-28T00:00:00Z,2020-09-29T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,72,2020-09-29T00:00:00Z,2020-09-30T00:00:00Z,tmax_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,72,2020-09-29T00:00:00Z,2020-09-30T00:00:00Z,tmax_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,72,2020-09-29T00:00:00Z,2020-09-30T00:00:00Z,tmax_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,72,2020-09-29T00:00:00Z,2020-09-30T00:00:00Z,tmin_c,station_mean,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,72,2020-09-29T00:00:00Z,2020-09-30T00:00:00Z,tmin_c,station_max,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations
+20200927_00,development,heatwave,SA-04,72,2020-09-29T00:00:00Z,2020-09-30T00:00:00Z,tmin_c,station_min,NOAA_SSOD_V2,paired_accepted,0.8,4,SSODv2 synchronous 00-23 UTC day with at least two stations

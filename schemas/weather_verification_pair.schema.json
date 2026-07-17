@@ -18,7 +18,7 @@
     "observed_value": {"type": "number"},
     "unit": {"enum": ["mm", "degC"]},
     "event_threshold": {"type": ["number", "null"]},
-    "observation_source": {"enum": ["IMERG", "GHCN_DAILY", "other"]},
+    "observation_source": {"enum": ["IMERG", "GHCN_DAILY", "NOAA_SSOD_V2", "other"]},
     "observation_id": {"type": "string", "minLength": 1},
     "coverage_fraction": {"type": "number", "minimum": 0, "maximum": 1},
     "station_count": {"type": ["integer", "null"], "minimum": 0},

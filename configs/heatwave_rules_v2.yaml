@@ -1,9 +1,9 @@
-# Sensitivity candidate only. GHCN time alignment and sample size block freezing.
+# Development candidate. Freeze gates were declared before forecast evaluation.
 version: heatwave_candidate_v2_20260717
 hazard: heatwave
 status: draft
 rule_id: heatwave_candidate_graphcast_scale_v2
-calibration_source: handoff/risk_dry_runs/development_rule_review.csv
+calibration_source: handoff/risk_dry_runs/development_v2_rule_review.csv
 reference_source: handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv
 temporal_semantics: docs/指标时间语义与聚合口径.md
 primary_indicators:
@@ -46,9 +46,25 @@ confidence_cap: medium
 freeze_gates:
   minimum_event_cases: 3
   minimum_control_cases: 2
+  minimum_target_window_recall: 0.6
+  minimum_target_window_specificity: 0.8
+  minimum_event_case_detection_fraction: 0.666667
+  required_control_case_rejection_fraction: 1.0
   observation_qc_required: accepted
+freeze_decision:
+  assessed_at: "2026-07-17"
+  recommendation: blocked
+  target_window_recall: 0.142857
+  event_case_detection_fraction: 0.25
+  target_window_specificity: 1.0
+  control_case_rejection_fraction: 1.0
+  blocking_reasons:
+    - target_window_recall_below_gate
+    - event_case_detection_below_gate
+  independent_heatwave_opened: false
 notes:
   - Hot-day sensitivity uses the larger of seasonal P50 and 47 degC.
-  - The only development event/control pair is insufficient for freezing.
-  - GHCN pairs remain provisional because OBS-TIME is missing.
-  - Independent-test cases must not be used to compensate for the small sample.
+  - Development expansion uses synchronous NOAA SSODv2 00--23 UTC daily summaries.
+  - SSOD synoptic reports may not capture the true daily extrema; this limitation is retained.
+  - GHCN remains corroborating only because OBS-TIME is missing.
+  - Independent-test cases are sealed until the rule has passed these predeclared gates.

@@ -1,0 +1,5 @@
+case_id,initial_time,event_type,notes
+20200619_00,2020-06-19T00:00:00Z,heatwave_control,SSODv2 SA-04 station maximum remains at or below 43.1 degC over all three UTC target days.
+20200908_00,2020-09-08T00:00:00Z,heatwave_event,SSODv2 SA-04 station maximum is 48.0/47.0/47.0 degC over three UTC target days; no overlap with the July cases.
+20200806_00,2020-08-06T00:00:00Z,heatwave_event,SSODv2 SA-04 station maximum is 47.0/49.0/47.0 degC over three UTC target days.
+20200927_00,2020-09-27T00:00:00Z,heatwave_control,SSODv2 SA-04 station maximum remains at or below 43.1 degC over all three UTC target days.

@@ -12,7 +12,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 def test_observation_source_manifest_is_well_formed() -> None:
     rows = read_csv(ROOT / "manifests" / "observation_source_availability.csv")
-    assert len(rows) == 3
+    assert len(rows) == 4
     assert all(None not in row for row in rows)
     ghcn = next(row for row in rows if row["observation_id"] == "GHCN_DAILY_2020")
     assert ghcn["access_status"] == "downloaded_local_not_versioned"
@@ -23,6 +23,12 @@ def test_observation_source_manifest_is_well_formed() -> None:
     imerg_files = read_csv(ROOT / "manifests" / "imerg_v07b_daily_files.csv")
     assert len(imerg_files) == 32
     assert all(len(row["sha256"]) == 64 for row in imerg_files)
+    ssod = next(row for row in rows if row["observation_id"] == "SSOD_V2_SAUDI_2020")
+    assert ssod["access_status"] == "downloaded_local_not_versioned"
+    assert len(ssod["sha256"]) == 64
+    ssod_files = read_csv(ROOT / "manifests" / "ssod_v2_saudi_2020_files.csv")
+    assert len(ssod_files) == 31
+    assert all(len(row["sha256"]) == 64 for row in ssod_files)
 
 
 def test_late_july_heat_is_present_in_downloaded_ghcn_screening() -> None:

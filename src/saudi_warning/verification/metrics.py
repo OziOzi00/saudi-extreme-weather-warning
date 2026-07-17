@@ -76,12 +76,19 @@ def validate_pairs(frame: pd.DataFrame) -> list[str]:
         errors.append("IMERG pairs may only verify daily_precip_total")
     if (imerg & ~frame["aggregation"].isin(["weighted_mean", "spatial_p95", "maximum"])).any():
         errors.append("IMERG pairs require a grid aggregation")
-    ghcn = frame["observation_source"] == "GHCN_DAILY"
-    if (ghcn & ~frame["aggregation"].isin(["station_mean", "station_max", "station_min"])).any():
-        errors.append("GHCN pairs require a station aggregation")
+    station_source = frame["observation_source"].isin(
+        ["GHCN_DAILY", "NOAA_SSOD_V2"]
+    )
+    if (
+        station_source
+        & ~frame["aggregation"].isin(["station_mean", "station_max", "station_min"])
+    ).any():
+        errors.append("station observation pairs require a station aggregation")
     station_count = pd.to_numeric(frame["station_count"], errors="coerce")
-    if (ghcn & ((station_count < 1) | ~np.isfinite(station_count))).any():
-        errors.append("GHCN pairs require station_count >= 1")
+    if (
+        station_source & ((station_count < 1) | ~np.isfinite(station_count))
+    ).any():
+        errors.append("station observation pairs require station_count >= 1")
     identities = [
         "case_id",
         "lead_time_hours",

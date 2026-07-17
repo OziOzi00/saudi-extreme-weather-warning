@@ -9,7 +9,11 @@ from typing import Any
 import pandas as pd
 import yaml
 
-from saudi_warning.verification.metrics import compute_metrics, validate_pairs
+from saudi_warning.verification.metrics import (
+    compute_heatwave_sequences,
+    compute_metrics,
+    validate_pairs,
+)
 
 
 RESULT_COLUMNS = [
@@ -42,8 +46,8 @@ def read_qc_config(path: Path) -> dict[str, Any]:
         raise ValueError("QC configuration is not frozen for development diagnostics")
     if config.get("scope") != "development_only":
         raise ValueError("QC configuration must be development_only")
-    if config.get("independent_test_access") != "forbidden_until_rule_freeze":
-        raise ValueError("independent-test access guard is missing")
+    if config.get("independent_heatwave_access") != "forbidden_until_heat_rule_freeze":
+        raise ValueError("independent heatwave access guard is missing")
     return config
 
 
@@ -62,7 +66,7 @@ def _label_metrics(
 
 
 def build_development_metrics(pairs: pd.DataFrame, config: dict[str, Any]) -> pd.DataFrame:
-    """Compute accepted IMERG metrics and segregated provisional GHCN diagnostics."""
+    """Compute development metrics with source-specific QC and limitations."""
 
     errors = validate_pairs(pairs)
     if errors:
@@ -71,53 +75,63 @@ def build_development_metrics(pairs: pd.DataFrame, config: dict[str, Any]) -> pd
     actual_ids = set(pairs["case_id"].astype(str))
     if actual_ids != approved_ids:
         raise ValueError("pair case IDs do not exactly match the frozen development set")
-    if pairs["event_threshold"].notna().any():
-        raise ValueError("development thresholds must remain blank at this stage")
-
     accepted = pairs[pairs["qc_status"] == "accepted"].copy()
-    if accepted.empty or set(accepted["observation_source"]) != {"IMERG"}:
-        raise ValueError("accepted development rows must be IMERG-only")
-    if (accepted["coverage_fraction"] < config["imerg"]["minimum_coverage_fraction"]).any():
+    allowed_sources = {"IMERG", "NOAA_SSOD_V2"}
+    if accepted.empty or not set(accepted["observation_source"]).issubset(allowed_sources):
+        raise ValueError("accepted development rows contain an unsupported source")
+    imerg = accepted[accepted["observation_source"] == "IMERG"].copy()
+    if imerg.empty or imerg["event_threshold"].notna().any():
+        raise ValueError("IMERG development rows require blank thresholds")
+    if (imerg["coverage_fraction"] < config["imerg"]["minimum_coverage_fraction"]).any():
         raise ValueError("accepted IMERG row is below the frozen coverage minimum")
-    accepted_metrics = _label_metrics(
-        compute_metrics(accepted),
+    imerg_metrics = _label_metrics(
+        compute_metrics(imerg),
         "accepted",
         "accepted_development_metric",
-        "Development split only; thresholds are not frozen, so categorical fields are blank.",
+        "Development split only; IMERG rows retain blank thresholds here.",
     )
 
-    provisional = pairs[pairs["qc_status"] == "provisional"].copy()
-    if provisional.empty or set(provisional["observation_source"]) != {"GHCN_DAILY"}:
-        raise ValueError("provisional development rows must be GHCN_DAILY-only")
-    minimum_stations = config["ghcn_daily"]["diagnostic_minimum_station_count"]
-    if (provisional["station_count"] < minimum_stations).any():
-        raise ValueError("provisional GHCN row is below the diagnostic station minimum")
-    # compute_metrics intentionally accepts only accepted rows. This copy changes the
-    # in-memory calculation gate, not the source pairs or their provisional status.
-    provisional_for_calculation = provisional.copy()
-    provisional_for_calculation["qc_status"] = "accepted"
-    provisional_metrics = _label_metrics(
-        compute_metrics(provisional_for_calculation),
-        "provisional",
-        "provisional_diagnostic_not_formal",
+    ssod = accepted[accepted["observation_source"] == "NOAA_SSOD_V2"].copy()
+    if ssod.empty or ssod["event_threshold"].isna().any():
+        raise ValueError("accepted SSOD rows require candidate thresholds")
+    minimum_ssod_stations = config["ssod_v2"]["formal_minimum_station_count"]
+    if (ssod["station_count"] < minimum_ssod_stations).any():
+        raise ValueError("accepted SSOD row is below the formal station minimum")
+    ssod_metrics = _label_metrics(
+        compute_metrics(ssod),
+        "accepted",
+        "accepted_ssod_utc_development_metric",
         (
-            "GHCN OBS-TIME is missing and some windows have one station; values are "
-            "continuous diagnostics only, not formal temperature or heatwave validation."
+            "Development split and synchronous UTC days only; synoptic reports may "
+            "not capture the true daily extrema."
         ),
     )
 
-    output = pd.concat([accepted_metrics, provisional_metrics], ignore_index=True)
-    categorical = [
-        "hits",
-        "misses",
-        "false_alarms",
-        "correct_negatives",
-        "pod",
-        "far",
-        "csi",
-    ]
-    if output[categorical].notna().any().any():
-        raise AssertionError("categorical metrics were produced before threshold freeze")
+    provisional = pairs[pairs["qc_status"] == "provisional"].copy()
+    # Put the frame with populated categorical columns first so pandas keeps
+    # stable dtypes when IMERG's threshold-dependent columns are all missing.
+    metric_frames = [ssod_metrics, imerg_metrics]
+    if not provisional.empty:
+        if set(provisional["observation_source"]) != {"GHCN_DAILY"}:
+            raise ValueError("provisional development rows must be GHCN_DAILY-only")
+        minimum_stations = config["ghcn_daily"]["diagnostic_minimum_station_count"]
+        if (provisional["station_count"] < minimum_stations).any():
+            raise ValueError("provisional GHCN row is below the diagnostic station minimum")
+        provisional_for_calculation = provisional.copy()
+        provisional_for_calculation["qc_status"] = "accepted"
+        metric_frames.append(
+            _label_metrics(
+                compute_metrics(provisional_for_calculation),
+                "provisional",
+                "provisional_diagnostic_not_formal",
+                "GHCN OBS-TIME is missing; this source remains diagnostic only.",
+            )
+        )
+
+    output = pd.DataFrame(
+        [record for frame in metric_frames for record in frame.to_dict("records")],
+        columns=RESULT_COLUMNS,
+    )
     return output.sort_values(
         ["pair_qc_status", "variable", "aggregation", "scope"], kind="stable"
     ).reset_index(drop=True)
@@ -140,14 +154,22 @@ def main() -> None:
         type=Path,
         default=Path("handoff/weather_verification/development_continuous_metrics.csv"),
     )
+    parser.add_argument(
+        "--heatwave-output",
+        type=Path,
+        default=Path("handoff/weather_verification/development_heatwave_sequences.csv"),
+    )
     args = parser.parse_args()
 
     pairs = pd.read_csv(args.pairs)
     metrics = build_development_metrics(pairs, read_qc_config(args.qc_config))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     metrics.to_csv(args.output, index=False, float_format="%.8g")
+    sequences = compute_heatwave_sequences(pairs, minimum_duration=2)
+    sequences.to_csv(args.heatwave_output, index=False, float_format="%.8g")
     counts = metrics["result_status"].value_counts()
     print(args.output)
+    print(args.heatwave_output)
     print(f"rows={len(metrics)} " + " ".join(f"{key}={value}" for key, value in counts.items()))
 
 

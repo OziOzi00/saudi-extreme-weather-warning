@@ -24,7 +24,7 @@ def test_development_pairs_never_expose_independent_test() -> None:
     pairs = read_csv(PAIRS)
     audit = read_csv(COVERAGE)
 
-    assert len(cases) == 7
+    assert len(cases) == 11
     assert {row["case_id"] for row in pairs} == expected_case_ids
     assert {row["case_id"] for row in audit} == expected_case_ids
     assert {row["dataset_split"] for row in audit} == {"development"}
@@ -36,22 +36,20 @@ def test_pair_contract_and_qc_boundaries_are_explicit() -> None:
     audit = read_csv(COVERAGE)
 
     assert validate_pairs(frame) == []
-    assert len(frame) == 81
-    assert len(audit) == 81
+    assert len(frame) == 153
+    assert len(audit) == 153
     assert (frame["observation_source"] == "IMERG").sum() == 45
-    assert (frame["observation_source"] == "GHCN_DAILY").sum() == 36
+    assert (frame["observation_source"] == "NOAA_SSOD_V2").sum() == 108
     assert set(frame.loc[frame["observation_source"] == "IMERG", "qc_status"]) == {
         "accepted"
     }
     assert set(
-        frame.loc[frame["observation_source"] == "GHCN_DAILY", "qc_status"]
-    ) == {"provisional"}
-    assert {row["pair_status"] for row in audit} == {
-        "paired_accepted",
-        "paired_provisional",
-    }
+        frame.loc[frame["observation_source"] == "NOAA_SSOD_V2", "qc_status"]
+    ) == {"accepted"}
+    assert {row["pair_status"] for row in audit} == {"paired_accepted"}
     assert sum(row["pair_status"] == "missing" for row in audit) == 0
-    assert frame["event_threshold"].isna().all()
+    assert frame.loc[frame["observation_source"] == "IMERG", "event_threshold"].isna().all()
+    assert frame.loc[frame["observation_source"] == "NOAA_SSOD_V2", "event_threshold"].notna().all()
 
 
 def test_every_development_rain_lead_has_all_three_imerg_aggregations() -> None:

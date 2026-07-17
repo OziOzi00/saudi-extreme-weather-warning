@@ -1,0 +1,5 @@
+case_id,dataset_split,case_role,region_id,target_start_date,target_end_date,selection_source,selection_aggregation,selection_rule,minimum_station_count,observed_values_degc,independent_overlap,selection_status
+20200619_00,development,control,SA-04,2020-06-20,2020-06-22,NOAA_SSOD_V2,station_max,all three UTC days <= 45 degC,2,43.1;43.0;41.0,no,approved
+20200908_00,development,event,SA-04,2020-09-09,2020-09-11,NOAA_SSOD_V2,station_max,all three UTC days >= 47 degC and no overlap with existing July cases,2,48.0;47.0;47.0,no,approved
+20200806_00,development,event,SA-04,2020-08-07,2020-08-09,NOAA_SSOD_V2,station_max,all three UTC days >= 47 degC,2,47.0;49.0;47.0,no,approved
+20200927_00,development,control,SA-04,2020-09-28,2020-09-30,NOAA_SSOD_V2,station_max,all three UTC days <= 45 degC,2,41.0;42.0;43.1,no,approved

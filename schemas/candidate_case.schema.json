@@ -24,7 +24,7 @@
       "enum": ["proposed_development", "proposed_independent_test", "development", "independent_test", "demo"]
     },
     "weather_screening_status": {
-      "enum": ["weather_confirmed", "ghcn_confirmed", "ghcn_screened_lower_intensity", "imerg_screened_lower_intensity", "needs_b_observation_screening", "not_applicable"]
+      "enum": ["weather_confirmed", "ghcn_confirmed", "ghcn_screened_lower_intensity", "ssod_utc_confirmed", "ssod_utc_screened_lower_intensity", "imerg_screened_lower_intensity", "needs_b_observation_screening", "not_applicable"]
     },
     "impact_evidence_status": {"enum": ["impact_confirmed", "unknown", "no_impact_confirmed"]},
     "selection_reason_zh": {"type": "string", "minLength": 1},

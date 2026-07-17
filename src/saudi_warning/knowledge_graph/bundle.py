@@ -24,6 +24,8 @@ WEATHER_SCREENING_STATUSES = {
     "weather_confirmed",
     "ghcn_confirmed",
     "ghcn_screened_lower_intensity",
+    "ssod_utc_confirmed",
+    "ssod_utc_screened_lower_intensity",
     "imerg_screened_lower_intensity",
     "needs_b_observation_screening",
     "not_applicable",
@@ -186,6 +188,7 @@ def validate_member_c_inputs(
         if row["case_role"] == "control" and row["weather_screening_status"] not in {
             "needs_b_observation_screening",
             "ghcn_screened_lower_intensity",
+            "ssod_utc_screened_lower_intensity",
             "imerg_screened_lower_intensity",
         }:
             raise ValueError("control candidates must remain pending or explicitly screened")

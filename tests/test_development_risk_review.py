@@ -16,13 +16,17 @@ def read_audit() -> list[dict[str, str]]:
 def test_review_contains_only_approved_development_targets() -> None:
     rows = read_audit()
 
-    assert len(rows) == 21
+    assert len(rows) == 33
     assert {row["case_id"] for row in rows} == {
         "20200501_00",
         "20200505_00",
         "20200515_00",
+        "20200619_00",
         "20200706_00",
         "20200715_00",
+        "20200806_00",
+        "20200908_00",
+        "20200927_00",
         "20201109_00",
         "20201119_00",
     }
@@ -35,7 +39,7 @@ def test_review_artifacts_match_audit_and_remain_nonformal() -> None:
     rows = read_audit()
     files = sorted(RESULTS.glob("*.json"))
 
-    assert len(files) == len(rows) == 21
+    assert len(files) == len(rows) == 33
     identities = set()
     for path in files:
         result = json.loads(path.read_text(encoding="utf-8"))
@@ -68,6 +72,6 @@ def test_candidate_outcomes_are_traceable_not_final_truth() -> None:
 
     scored = [row for row in rows if row["evaluation_scope"] == "target_window"]
     context = [row for row in rows if row["evaluation_scope"] == "context_only"]
-    assert len(scored) == 12
-    assert len(context) == 9
+    assert len(scored) == 20
+    assert len(context) == 13
     assert {row["candidate_outcome"] for row in context} == {"not_scored_context"}

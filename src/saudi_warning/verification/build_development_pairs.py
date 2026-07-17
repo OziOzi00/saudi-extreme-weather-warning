@@ -18,6 +18,7 @@ from saudi_warning.verification.observations import (
     assign_stations_to_regions,
     read_ghcn_stations,
 )
+from saudi_warning.risk.engine import _heat_thresholds, load_rule, load_statistics
 
 
 LEADS = (24, 48, 72)
@@ -380,6 +381,136 @@ def build_ghcn_pairs(
     return pairs, audit
 
 
+def build_ssod_pairs(
+    cases: list[dict[str, str]],
+    forecast_rows: list[dict[str, str]],
+    forecast_dir: Path,
+    ssod_rows: list[dict[str, str]],
+    station_rows: list[dict[str, str]],
+    statistics_path: Path,
+    heat_rule_path: Path,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Pair heat development forecasts with synchronous NOAA SSODv2 UTC days."""
+    heat_cases = [row for row in cases if row["hazard"] == "heatwave"]
+    if not heat_cases:
+        return [], []
+    forecast_lookup = _forecast_lookup(forecast_rows)
+    observation_lookup = {
+        (row["date"], row["region_id"], row["variable"], row["aggregation"]): row
+        for row in ssod_rows
+    }
+    stations = pd.DataFrame(station_rows)
+    for column in ("latitude", "longitude"):
+        stations[column] = pd.to_numeric(stations[column], errors="raise")
+    statistics = load_statistics(statistics_path)
+    heat_rule = load_rule(heat_rule_path, "heatwave")
+    pairs: list[dict[str, Any]] = []
+    audit: list[dict[str, Any]] = []
+    for case in heat_cases:
+        for region_id in case["target_region_ids"].split(";"):
+            region_stations = stations[stations["region_id"] == region_id]
+            denominator = int(region_stations["station_id"].nunique())
+            for lead in LEADS:
+                threshold_group = forecast_lookup[
+                    (case["initial_time"], lead, region_id, "tmax_c")
+                ]
+                _, hot_threshold, _, warm_night_threshold = _heat_thresholds(
+                    threshold_group, statistics, heat_rule
+                )
+                for variable in ("tmax_c", "tmin_c"):
+                    key = (case["initial_time"], lead, region_id, variable)
+                    if key not in forecast_lookup:
+                        raise ValueError(f"missing forecast summary: {key}")
+                    forecast = forecast_lookup[key]
+                    day = forecast["valid_start_time"][:10]
+                    threshold = (
+                        hot_threshold if variable == "tmax_c" else warm_night_threshold
+                    )
+                    for aggregation in STATION_AGGREGATIONS:
+                        observation = observation_lookup.get(
+                            (day, region_id, variable, aggregation)
+                        )
+                        if observation is None:
+                            audit.append(
+                                _audit_row(
+                                    case,
+                                    region_id,
+                                    lead,
+                                    forecast,
+                                    variable,
+                                    aggregation,
+                                    "NOAA_SSOD_V2",
+                                    "missing",
+                                    0.0,
+                                    0,
+                                    "no SSODv2 value for synchronous UTC day",
+                                )
+                            )
+                            continue
+                        station_ids = set(observation["station_ids"].split(";"))
+                        available = region_stations[
+                            region_stations["station_id"].isin(station_ids)
+                        ].copy()
+                        count = int(available["station_id"].nunique())
+                        if count != int(observation["station_count"]):
+                            raise ValueError(
+                                f"SSOD station registry mismatch for {day} {region_id}"
+                            )
+                        coverage = 0.0 if denominator == 0 else count / denominator
+                        forecast_path = forecast_dir / Path(forecast["source_file"]).name
+                        forecast_values = _sample_station_values(
+                            forecast_path, variable, available
+                        )
+                        forecast_value = float(
+                            STATION_AGGREGATIONS[aggregation](forecast_values)
+                        )
+                        qc_status = "accepted" if count >= 2 else "provisional"
+                        reason = (
+                            "SSODv2 synchronous 00-23 UTC day with at least two stations"
+                            if qc_status == "accepted"
+                            else "SSODv2 synchronous UTC day has fewer than two stations"
+                        )
+                        pairs.append(
+                            {
+                                "case_id": case["case_id"],
+                                "initial_time": case["initial_time"],
+                                "lead_time_hours": lead,
+                                "valid_start_time": forecast["valid_start_time"],
+                                "valid_end_time": forecast["valid_end_time"],
+                                "region_id": region_id,
+                                "variable": variable,
+                                "aggregation": aggregation,
+                                "forecast_value": forecast_value,
+                                "observed_value": float(observation["observed_value"]),
+                                "unit": "degC",
+                                "event_threshold": threshold,
+                                "observation_source": "NOAA_SSOD_V2",
+                                "observation_id": (
+                                    f"NOAA_SSOD_V2_{day}_{region_id}_{variable}_{aggregation}"
+                                ),
+                                "coverage_fraction": coverage,
+                                "station_count": count,
+                                "qc_status": qc_status,
+                            }
+                        )
+                        audit.append(
+                            _audit_row(
+                                case,
+                                region_id,
+                                lead,
+                                forecast,
+                                variable,
+                                aggregation,
+                                "NOAA_SSOD_V2",
+                                f"paired_{qc_status}",
+                                coverage,
+                                count,
+                                reason,
+                            )
+                        )
+    return pairs, audit
+
+
 def write_csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as stream:
@@ -411,6 +542,24 @@ def main() -> None:
         default=Path("data/external/ghcn_daily/ghcnd-stations.txt"),
     )
     parser.add_argument(
+        "--ssod-summary",
+        type=Path,
+        default=Path("manifests/ssod_v2_saudi_2020_daily_summary.csv"),
+    )
+    parser.add_argument(
+        "--ssod-stations",
+        type=Path,
+        default=Path("manifests/ssod_v2_saudi_2020_station_regions.csv"),
+    )
+    parser.add_argument(
+        "--statistics",
+        type=Path,
+        default=Path("handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv"),
+    )
+    parser.add_argument(
+        "--heat-rule", type=Path, default=Path("configs/heatwave_rules_v2.yaml")
+    )
+    parser.add_argument(
         "--regions",
         type=Path,
         default=Path("data/reference/saudi_adm1_geoboundaries_2017.geojson"),
@@ -432,16 +581,17 @@ def main() -> None:
     imerg_pairs, imerg_audit = build_imerg_pairs(
         cases, forecast_rows, read_csv(args.imerg_summary)
     )
-    ghcn_pairs, ghcn_audit = build_ghcn_pairs(
+    temperature_pairs, temperature_audit = build_ssod_pairs(
         cases,
         forecast_rows,
         args.forecast_dir,
-        args.ghcn_archive,
-        args.ghcn_stations,
-        args.regions,
+        read_csv(args.ssod_summary),
+        read_csv(args.ssod_stations),
+        args.statistics,
+        args.heat_rule,
     )
-    pairs = imerg_pairs + ghcn_pairs
-    audit = imerg_audit + ghcn_audit
+    pairs = imerg_pairs + temperature_pairs
+    audit = imerg_audit + temperature_audit
     if not pairs or not audit:
         raise ValueError("pairing produced no output")
     frame = pd.DataFrame(pairs)

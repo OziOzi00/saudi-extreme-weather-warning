@@ -1,0 +1,60 @@
+{
+  "schema_version": "risk_result_v1",
+  "case_id": "20200806_00_072",
+  "source_file": "handoff/mazu_like/mazu_like_20200806_00_lead072.nc",
+  "initial_time": "2020-08-06T00:00:00Z",
+  "lead_time_hours": 72,
+  "valid_start_time": "2020-08-08T00:00:00Z",
+  "valid_end_time": "2020-08-09T00:00:00Z",
+  "region_id": "SA-04",
+  "region_name": "Eastern Region",
+  "hazard": "heatwave",
+  "rule_id": "heatwave_candidate_region_season_duration",
+  "rule_status": "draft",
+  "indicator_summary": {
+    "reference_period": "JJA",
+    "tmax_spatial_p95_degc": 45.384962,
+    "tmin_spatial_p95_degc": 36.576903,
+    "hot_day_threshold_degc": 49.078418,
+    "severe_hot_day_threshold_degc": 49.686014,
+    "warm_night_threshold_degc": 36.33952,
+    "forecast_hot_day_duration": 0
+  },
+  "supporting_evidence": [
+    {
+      "indicator": "tmin_c",
+      "metric": "spatial_p95",
+      "value": 36.576903,
+      "comparison": ">=",
+      "threshold": 36.33952,
+      "unit": "degC",
+      "role": "support",
+      "reference_period": "JJA"
+    }
+  ],
+  "contradicting_evidence": [
+    {
+      "indicator": "tmax_c",
+      "metric": "spatial_p95",
+      "value": 45.384962,
+      "comparison": ">=",
+      "threshold": 49.078418,
+      "unit": "degC",
+      "role": "primary",
+      "reference_period": "JJA"
+    }
+  ],
+  "missing_evidence": [
+    {
+      "indicator": "pre_initialization_heatwave_duration",
+      "role": "duration_context",
+      "reason": "not_available_from_forecast_windows"
+    }
+  ],
+  "verification": null,
+  "created_at": "2026-07-17T00:00:00Z",
+  "risk_level": "low",
+  "risk_score": 0.0,
+  "confidence": "medium",
+  "description_zh": "候选高温规则草案：热日=False，严重热日=False，预报内连续 0 天，暖夜支持=True；起报前持续性未知。"
+}

@@ -1,14 +1,19 @@
 version: weather_verification_qc_development_20260717
 status: frozen_for_development_diagnostics
 scope: development_only
-independent_test_access: forbidden_until_rule_freeze
+independent_test_access: hazard_specific_lock
+independent_heatwave_access: forbidden_until_heat_rule_freeze
 
 approved_development_case_ids:
   - "20200501_00"
   - "20200505_00"
   - "20200515_00"
+  - "20200619_00"
   - "20200706_00"
   - "20200715_00"
+  - "20200806_00"
+  - "20200908_00"
+  - "20200927_00"
   - "20201109_00"
   - "20201119_00"
 
@@ -51,3 +56,25 @@ ghcn_daily:
     - heatwave_sequence
     - threshold_freeze
     - formal_temperature_claim
+
+ssod_v2:
+  product: NOAA Synoptic Summary of the Day v2
+  utc_window: 00:00-23:59 UTC
+  variables:
+    - tmax_c
+    - tmin_c
+  formal_minimum_station_count: 2
+  allowed_aggregations:
+    - station_mean
+    - station_max
+    - station_min
+  output_qc_status: accepted
+  permitted_metrics:
+    - mae
+    - rmse
+    - bias
+    - categorical_skill
+    - heatwave_sequence
+  limitations:
+    - Synoptic reports may not capture the true daily extrema.
+    - GHCN-Daily remains a corroborating local-day source, not the UTC pairing source.
