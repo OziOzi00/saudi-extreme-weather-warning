@@ -1,0 +1,51 @@
+version: heatwave_v3_prospective_candidate_20260718
+status: locked_before_new_development_forecast_access
+hazard: heatwave
+scope: prospective_development_only
+independent_heatwave_access: forbidden
+
+provenance:
+  base_rule: configs/heatwave_rules_v2.yaml
+  base_rule_status: draft
+  diagnostic: manifests/heatwave_development_diagnostic_summary.json
+  candidate_origin: retrospective_development_sensitivity
+  claim: exploratory_candidate_requires_new_development_validation
+
+temperature_candidate:
+  formula: spatial_p95 + maximum_weight * (maximum - spatial_p95) + fixed_bias_correction
+  maximum_weight: 0.6
+  fixed_bias_correction_degc: 2.3055572509765625
+  correction_source: manifests/heatwave_bias_cv_v2_assessment.csv
+  hot_day_thresholds: inherited_unchanged_from_heatwave_rules_v2
+  severe_hot_day_thresholds: inherited_unchanged_from_heatwave_rules_v2
+  warm_night_support: inherited_unchanged_from_heatwave_rules_v2
+  duration_classification: inherited_unchanged_from_heatwave_rules_v2
+
+prospective_inputs:
+  selection: manifests/heatwave_v3_prospective_selection.csv
+  batch_catalog: configs/heatwave_v3_prospective_batch_catalog.csv
+  selected_case_ids:
+    - "20200623_00"
+    - "20200702_00"
+  selected_region_ids:
+    - SA-08
+
+success_gates:
+  event_target_windows_expected: 2
+  minimum_event_target_hits: 2
+  observed_hot_target_windows_expected: 2
+  minimum_observed_hot_target_hits: 2
+  control_target_windows_expected: 2
+  required_control_correct_negatives: 2
+  rule_threshold_change_allowed: false
+  bias_correction_change_allowed: false
+
+decision_policy:
+  pass: candidate_may_join_all_development_cross_validation_but_is_not_yet_frozen
+  fail: keep_heatwave_blocked_and_do_not_search_weights_on_these_cases
+  independent_test_may_tune_candidate: false
+
+limitations:
+  - Weight 0.6 was selected after retrospective development sensitivity analysis.
+  - The new matched pair is prospective relative to its GraphCast forecast access, not a blind independent test.
+  - One new event and one new control are insufficient by themselves to establish generalization.

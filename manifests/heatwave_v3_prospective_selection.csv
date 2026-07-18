@@ -1,0 +1,3 @@
+case_id,dataset_split,case_role,hazard,region_id,initial_time,target_start_date,target_end_date,selection_source,selection_aggregation,selection_rule,minimum_station_count,observed_values_degc,independent_overlap,forecast_access_status,selection_status
+20200623_00,development,control,heatwave,SA-08,2020-06-23T00:00:00Z,2020-06-24,2020-06-26,NOAA_SSOD_V2,station_max,all three UTC days <= 45 degC,3,42.0;42.0;44.1,no,not_accessed_as_of_lock,preregistered_pending_forecast
+20200702_00,development,event,heatwave,SA-08,2020-07-02T00:00:00Z,2020-07-03,2020-07-05,NOAA_SSOD_V2,station_max,all three UTC days >= 47 degC,3,47.0;47.0;47.4,no,not_accessed_as_of_lock,preregistered_pending_forecast

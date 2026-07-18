@@ -1,0 +1,56 @@
+{
+  "schema_version": "heatwave_v3_prospective_lock_v1",
+  "locked_at": "2026-07-18T00:00:00Z",
+  "status": "locked_before_new_development_forecast_access",
+  "dataset_split": "development",
+  "hazard": "heatwave",
+  "selection_method": "observation_only_same_region_matched_event_control",
+  "selected_case_ids": [
+    "20200623_00",
+    "20200702_00"
+  ],
+  "selection_rules": {
+    "region_id": "SA-08",
+    "utc_days_per_window": 3,
+    "minimum_station_count_per_day": 3,
+    "event_station_max_minimum_degc_each_day": 47.0,
+    "control_station_max_maximum_degc_each_day": 45.0,
+    "independent_heatwave_embargo_buffer_days": 14
+  },
+  "candidate": {
+    "path": "configs/heatwave_v3_prospective_candidate.yaml",
+    "aggregation_maximum_weight": 0.6,
+    "fixed_bias_correction_degc": 2.3055572509765625,
+    "thresholds_modified": false,
+    "duration_rule_modified": false
+  },
+  "input_fingerprints": {
+    "ssod_daily_summary": {
+      "path": "manifests/ssod_v2_saudi_2020_daily_summary.csv",
+      "sha256": "030308228dbb95794163c1188cd1ee0b26cb4d44b5e7416acd97b4f7d43369ba"
+    },
+    "baseline_case_catalog": {
+      "path": "configs/case_catalog_candidates.csv",
+      "sha256": "4a9979f6d4f9d7f56e7da0a8ca9fd5fefc99b77c754848965371c6e448c3be03"
+    },
+    "development_diagnostic": {
+      "path": "manifests/heatwave_development_diagnostic_summary.json",
+      "sha256": "624702ac2657e38ca2c1e7db8d500d12944b8e858a123b4e77b1972b085faa98"
+    },
+    "base_rule": {
+      "path": "configs/heatwave_rules_v2.yaml",
+      "sha256": "810a829a0a2e3afc25a73f52022e5f05468f36e9492bc4d6cef20df9d3ca09c1"
+    },
+    "bias_assessment": {
+      "path": "manifests/heatwave_bias_cv_v2_assessment.csv",
+      "sha256": "501dee4a341e3d1658534078de6079a099b3484451c26e88506baaea75282315"
+    }
+  },
+  "selection_file": "manifests/heatwave_v3_prospective_selection.csv",
+  "batch_catalog": "configs/heatwave_v3_prospective_batch_catalog.csv",
+  "forecast_artifacts_present_at_lock": false,
+  "forecast_results_read_during_selection": false,
+  "independent_heatwave_opened": false,
+  "base_rule_modified": false,
+  "next_gate": "commit_and_push_lock_before_graphcast_forecast_access"
+}

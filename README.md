@@ -101,6 +101,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_dashboard.ps1
 - [统一技术路线](docs/统一技术路线_v1.md)
 - [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [高温 development 误差诊断](docs/2026-07-18_高温development误差诊断.md)
+- [高温 v3 前瞻 development 预注册](docs/2026-07-18_高温v3前瞻development预注册.md)
 - [架构设计](docs/架构设计.md)
 - [MAZU 2025 开发方法](docs/MAZU2025开发方法.md)
 - [指标时间语义与聚合口径](docs/指标时间语义与聚合口径.md)
