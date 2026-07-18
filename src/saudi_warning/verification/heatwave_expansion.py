@@ -54,7 +54,7 @@ def validate_expansion(root: Path) -> list[str]:
         errors.append("selection must not modify the heatwave rule")
 
     fingerprints = lock.get("input_fingerprints", {})
-    for name, path in (("ssod_daily_summary", daily_path), ("baseline_case_catalog", catalog_path)):
+    for name, path in (("ssod_daily_summary", daily_path),):
         expected = fingerprints.get(name, {}).get("sha256")
         actual = _sha256(path)
         if expected != actual:
@@ -65,9 +65,20 @@ def validate_expansion(root: Path) -> list[str]:
         errors.append("selected case IDs do not match the lock")
     if selected_ids != {row["case_id"] for row in batch_catalog}:
         errors.append("batch catalog does not match the locked selection")
-    existing_ids = {row["case_id"] for row in catalog}
-    if selected_ids & existing_ids:
-        errors.append("new selection already appears in the baseline case catalog")
+    catalog_by_id = {row["case_id"]: row for row in catalog}
+    integrated = selected_ids <= set(catalog_by_id)
+    if not integrated:
+        expected = fingerprints.get("baseline_case_catalog", {}).get("sha256")
+        actual = _sha256(catalog_path)
+        if expected != actual:
+            errors.append(
+                f"baseline_case_catalog SHA-256 mismatch: expected {expected}, got {actual}"
+            )
+    else:
+        for case_id in selected_ids:
+            row = catalog_by_id[case_id]
+            if row["selection_status"] != "approved" or row["dataset_split"] != "development":
+                errors.append(f"{case_id}: integrated catalog status is not approved development")
 
     daily_index = {
         (row["region_id"], row["date"]): row
@@ -141,7 +152,7 @@ def main() -> None:
             print(f"- {error}")
         raise SystemExit(f"heatwave expansion validation failed with {len(errors)} errors")
     print("verified 2 locked heatwave development expansion cases")
-    print("independent heatwave remains unopened; forecast access remains pending")
+    print("independent heatwave remains unopened; observation-only selection lock is preserved")
 
 
 if __name__ == "__main__":

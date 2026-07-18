@@ -6,10 +6,10 @@
   "primary_demonstrable_hazard": "heavy_rain",
   "pipeline": {
     "name": "GraphCast_to_MAZU_like_to_frozen_risk_to_graph_and_report",
-    "delivered_netcdf_count": 51,
-    "delivery_validation": "51_of_51_passed",
-    "development_pair_count": 153,
-    "development_pair_validation": "153_of_153_accepted",
+    "delivered_netcdf_count": 57,
+    "delivery_validation": "57_of_57_passed",
+    "development_pair_count": 189,
+    "development_pair_validation": "189_of_189_accepted",
     "frozen_risk_json_count": 33,
     "development_risk_json_count": 15,
     "independent_risk_json_count": 18
@@ -86,8 +86,8 @@
     "neo4j_verification_is_local_development_not_production"
   ],
   "artifact_fingerprints": {
-    "delivery_manifest_sha256": "a939b7b18e8c304a01a3f9b6585b1336d32617aa840762c4366ef1b4da3d45fb",
-    "development_pairing_coverage_sha256": "fb2d65aa20ef4cbd827158ebc1f2e73f61f66a401a8d5029041771ef7946f2b5",
+    "delivery_manifest_sha256": "fce68fb5fac9c2985f487c16ff1eec982f7d7318c87285f8f4bca592cc49b1fb",
+    "development_pairing_coverage_sha256": "aab097018dac342125fcdb54309750163915483aa134f965858977f01f4f4e04",
     "development_risk_set_sha256": "67111596c787a1a1215fdb78ae7553337d149efd72bdac0fe6de96b22483d321",
     "independent_risk_set_sha256": "b199328fc439b17078c07d9abc1abd1ff290a97aa8c4e054b39fa198d6121425",
     "independent_metrics_sha256": "82714476d42ce64ad8ddabf7b7b4361480f4143eca1105a9fdab2b25c689dec4",

@@ -23,7 +23,7 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 def test_member_c_contracts_are_cross_referenced() -> None:
     counts = validate_member_c_inputs(REGIONS, CASES, TRUTH, SOURCES)
-    assert counts == {"regions": 13, "cases": 17, "truth_records": 12, "sources": 15}
+    assert counts == {"regions": 13, "cases": 19, "truth_records": 12, "sources": 15}
     regions = read_csv(REGIONS)
     assert all(row["region_name_ar"] for row in regions)
     controls = [row for row in read_csv(CASES) if row["case_role"] == "control"]

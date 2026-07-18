@@ -1,0 +1,75 @@
+version: heatwave_bias_correction_cv_v2_20260718
+status: input_extension_locked_before_aggregate_cv_evaluation
+hazard: heatwave
+scope: development_only
+independent_heatwave_access: forbidden
+method_provenance: inherited_unchanged_from_heatwave_bias_correction_cv_v1_20260717
+
+locked_inputs:
+  development_pairs:
+    path: handoff/weather_verification/development_pairs.csv
+    sha256: cccb37ab7918436d2161221f1cd52e16453e17970ca898f043e014a5499dbaa9
+  region_summaries:
+    path: handoff/region_summaries/mazu_like_adm1_indicator_summaries.csv
+    sha256: 8ab1926c4a8b1ffa967d3d9ef3c37d624901518631280cfdfa758508cf63cdd0
+  case_catalog:
+    path: configs/case_catalog_candidates.csv
+    sha256: 4a9979f6d4f9d7f56e7da0a8ca9fd5fefc99b77c754848965371c6e448c3be03
+  base_heatwave_rule:
+    path: configs/heatwave_rules_v2.yaml
+    sha256: 810a829a0a2e3afc25a73f52022e5f05468f36e9492bc4d6cef20df9d3ca09c1
+
+approved_heatwave_development_case_ids:
+  - "20200619_00"
+  - "20200622_00"
+  - "20200627_00"
+  - "20200706_00"
+  - "20200715_00"
+  - "20200806_00"
+  - "20200908_00"
+  - "20200927_00"
+
+estimator:
+  method: leave_one_case_out_additive_median_error
+  calibration_variable: tmax_c
+  calibration_aggregation: station_max
+  calibration_qc_status: accepted
+  formula: median_observed_minus_forecast_across_all_training_case_leads
+  grouping: pooled_regions_and_leads
+  minimum_training_cases: 7
+  correction_clip_degc:
+    minimum: -4.0
+    maximum: 4.0
+
+application:
+  corrected_summary_variable: tmax_c
+  corrected_summary_fields:
+    - weighted_mean
+    - spatial_p95
+    - maximum
+    - minimum
+  tmin_c: unchanged
+  precipitation_and_dynamics: unchanged
+  base_rule_thresholds: unchanged
+  evaluation_windows: unchanged_interval_overlap
+
+success_gates:
+  minimum_event_cases: 3
+  minimum_control_cases: 2
+  minimum_target_window_recall: 0.6
+  minimum_target_window_specificity: 0.8
+  minimum_event_case_detection_fraction: 0.666667
+  required_control_case_rejection_fraction: 1.0
+  observation_qc_required: accepted
+  maximum_absolute_final_correction_degc: 4.0
+
+decision_policy:
+  eligible: estimate_one_fixed_final_correction_from_all_development_cases_then_freeze_v3_candidate
+  blocked: keep_heatwave_rule_draft_and_independent_heatwave_sealed
+  independent_test_may_tune_correction: false
+
+limitations:
+  - The estimator, thresholds, gates, and clipping bound are unchanged from v1.
+  - New forecast-observation pairs existed before this input-extension lock; aggregate cross-validation outcomes had not been computed.
+  - Cross-validation remains development evidence and is not an independent performance claim.
+  - Station-maximum error is used as a proxy correction for regional forecast summaries.

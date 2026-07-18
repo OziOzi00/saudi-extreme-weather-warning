@@ -12,7 +12,7 @@ from saudi_warning.verification.run_development_diagnostics import (
 
 ROOT = Path(__file__).resolve().parents[1]
 PAIRS = ROOT / "handoff" / "weather_verification" / "development_pairs.csv"
-CONFIG = ROOT / "configs" / "weather_verification_qc_v1.yaml"
+CONFIG = ROOT / "configs" / "weather_verification_qc_v2.yaml"
 METRICS = ROOT / "handoff" / "weather_verification" / "development_continuous_metrics.csv"
 
 

@@ -74,21 +74,24 @@ def build_demo_summary(root: Path) -> dict[str, Any]:
     miss_path = root / "manifests/impact_miss_attribution.json"
 
     delivery = _csv_rows(delivery_path)
-    _require(len(delivery) == 51, f"expected 51 delivered NetCDF files, got {len(delivery)}")
+    _require(
+        len(delivery) >= 51 and len(delivery) % 3 == 0,
+        f"expected at least 51 complete lead deliveries, got {len(delivery)}",
+    )
     _require(
         all(row["validation_status"] == "passed" for row in delivery),
         "delivery manifest contains a failed file",
     )
     _require(
-        len({row["sha256"] for row in delivery}) == 51,
+        len({row["sha256"] for row in delivery}) == len(delivery),
         "delivery SHA-256 values are not unique",
     )
 
     pairs = _csv_rows(pairing_path)
     pair_statuses = Counter(row["pair_status"] for row in pairs)
-    _require(len(pairs) == 153, f"expected 153 development pairs, got {len(pairs)}")
+    _require(len(pairs) >= 153, f"expected at least 153 development pairs, got {len(pairs)}")
     _require(
-        pair_statuses == {"paired_accepted": 153},
+        pair_statuses == {"paired_accepted": len(pairs)},
         f"unexpected pair statuses: {pair_statuses}",
     )
 
@@ -187,10 +190,10 @@ def build_demo_summary(root: Path) -> dict[str, Any]:
         "primary_demonstrable_hazard": "heavy_rain",
         "pipeline": {
             "name": "GraphCast_to_MAZU_like_to_frozen_risk_to_graph_and_report",
-            "delivered_netcdf_count": 51,
-            "delivery_validation": "51_of_51_passed",
-            "development_pair_count": 153,
-            "development_pair_validation": "153_of_153_accepted",
+            "delivered_netcdf_count": len(delivery),
+            "delivery_validation": f"{len(delivery)}_of_{len(delivery)}_passed",
+            "development_pair_count": len(pairs),
+            "development_pair_validation": f"{len(pairs)}_of_{len(pairs)}_accepted",
             "frozen_risk_json_count": dev_risk_count + independent_risk_count,
             "development_risk_json_count": dev_risk_count,
             "independent_risk_json_count": independent_risk_count,

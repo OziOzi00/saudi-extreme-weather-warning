@@ -79,8 +79,12 @@ def _sha256(path: Path) -> str:
 
 def load_preregistration(path: Path) -> dict[str, Any]:
     config = yaml.safe_load(path.read_text(encoding="utf-8"))
-    if config.get("status") != "preregistered_before_cv_evaluation":
-        raise ValueError("bias-correction configuration is not preregistered")
+    allowed_statuses = {
+        "preregistered_before_cv_evaluation",
+        "input_extension_locked_before_aggregate_cv_evaluation",
+    }
+    if config.get("status") not in allowed_statuses:
+        raise ValueError("bias-correction configuration is not locked before evaluation")
     if config.get("scope") != "development_only":
         raise ValueError("bias-correction scope must be development_only")
     if config.get("independent_heatwave_access") != "forbidden":

@@ -24,7 +24,7 @@ def test_development_pairs_never_expose_independent_test() -> None:
     pairs = read_csv(PAIRS)
     audit = read_csv(COVERAGE)
 
-    assert len(cases) == 11
+    assert len(cases) == 13
     assert {row["case_id"] for row in pairs} == expected_case_ids
     assert {row["case_id"] for row in audit} == expected_case_ids
     assert {row["dataset_split"] for row in audit} == {"development"}
@@ -36,10 +36,10 @@ def test_pair_contract_and_qc_boundaries_are_explicit() -> None:
     audit = read_csv(COVERAGE)
 
     assert validate_pairs(frame) == []
-    assert len(frame) == 153
-    assert len(audit) == 153
+    assert len(frame) == 189
+    assert len(audit) == 189
     assert (frame["observation_source"] == "IMERG").sum() == 45
-    assert (frame["observation_source"] == "NOAA_SSOD_V2").sum() == 108
+    assert (frame["observation_source"] == "NOAA_SSOD_V2").sum() == 144
     assert set(frame.loc[frame["observation_source"] == "IMERG", "qc_status"]) == {
         "accepted"
     }

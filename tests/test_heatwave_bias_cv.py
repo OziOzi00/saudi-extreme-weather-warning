@@ -9,7 +9,7 @@ from saudi_warning.risk.run_heatwave_bias_cv import load_preregistration
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "configs" / "heatwave_bias_correction_cv_v1.yaml"
+CONFIG = ROOT / "configs" / "heatwave_bias_correction_cv_v2.yaml"
 PAIRS = ROOT / "handoff" / "weather_verification" / "heatwave_bias_cv_pairs.csv"
 AUDIT = ROOT / "handoff" / "risk_dry_runs" / "heatwave_bias_cv_rule_review.csv"
 ASSESSMENT = ROOT / "manifests" / "heatwave_bias_cv_assessment.csv"
