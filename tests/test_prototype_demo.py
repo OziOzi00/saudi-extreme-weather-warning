@@ -27,6 +27,10 @@ def test_prototype_summary_preserves_hazard_gates() -> None:
     assert summary["heatwave"]["rule_status"] == "draft"
     assert summary["heatwave"]["freeze_recommendation"] == "blocked"
     assert summary["heatwave"]["independent_evaluation_opened"] is False
+    latest = summary["heatwave"]["latest_development_bias_cv"]
+    assert latest["recommendation"] == "blocked"
+    assert latest["event_target_window_recall"] == 5 / 9
+    assert latest["event_case_detection_fraction"] == 0.6
 
 
 def test_prototype_summary_includes_success_and_known_miss() -> None:

@@ -31,7 +31,14 @@
     "rule_status": "draft",
     "freeze_recommendation": "blocked",
     "target_window_recall": 0.142857,
-    "independent_evaluation_opened": false
+    "independent_evaluation_opened": false,
+    "latest_development_bias_cv": {
+      "version": "heatwave_bias_correction_cv_v2_20260718",
+      "recommendation": "blocked",
+      "event_target_window_recall": 0.5555555555555556,
+      "event_case_detection_fraction": 0.6,
+      "target_window_specificity": 1.0
+    }
   },
   "knowledge_graph_live_development_verification": {
     "status": "passed",
@@ -91,6 +98,7 @@
     "development_risk_set_sha256": "67111596c787a1a1215fdb78ae7553337d149efd72bdac0fe6de96b22483d321",
     "independent_risk_set_sha256": "b199328fc439b17078c07d9abc1abd1ff290a97aa8c4e054b39fa198d6121425",
     "independent_metrics_sha256": "82714476d42ce64ad8ddabf7b7b4361480f4143eca1105a9fdab2b25c689dec4",
-    "impact_assessment_sha256": "8734c38232355b6974a264e2750738dfa0698be7f8b0d5b5a3934ce4893db7c1"
+    "impact_assessment_sha256": "8734c38232355b6974a264e2750738dfa0698be7f8b0d5b5a3934ce4893db7c1",
+    "heatwave_bias_cv_v2_assessment_sha256": "501dee4a341e3d1658534078de6079a099b3484451c26e88506baaea75282315"
   }
 }

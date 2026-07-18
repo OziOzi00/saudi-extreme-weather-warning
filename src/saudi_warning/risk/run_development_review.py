@@ -55,8 +55,8 @@ def read_development_cases(path: Path) -> list[dict[str, str]]:
         for row in rows
         if row["selection_status"] == "approved" and row["dataset_split"] == "development"
     ]
-    if len(cases) != 11:
-        raise ValueError(f"expected 11 approved development cases, found {len(cases)}")
+    if not cases:
+        raise ValueError("catalog contains no approved development cases")
     if any(row["case_role"] not in {"event", "control"} for row in cases):
         raise ValueError("development review supports only event and control cases")
     return cases

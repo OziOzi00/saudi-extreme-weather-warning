@@ -43,3 +43,5 @@ python -m saudi_warning.verification.heatwave_expansion
 锁定提交推送主线后才启动GraphCast读取。两个案例共24个六小时缓存已完成，生成6份MAZU-like文件并逐文件验收通过；主交付现为57/57 passed，ADM1摘要8151行。development配对扩展为189/189 accepted，其中IMERG 45条、SSOD 144条，独立高温仍未打开。
 
 新案例配对已经生成，但尚未运行扩展样本的汇总交叉验证。方法、阈值、成功门槛和±4°C修正上限原样继承v1；扩展输入散列锁定在`configs/heatwave_bias_correction_cv_v2.yaml`。下一道闸门是在该锁提交到主线后运行development-only留一案例复验。
+
+该输入锁随后已推送主线并完成复验。结果为目标窗5/9命中、事件案例3/5检出、对照6/6正确拒绝，仍未达到冻结门槛；详见[高温第二轮development复验结果](2026-07-18_高温第二轮development复验结果.md)。

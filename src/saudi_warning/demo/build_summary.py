@@ -72,6 +72,7 @@ def build_demo_summary(root: Path) -> dict[str, Any]:
     neo4j_path = root / "manifests/neo4j_live_verification.json"
     impact_path = root / "manifests/impact_layer_assessment.json"
     miss_path = root / "manifests/impact_miss_attribution.json"
+    heatwave_cv_v2_path = root / "manifests/heatwave_bias_cv_v2_assessment.csv"
 
     delivery = _csv_rows(delivery_path)
     _require(
@@ -154,6 +155,12 @@ def build_demo_summary(root: Path) -> dict[str, Any]:
     miss = _json(miss_path)
     _require(miss.get("missed_positive_unit_count") == 1, "impact miss count changed")
     _require(miss.get("frozen_rule_modified") is False, "frozen rule was unexpectedly modified")
+    [heatwave_cv_v2] = _csv_rows(heatwave_cv_v2_path)
+    _require(heatwave_cv_v2["recommendation"] == "blocked", "latest heatwave CV status changed")
+    _require(
+        heatwave_cv_v2["independent_heatwave_opened"] == "False",
+        "independent heatwave was unexpectedly opened",
+    )
 
     success_48_path = root / (
         "handoff/risk_results/independent_heavy_rain/"
@@ -211,6 +218,17 @@ def build_demo_summary(root: Path) -> dict[str, Any]:
             "freeze_recommendation": heatwave["freeze_recommendation"],
             "target_window_recall": float(heatwave["target_window_recall"]),
             "independent_evaluation_opened": False,
+            "latest_development_bias_cv": {
+                "version": "heatwave_bias_correction_cv_v2_20260718",
+                "recommendation": heatwave_cv_v2["recommendation"],
+                "event_target_window_recall": float(heatwave_cv_v2["target_window_recall"]),
+                "event_case_detection_fraction": float(
+                    heatwave_cv_v2["event_case_detection_fraction"]
+                ),
+                "target_window_specificity": float(
+                    heatwave_cv_v2["target_window_specificity"]
+                ),
+            },
         },
         "knowledge_graph_live_development_verification": {
             "status": neo4j["status"],
@@ -271,6 +289,7 @@ def build_demo_summary(root: Path) -> dict[str, Any]:
             "independent_risk_set_sha256": independent_risk_sha,
             "independent_metrics_sha256": _sha256(independent_metrics_path),
             "impact_assessment_sha256": _sha256(impact_path),
+            "heatwave_bias_cv_v2_assessment_sha256": _sha256(heatwave_cv_v2_path),
         },
     }
 
