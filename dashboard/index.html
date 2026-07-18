@@ -13,7 +13,11 @@
       <h1>沙特极端天气风险研判台</h1>
       <p class="subtitle">把区域风险、证据链和验证边界放在同一张工作台上</p>
     </div>
-    <div class="top-status"><span class="pulse"></span>仓库产物驱动</div>
+    <div class="header-actions">
+      <div class="top-status"><span class="pulse"></span>仓库产物驱动</div>
+      <button id="export-png" class="export-button primary">导出答辩图 PNG</button>
+      <button id="export-summary" class="export-button">导出案例摘要</button>
+    </div>
   </header>
 
   <main>
@@ -93,6 +97,7 @@
   </main>
 
   <footer>数据来自当前仓库的冻结产物与状态清单 · 边界年份 2017</footer>
+  <div id="export-status" class="export-status" role="status" aria-live="polite"></div>
   <script src="data/dashboard_data.js"></script>
   <script src="app.js"></script>
 </body>

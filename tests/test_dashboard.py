@@ -77,3 +77,14 @@ def test_dashboard_bundle_is_deterministic_javascript(tmp_path: Path) -> None:
     assert first.startswith("window.DASHBOARD_DATA=")
     payload = first.removeprefix("window.DASHBOARD_DATA=").removesuffix(";\n")
     assert json.loads(payload)["meta"]["risk_result_count"] == 33
+
+
+def test_dashboard_exposes_dependency_free_case_exports() -> None:
+    html = (ROOT / "dashboard" / "index.html").read_text(encoding="utf-8")
+    script = (ROOT / "dashboard" / "app.js").read_text(encoding="utf-8")
+
+    assert 'id="export-png"' in html
+    assert 'id="export-summary"' in html
+    assert "async function exportPng()" in script
+    assert "function exportSummary()" in script
+    assert "html2canvas" not in script
