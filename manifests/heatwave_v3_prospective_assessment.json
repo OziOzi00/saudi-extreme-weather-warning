@@ -1,0 +1,24 @@
+{
+  "schema_version": "heatwave_v3_prospective_assessment_v1",
+  "scope": "prospective_development_only",
+  "candidate_weight": 0.6,
+  "fixed_bias_correction_degc": 2.3055572509765625,
+  "event_target_windows": 2,
+  "event_target_hits": 0,
+  "observed_hot_target_windows": 2,
+  "observed_hot_target_hits": 0,
+  "control_target_windows": 2,
+  "control_correct_negatives": 2,
+  "gate_checks": {
+    "event_target_windows": true,
+    "event_target_hits": false,
+    "observed_hot_target_windows": true,
+    "observed_hot_target_hits": false,
+    "control_target_windows": true,
+    "control_correct_negatives": true
+  },
+  "recommendation": "keep_blocked",
+  "heatwave_rule_frozen": false,
+  "independent_heatwave_opened": false,
+  "alternative_weights_searched_after_lock": false
+}

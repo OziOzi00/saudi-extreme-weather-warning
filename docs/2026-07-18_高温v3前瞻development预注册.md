@@ -53,3 +53,5 @@
 - 验收器：`python -m saudi_warning.verification.heatwave_v3_prospective`。
 
 必须先提交并推送上述锁，再允许读取两个新增案例的 GraphCast 预报。
+
+该锁已在提交 `b427e36` 推送后执行，结果见[高温 v3 前瞻 development 评估结果](2026-07-18_高温v3前瞻development评估结果.md)。

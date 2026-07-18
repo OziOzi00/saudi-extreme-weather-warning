@@ -122,6 +122,9 @@ def build_bundle(root: Path = ROOT) -> dict[str, Any]:
     heatwave_path = root / "manifests" / "heatwave_bias_cv_v2_assessment.csv"
     with heatwave_path.open(encoding="utf-8-sig", newline="") as handle:
         heatwave = next(csv.DictReader(handle))
+    heatwave_prospective = _read_json(
+        root / "manifests" / "heatwave_v3_prospective_assessment.json"
+    )
 
     impact = _read_json(root / "manifests" / "impact_layer_assessment.json")
     neo4j = _read_json(root / "manifests" / "neo4j_live_verification.json")
@@ -162,6 +165,13 @@ def build_bundle(root: Path = ROOT) -> dict[str, Any]:
                 "bias_correction_degc": float(heatwave["final_correction_degc"]),
                 "blocking_reasons": heatwave["blocking_reasons"].split(";"),
                 "independent_opened": heatwave["independent_heatwave_opened"].lower() == "true",
+                "prospective_event_hits": heatwave_prospective["event_target_hits"],
+                "prospective_event_windows": heatwave_prospective["event_target_windows"],
+                "prospective_control_correct_negatives": heatwave_prospective[
+                    "control_correct_negatives"
+                ],
+                "prospective_control_windows": heatwave_prospective["control_target_windows"],
+                "prospective_recommendation": heatwave_prospective["recommendation"],
             },
             "impact": {
                 "status": impact["status"],

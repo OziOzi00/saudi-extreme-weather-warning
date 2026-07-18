@@ -41,6 +41,10 @@ def test_dashboard_preserves_evaluation_boundaries() -> None:
     assert evaluation["heatwave"]["candidate_hits"] == 5
     assert evaluation["heatwave"]["target_windows"] == 9
     assert evaluation["heatwave"]["independent_opened"] is False
+    assert evaluation["heatwave"]["prospective_event_hits"] == 0
+    assert evaluation["heatwave"]["prospective_event_windows"] == 2
+    assert evaluation["heatwave"]["prospective_control_correct_negatives"] == 2
+    assert evaluation["heatwave"]["prospective_recommendation"] == "keep_blocked"
     assert evaluation["impact"]["negative_metrics_status"] == (
         "unavailable_no_reviewed_no_impact_truth"
     )

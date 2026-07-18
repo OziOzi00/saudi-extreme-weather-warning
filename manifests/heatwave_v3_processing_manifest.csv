@@ -1,0 +1,3 @@
+case_id,initial_time,event_type,status,lead024_file,lead048_file,lead072_file,message,updated_at_utc
+20200623_00,2020-06-23T00:00:00Z,heatwave_control,completed,handoff/mazu_like/mazu_like_20200623_00_lead024.nc,handoff/mazu_like/mazu_like_20200623_00_lead048.nc,handoff/mazu_like/mazu_like_20200623_00_lead072.nc,"generated and validated lead024,lead048,lead072",2026-07-18T05:15:43.905405Z
+20200702_00,2020-07-02T00:00:00Z,heatwave_event,completed,handoff/mazu_like/mazu_like_20200702_00_lead024.nc,handoff/mazu_like/mazu_like_20200702_00_lead048.nc,handoff/mazu_like/mazu_like_20200702_00_lead072.nc,"generated and validated lead024,lead048,lead072",2026-07-18T06:10:30.327404Z

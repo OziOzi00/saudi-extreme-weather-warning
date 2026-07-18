@@ -1,0 +1,7 @@
+case_id,case_role,region_id,lead_time_hours,evaluation_scope,candidate_outcome,risk_level,source_spatial_p95_degc,source_maximum_degc,candidate_tmax_degc,event_threshold_degc,observed_tmax_degc,observed_hot_day
+20200623_00,control,SA-08,24,context_only,not_scored_context,low,40.433228,40.785156,42.94994205097656,47.0,42.0,False
+20200623_00,control,SA-08,48,target_window,candidate_correct_negative,low,39.605121,40.024261,42.162162250976564,47.0,42.0,False
+20200623_00,control,SA-08,72,target_window,candidate_correct_negative,low,39.205518,39.506744,41.69181085097656,47.0,42.0,False
+20200702_00,event,SA-08,24,context_only,not_scored_context,low,43.316388,44.237,46.174312450976565,47.0,44.2,False
+20200702_00,event,SA-08,48,target_window,candidate_miss,low,44.190881,44.5672,46.72222965097656,47.0,47.0,True
+20200702_00,event,SA-08,72,target_window,candidate_miss,low,45.036707,45.202515,47.44174905097656,47.0,47.0,True

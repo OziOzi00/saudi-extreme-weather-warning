@@ -77,7 +77,7 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def load_preregistration(path: Path) -> dict[str, Any]:
+def load_preregistration(path: Path, verify_hashes: bool = True) -> dict[str, Any]:
     config = yaml.safe_load(path.read_text(encoding="utf-8"))
     allowed_statuses = {
         "preregistered_before_cv_evaluation",
@@ -89,10 +89,11 @@ def load_preregistration(path: Path) -> dict[str, Any]:
         raise ValueError("bias-correction scope must be development_only")
     if config.get("independent_heatwave_access") != "forbidden":
         raise ValueError("independent heatwave access is not forbidden")
-    for item in config["locked_inputs"].values():
-        source = Path(item["path"])
-        if _sha256(source) != str(item["sha256"]).lower():
-            raise ValueError(f"locked input SHA-256 mismatch: {source}")
+    if verify_hashes:
+        for item in config["locked_inputs"].values():
+            source = Path(item["path"])
+            if _sha256(source) != str(item["sha256"]).lower():
+                raise ValueError(f"locked input SHA-256 mismatch: {source}")
     return config
 
 

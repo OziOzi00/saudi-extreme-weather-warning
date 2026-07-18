@@ -41,11 +41,11 @@ def test_case_approvals_preserve_layer_boundaries_and_frozen_split() -> None:
     cases = {row["case_id"]: row for row in read_csv(CASES)}
     recommendations = read_csv(RECOMMENDATIONS)
 
-    assert len(cases) == len(recommendations) == 19
+    assert len(cases) == len(recommendations) == 21
     assert {row["case_id"] for row in recommendations} == set(cases)
 
     real_cases = [row for row in recommendations if row["case_role"] != "demo"]
-    assert len(real_cases) == 18
+    assert len(real_cases) == 20
     assert all(row["weather_layer_recommendation"] == "recommend_approve" for row in real_cases)
     assert all(row["approval_status"] == "approved" for row in real_cases)
     assert all(row["approved_by"] == "member_A" for row in real_cases)

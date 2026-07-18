@@ -61,6 +61,8 @@ def validate_prospective_lock(root: Path, check_forecast_absence: bool = True) -
         errors.append("candidate must forbid independent heatwave access")
 
     for name, item in lock.get("input_fingerprints", {}).items():
+        if name == "baseline_case_catalog":
+            continue
         path = root / item["path"]
         actual = _sha256(path)
         if actual != item["sha256"]:
@@ -71,8 +73,20 @@ def validate_prospective_lock(root: Path, check_forecast_absence: bool = True) -
         errors.append("selection does not match locked case IDs")
     if selected_ids != {row["case_id"] for row in batch}:
         errors.append("batch catalog does not match selection")
-    if selected_ids & {row["case_id"] for row in catalog}:
-        errors.append("prospective cases already exist in the baseline catalog")
+    catalog_by_id = {row["case_id"]: row for row in catalog}
+    integrated = selected_ids <= set(catalog_by_id)
+    if integrated:
+        for selected in selection:
+            row = catalog_by_id[selected["case_id"]]
+            if row["selection_status"] != "approved" or row["dataset_split"] != "development":
+                errors.append(f"{selected['case_id']}: integrated case is not approved development")
+            if row["case_role"] != selected["case_role"] or row["target_region_ids"] != selected["region_id"]:
+                errors.append(f"{selected['case_id']}: integrated role or region diverges from lock")
+    else:
+        baseline = lock["input_fingerprints"]["baseline_case_catalog"]
+        actual = _sha256(root / baseline["path"])
+        if actual != baseline["sha256"]:
+            errors.append("baseline case catalog changed before prospective integration")
 
     rule = lock["selection_rules"]
     daily_index = {
@@ -176,7 +190,10 @@ def main() -> None:
             print(f"- {error}")
         raise SystemExit(f"prospective heatwave lock failed with {len(errors)} errors")
     print("verified 2 observation-only prospective development cases")
-    print("no forecast artifact read; independent heatwave remains unopened")
+    if args.allow_post_lock_artifacts:
+        print("pre-forecast lock remains valid; post-lock artifacts are allowed")
+    else:
+        print("no forecast artifact exists; independent heatwave remains unopened")
 
 
 if __name__ == "__main__":

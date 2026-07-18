@@ -110,11 +110,11 @@
     const rain = data.evaluation.heavy_rain, heat = data.evaluation.heatwave;
     $("disclaimer").textContent = data.meta.disclaimer;
     $("rain-score").textContent = `${rain.hits} / ${rain.misses} / ${rain.false_alarms}`;
-    $("heat-score").textContent = `${heat.candidate_hits} / ${heat.target_windows}`;
+    $("heat-score").textContent = `${heat.prospective_event_hits} / ${heat.prospective_event_windows}`;
     $("graph-score").textContent = `${data.evaluation.knowledge_graph.nodes} / ${data.evaluation.knowledge_graph.relationships}`;
     $("rain-confusion").textContent = `${rain.hits} 命中 · ${rain.misses} 漏报 · ${rain.false_alarms} 空报 · ${rain.correct_negatives} 正确否定`;
-    $("heat-recall").textContent = `${heat.candidate_hits} / ${heat.target_windows}`;
-    $("heat-note").textContent = `偏差订正 +${fmt(heat.bias_correction_degc, 3)} °C；事件案例检出 3/${heat.event_cases}，对照窗正确否定 ${heat.controls_rejected}/${heat.controls}。当前仅为开发集证据。`;
+    $("heat-recall").textContent = `${heat.prospective_event_hits} / ${heat.prospective_event_windows}`;
+    $("heat-note").textContent = `固定候选前瞻对照 ${heat.prospective_control_correct_negatives}/${heat.prospective_control_windows} 正确否定，但事件 0/2；既有CV目标窗 ${heat.candidate_hits}/${heat.target_windows}。高温继续 blocked。`;
     const impact = data.evaluation.impact;
     $("impact-score").textContent = `${impact.detected_positive_units} / ${impact.eligible_positive_units}`;
   }

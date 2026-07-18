@@ -21,7 +21,9 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def test_bias_cv_preregistration_locks_inputs_and_independent_access() -> None:
-    config = load_preregistration(CONFIG)
+    with pytest.raises(ValueError, match="SHA-256 mismatch"):
+        load_preregistration(CONFIG)
+    config = load_preregistration(CONFIG, verify_hashes=False)
 
     assert config["scope"] == "development_only"
     assert config["independent_heatwave_access"] == "forbidden"

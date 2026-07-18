@@ -13,7 +13,7 @@ def test_mazu_like_region_summary_has_all_leads_regions_and_indicators() -> None
     expected_sources = {f"handoff/mazu_like/{item.name}" for item in forecast_files}
     rows_per_source = Counter(row["source_file"] for row in rows)
 
-    assert len(forecast_files) == 57
+    assert len(forecast_files) == 63
     assert len(rows) == len(forecast_files) * 13 * 11
     assert set(rows_per_source) == expected_sources
     assert set(rows_per_source.values()) == {13 * 11}

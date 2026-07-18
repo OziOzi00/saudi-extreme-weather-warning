@@ -6,8 +6,8 @@ from saudi_warning.verification.heatwave_v3_prospective import validate_prospect
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_heatwave_v3_lock_precedes_forecast_access() -> None:
-    assert validate_prospective_lock(ROOT, check_forecast_absence=True) == []
+def test_heatwave_v3_lock_remains_valid_after_forecast_delivery() -> None:
+    assert validate_prospective_lock(ROOT, check_forecast_absence=False) == []
 
 
 def test_heatwave_v3_selection_does_not_name_independent_artifacts() -> None:

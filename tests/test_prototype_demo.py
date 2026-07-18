@@ -10,8 +10,8 @@ def test_prototype_summary_validates_frozen_pipeline() -> None:
     summary = build_demo_summary(ROOT)
     assert summary["release_tag"] == RELEASE_TAG
     assert summary["release_status"] == "stable_research_prototype"
-    assert summary["pipeline"]["delivered_netcdf_count"] == 57
-    assert summary["pipeline"]["development_pair_count"] == 189
+    assert summary["pipeline"]["delivered_netcdf_count"] == 63
+    assert summary["pipeline"]["development_pair_count"] == 225
     assert summary["pipeline"]["frozen_risk_json_count"] == 33
 
 

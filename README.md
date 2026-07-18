@@ -20,10 +20,10 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **已完成（成员 A）**：GraphCast → MAZU-like 主流程，以及 catalog 预检查、可恢复缓存、原子写入、NetCDF 自动验收、ADM1 摘要、SHA-256 溯源和一键交付；并协助完成 MAZU 2025 统计与 B 侧草案。
 - **已完成的演示交接个例**：`2020-08-20T00:00:00Z` 的 lead024、lead048、lead072，位于 [`handoff/mazu_like/`](handoff/mazu_like/)；它仅是流程演示，不声明为已确认极端灾害事件。
 - **观测、案例与证据已继续推进**：目录现有10个事件、6个对照和1个demo；IMERG/GHCN/SSOD筛选已完成；影响真值仍保持逐条复核和天气层/影响层分离。
-- **案例已批准**：成员 A 在单人继续推进的工作方式下，已批准18个真实案例并冻结为13个development、5个independent_test；高温扩展没有打开独立高温案例。
-- **A侧正式批处理与交付收尾已完成**：18个批准案例的216个GraphCast时次缓存齐全，加demo共228个；54份批准案例NetCDF加3份demo全部通过验收，ADM1摘要为8151行，57/57份交付文件均记录SHA-256。
+- **案例已批准**：成员 A 在单人继续推进的工作方式下，已批准20个真实案例并冻结为15个development、5个independent_test；高温前瞻扩展没有打开独立高温案例。
+- **A侧正式批处理与交付收尾已完成**：20个批准案例的240个GraphCast时次缓存齐全，加demo共252个；60份批准案例NetCDF加3份demo全部通过验收，ADM1摘要为9009行，63/63份交付文件均记录SHA-256。
 - **B/C 归属任务已继续推进**：A 已代为完成 GHCN/IMERG 观测准备、对照筛选、灾害证据复核、案例批准材料和知识图谱开发骨架；这些产物可复验，但不表示 B/C 本人已验收。
-- **B侧development配对已闭合**：13个development案例形成189/189条accepted配对，其中45条IMERG、144条NOAA SSODv2；GHCN缺少`OBS-TIME`，只作数值旁证。
+- **B侧development配对已闭合**：15个development案例形成225/225条accepted配对，其中45条IMERG、180条NOAA SSODv2；GHCN缺少`OBS-TIME`，只作数值旁证。
 - **development指标已分层生成**：12行IMERG与24行SSOD指标、24行高温时序均已生成；独立高温预报—观测结果未读取。
 - **风险规则已按灾种分层推进**：暴雨v2达到development预设闸门后冻结；高温v2虽补足4事件/2对照和accepted观测，但目标窗召回仅0.142857、事件案例检出仅0.25，继续保持draft。
 - **高温冷偏差修正已完成预注册复验**：6折留一案例修正的固定估计为`+2.280°C`，目标窗召回改善至3/7、事件案例检出改善至2/4，但仍未达到冻结门槛；没有读取独立高温案例，也没有根据结果降低阈值。
@@ -102,6 +102,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_dashboard.ps1
 - [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [高温 development 误差诊断](docs/2026-07-18_高温development误差诊断.md)
 - [高温 v3 前瞻 development 预注册](docs/2026-07-18_高温v3前瞻development预注册.md)
+- [高温 v3 前瞻 development 评估结果](docs/2026-07-18_高温v3前瞻development评估结果.md)
 - [架构设计](docs/架构设计.md)
 - [MAZU 2025 开发方法](docs/MAZU2025开发方法.md)
 - [指标时间语义与聚合口径](docs/指标时间语义与聚合口径.md)
