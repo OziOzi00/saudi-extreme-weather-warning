@@ -74,6 +74,14 @@ powershell -ExecutionPolicy Bypass -File scripts/run_prototype_demo.ps1
 
 命令会生成 [`handoff/prototype_demo/demo_summary.json`](handoff/prototype_demo/demo_summary.json)，并验收全部33份冻结暴雨Risk JSON和阶段边界。发布口径与演示案例见 [v0.1.0 原型发布说明](docs/2026-07-17_v0.1.0原型发布说明.md)。
 
+本地可视化研判台不需要安装前端框架或启动 Neo4j。它会先从仓库正式产物重建轻量数据包，再在 `http://127.0.0.1:8765` 提供页面：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_dashboard.ps1
+```
+
+页面展示 13 个 ADM1 区域、33 份冻结暴雨结果、独立测试命中案例、已知影响漏报及高温/影响层的验证边界。使用说明见[可视化演示系统](docs/2026-07-18_可视化演示系统.md)。
+
 成员 A 新增个例的批处理命令见 [成员 A 批处理说明](docs/成员A批处理说明.md)。成员 B/C 的任务和当前完成边界见 [团队协作流程](docs/团队协作流程.md)。
 
 成员 A 的完整交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_a_delivery.ps1`；默认以版本化 demo catalog 复验现有三份 lead。当前批准案例位于 `configs/case_catalog_candidates.csv`，正式批处理必须保持冻结的 development/independent_test 划分。
@@ -91,6 +99,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_prototype_demo.ps1
 ## 文档索引
 
 - [统一技术路线](docs/统一技术路线_v1.md)
+- [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [架构设计](docs/架构设计.md)
 - [MAZU 2025 开发方法](docs/MAZU2025开发方法.md)
 - [指标时间语义与聚合口径](docs/指标时间语义与聚合口径.md)

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>沙特极端天气风险研判台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">GRAPHCAST → MAZU-LIKE · RESEARCH PROTOTYPE</p>
+      <h1>沙特极端天气风险研判台</h1>
+      <p class="subtitle">把区域风险、证据链和验证边界放在同一张工作台上</p>
+    </div>
+    <div class="top-status"><span class="pulse"></span>仓库产物驱动</div>
+  </header>
+
+  <main>
+    <section class="notice" role="note">
+      <strong>范围声明</strong><span id="disclaimer">研究原型；不构成官方气象预警。</span>
+    </section>
+
+    <section class="summary-grid" aria-label="项目关键状态">
+      <article class="metric"><span>MAZU-like 交付</span><strong>57 / 57</strong><small>NetCDF 案例 × lead</small></article>
+      <article class="metric"><span>暴雨独立测试</span><strong id="rain-score">—</strong><small>命中 / 漏报 / 空报</small></article>
+      <article class="metric warning"><span>高温 development</span><strong id="heat-score">—</strong><small>仍未冻结，未开启独立集</small></article>
+      <article class="metric"><span>知识图谱联调</span><strong id="graph-score">—</strong><small>节点 / 关系（本地验证）</small></article>
+    </section>
+
+    <section class="workspace">
+      <article class="panel map-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">ADM1 RISK VIEW</p><h2>行政区风险地图</h2></div>
+          <div class="legend"><i class="low"></i>低 <i class="medium"></i>中 <i class="high"></i>高</div>
+        </div>
+        <div class="scenario-switch" role="group" aria-label="演示场景">
+          <button class="scenario active" data-scenario="success">独立测试命中案例</button>
+          <button class="scenario" data-scenario="miss">已知影响事件漏报</button>
+        </div>
+        <div class="controls">
+          <label>案例<select id="case-select" aria-label="选择案例"></select></label>
+          <label>预报时效<select id="lead-select" aria-label="选择预报时效"></select></label>
+        </div>
+        <div class="map-wrap">
+          <svg id="saudi-map" viewBox="0 0 760 560" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">沙特十三个一级行政区风险地图</title>
+            <desc id="map-desc">选择案例和预报时效后，目标行政区按风险等级着色。</desc>
+          </svg>
+          <div class="map-caption"><span id="map-region">—</span><strong id="map-level">—</strong></div>
+        </div>
+      </article>
+
+      <aside class="panel evidence-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">TRACEABLE EVIDENCE</p><h2>判定与证据链</h2></div>
+          <span id="rule-badge" class="badge frozen">—</span>
+        </div>
+        <div class="risk-hero">
+          <div><span>风险等级</span><strong id="risk-level">—</strong></div>
+          <div><span>置信度</span><strong id="confidence">—</strong></div>
+        </div>
+        <dl class="facts">
+          <div><dt>有效窗口</dt><dd id="valid-window">—</dd></div>
+          <div><dt>数据分区</dt><dd id="dataset-split">—</dd></div>
+          <div><dt>区域降水 P95</dt><dd id="precip-value">—</dd></div>
+          <div><dt>降水阈值</dt><dd id="precip-threshold">—</dd></div>
+        </dl>
+        <h3>支持证据</h3><ul id="support-list" class="evidence-list"></ul>
+        <h3>不支持证据</h3><ul id="against-list" class="evidence-list muted"></ul>
+        <div id="miss-box" class="miss-box hidden"></div>
+        <p class="source-link">来源：<code id="source-path">—</code></p>
+      </aside>
+    </section>
+
+    <section class="verification-grid">
+      <article class="panel verification-card">
+        <div class="panel-heading"><h2>暴雨规则 v2</h2><span class="badge frozen">已冻结</span></div>
+        <p class="big-line"><strong id="rain-confusion">—</strong><span>独立测试混淆结果</span></p>
+        <p>规则在锁定后仅打开一次独立集，当前结果不得用于回调阈值。</p>
+      </article>
+      <article class="panel verification-card amber">
+        <div class="panel-heading"><h2>高温规则</h2><span class="badge blocked">未冻结</span></div>
+        <p class="big-line"><strong id="heat-recall">—</strong><span>development 目标窗命中</span></p>
+        <p id="heat-note">—</p>
+      </article>
+      <article class="panel verification-card">
+        <div class="panel-heading"><h2>影响层覆盖</h2><span class="badge scoped">描述性</span></div>
+        <p class="big-line"><strong id="impact-score">—</strong><span>已审查正样本单元</span></p>
+        <p>没有已审查的负样本，因此不能报告准确率、精确率或空报率。</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>数据来自当前仓库的冻结产物与状态清单 · 边界年份 2017</footer>
+  <script src="data/dashboard_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
