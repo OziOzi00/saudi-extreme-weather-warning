@@ -1,0 +1,47 @@
+{
+  "schema_version": "static_context_development_assessment_v1",
+  "generated_at": "2026-07-18T10:55:50Z",
+  "dataset_split": "development",
+  "hazard": "heavy_rain",
+  "target_window_count": 9,
+  "context_coverage_count": 9,
+  "context_changes_risk_count": 0,
+  "base_risk_alert": {
+    "hits": 3,
+    "misses": 2,
+    "false_alarms": 0,
+    "correct_negatives": 4,
+    "pod": 0.6,
+    "far": 0.0
+  },
+  "risk_plus_unvalidated_attention": {
+    "hits": 5,
+    "misses": 0,
+    "false_alarms": 3,
+    "correct_negatives": 1,
+    "pod": 1.0,
+    "far": 0.375
+  },
+  "risk_plus_preregistered_spatial_attention": {
+    "hits": 3,
+    "misses": 2,
+    "false_alarms": 0,
+    "correct_negatives": 4,
+    "pod": 0.6,
+    "far": 0.0
+  },
+  "interpretation": "Static WorldClim context has no classification effect by design. The attention comparison evaluates the separate, post-hoc internal consistency candidate on development only.",
+  "spatial_candidate_trigger_count": 0,
+  "spatial_candidate_decision": "reject_no_miss_reduction_do_not_connect_to_agent_attention",
+  "decision": "retain_context_only_do_not_promote_to_knowledge_risk",
+  "independent_data_accessed": false,
+  "may_change_frozen_risk": false,
+  "inputs": {
+    "review_path": "handoff/risk_dry_runs/development_v2_rule_review.csv",
+    "review_sha256": "8c350c273b1fdb5344fe8253b72b8427803f59dca94f945af67ca9a7d4c1e60b",
+    "risk_dir": "handoff/risk_results/development_heavy_rain",
+    "risk_file_count": 15,
+    "spatial_diagnostics_path": "handoff/knowledge_prior/development_spatial_diagnostics_v1.json",
+    "spatial_diagnostics_sha256": "e7f43f4a8f299652660008c6f2eb40859e96d495affbfd1be30ec1f957cb311c"
+  }
+}

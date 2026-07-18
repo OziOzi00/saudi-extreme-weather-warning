@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "prediction_kg_bundle.schema.json",
+  "title": "Truth-sealed prediction knowledge-graph snapshot v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "generated_at", "knowledge_role", "temporal_mode",
+    "knowledge_cutoff", "truth_access", "truth_accessed", "limitations",
+    "nodes", "relations", "provenance", "content_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "prediction_kg_bundle_v2"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "knowledge_role": {"const": "prediction_context"},
+    "temporal_mode": {"const": "retrospective_transfer_replay"},
+    "knowledge_cutoff": {"type": "string", "format": "date-time"},
+    "truth_access": {"const": "forbidden"},
+    "truth_accessed": {"const": false},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "nodes": {"type": "array", "items": {"type": "object"}},
+    "relations": {"type": "array", "items": {"type": "object"}},
+    "provenance": {"type": "object"},
+    "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

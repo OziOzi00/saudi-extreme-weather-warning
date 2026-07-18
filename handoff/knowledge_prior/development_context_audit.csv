@@ -1,0 +1,10 @@
+﻿prediction_case_id,region_id,case_role,candidate_outcome,risk_level,base_alert,conflict_flag,attention_level,augmented_attention,spatial_candidate_triggered,spatial_conflict_flag,spatial_attention,precip_spatial_p99_mm,precip_spatial_max_mm,area_fraction_ge_medium,knowledge_prior_status,knowledge_prior_risk,static_profile_id,static_available_at,truth_accessed_by_forecast
+20200501_00_024,SA-09,event,candidate_miss,low,False,possible_underestimation,routine,True,False,none,False,1.58828,1.605429,0.0,context_only,,SA-09:month05:worldclim21,2020-03-15T00:00:00Z,False
+20200501_00_048,SA-09,event,candidate_miss,low,False,possible_underestimation,routine,True,False,none,False,3.170239,3.231235,0.0,context_only,,SA-09:month05:worldclim21,2020-03-15T00:00:00Z,False
+20200505_00_048,SA-09,event,candidate_hit,high,True,none,urgent,True,False,none,True,13.067808,13.168055,0.500009,context_only,,SA-09:month05:worldclim21,2020-03-15T00:00:00Z,False
+20200515_00_048,SA-09,control,candidate_correct_negative,low,False,possible_underestimation,routine,True,False,none,False,2.308237,2.315253,0.0,context_only,,SA-09:month05:worldclim21,2020-03-15T00:00:00Z,False
+20200515_00_072,SA-09,control,candidate_correct_negative,low,False,none,routine,False,False,none,False,0.884365,0.915871,0.0,context_only,,SA-09:month05:worldclim21,2020-03-15T00:00:00Z,False
+20201109_00_048,SA-03,control,candidate_correct_negative,low,False,possible_underestimation,routine,True,False,none,False,1.056473,1.158979,0.0,context_only,,SA-03:month11:worldclim21,2020-03-15T00:00:00Z,False
+20201109_00_072,SA-03,control,candidate_correct_negative,low,False,possible_underestimation,routine,True,False,none,False,0.600024,0.624989,0.0,context_only,,SA-03:month11:worldclim21,2020-03-15T00:00:00Z,False
+20201119_00_048,SA-03,event,candidate_hit,medium,True,none,watch,True,False,none,True,13.466717,15.049393,0.130187,context_only,,SA-03:month11:worldclim21,2020-03-15T00:00:00Z,False
+20201119_00_072,SA-03,event,candidate_hit,medium,True,none,watch,True,False,none,True,9.385068,10.13149,0.097101,context_only,,SA-03:month11:worldclim21,2020-03-15T00:00:00Z,False

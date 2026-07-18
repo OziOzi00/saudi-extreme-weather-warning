@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "forecast_spatial_diagnostics.schema.json",
+  "title": "Truth-sealed forecast spatial diagnostics v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "generated_at", "rule_version", "rule_status",
+    "truth_access", "truth_accessed", "may_change_meteorological_risk",
+    "diagnostics", "provenance", "content_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "forecast_spatial_diagnostics_v1"},
+    "generated_at": {"type": "string"},
+    "rule_version": {"type": "string"},
+    "rule_status": {"const": "preregistered_before_spatial_metric_evaluation"},
+    "truth_access": {"const": "forbidden"},
+    "truth_accessed": {"const": false},
+    "may_change_meteorological_risk": {"const": false},
+    "diagnostics": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "provenance": {"type": "object"},
+    "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

@@ -1,0 +1,30 @@
+version: knowledge_consistency_candidate_v1_20260718
+status: development_gate_failed_diagnostic_only
+scope: forecast_internal_consistency_only
+truth_access: forbidden
+may_change_meteorological_risk: false
+may_change_attention_level: false
+assessment_path: manifests/static_knowledge_context_development_assessment.json
+
+heavy_rain:
+  possible_underestimation:
+    required_risk_level: low
+    minimum_primary_contradictions: 1
+    minimum_supporting_conditions: 2
+    conflict_flag: possible_underestimation
+    candidate_attention_level: watch
+    effective_attention_level: routine
+    rationale_zh: >-
+      主要降水指标低于触发阈值，但至少两个动力/水汽辅助条件达到支持阈值；
+      这只能提示可能低估，不能证明真实暴雨或改写风险等级。
+
+missing_primary:
+  conflict_flag: insufficient_primary_evidence
+  attention_level: watch
+  rationale_zh: 主气象指标缺失，风险结果需要人工复核。
+
+limitations:
+  - 本规则只比较同一份预测中的主指标与辅助指标，不是历史知识先验。
+  - development目标窗虽补回2个漏报但产生3个误关注，未通过保留门槛。
+  - 该标记只作失败诊断审计，不得提高默认attention_level。
+  - 本规则不得读取同期观测、影响真值或新闻，不得上调Risk JSON风险等级。

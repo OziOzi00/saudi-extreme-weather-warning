@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "static_knowledge_context.schema.json",
+  "title": "Truth-sealed static knowledge context v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "generated_at", "status", "knowledge_role",
+    "truth_access", "truth_accessed", "may_change_meteorological_risk",
+    "sources", "profiles", "limitations", "content_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "static_knowledge_context_v1"},
+    "generated_at": {"type": "string"},
+    "status": {"const": "context_only_not_validated"},
+    "knowledge_role": {"const": "static_prior"},
+    "truth_access": {"const": "forbidden"},
+    "truth_accessed": {"const": false},
+    "may_change_meteorological_risk": {"const": false},
+    "sources": {"type": "array", "minItems": 2, "items": {"type": "object"}},
+    "profiles": {"type": "array", "minItems": 156, "items": {"type": "object"}},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

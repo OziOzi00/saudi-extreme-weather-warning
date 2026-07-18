@@ -5,16 +5,17 @@
 ## 当前技术路线
 
 ```text
-MAZU 2025 历史指标 → 分析分布并冻结风险规则 → 风险 JSON → 图谱/报告
+MAZU 2025 历史指标 → 分析分布并冻结风险规则
 
 GraphCast 2020 历史预报 → MAZU-like 指标 → 已冻结的风险规则 → 风险 JSON
-                                      ↓
-                   IMERG / SSOD / GHCN / 灾害记录分层验证
+                                                        ├→ 无真值预测图谱 → Forecast Agent 报告
+                                                        └→ 结果锁定后才连接 IMERG / SSOD / GHCN / 灾害记录
+                                                                                 → 验证图谱 → Verification 报告
 ```
 
 MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来预报模型。当前回放实验读取已预计算的 GraphCast 2020 历史预报；v1 不训练天气模型，也不自行运行完整 GraphCast。GraphCast 数据保持原生 `0.25 degree` 网格，绝不表述为 `0.1 degree` 预报能力。
 
-## 真实项目状态（2026-07-17）
+## 真实项目状态（2026-07-18）
 
 - **阶段版本已收束**：当前成果作为 `v0.1.0-prototype` 稳定研究原型发布；提供无需原始数据的一键验收、机器可读快照、正向案例和已知漏报案例。它不是实时业务预报服务。
 - **已完成（成员 A）**：GraphCast → MAZU-like 主流程，以及 catalog 预检查、可恢复缓存、原子写入、NetCDF 自动验收、ADM1 摘要、SHA-256 溯源和一键交付；并协助完成 MAZU 2025 统计与 B 侧草案。
@@ -32,6 +33,10 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **正式development链路已形成**：15份冻结暴雨Risk JSON、15份受控报告，以及69节点/98关系的图谱bundle均已生成并验收。
 - **独立暴雨评估已锁定完成**：54/54条IMERG配对accepted；冻结P95门槛得到6命中、0漏报、0空报、12正确否定。结果样本较小，规则不得回调。
 - **Neo4j本地实机联调已完成**：Community 2026.06.0精确导入综合暴雨bundle，87个节点、152条关系、6个约束及三组固定查询全部通过；这是development联调，不是生产部署。
+- **Agent 已拆分为预测态与验证态**：默认入口生成 `agent_forecast_report_v2`，只能读取冻结 Risk JSON 和无真值 `prediction_kg_bundle_v2`；旧 `agent_report_v1` 仅用于结果锁定后的事后验证。`gpt-5.6-luna` 已真实生成一份 `truth_accessed=false` 的暴雨预测报告，但这不等同于模型气象能力已独立验证。
+- **预测前静态知识已接入但仅限解释**：WorldClim 2.1的ADM1地形与1970–2000月降水基线已按`available_at`接入，当前 `knowledge_prior=context_only`、风险值为空。旧内部一致性候选虽补回2个漏报却对4个对照产生3个误关注，已降级为`development_gate_failed_diagnostic_only`；它可保留冲突记录，但默认关注级别不再从`routine`升为`watch`。
+- **细空间预测诊断候选已复验并淘汰**：预注册的P99/最大值/超阈面积热点条件在15份development暴雨预测中触发0次，对两个漏报没有改善；漏报窗的预测最大值也低于5毫米，说明只更换P95聚合无法修复模型整片低估。该候选未接入Agent关注逻辑。
+- **高温v4分层诊断已执行**：不改47/49°C阈值、不混入区域最大值、不使用已评估SA-08拟合；按lead中位偏差修正在同步观测天气真值上达到高温日4/6、非高温日8/9，优于pooled方法，只获得进入下一批全新prospective development的资格，高温规则仍为draft/blocked。
 - **灾害影响层描述性评估已完成**：9条经复核正例合并为6个案例—区域单位，冻结中高风险覆盖5/6；没有可靠无影响负例，因此不能计算误报率、特异度或完整准确率。
 - **唯一影响漏报已完成归因**：`20200501_00 / SA-09`的lead024为明确天气低估；lead048显示区域P95规则的局地尺度盲区并伴随天气低估。4个对照仍未取得合格无影响证据。
 - **仍待正式完成**：补充新的高温development证据并在新预注册方案下继续研究偏差；补充可靠影响负例及更广泛影响证据。
@@ -52,7 +57,7 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 | B | MAZU 2025 统计、风险规则、风险 JSON、天气层评估 | 重算 A 的气象指标 |
 | C | 区域/灾害真值、Neo4j、证据组织、报告 | 重算气象指标或风险分数 |
 
-交接顺序是：A 写入 `handoff/mazu_like/`；B 读取 NetCDF 并写入 `handoff/risk_results/`；C 读取风险 JSON，结合本地观测和灾害资料建立宏观图谱与报告。字段与语义以 [数据交接契约](docs/数据交接契约.md) 为准。
+交接顺序是：A 写入 `handoff/mazu_like/`；B 读取 NetCDF 并写入 `handoff/risk_results/`；C 先仅凭预测时点可用信息建立无真值预测快照和预测报告。预测输出锁定后，C 才能把本地观测与灾害资料接入独立验证图谱，生成事后验证报告。字段与语义以 [数据交接契约](docs/数据交接契约.md) 为准。
 
 每位成员的完成状态、输入、详细任务、正式输出和不负责事项见[三人分工与协作流程](docs/团队协作流程.md)。任务按技术归属记入 A/B/C；A 代办的 B/C 产物会明确标注实际执行人，不能视为成员 B/C 已亲自验收或已部署。
 
@@ -82,6 +87,21 @@ powershell -ExecutionPolicy Bypass -File scripts/run_dashboard.ps1
 
 页面展示 13 个 ADM1 区域、33 份冻结暴雨结果、独立测试命中案例、已知影响漏报及高温/影响层的验证边界。使用说明见[可视化演示系统](docs/2026-07-18_可视化演示系统.md)。
 
+默认的无真值 Forecast Agent 链可以先在无API、零费用模式下运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_agent_report.ps1 -Provider deterministic
+```
+
+安装`.[agent]`可选依赖并设置`OPENAI_API_KEY`后，把`Provider`改为`openai`即可启用Luna。事后验证必须显式运行 `scripts/run_agent_verification_report.ps1`，不能把验证报告冒充预测报告；详细边界见[Agent整合技术方案](docs/Agent整合技术方案.md)。
+
+预测前静态知识、细空间诊断和development隔离评估可复建为：
+
+```powershell
+pip install -e ".[knowledge]"
+powershell -ExecutionPolicy Bypass -File scripts/run_forecast_knowledge_development.ps1
+```
+
 成员 A 新增个例的批处理命令见 [成员 A 批处理说明](docs/成员A批处理说明.md)。成员 B/C 的任务和当前完成边界见 [团队协作流程](docs/团队协作流程.md)。
 
 成员 A 的完整交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_a_delivery.ps1`；默认以版本化 demo catalog 复验现有三份 lead。当前批准案例位于 `configs/case_catalog_candidates.csv`，正式批处理必须保持冻结的 development/independent_test 划分。
@@ -101,6 +121,10 @@ powershell -ExecutionPolicy Bypass -File scripts/run_dashboard.ps1
 - [统一技术路线](docs/统一技术路线_v1.md)
 - [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [高温 development 误差诊断](docs/2026-07-18_高温development误差诊断.md)
+- [当前高温规则与问题说明](docs/当前高温规则与问题说明.md)
+- [Agent 整合技术方案](docs/Agent整合技术方案.md)
+- [预测前静态知识上下文评估](docs/2026-07-18_预测前静态知识上下文评估.md)
+- [高温 Agent 真实联调与 v4 分层诊断](docs/2026-07-18_高温Agent真实联调与v4分层诊断.md)
 - [高温 v3 前瞻 development 预注册](docs/2026-07-18_高温v3前瞻development预注册.md)
 - [高温 v3 前瞻 development 评估结果](docs/2026-07-18_高温v3前瞻development评估结果.md)
 - [架构设计](docs/架构设计.md)

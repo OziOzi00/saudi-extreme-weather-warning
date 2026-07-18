@@ -1,0 +1,66 @@
+version: heatwave_v4_layered_calibration_20260718
+status: preregistered_before_layered_development_run
+hazard: heatwave
+scope: retrospective_development_method_comparison
+independent_heatwave_access: forbidden
+prospective_sa08_access_for_fitting: forbidden
+
+locked_inputs:
+  base_rule:
+    path: configs/heatwave_rules_v2.yaml
+    sha256: 810a829a0a2e3afc25a73f52022e5f05468f36e9492bc4d6cef20df9d3ca09c1
+  calibration_pairs:
+    path: handoff/weather_verification/heatwave_bias_cv_v2_pairs.csv
+    sha256: 0759fd83c41b6d058afeaaad29df375d624dca422654fc8edd4a86f56fa24c90
+  development_diagnostics:
+    path: handoff/weather_verification/heatwave_development_diagnostics.csv
+    sha256: e111e0cb2112b50d088a3114d92bc863789aa625fec2b6d5c28efd0271c183d6
+  rule_review:
+    path: handoff/risk_dry_runs/heatwave_bias_cv_v2_rule_review.csv
+    sha256: 27f721c974bcdedfda774d0335b35cfb67fa803ff41ad7e72d37b4d0f5829823
+
+approved_retrospective_case_ids:
+  - "20200619_00"
+  - "20200622_00"
+  - "20200627_00"
+  - "20200706_00"
+  - "20200715_00"
+  - "20200806_00"
+  - "20200908_00"
+  - "20200927_00"
+
+excluded_from_fitting:
+  - "20200623_00"
+  - "20200702_00"
+
+candidate_methods:
+  - pooled_median
+  - lead_specific_median
+
+estimator:
+  error_formula: observed_station_max_minus_forecast_station_max
+  cross_validation: leave_one_case_out
+  minimum_training_cases: 7
+  correction_clip_degc:
+    minimum: -4.0
+    maximum: 4.0
+
+application:
+  corrected_regional_metric: spatial_p95
+  regional_maximum_is_diagnostic_only: true
+  maximum_blending_forbidden: true
+  hot_day_thresholds: inherited_unchanged_from_heatwave_rules_v2
+  severe_hot_day_thresholds: inherited_unchanged_from_heatwave_rules_v2
+  duration_classification: inherited_unchanged_from_heatwave_rules_v2
+
+success_gates:
+  minimum_target_window_recall: 0.6
+  minimum_target_window_specificity: 0.8
+  minimum_event_case_detection_fraction: 0.666667
+  required_control_case_rejection_fraction: 1.0
+
+decision_policy:
+  pass: select_method_for_a_new_observation_first_prospective_development_lock
+  fail: keep_heatwave_rule_draft_and_redesign_numeric_calibration
+  freeze_from_this_run: false
+  open_independent_from_this_run: false

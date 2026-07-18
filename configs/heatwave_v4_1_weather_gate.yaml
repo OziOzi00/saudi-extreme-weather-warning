@@ -1,0 +1,33 @@
+version: heatwave_v4_1_weather_gate_20260718
+status: locked_post_diagnostic_metric_separation
+hazard: heatwave
+scope: development_only_metric_correction
+independent_heatwave_access: forbidden
+
+rationale:
+  weather_truth: synchronous_ssod_observed_hot_day
+  event_context: event_window_membership_reported_separately
+  prohibited_conflation: event_window_is_not_automatically_an_observed_hot_day
+
+locked_inputs:
+  layered_details:
+    path: handoff/weather_verification/heatwave_v4_layered_details.csv
+    sha256: 24ab05720e15a56fff88b551d5c14fae9e4eeb199cf1e15e8cc33e0b2e72096b
+  original_assessment:
+    path: manifests/heatwave_v4_layered_assessment.json
+    sha256: 29074de195876bb8426f89d6f07b5ee51dfccb87812d0f4b7b58bf2ef692a9ac
+
+candidate_methods:
+  - pooled_median
+  - lead_specific_median
+
+weather_success_gates:
+  minimum_observed_hot_day_recall: 0.6
+  minimum_observed_nonhot_day_specificity: 0.8
+  required_control_case_rejection_fraction: 1.0
+
+decision_policy:
+  eligible: lock_one_method_for_new_observation_first_prospective_development
+  freeze_from_this_assessment: false
+  open_independent_from_this_assessment: false
+  event_window_coverage_is_diagnostic_only: true

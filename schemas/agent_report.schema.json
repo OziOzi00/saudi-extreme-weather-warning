@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_report.schema.json",
+  "title": "Controlled Saudi weather Agent report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "case_id", "region_id", "hazard", "risk_level", "risk_score",
+    "confidence", "rule_id", "rule_status", "generation_mode", "status_disclosure_zh",
+    "executive_summary_zh", "evidence_summary_zh", "limitations_zh",
+    "recommended_actions_zh", "cited_source_ids"
+  ],
+  "properties": {
+    "schema_version": {"const": "agent_report_v1"},
+    "case_id": {"type": "string", "minLength": 1},
+    "region_id": {"type": "string", "minLength": 1},
+    "hazard": {"enum": ["heavy_rain", "heatwave"]},
+    "risk_level": {"enum": ["low", "medium", "high"]},
+    "risk_score": {"type": "number"},
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "rule_id": {"type": "string", "minLength": 1},
+    "rule_status": {"enum": ["draft", "frozen", "example"]},
+    "generation_mode": {"enum": ["deterministic", "openai_luna", "openai_terra"]},
+    "status_disclosure_zh": {"type": "string", "minLength": 1},
+    "executive_summary_zh": {"type": "string", "minLength": 1},
+    "evidence_summary_zh": {"type": "string", "minLength": 1},
+    "limitations_zh": {"type": "array", "items": {"type": "string"}},
+    "recommended_actions_zh": {"type": "array", "items": {"type": "string"}},
+    "cited_source_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  }
+}

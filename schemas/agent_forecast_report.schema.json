@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_forecast_report.schema.json",
+  "title": "Truth-sealed Saudi weather forecast Agent report v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "report_mode", "truth_accessed", "case_id", "region_id", "hazard",
+    "risk_level", "risk_score", "confidence", "rule_id", "rule_status",
+    "knowledge_prior_status", "knowledge_prior_risk", "conflict_flag",
+    "attention_level", "generation_mode", "status_disclosure_zh",
+    "executive_summary_zh", "weather_evidence_zh", "knowledge_context_zh",
+    "limitations_zh", "recommended_actions_zh", "cited_prior_source_ids"
+  ],
+  "properties": {
+    "schema_version": {"const": "agent_forecast_report_v2"},
+    "report_mode": {"const": "forecast"},
+    "truth_accessed": {"const": false},
+    "case_id": {"type": "string"},
+    "region_id": {"type": "string"},
+    "hazard": {"enum": ["heavy_rain", "heatwave"]},
+    "risk_level": {"enum": ["low", "medium", "high"]},
+    "risk_score": {"type": "number"},
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "rule_id": {"type": "string"},
+    "rule_status": {"enum": ["draft", "frozen", "example"]},
+    "knowledge_prior_status": {"enum": ["not_available", "context_only", "available"]},
+    "knowledge_prior_risk": {"type": ["string", "null"], "enum": ["low", "medium", "high", null]},
+    "conflict_flag": {"enum": ["none", "possible_underestimation", "possible_overestimation", "insufficient_primary_evidence", "spatial_scale_mismatch", "duration_state_uncertain"]},
+    "attention_level": {"enum": ["routine", "watch", "urgent"]},
+    "generation_mode": {"enum": ["deterministic", "openai_luna", "openai_terra"]},
+    "status_disclosure_zh": {"type": "string", "minLength": 1},
+    "executive_summary_zh": {"type": "string", "minLength": 1},
+    "weather_evidence_zh": {"type": "string", "minLength": 1},
+    "knowledge_context_zh": {"type": "string", "minLength": 1},
+    "limitations_zh": {"type": "array", "items": {"type": "string"}},
+    "recommended_actions_zh": {"type": "array", "items": {"type": "string"}},
+    "cited_prior_source_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  }
+}

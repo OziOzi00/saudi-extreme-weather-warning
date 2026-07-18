@@ -1,0 +1,53 @@
+version: forecast_spatial_diagnostics_candidate_v1_20260718
+status: preregistered_before_spatial_metric_evaluation
+locked_at: "2026-07-18T13:30:00Z"
+scope: forecast_grid_internal_diagnostic
+truth_access: forbidden
+may_change_meteorological_risk: false
+independent_use: forbidden_for_rule_selection
+
+inputs:
+  forecast_variable: daily_precip_total
+  forecast_resolution: 0.25 degree
+  region_boundary: data/reference/saudi_adm1_geoboundaries_2017.geojson
+  terrain_context: WorldClim 2.1 elevation 10 arc-minute
+
+features:
+  - precip_spatial_p95_mm
+  - precip_spatial_p99_mm
+  - precip_spatial_max_mm
+  - area_fraction_ge_medium
+  - area_fraction_ge_high
+  - top_5pct_precip_share
+  - p99_to_p95_ratio
+  - precip_weighted_elevation_m
+  - precip_share_above_1000m
+
+localized_hotspot_candidate:
+  required_risk_level: low
+  p99_uses_risk_medium_threshold: true
+  maximum_uses_risk_high_threshold: true
+  minimum_area_fraction_ge_medium: 0.01
+  conflict_flag: spatial_scale_mismatch
+  attention_level: watch
+  rationale_zh: >-
+    ADM1 P95未触发风险，但P99达到原中风险阈值、最大值达到原高风险阈值，
+    且至少1%区域超过中风险阈值；这只提示局地热点可能被P95平滑，
+    不能证明真实暴雨或改变冻结Risk JSON。
+
+evaluation:
+  dataset_split: development
+  target_windows_only: true
+  compare_against:
+    - frozen_risk_medium_or_high
+    - existing_auxiliary_consistency_attention
+  retain_gate:
+    required_miss_reduction_minimum: 1
+    maximum_new_false_attention: 1
+  if_gate_fails: diagnostic_only_not_agent_attention
+
+limitations:
+  - 诊断只读取同一份GraphCast/MAZU-like预测网格，不读取观测或灾害真值。
+  - 0.25度网格仍不能解析城市内涝、狭窄山谷或单体对流。
+  - WorldClim地形只用于描述热点位置，不参与本轮候选触发条件。
+  - development标签只能在无真值特征写出并锁定后用于评估。

@@ -1,0 +1,72 @@
+version: static_knowledge_context_v1_20260718
+status: context_only_not_validated
+knowledge_role: static_prior
+truth_access: forbidden
+may_change_meteorological_risk: false
+
+temporal_policy:
+  reference_period_start: "1970-01-01T00:00:00Z"
+  reference_period_end: "2000-12-31T23:59:59Z"
+  available_at: "2020-03-15T00:00:00Z"
+  valid_from: "2020-03-15T00:00:00Z"
+  valid_to: null
+  availability_note: >-
+    WorldClim 2.1 states a January 2020 release. This project uses 2020-03-15 as a
+    conservative availability cutoff because the downloaded source archives expose
+    March 2020 modification dates. Forecast cases before this cutoff must not use it.
+
+resolution:
+  arc_minutes: 10
+  approximate_cell_area_km2: 340
+  intended_scale: ADM1 regional context only
+
+sources:
+  - id: WORLDCLIM21_ELEV_10M
+    role: terrain_context
+    title: WorldClim 2.1 elevation derived from SRTM
+    source_url: https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_elev.zip
+    landing_page_url: https://www.worldclim.org/data/worldclim21.html
+    archive_name: wc2.1_10m_elev.zip
+    archive_sha256: 6a9f4e9a37f289d594ed1567b63be344a4dacf247f0b69756e81df031087e3bd
+    extracted_glob: elev/wc2.1_10m_elev.tif
+    unit: m
+  - id: WORLDCLIM21_PREC_10M
+    role: precipitation_climatology
+    title: WorldClim 2.1 monthly precipitation climatology 1970-2000
+    source_url: https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_prec.zip
+    landing_page_url: https://www.worldclim.org/data/worldclim21.html
+    archive_name: wc2.1_10m_prec.zip
+    archive_sha256: 1090f578f6402672a2b6438e252156f6cf867a25002a8ad6ffcbfa19e516ddc6
+    extracted_glob: prec/wc2.1_10m_prec_*.tif
+    unit: mm/month
+
+aggregation:
+  area_weighting: cosine_latitude
+  elevation_metrics:
+    - mean_m
+    - p10_m
+    - p50_m
+    - p90_m
+    - max_m
+    - p90_minus_p10_m
+    - share_above_1000m
+  precipitation_metrics:
+    - mean_mm
+    - p90_mm
+    - max_mm
+
+inference_policy:
+  output_status: context_only
+  knowledge_prior_risk: null
+  confidence: low
+  development_use: descriptive_only
+  independent_use: forbidden_for_rule_development
+  rationale_zh: >-
+    静态地形和1970-2000月气候基线只能解释区域背景，不能识别具体事件日，
+    因此本版本不生成知识风险等级，也不改变冻结气象风险。
+
+limitations:
+  - 10角分辨率只适合ADM1宏观背景，不能刻画城市内涝、山谷汇流或局地对流。
+  - WorldClim是长期平均气候面，不是2020年的同期观测或短期预报。
+  - 静态区域背景无法区分同一区域同一月份的事件日和对照日。
+  - 本资料只允许生成context_only说明；任何风险推理必须另行预注册和验证。

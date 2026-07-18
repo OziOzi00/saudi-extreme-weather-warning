@@ -1,0 +1,39 @@
+{
+  "schema_version": "heatwave_v4_layered_development_v1",
+  "scope": "retrospective_development_method_comparison",
+  "independent_heatwave_opened": false,
+  "evaluated_sa08_used_for_fitting": false,
+  "thresholds_changed": false,
+  "duration_rule_changed": false,
+  "maximum_blending_used": false,
+  "method_assessments": [
+    {
+      "method": "lead_specific_median",
+      "event_target_windows": 9,
+      "event_target_hits": 5,
+      "target_window_recall": 0.5555555555555556,
+      "control_target_windows": 6,
+      "control_correct_negatives": 6,
+      "target_window_specificity": 1.0,
+      "event_case_detection_fraction": 0.8,
+      "control_case_rejection_fraction": 1.0,
+      "passes_development_gates": false
+    },
+    {
+      "method": "pooled_median",
+      "event_target_windows": 9,
+      "event_target_hits": 5,
+      "target_window_recall": 0.5555555555555556,
+      "control_target_windows": 6,
+      "control_correct_negatives": 6,
+      "target_window_specificity": 1.0,
+      "event_case_detection_fraction": 0.6,
+      "control_case_rejection_fraction": 1.0,
+      "passes_development_gates": false
+    }
+  ],
+  "passing_methods": [],
+  "recommendation": "keep_blocked_and_redesign_numeric_calibration",
+  "can_freeze_now": false,
+  "can_open_independent_heatwave": false
+}

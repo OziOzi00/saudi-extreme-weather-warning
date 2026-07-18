@@ -1,0 +1,40 @@
+{
+  "schema_version": "heatwave_v4_1_weather_gate_v1",
+  "scope": "development_only_metric_correction",
+  "weather_truth_definition": "synchronous_ssod_observed_hot_day",
+  "event_context_scored_as_weather_truth": false,
+  "method_assessments": [
+    {
+      "method": "pooled_median",
+      "observed_hot_days": 6,
+      "observed_hot_day_hits": 3,
+      "observed_hot_day_recall": 0.5,
+      "observed_nonhot_days": 9,
+      "observed_nonhot_day_correct_negatives": 7,
+      "observed_nonhot_day_specificity": 0.7777777777777778,
+      "control_case_rejection_fraction": 1.0,
+      "event_context_windows": 9,
+      "event_context_positive_windows": 5,
+      "passes_weather_gates": false
+    },
+    {
+      "method": "lead_specific_median",
+      "observed_hot_days": 6,
+      "observed_hot_day_hits": 4,
+      "observed_hot_day_recall": 0.6666666666666666,
+      "observed_nonhot_days": 9,
+      "observed_nonhot_day_correct_negatives": 8,
+      "observed_nonhot_day_specificity": 0.8888888888888888,
+      "control_case_rejection_fraction": 1.0,
+      "event_context_windows": 9,
+      "event_context_positive_windows": 5,
+      "passes_weather_gates": true
+    }
+  ],
+  "selected_method_for_next_prospective_development": "lead_specific_median",
+  "recommendation": "preregister_new_prospective_development",
+  "rule_status": "draft_blocked",
+  "can_freeze_now": false,
+  "independent_heatwave_opened": false,
+  "can_open_independent_heatwave": false
+}
