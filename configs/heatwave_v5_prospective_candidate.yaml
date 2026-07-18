@@ -1,0 +1,68 @@
+version: heatwave_v5_cross_year_prospective_20260718
+status: preregistered_before_2018_forecast_access
+hazard: heatwave
+scope: cross_year_prospective_development
+dataset_split: development
+independent_heatwave_access: forbidden
+
+forecast_source:
+  model: GraphCast
+  provider: WeatherBench2
+  dataset_year: 2018
+  gcs_path: weatherbench2/datasets/graphcast/2018/date_range_2017-11-16_2019-02-01_12_hours_derived.zarr
+  metadata_listing_accessed_before_lock: true
+  forecast_arrays_accessed_before_lock: false
+
+candidate:
+  method: lead_specific_median
+  permitted_methods:
+    - lead_specific_median
+  source_aggregation: spatial_p95
+  corrections_degc:
+    24: 1.5939453125000007
+    48: 2.3055572509765625
+    72: 2.6780364990234347
+  correction_clip_degc:
+    minimum: -4.0
+    maximum: 4.0
+  correction_training_scope: approved_2020_retrospective_sa04_only
+  excluded_from_training:
+    - 20200623_00
+    - 20200702_00
+    - 20200729_00
+  maximum_blending_forbidden: true
+  threshold_search_forbidden: true
+
+thresholds:
+  hot_day:
+    formula: max(47.0, MAZU_2025_JJA_daily_spatial_p95_p50)
+    absolute_floor_degc: 47.0
+  severe_hot_day:
+    formula: max(49.0, MAZU_2025_JJA_daily_spatial_p95_p90)
+    absolute_floor_degc: 49.0
+  duration_rule: two_consecutive_candidate_hot_days_or_one_candidate_severe_day
+
+selection_rules:
+  utc_days_per_window: 3
+  minimum_station_count_per_day: 4
+  event: at_least_two_consecutive_observed_days_at_or_above_regional_hot_threshold
+  control: all_three_observed_days_at_or_below_45_degc
+  matched_pair_same_region: true
+  maximum_event_control_start_separation_days: 20
+  same_process_duplicate_events_forbidden: true
+
+evaluation:
+  weather_hot_day_prediction: candidate_hot_day
+  risk_alert_prediction: candidate_positive
+  event_context_is_not_automatically_weather_truth: true
+  success_gates:
+    minimum_event_cases: 3
+    minimum_control_cases: 2
+    minimum_observed_hot_day_recall: 0.60
+    minimum_observed_nonhot_day_specificity: 0.80
+    minimum_event_case_detection_fraction: 0.666667
+    required_control_case_rejection_fraction: 1.0
+  decision_policy:
+    pass: candidate_may_be_frozen_before_one_time_independent_heatwave_evaluation
+    fail: keep_heatwave_draft_blocked
+    independent_access_from_this_run: false

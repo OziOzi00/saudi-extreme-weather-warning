@@ -1,0 +1,74 @@
+{
+  "schema_version": "heatwave_v5_cross_year_prospective_lock_v1",
+  "locked_at": "2026-07-18T11:17:47Z",
+  "status": "locked_before_2018_graphcast_forecast_access",
+  "dataset_split": "development",
+  "hazard": "heatwave",
+  "selection_method": "observation_only_cross_year_matched_event_control",
+  "selected_case_ids": [
+    "20180601_00",
+    "20180614_00",
+    "20180619_00",
+    "20180623_00",
+    "20180709_00",
+    "20180719_00"
+  ],
+  "selected_event_count": 3,
+  "selected_control_count": 3,
+  "input_fingerprints": {
+    "ssod_source_manifest": {
+      "path": "manifests/ssod_v2_saudi_2018_files.csv",
+      "sha256": "5d283828d3ec0676271cf458338605bddbe494e00b3b5b99fcede309723e61ba"
+    },
+    "ssod_daily_summary": {
+      "path": "manifests/ssod_v2_saudi_2018_daily_summary.csv",
+      "sha256": "8df563212711197cfebf2cb52db96dcdcefbbd1a8fd431ce51def922e442ccbd"
+    },
+    "ssod_station_regions": {
+      "path": "manifests/ssod_v2_saudi_2018_station_regions.csv",
+      "sha256": "f72cc354bae5981fb0e8ce78240e6c6dd1771e668b58e8b3e36a88fecb766859"
+    },
+    "mazu_2025_statistics": {
+      "path": "handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv",
+      "sha256": "4beab1c9d64de7295a12f89effe254172903ff7901b44dd2892527cde92798bb"
+    },
+    "base_rule": {
+      "path": "configs/heatwave_rules_v2.yaml",
+      "sha256": "810a829a0a2e3afc25a73f52022e5f05468f36e9492bc4d6cef20df9d3ca09c1"
+    },
+    "method_selection_assessment": {
+      "path": "manifests/heatwave_v4_1_weather_gate_assessment.json",
+      "sha256": "6d7682877baeea1cb6eb592ebb9b5c6622230f814f78be2b0f3a61dc6e136b1a"
+    },
+    "calibration_pairs": {
+      "path": "handoff/weather_verification/heatwave_bias_cv_v2_pairs.csv",
+      "sha256": "0759fd83c41b6d058afeaaad29df375d624dca422654fc8edd4a86f56fa24c90"
+    },
+    "baseline_case_catalog": {
+      "path": "configs/case_catalog_candidates.csv",
+      "sha256": "fce0dbf265670cea6859d0079f421b808cbba2bc4e17b78da2b8d156a2e00756"
+    },
+    "candidate_config": {
+      "path": "configs/heatwave_v5_prospective_candidate.yaml",
+      "sha256": "a8f544e0d838e3140feb8e7e21ec0a599867cf53319fc204631ea9822f8790ab"
+    },
+    "selection": {
+      "path": "manifests/heatwave_v5_prospective_selection.csv",
+      "sha256": "317b39ca70eeb0817430c851dc785eb6884fb47be9fd384489e7964848e8cb76"
+    },
+    "batch_catalog_fingerprint": {
+      "path": "configs/heatwave_v5_prospective_batch_catalog.csv",
+      "sha256": "1125fc2c84dce5604d9b14ef52e965bf173d1b1cc85733d01f68566c23c88b8d"
+    }
+  },
+  "candidate_path": "configs/heatwave_v5_prospective_candidate.yaml",
+  "selection_file": "manifests/heatwave_v5_prospective_selection.csv",
+  "batch_catalog": "configs/heatwave_v5_prospective_batch_catalog.csv",
+  "graphcast_dataset": "weatherbench2/datasets/graphcast/2018/date_range_2017-11-16_2019-02-01_12_hours_derived.zarr",
+  "graphcast_metadata_listing_accessed": true,
+  "forecast_artifacts_present_at_lock": false,
+  "forecast_arrays_read_during_selection": false,
+  "independent_heatwave_opened": false,
+  "base_rule_modified": false,
+  "next_gate": "commit_and_push_lock_before_2018_graphcast_forecast_access"
+}

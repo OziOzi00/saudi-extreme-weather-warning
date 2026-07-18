@@ -1,0 +1,7 @@
+case_id,initial_time,event_type,notes
+20180601_00,2018-06-01T00:00:00Z,heatwave_event,Prospective 2018 SA-04 event; observation-only selection locked before forecast access.
+20180614_00,2018-06-14T00:00:00Z,heatwave_control,Prospective 2018 SA-04 matched control; observation-only selection locked before forecast access.
+20180619_00,2018-06-19T00:00:00Z,heatwave_event,Prospective 2018 SA-03 event; observation-only selection locked before forecast access.
+20180623_00,2018-06-23T00:00:00Z,heatwave_control,Prospective 2018 SA-03 matched control; observation-only selection locked before forecast access.
+20180709_00,2018-07-09T00:00:00Z,heatwave_event,Prospective 2018 SA-04 event; observation-only selection locked before forecast access.
+20180719_00,2018-07-19T00:00:00Z,heatwave_control,Prospective 2018 SA-04 matched control; observation-only selection locked before forecast access.
