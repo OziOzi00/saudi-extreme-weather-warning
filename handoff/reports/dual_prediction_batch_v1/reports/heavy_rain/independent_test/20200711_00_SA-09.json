@@ -1,0 +1,89 @@
+{
+  "schema_version": "agent_dual_prediction_report_v1",
+  "report_mode": "system_plus_llm_advisory",
+  "truth_accessed": false,
+  "case_id": "20200711_00",
+  "region_id": "SA-09",
+  "hazard": "heavy_rain",
+  "dataset_split": "independent_test",
+  "focus_lead_time_hours": 48,
+  "selected_joint_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+  "development_gate_passed": true,
+  "operating_status": "research_candidate",
+  "formal_warning_allowed": false,
+  "system_focus_risk_level": "low",
+  "llm_focus_advisory_risk_level": "low",
+  "llm_focus_confidence": "medium",
+  "focus_agreement": true,
+  "system_analysis_zh": "系统联合预测原样保留：24小时base_risk_level=low、joint_final_risk_level=low、knowledge_triggered=false、primary_ratio=0.25086944、support_count=1.0；48小时base_risk_level=low、joint_final_risk_level=low、knowledge_triggered=false、primary_ratio=0.153244328、support_count=2.0；72小时base_risk_level=low、joint_final_risk_level=low、knowledge_triggered=false、primary_ratio=0.099738178、support_count=1.0。三个窗口均采用cross_window_persistence上下文。",
+  "llm_advisory_summary_zh": "LLM独立综合预测：24/48/72小时重雨风险均为low，置信度分别为medium、medium、medium。24小时降水量信号弱，虽有较高可降水量和负omega局部支持，但不足以升档；48小时降水进一步偏低，omega空间上转为混合且总体上升运动减弱，IVT和风切变增强仅构成有限背景风险；72小时降水仍低，omega加权平均接近中性，虽IVT维持偏高、风切变仍强，但持续性降水动力支持不足。",
+  "comparison_analysis_zh": "系统联合预测在24/48/72小时三个窗口均为low，且基础风险也均为low；图谱持久性规则在三个窗口均未触发。LLM独立综合意见同样将三个窗口评为low，因此逐窗口风险等级一致。LLM判断主要基于降水总量整体偏低、500 hPa垂直速度由较明显上升运动逐步转为接近中性、可降水量由24小时的较高水平下降后维持，以及缺少跨窗口持续的系统知识触发信号。48小时和72小时的IVT及风切变偏高是潜在不确定性来源，但现有指标未形成与强降水风险相匹配的综合信号。",
+  "timeline_analysis": [
+    {
+      "lead_time_hours": 24,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "系统：base_risk_level=low，joint_final_risk_level=low，knowledge_triggered=false，primary_ratio=0.25086944，support_count=1.0。LLM：low，置信度medium。日降水加权平均0.396 mm、空间P95为1.254 mm，整体降水量级偏低；pwat加权平均41.69 kg m-2、omega500加权平均-0.073 Pa s-1提供一定水汽和上升运动背景，但信号不足以支持升档。",
+      "key_signals_zh": [
+        "daily_precip_total加权平均0.396 mm，空间P95 1.254 mm，最大值2.228 mm",
+        "pwat加权平均41.69 kg m-2，空间P95 46.17 kg m-2",
+        "omega500加权平均-0.073 Pa s-1，空间P95 -0.007 Pa s-1",
+        "系统primary_ratio=0.25086944，support_count=1.0，图谱知识未触发"
+      ]
+    },
+    {
+      "lead_time_hours": 48,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "系统：base_risk_level=low，joint_final_risk_level=low，knowledge_triggered=false，primary_ratio=0.153244328，support_count=2.0。LLM：low，置信度medium。日降水加权平均降至0.289 mm、空间P95降至0.766 mm；omega500加权平均为-0.045 Pa s-1且空间分布出现正值，动力抬升支持较24小时减弱或更不均一。IVT空间P95升至217.47 kg m-1 s-1、风切变空间P95升至39.04 m s-1，提示水汽输送和组织背景增强，但缺乏相应降水量及持续上升运动配合。",
+      "key_signals_zh": [
+        "daily_precip_total加权平均0.289 mm，空间P95 0.766 mm，最大值0.836 mm",
+        "omega500加权平均-0.045 Pa s-1，空间P95 0.038 Pa s-1，空间信号混合",
+        "IVT空间P95 217.47 kg m-1 s-1",
+        "wind_shear_850_200空间P95 39.04 m s-1",
+        "系统primary_ratio=0.153244328，support_count=2.0，图谱知识未触发"
+      ]
+    },
+    {
+      "lead_time_hours": 72,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "系统：base_risk_level=low，joint_final_risk_level=low，knowledge_triggered=false，primary_ratio=0.099738178，support_count=1.0。LLM：low，置信度medium。日降水加权平均为0.307 mm、空间P95为0.499 mm，仍处低水平；omega500加权平均接近中性（0.001 Pa s-1），表明区域平均上升运动支持进一步减弱。IVT空间P95仍为219.12 kg m-1 s-1、风切变空间P95为36.89 m s-1，构成背景不确定性，但未与降水和垂直运动形成一致的持续强降水组合。",
+      "key_signals_zh": [
+        "daily_precip_total加权平均0.307 mm，空间P95 0.499 mm，最大值0.592 mm",
+        "omega500加权平均0.001 Pa s-1，空间P95 0.046 Pa s-1，区域平均接近中性",
+        "IVT空间P95 219.12 kg m-1 s-1",
+        "wind_shear_850_200空间P95 36.89 m s-1",
+        "系统primary_ratio=0.099738178，support_count=1.0，图谱知识未触发"
+      ]
+    }
+  ],
+  "uncertainty_analysis_zh": "不确定性主要来自指标之间的不同步：IVT和风切变在48/72小时保持较高，而降水量总体较低、omega500从负值趋近中性；这意味着存在水汽和动力组织背景，但缺少足够一致的降水响应信号。24小时窗口的高pwat和负omega提供有限支持，却未改变低降水主信号。系统与LLM没有发生风险等级分歧；二者一致不能替代独立验证。适用边界是研究性、预测时点信息隔离和当前区域尺度指标分析，不应外推为正式预警、局地确定性判断或事后准确性结论。",
+  "limitations_zh": [
+    "本报告仅使用预测阶段可用的MAZU-like指标、三窗口变化、受控图谱上下文和方法边界。",
+    "未读取同期观测、事件或对照标签、命中、漏报、误报、灾害新闻或事后答案。",
+    "系统方法的开发集指标不代表独立测试窗口的实际表现。",
+    "该结果为研究候选或研究意见，不构成正式业务预警。",
+    "区域空间极值与加权平均之间存在差异，局地短时强降水不能由本报告完全排除。"
+  ],
+  "recommended_actions_zh": [
+    "将本结果作为研究候选记录，保留系统联合预测与LLM独立意见的双轨分离。",
+    "继续监测后续预测中的降水量、omega500、pwat、IVT及风切变是否共同转向并持续支持重雨风险。",
+    "若用于研究评估，应分别评分系统预测和LLM意见，不将两者合并为单一标签。",
+    "不得依据本报告发布正式业务预警。"
+  ],
+  "provenance_summary_zh": "系统预测来自独立测试集的受控live Neo4j查询，预测锁定哈希为1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6；方法选择锁定哈希为8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545。系统与LLM意见均在预测信息隔离约束下形成。",
+  "generation_mode": "openai_luna"
+}

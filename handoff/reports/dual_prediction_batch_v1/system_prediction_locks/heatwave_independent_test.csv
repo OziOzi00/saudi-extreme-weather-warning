@@ -1,0 +1,7 @@
+case_id,region_id,lead_time_hours,valid_date,base_method,knowledge_mode,base_risk_level,candidate_tmax_degc,hot_day_threshold_degc,knowledge_triggered,joint_final_risk_level
+20200729_00,SA-04,24,2020-07-29,pooled_median_loco,temporal_or_spatial,medium,48.8784,47.249969,False,medium
+20200729_00,SA-04,48,2020-07-30,pooled_median_loco,temporal_or_spatial,high,50.505765999999994,47.249969,False,high
+20200729_00,SA-04,72,2020-07-31,pooled_median_loco,temporal_or_spatial,high,50.005680999999996,47.249969,False,high
+20200729_00,SA-08,24,2020-07-29,pooled_median_loco,temporal_or_spatial,high,50.319849000000005,47.0,False,high
+20200729_00,SA-08,48,2020-07-30,pooled_median_loco,temporal_or_spatial,high,49.969494999999995,47.0,False,high
+20200729_00,SA-08,72,2020-07-31,pooled_median_loco,temporal_or_spatial,high,48.82533600000001,47.0,False,high

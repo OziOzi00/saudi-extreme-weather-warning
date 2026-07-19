@@ -5,15 +5,21 @@ from pathlib import Path
 
 def test_mazu_like_region_summary_has_all_leads_regions_and_indicators() -> None:
     root = Path(__file__).resolve().parents[1]
-    path = root / "handoff" / "region_summaries" / "mazu_like_adm1_indicator_summaries.csv"
-    with path.open(encoding="utf-8", newline="") as stream:
-        rows = list(csv.DictReader(stream))
+    summary_dir = root / "handoff" / "region_summaries"
+    paths = [
+        summary_dir / "mazu_like_adm1_indicator_summaries.csv",
+        summary_dir / "heatwave_v5_2018_adm1_indicator_summaries.csv",
+    ]
+    rows = []
+    for path in paths:
+        with path.open(encoding="utf-8", newline="") as stream:
+            rows.extend(csv.DictReader(stream))
 
     forecast_files = sorted((root / "handoff" / "mazu_like").glob("mazu_like_*.nc"))
     expected_sources = {f"handoff/mazu_like/{item.name}" for item in forecast_files}
     rows_per_source = Counter(row["source_file"] for row in rows)
 
-    assert len(forecast_files) == 63
+    assert len(forecast_files) == 81
     assert len(rows) == len(forecast_files) * 13 * 11
     assert set(rows_per_source) == expected_sources
     assert set(rows_per_source.values()) == {13 * 11}

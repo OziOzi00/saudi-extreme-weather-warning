@@ -1,0 +1,30 @@
+[
+  {
+    "hazard": "heavy_rain",
+    "dataset_split": "development",
+    "windows": 30,
+    "cases": 5,
+    "regions": 2
+  },
+  {
+    "hazard": "heavy_rain",
+    "dataset_split": "independent_test",
+    "windows": 18,
+    "cases": 4,
+    "regions": 3
+  },
+  {
+    "hazard": "heatwave",
+    "dataset_split": "development",
+    "windows": 48,
+    "cases": 16,
+    "regions": 3
+  },
+  {
+    "hazard": "heatwave",
+    "dataset_split": "independent_test",
+    "windows": 6,
+    "cases": 1,
+    "regions": 2
+  }
+]

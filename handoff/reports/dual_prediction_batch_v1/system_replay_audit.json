@@ -1,0 +1,34 @@
+[
+  {
+    "hazard": "heavy_rain",
+    "dataset_split": "development",
+    "rows": 15,
+    "reference_decisions_reproduced": true,
+    "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_development.csv",
+    "sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f"
+  },
+  {
+    "hazard": "heavy_rain",
+    "dataset_split": "independent_test",
+    "rows": 18,
+    "reference_decisions_reproduced": true,
+    "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_independent_test.csv",
+    "sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6"
+  },
+  {
+    "hazard": "heatwave",
+    "dataset_split": "development",
+    "rows": 48,
+    "reference_decisions_reproduced": true,
+    "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_development.csv",
+    "sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047"
+  },
+  {
+    "hazard": "heatwave",
+    "dataset_split": "independent_test",
+    "rows": 6,
+    "reference_decisions_reproduced": true,
+    "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_independent_test.csv",
+    "sha256": "b4e9ce511fe9f77ae8b4daca29e534f6bd06cc7a77f05eec10e771c8167d2d0d"
+  }
+]

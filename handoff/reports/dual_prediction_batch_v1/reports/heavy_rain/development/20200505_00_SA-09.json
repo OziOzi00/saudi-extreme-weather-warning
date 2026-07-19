@@ -1,0 +1,91 @@
+{
+  "schema_version": "agent_dual_prediction_report_v1",
+  "report_mode": "system_plus_llm_advisory",
+  "truth_accessed": false,
+  "case_id": "20200505_00",
+  "region_id": "SA-09",
+  "hazard": "heavy_rain",
+  "dataset_split": "development",
+  "focus_lead_time_hours": 48,
+  "selected_joint_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+  "development_gate_passed": true,
+  "operating_status": "research_candidate",
+  "formal_warning_allowed": false,
+  "system_focus_risk_level": "high",
+  "llm_focus_advisory_risk_level": "medium",
+  "llm_focus_confidence": "medium",
+  "focus_agreement": false,
+  "system_analysis_zh": "系统联合预测原样保存：24小时base_method=v2_base，base_risk_level=low，joint_final_risk_level=low，forecast_features.primary_ratio=0.59329696，support_count=2.0，knowledge_mode=cross_window_persistence，knowledge_triggered=false；48小时base_method=v2_base，base_risk_level=high，joint_final_risk_level=high，forecast_features.primary_ratio=2.5208272000000003，support_count=2.0，knowledge_mode=cross_window_persistence，knowledge_triggered=false；72小时base_method=v2_base，base_risk_level=medium，joint_final_risk_level=medium，forecast_features.primary_ratio=1.38603032，support_count=2.0，knowledge_mode=cross_window_persistence，knowledge_triggered=false。系统选定规则为joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3；truth_accessed=false。",
+  "llm_advisory_summary_zh": "LLM独立综合预测认为风险从24小时的low升至48小时的medium，并在72小时维持medium。主要依据是48小时水汽含量、降水量和负omega500达到三窗口中较有利于降水增强的组合；但该时段IVT较24小时明显下降，且整体降水量仍属中等，因此不足以支持high。72小时降水和IVT回落，但负的omega500和较高风切变使风险不降至low。该意见是研究性、可单独评分的咨询预测，不是正式预警。",
+  "comparison_analysis_zh": "系统联合预测的风险序列为24小时low、48小时high、72小时medium；LLM独立综合意见为24小时low、48小时medium、72小时medium。24小时两者一致：降水量较低，虽有较高可降水量和中等偏强的水汽输送，但500 hPa垂直运动加权平均值为正，支持强降水的动力信号有限。48小时出现主要分歧：系统基于primary_ratio=2.5208272000000003、support_count=2.0给出high；LLM注意到该时段日降水加权平均值升至5.579544 mm、空间P95为12.604136 mm、pwat加权平均值为55.075757 kg m-2且omega500加权平均值为-0.066953995 Pa s-1，支持风险上升，但IVT加权平均值降至62.524432 kg m-1 s-1，因此将综合风险评为medium而非high。72小时系统回落至medium，LLM同样评为medium：降水和水汽输送较48小时减弱，但omega500仍略为负，且风切变加权平均值升至13.604915 m s-1，故仍保留中等风险。该比较仅使用预测时可用指标、三窗口变化、图谱上下文状态和方法边界，未使用同期观测或任何事后标签。",
+  "timeline_analysis": [
+    {
+      "lead_time_hours": 24,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "LLM独立意见评为low。daily_precip_total加权平均值为1.5518871 mm、空间P95为2.9664848 mm；pwat加权平均值为52.405119 kg m-2，IVT加权平均值为109.47364 kg m-1 s-1。虽然水汽条件不弱，但omega500加权平均值为0.038389853 Pa s-1且最小值仅为-0.02066757 Pa s-1，动力抬升支持有限，故综合维持低风险。",
+      "key_signals_zh": [
+        "日降水加权平均值1.5518871 mm，空间P95 2.9664848 mm",
+        "pwat加权平均值52.405119 kg m-2",
+        "IVT加权平均值109.47364 kg m-1 s-1",
+        "omega500加权平均值0.038389853 Pa s-1，整体上升运动信号有限",
+        "系统primary_ratio=0.59329696，support_count=2.0，knowledge_triggered=false"
+      ]
+    },
+    {
+      "lead_time_hours": 48,
+      "system_base_risk_level": "high",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "high",
+      "llm_advisory_risk_level": "medium",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": false,
+      "advisory_analysis_zh": "LLM独立意见评为medium。该窗口daily_precip_total加权平均值升至5.579544 mm、空间P95升至12.604136 mm，pwat加权平均值升至55.075757 kg m-2，omega500加权平均值转为-0.066953995 Pa s-1，显示降水和动力抬升条件较24小时更有利。但IVT加权平均值降至62.524432 kg m-1 s-1，故水汽输送并非全面增强；综合判定为中等而非高风险。",
+      "key_signals_zh": [
+        "日降水加权平均值5.579544 mm，空间P95 12.604136 mm",
+        "pwat加权平均值55.075757 kg m-2",
+        "omega500加权平均值-0.066953995 Pa s-1，较24小时更支持上升运动",
+        "IVT加权平均值62.524432 kg m-1 s-1，较24小时下降",
+        "系统primary_ratio=2.5208272000000003，support_count=2.0，knowledge_triggered=false"
+      ]
+    },
+    {
+      "lead_time_hours": 72,
+      "system_base_risk_level": "medium",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "medium",
+      "llm_advisory_risk_level": "medium",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "LLM独立意见评为medium。daily_precip_total加权平均值回落至2.9071527 mm、空间P95为6.9301516 mm，IVT加权平均值为85.515912 kg m-1 s-1，较48小时有所恢复但低于24小时；pwat仍为53.056287 kg m-2，omega500加权平均值为-0.018340264 Pa s-1，仍保留轻微上升运动信号。风切变加权平均值升至13.604915 m s-1，支持保留中等风险，但总体降水信号弱于48小时。",
+      "key_signals_zh": [
+        "日降水加权平均值2.9071527 mm，空间P95 6.9301516 mm",
+        "IVT加权平均值85.515912 kg m-1 s-1",
+        "pwat加权平均值53.056287 kg m-2",
+        "omega500加权平均值-0.018340264 Pa s-1",
+        "风切变加权平均值13.604915 m s-1",
+        "系统primary_ratio=1.38603032，support_count=2.0，knowledge_triggered=false"
+      ]
+    }
+  ],
+  "uncertainty_analysis_zh": "不确定性主要来自三窗口之间指标不同步：24小时IVT较强但降水和omega500支持较弱；48小时降水、pwat和omega500最有利但IVT下降；72小时降水回落而水汽和动力信号仍有残留。系统在48小时依据primary_ratio将风险定为high，LLM则对多指标一致性和绝对量级采取较保守解释，因此产生唯一的风险等级分歧。该差异应视为模型与咨询意见的可解释分歧，而非对任何事后结果的判断。两类输出均受区域平均/分位数汇总、有限预报窗口、图谱知识未触发以及研究运行边界约束；在缺乏同期观测和独立测试验证时，不应外推为正式业务预警。",
+  "limitations_zh": [
+    "数据集分割为development，开发集指标不能代表独立测试表现。",
+    "系统方法状态虽显示development_gate_passed=true，但formal_warning_allowed=false；本报告不授权正式预警。",
+    "系统图谱知识模式为cross_window_persistence，但knowledge_triggered=false；不能据此推断未提供的事件影响。",
+    "LLM意见依赖有限的三个预测窗口及区域汇总指标，对局地极端降水、空间错位和预报误差敏感。",
+    "禁止使用同期观测、事件/对照标签、命中、漏报、误报、灾害新闻或事后答案进行校正。"
+  ],
+  "recommended_actions_zh": [
+    "将本结果限定为研究候选输出，不发布正式预警。",
+    "重点复核48小时窗口的降水、水汽、omega500和IVT预测稳定性，并比较后续预测批次的趋势。",
+    "对72小时窗口保持中等风险监测，特别关注降水和负omega500信号是否持续。",
+    "在独立测试集上单独评估系统预测与LLM意见，不使用本开发集指标替代业务验证。"
+  ],
+  "provenance_summary_zh": "系统预测来自live_neo4j查询模式及预测锁文件handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_development.csv，prediction_lock_sha256=e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f。方法选择锁为manifests/joint_pipeline_selection_lock_v2.json，selection_lock_sha256=8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545。truth_accessed=false。",
+  "generation_mode": "openai_luna"
+}

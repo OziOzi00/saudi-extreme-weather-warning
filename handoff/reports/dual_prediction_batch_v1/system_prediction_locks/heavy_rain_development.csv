@@ -1,0 +1,16 @@
+case_id,prediction_case_id,region_id,lead_time_hours,base_method,knowledge_mode,base_risk_level,knowledge_triggered,joint_final_risk_level,primary_ratio,support_count
+20200501_00,20200501_00_024,SA-09,24,v2_base,cross_window_persistence,low,True,medium,0.302582,2
+20200501_00,20200501_00_048,SA-09,48,v2_base,cross_window_persistence,low,True,medium,0.57966504,2
+20200501_00,20200501_00_072,SA-09,72,v2_base,cross_window_persistence,low,True,medium,0.5287658399999999,1
+20200505_00,20200505_00_024,SA-09,24,v2_base,cross_window_persistence,low,False,low,0.59329696,2
+20200505_00,20200505_00_048,SA-09,48,v2_base,cross_window_persistence,high,False,high,2.5208272000000003,2
+20200505_00,20200505_00_072,SA-09,72,v2_base,cross_window_persistence,medium,False,medium,1.3860303200000001,2
+20200515_00,20200515_00_024,SA-09,24,v2_base,cross_window_persistence,low,False,low,0.42866918,1
+20200515_00,20200515_00_048,SA-09,48,v2_base,cross_window_persistence,low,False,low,0.44904286000000004,2
+20200515_00,20200515_00_072,SA-09,72,v2_base,cross_window_persistence,low,False,low,0.153150964,1
+20201109_00,20201109_00_024,SA-03,24,v2_base,cross_window_persistence,low,False,low,0.4594558,3
+20201109_00,20201109_00_048,SA-03,48,v2_base,cross_window_persistence,low,False,low,0.194632322,3
+20201109_00,20201109_00_072,SA-03,72,v2_base,cross_window_persistence,low,False,low,0.11104225999999999,3
+20201119_00,20201119_00_024,SA-03,24,v2_base,cross_window_persistence,low,False,low,0.040069578,4
+20201119_00,20201119_00_048,SA-03,48,v2_base,cross_window_persistence,medium,False,medium,1.58019392,4
+20201119_00,20201119_00_072,SA-03,72,v2_base,cross_window_persistence,medium,False,medium,1.36816876,3

@@ -1,0 +1,87 @@
+{
+  "schema_version": "agent_dual_prediction_report_v1",
+  "report_mode": "system_plus_llm_advisory",
+  "truth_accessed": false,
+  "case_id": "20200515_00",
+  "region_id": "SA-09",
+  "hazard": "heavy_rain",
+  "dataset_split": "development",
+  "focus_lead_time_hours": 48,
+  "selected_joint_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+  "development_gate_passed": true,
+  "operating_status": "research_candidate",
+  "formal_warning_allowed": false,
+  "system_focus_risk_level": "low",
+  "llm_focus_advisory_risk_level": "low",
+  "llm_focus_confidence": "medium",
+  "focus_agreement": true,
+  "system_analysis_zh": "系统联合预测原样保留：case_id=20200515_00；region_id=SA-09；hazard=heavy_rain；selected_rule=joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3；24小时base_risk_level=low、joint_final_risk_level=low、knowledge_triggered=false、primary_ratio=0.42866918、support_count=1.0；48小时base_risk_level=low、joint_final_risk_level=low、knowledge_triggered=false、primary_ratio=0.44904286、support_count=2.0；72小时base_risk_level=low、joint_final_risk_level=low、knowledge_triggered=false、primary_ratio=0.153150964、support_count=1.0；truth_accessed=false。",
+  "llm_advisory_summary_zh": "基于完整预测指标的独立综合意见：24、48、72小时重雨风险均为low。24至48小时降水均值基本持平且空间P95略高，但绝对量仍低；至72小时降水、IVT和上升运动支持均减弱。PWAT偏高、局地负omega及中等风切变构成残余不确定性，但不足以将综合风险上调至medium或high。",
+  "comparison_analysis_zh": "系统联合预测在24、48、72小时均为low，且v2_base基础风险均为low；跨窗口持久性知识规则三窗均未触发。LLM独立意见同样将三个窗口评为low，因此agreement_with_system在各窗口均为true。指标演变显示：24小时降水加权均值0.843 mm、空间P95为2.143 mm，48小时分别为0.884 mm和2.245 mm，72小时下降至0.518 mm和0.766 mm；IVT加权均值由50.759降至40.998再降至33.562 kg m-1 s-1，降水和水汽输送在72小时总体减弱。可降水量维持在约38.8–40.9 kg m-2，500 hPa垂直运动加权均值为负但72小时绝对值减弱，未形成足以改变重雨低风险判断的综合信号。系统与LLM没有风险等级分歧；LLM判断主要受低降水量级、IVT下降及72小时降水进一步减弱支持，同时保留对较高PWAT、局地负omega和中等风切变的谨慎。",
+  "timeline_analysis": [
+    {
+      "lead_time_hours": 24,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "24小时：日降水加权均值0.84271398 mm、空间P95 2.1433459 mm，IVT加权均值50.758861 kg m-1 s-1、P95 60.620727，PWAT加权均值39.546371 kg m-2，omega500加权均值-0.056898814 Pa s-1。降水量级偏低，但水汽和负omega提供一定支持；综合仍为low。",
+      "key_signals_zh": [
+        "daily_precip_total加权均值0.84271398 mm，空间P95 2.1433459 mm",
+        "IVT加权均值50.758861 kg m-1 s-1，空间P95 60.620727",
+        "PWAT加权均值39.546371 kg m-2",
+        "omega500加权均值-0.056898814 Pa s-1"
+      ]
+    },
+    {
+      "lead_time_hours": 48,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "48小时：日降水加权均值升至0.88356703 mm、空间P95升至2.2452143 mm，但IVT加权均值降至40.998438 kg m-1 s-1；PWAT升至40.910478 kg m-2，omega500仍略为负。降水局地统计量略有增强与水汽输送减弱并存，信号混合且总量仍低，综合维持low。",
+      "key_signals_zh": [
+        "daily_precip_total加权均值0.88356703 mm，空间P95 2.2452143 mm",
+        "IVT加权均值40.998438 kg m-1 s-1，空间P95 53.522914",
+        "PWAT加权均值40.910478 kg m-2",
+        "omega500加权均值-0.058421199 Pa s-1"
+      ]
+    },
+    {
+      "lead_time_hours": 72,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "high",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "72小时：日降水加权均值降至0.51845024 mm、空间P95降至0.76575482 mm，IVT加权均值降至33.562159 kg m-1 s-1，omega500加权均值绝对值减弱至-0.027486923 Pa s-1；PWAT仍为38.786124 kg m-2。主要重雨支持进一步减弱，尽管tmax空间P95仍约40.76°C、风切变P95约25.09 m s-1，但这些指标不改变本重雨风险判断，综合为low。",
+      "key_signals_zh": [
+        "daily_precip_total加权均值0.51845024 mm，空间P95 0.76575482 mm",
+        "IVT加权均值33.562159 kg m-1 s-1，空间P95 38.533874",
+        "PWAT加权均值38.786124 kg m-2",
+        "omega500加权均值-0.027486923 Pa s-1",
+        "风切变850–200 hPa空间P95 25.086854 m s-1"
+      ]
+    }
+  ],
+  "uncertainty_analysis_zh": "不确定性主要来自24至48小时降水空间P95的小幅上升、持续偏高的PWAT、局地负omega以及中等至偏高的垂直风切变；这些信号并未与持续增强的IVT和降水量共同出现。72小时各主要重雨支持指标减弱，因此远期方向判断较清晰，但空间汇总可能遗漏局地极端结构。该意见仅适用于本案例、SA-09区域及当前三个预测窗口的研究性重雨风险分级；不得解释为正式预警或事后验证结论。",
+  "limitations_zh": [
+    "本报告仅使用预测阶段可用的MAZU-like指标、三窗口变化、受控系统输出、图谱上下文和方法边界；未访问同期观测、事件或对照标签及任何事后答案。",
+    "数据集标记为development；开发集指标不能替代独立测试集验证，不能据此推断业务泛化性能。",
+    "系统方法虽通过开发门槛，但当前operating_status为research_candidate，且约束明确禁止将任一预测转化为正式业务预警。",
+    "指标为区域汇总和空间统计量，可能掩盖局地强降水结构；负omega、PWAT和风切变的存在使局地风险仍有不确定性。",
+    "本报告不提供命中、漏报、误报或事件发生判断。"
+  ],
+  "recommended_actions_zh": [
+    "将本结果作为研究候选预测保存，并保持系统联合预测与LLM意见分离记录。",
+    "在24、48、72小时窗口继续监视后续预测中的降水、IVT、PWAT和omega500变化，特别关注空间P95是否同步增强。",
+    "如需业务决策，应另行经过授权的业务预警流程和独立验证；本报告不授权正式预警。"
+  ],
+  "provenance_summary_zh": "系统预测来自受控prediction lock：e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f；选择锁为8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545。查询模式为live_neo4j，数据集分层为development。系统规则为joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3。",
+  "generation_mode": "openai_luna"
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "agent_dual_prediction_report_v1",
+  "report_mode": "system_plus_llm_advisory",
+  "truth_accessed": false,
+  "case_id": "20200711_00",
+  "region_id": "SA-14",
+  "hazard": "heavy_rain",
+  "dataset_split": "independent_test",
+  "focus_lead_time_hours": 48,
+  "selected_joint_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+  "development_gate_passed": true,
+  "operating_status": "research_candidate",
+  "formal_warning_allowed": false,
+  "system_focus_risk_level": "low",
+  "llm_focus_advisory_risk_level": "low",
+  "llm_focus_confidence": "medium",
+  "focus_agreement": true,
+  "system_analysis_zh": "系统联合预测原始结果逐窗口保留：24小时base_method=v2_base、base_risk_level=low、primary_ratio=0.114907614、support_count=1.0、joint_final_risk_level=low、knowledge_mode=cross_window_persistence、knowledge_triggered=false；48小时base_method=v2_base、base_risk_level=low、primary_ratio=0.146008578、support_count=1.0、joint_final_risk_level=low、knowledge_mode=cross_window_persistence、knowledge_triggered=false；72小时base_method=v2_base、base_risk_level=low、primary_ratio=0.105542056、support_count=2.0、joint_final_risk_level=low、knowledge_mode=cross_window_persistence、knowledge_triggered=false。系统预测锁SHA-256为1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6，truth_accessed=false。",
+  "llm_advisory_summary_zh": "LLM综合判断为：24小时heavy rain风险low，48小时low，72小时medium、置信度medium。前两窗口降水总量及区域高分位均较低；72小时可降水量加大、IVT高分位增强且500 hPa高度继续下降，提示后期水汽条件和天气尺度背景有所增强，但日降水量仍处低水平，omega500平均值接近零且风场变化不足以支持high判断。",
+  "comparison_analysis_zh": "系统联合预测在24/48/72小时均为low，且图谱知识触发均为false。LLM独立意见在24和48小时与系统一致；72小时因可降水量、可降水输送和部分区域湿度指标增强而上调至medium，但降水总量仍偏低、上升运动信号不强，因此未上调为high。该分歧仅表示预测意见差异，不构成正式业务预警。",
+  "timeline_analysis": [
+    {
+      "lead_time_hours": 24,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "24小时：区域加权平均日降水量0.2453 mm、空间P95为0.5745 mm，IVT加权平均116.48 kg m-1 s-1、P95为134.11，PWAT平均23.38 kg m-2；omega500平均-0.0280 Pa s-1，存在有限上升运动但降水量整体偏低。LLM判为low，与系统low一致。",
+      "key_signals_zh": [
+        "日降水加权平均0.2453 mm，空间P95 0.5745 mm",
+        "IVT平均116.48、空间P95 134.11 kg m-1 s-1",
+        "PWAT平均23.38 kg m-2",
+        "omega500平均-0.0280 Pa s-1，垂直上升信号有限"
+      ]
+    },
+    {
+      "lead_time_hours": 48,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "low",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "48小时：日降水加权平均升至0.3314 mm、空间P95升至0.7300 mm，但仍属低量级；PWAT平均23.81 kg m-2略升，IVT平均降至107.27且P95为144.09，omega500平均-0.0383，支持信号混合。LLM维持low，与系统low一致。",
+      "key_signals_zh": [
+        "日降水加权平均0.3314 mm，空间P95 0.7300 mm",
+        "PWAT平均23.81 kg m-2，较24小时略增",
+        "IVT空间P95 144.09但加权平均107.27 kg m-1 s-1",
+        "omega500平均-0.0383 Pa s-1；降水与动力信号未形成强一致增强"
+      ]
+    },
+    {
+      "lead_time_hours": 72,
+      "system_base_risk_level": "low",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "low",
+      "llm_advisory_risk_level": "medium",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": false,
+      "advisory_analysis_zh": "72小时：PWAT平均增至28.95 kg m-2，IVT空间P95增至161.32 kg m-1 s-1，500 hPa位势高度继续降低，显示后期水汽和大尺度背景较前期增强；但日降水加权平均仅0.3616 mm、最大0.6194 mm，omega500平均-0.0101且上升运动减弱，故LLM上调为medium而非high。系统仍为low，形成分歧。",
+      "key_signals_zh": [
+        "PWAT平均28.95 kg m-2，较48小时明显增加",
+        "IVT空间P95 161.32 kg m-1 s-1，平均111.43 kg m-1 s-1",
+        "500 hPa位势高度加权平均5869.77 gpm，较前两窗口继续降低",
+        "日降水加权平均0.3616 mm、最大0.6194 mm，仍未显示高量级降水",
+        "omega500平均-0.0101 Pa s-1，上升运动信号较48小时减弱"
+      ]
+    }
+  ],
+  "uncertainty_analysis_zh": "24至48小时的主要不确定性来自水汽输送增强与实际降水量偏低之间的不一致；48至72小时则表现为PWAT和IVT增强，但omega500上升运动减弱、降水总量仍低。系统规则基于primary_ratio、support_count及三窗口持续性，三个窗口均未触发图谱知识修正；LLM更重视72小时的水汽趋势，因此仅在该窗口与系统产生medium对low的分歧。该意见对局地强降水、未解析的中小尺度对流以及超出当前预测指标覆盖范围的变化不敏感。",
+  "limitations_zh": [
+    "未访问同期观测、事件或对照标签、命中漏报误报及任何事后答案。",
+    "系统结果仅按受控预测锁逐项保留；LLM意见是基于预测阶段可用指标的独立 advisory，不替代系统联合预测。",
+    "区域统计量可能掩盖局地降水、辐合或强对流差异；当前指标不足以确认局地极端降水。",
+    "开发集指标不能直接代表本独立测试案例的实际表现。",
+    "两类预测均不是正式业务预警，且当前方法边界明确禁止正式预警授权。"
+  ],
+  "recommended_actions_zh": [
+    "将系统联合预测与LLM advisory分开记录和评分，不合并为单一标签。",
+    "在72小时窗口对水汽输送、可降水量、垂直运动和降水空间集中度进行后续预测更新。",
+    "将72小时medium仅作为研究性风险提示，不授权正式预警或对外业务行动。",
+    "继续遵守预测锁、选择锁和truth isolation约束。"
+  ],
+  "provenance_summary_zh": "案例来自independent_test，采用live_neo4j查询。系统预测锁路径为handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_independent_test.csv，prediction lock SHA-256为1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6；联合方法选择锁SHA-256为8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545。truth_accessed=false。",
+  "generation_mode": "openai_luna"
+}

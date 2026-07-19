@@ -1,0 +1,87 @@
+{
+  "schema_version": "agent_dual_prediction_report_v1",
+  "report_mode": "system_plus_llm_advisory",
+  "truth_accessed": false,
+  "case_id": "20200715_00",
+  "region_id": "SA-04",
+  "hazard": "heatwave",
+  "dataset_split": "development",
+  "focus_lead_time_hours": 48,
+  "selected_joint_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+  "development_gate_passed": false,
+  "operating_status": "research_only_blocked",
+  "formal_warning_allowed": false,
+  "system_focus_risk_level": "high",
+  "llm_focus_advisory_risk_level": "high",
+  "llm_focus_confidence": "high",
+  "focus_agreement": true,
+  "system_analysis_zh": "以下系统联合预测按预测锁逐项保留：24小时base risk=medium、joint final risk=medium、knowledge_triggered=false；48小时base risk=high、joint final risk=high、knowledge_triggered=false；72小时base risk=high、joint final risk=high、knowledge_triggered=false。系统采用pooled_median_loco基础方法及锁定联合规则；系统联合等级未被LLM修改。",
+  "llm_advisory_summary_zh": "独立LLM综合判断：SA-04未来24、48、72小时均存在high级高温风险。24小时的区域高温已接近/局地超过系统提供的热日阈值，且夜间温度偏高；48小时尽管白天温度统计量有所回落，仍维持广泛强热与高夜温；72小时继续呈高温背景，但日间高温空间分位和均值下行，故置信度降为medium。该意见仅供研究评分与后续人工复核，不授权正式预警。",
+  "comparison_analysis_zh": "系统联合预测在24小时为medium、48和72小时为high；LLM独立综合意见为三个窗口均high，因此仅在24小时存在分歧。分歧源于LLM更重视区域局地极端高温、持续偏高的夜间最低温及连续窗口的热暴露背景；系统在24小时维持其锁定的medium判定。48和72小时两者均为high，但LLM对72小时的置信度低于48小时，反映白天高温空间分位与区域均值逐步回落。",
+  "timeline_analysis": [
+    {
+      "lead_time_hours": 24,
+      "system_base_risk_level": "medium",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "medium",
+      "llm_advisory_risk_level": "high",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": false,
+      "advisory_analysis_zh": "LLM独立评估为high。24小时区域加权平均tmax为46.02°C、空间P95为47.15°C、最大值为47.50°C，显示局地存在很强日间高温；加权平均tmin为33.42°C、P95为35.13°C，提示夜间降温有限。500 hPa位势高度加权平均5888.30 gpm，且降水加权平均仅0.22 mm，支持偏热、少降水背景。虽然高温空间P95略低于系统所列47.25°C热日阈值，局地最大值与高夜温使LLM将风险上调为high；因阈值附近和空间异质性，置信度为medium。",
+      "key_signals_zh": [
+        "tmax：加权平均46.02°C，P95 47.15°C，最大47.50°C",
+        "tmin：加权平均33.42°C，P95 35.13°C",
+        "500 hPa位势高度加权平均5888.30 gpm；降水加权平均0.22 mm",
+        "图谱temporal_or_spatial模式未触发"
+      ]
+    },
+    {
+      "lead_time_hours": 48,
+      "system_base_risk_level": "high",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "high",
+      "llm_advisory_risk_level": "high",
+      "llm_advisory_confidence": "high",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "LLM独立评估为high，且为三个窗口中置信度最高。日间高温虽较24小时回落，但tmax加权平均仍为45.22°C、P95为46.33°C；tmin加权平均33.10°C、P95 35.02°C，持续高夜温意味着热负荷缺乏充分缓解。降水加权平均0.36 mm，500 hPa位势高度加权平均5865.44 gpm，整体仍是干热环境。相对24小时，近地风加权平均升至4.21 m/s，可能带来一定局地缓解，但不足以抵消持续热暴露信号。",
+      "key_signals_zh": [
+        "tmax：加权平均45.22°C，P95 46.33°C，最大46.85°C",
+        "tmin：加权平均33.10°C，P95 35.02°C",
+        "降水加权平均0.36 mm；500 hPa位势高度加权平均5865.44 gpm",
+        "10米风速加权平均4.21 m/s；图谱未触发"
+      ]
+    },
+    {
+      "lead_time_hours": 72,
+      "system_base_risk_level": "high",
+      "system_knowledge_triggered": false,
+      "system_joint_final_risk_level": "high",
+      "llm_advisory_risk_level": "high",
+      "llm_advisory_confidence": "medium",
+      "agreement_with_system": true,
+      "advisory_analysis_zh": "LLM独立评估仍为high，但置信度降至medium。tmax加权平均44.95°C、P95 45.93°C，较24和48小时继续降低，但局地最大值仍达47.11°C；tmin加权平均32.72°C、P95 35.35°C，夜间高温仍突出。降水加权平均虽升至0.50 mm、P95 0.93 mm，整体量级仍有限；500 hPa位势高度加权平均5858.62 gpm也较前期回落。因日间高温统计量下行与较长预报时效共同提高不确定性，但持续的高夜温和局地极端日温仍支持high研究性风险判断。",
+      "key_signals_zh": [
+        "tmax：加权平均44.95°C，P95 45.93°C，最大47.11°C",
+        "tmin：加权平均32.72°C，P95 35.35°C",
+        "降水加权平均0.50 mm、P95 0.93 mm；500 hPa位势高度加权平均5858.62 gpm",
+        "相较24/48小时，日间温度空间分位与均值下行；图谱未触发"
+      ]
+    }
+  ],
+  "uncertainty_analysis_zh": "时间演变上，24小时局地日间极端最突出；48小时日间温度略降但高夜温延续，构成最稳定的持续热暴露窗口；72小时日间高温总体继续回落、少量降水信号略增，但局地最高温和高夜温仍未消失。系统与LLM仅在24小时不同：系统锁定为medium，LLM因局地极端值、夜间热和连续性判为high。图谱未触发意味着没有额外时空知识信号参与支持；同时72小时预报时效更长，故LLM置信度下调。上述不确定性不应用任何观测或事后结果消解。",
+  "limitations_zh": [
+    "本报告严格隔离同期观测、事件/对照标签、命中漏报误报、灾害新闻及任何事后答案；风险仅依据预测时可用指标形成。",
+    "系统方法开发门槛未通过，运行状态为research_only_blocked；无论系统或LLM给出何种风险等级，均不得据此授权正式预警。",
+    "LLM意见是独立研究性综合判断，不替代锁定系统预测，也不构成经业务校准的概率预报。",
+    "图谱信息仅显示各窗口temporal_or_spatial知识模式均未触发，缺少触发支持增加了机制归因的不确定性。",
+    "温度指标反映空间统计汇总，不能直接推断具体人群暴露、热健康影响或局地微气候。"
+  ],
+  "recommended_actions_zh": [
+    "将三个窗口的系统锁定结果与LLM独立意见仅作为研究候选信号保存，并保持两者可单独评分。",
+    "优先复核48小时窗口的空间温度分布、夜间最低温及预报更新一致性；同时跟踪72小时日间高温是否继续减弱。",
+    "在后续独立测试与开发门槛满足前，不发布、不暗示或升级为正式高温预警。",
+    "如开展人工研判，应明确记录该结论仅来自预报指标和未触发的图谱上下文，不纳入任何事后信息。"
+  ],
+  "provenance_summary_zh": "系统预测来自锁定文件handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_development.csv，prediction lock SHA-256为3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047；方法选择锁定于manifests/joint_pipeline_selection_lock_v2.json，selection lock SHA-256为8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545。数据划分为development，Neo4j查询模式为live_neo4j；未访问真实结果。",
+  "generation_mode": "openai_terra"
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dual_prediction_batch_manifest_v1.schema.json",
+  "title": "Completed dual-prediction batch manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "report_units",
+    "forecast_windows",
+    "truth_accessed_during_prediction",
+    "truth_opened_only_after_advisory_lock",
+    "selection_lock_sha256",
+    "artifacts",
+    "completed_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "dual_prediction_batch_manifest_v1"},
+    "status": {"const": "passed"},
+    "report_units": {"const": 29},
+    "forecast_windows": {"const": 87},
+    "truth_accessed_during_prediction": {"const": false},
+    "truth_opened_only_after_advisory_lock": {"const": true},
+    "selection_lock_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256", "size_bytes"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "size_bytes": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "completed_at": {"type": "string", "format": "date-time"}
+  }
+}

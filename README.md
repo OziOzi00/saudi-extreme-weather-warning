@@ -41,6 +41,7 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **规则—图谱联合搜索已完成**：暴雨234组中选出通过development门槛的整体研究方案（事件窗5/5、对照4/4），既有独立划分非盲回放为5/5与6/6但图谱触发0次；高温2316组无一通过全部门槛，最佳候选仍blocked。完整结论见[联合规则—图谱整体搜索与全链回放](docs/2026-07-19_联合规则图谱整体搜索与全链回放.md)。
 - **联合Agent在线链已真实接通**：无真值联合预测已参数化写入本地Neo4j；Luna真实生成暴雨报告，Terra真实生成高温报告，两者均查询在线24/48/72小时图谱、调用全部五个受控工具并通过风险字段守卫。结果见[联合Agent真实Neo4j与Luna/Terra联调](docs/2026-07-19_联合Agent真实Neo4j与LunaTerra联调.md)。
 - **完整流程编排 Agent 已实机跑通**：Luna/Terra 可从案例入口受控组织缓存复用、MAZU-like 校验、ADM1 汇总、联合规则与图谱纠错、预测锁、Neo4j 在线查询及最终报告；八阶段状态可恢复且禁止跳步或读取同期真值。暴雨和高温各完成一条真实链，详见[全流程编排 Agent 实现与实机联调](docs/2026-07-19_全流程编排Agent实现与实机联调.md)。
+- **四组数据已通过完整编排 Agent 批量重跑**：暴雨/高温的 development 与 independent_test 共形成29份双轨分析报告和87条LLM独立意见；系统结果不可修改，LLM意见单独锁定、单独评分。暴雨系统保持两组目标窗全对；LLM未超过系统。高温LLM提高召回但产生更多误报，仍不得替代系统。详见[双轨系统与大模型独立预测批量评估](docs/2026-07-19_双轨系统与大模型独立预测批量评估.md)。
 - **灾害影响层描述性评估已完成**：9条经复核正例合并为6个案例—区域单位，冻结中高风险覆盖5/6；没有可靠无影响负例，因此不能计算误报率、特异度或完整准确率。
 - **唯一影响漏报已完成归因**：`20200501_00 / SA-09`的lead024为明确天气低估；lead048显示区域P95规则的局地尺度盲区并伴随天气低估。4个对照仍未取得合格无影响证据。
 - **仍待正式完成**：补充新的高温development证据并在新预注册方案下继续研究偏差；补充可靠影响负例及更广泛影响证据。
@@ -85,6 +86,14 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_orchestrator_agent.ps1
   -Hazard "heatwave" `
   -RegionId "SA-04"
 ```
+
+要重跑高温与暴雨的 development/independent_test 四组数据并生成双轨分析报告，可运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_dual_prediction_batch.ps1
+```
+
+该批处理会先锁定系统结果和LLM独立意见，再打开真值分别评分；输出位于 `handoff/reports/dual_prediction_batch_v1/`。
 
 安装依赖后，队友可直接运行稳定原型验收（不下载原始数据、不要求启动 Neo4j）：
 
@@ -155,6 +164,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_joint_agent_live.ps1
 - [整体链条规则与图谱纠错综合评估](docs/2026-07-19_整体链条规则与图谱纠错综合评估.md)
 - [联合规则—图谱整体搜索与全链回放](docs/2026-07-19_联合规则图谱整体搜索与全链回放.md)
 - [联合Agent真实Neo4j与Luna/Terra联调](docs/2026-07-19_联合Agent真实Neo4j与LunaTerra联调.md)
+- [双轨系统与大模型独立预测批量评估](docs/2026-07-19_双轨系统与大模型独立预测批量评估.md)
 - [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [高温 development 误差诊断](docs/2026-07-18_高温development误差诊断.md)
 - [当前高温规则与问题说明](docs/当前高温规则与问题说明.md)

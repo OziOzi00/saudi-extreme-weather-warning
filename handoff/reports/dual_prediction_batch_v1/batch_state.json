@@ -1,0 +1,222 @@
+{
+  "schema_version": "dual_prediction_batch_state_v1",
+  "status": "complete",
+  "truth_accessed_during_prediction": false,
+  "stages": {
+    "materialize_and_validate_forecasts": "completed",
+    "rebuild_adm1_summaries": "completed",
+    "replay_system_predictions": "completed",
+    "publish_neo4j": "completed",
+    "generate_dual_reports": "completed",
+    "lock_llm_advisories": "completed",
+    "post_lock_verification": "completed",
+    "finalize": "completed"
+  },
+  "created_at": "2026-07-19T06:39:01.658352Z",
+  "updated_at": "2026-07-19T07:17:03.838733Z",
+  "stage_results": {
+    "materialize_and_validate_forecasts": {
+      "case_count": 26,
+      "netcdf_count": 78
+    },
+    "rebuild_adm1_summaries": {
+      "rows": 957,
+      "units": 29,
+      "sha256": "7a09702d39e00cba3ee82303a51dd499cc378332b53abf943e538f9c23d9990e"
+    },
+    "replay_system_predictions": {
+      "groups": [
+        {
+          "hazard": "heavy_rain",
+          "dataset_split": "development",
+          "rows": 15,
+          "reference_decisions_reproduced": true,
+          "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_development.csv",
+          "sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f"
+        },
+        {
+          "hazard": "heavy_rain",
+          "dataset_split": "independent_test",
+          "rows": 18,
+          "reference_decisions_reproduced": true,
+          "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_independent_test.csv",
+          "sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6"
+        },
+        {
+          "hazard": "heatwave",
+          "dataset_split": "development",
+          "rows": 48,
+          "reference_decisions_reproduced": true,
+          "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_development.csv",
+          "sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047"
+        },
+        {
+          "hazard": "heatwave",
+          "dataset_split": "independent_test",
+          "rows": 6,
+          "reference_decisions_reproduced": true,
+          "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_independent_test.csv",
+          "sha256": "b4e9ce511fe9f77ae8b4daca29e534f6bd06cc7a77f05eec10e771c8167d2d0d"
+        }
+      ],
+      "truth_accessed": false
+    },
+    "publish_neo4j": {
+      "groups": [
+        {
+          "hazard": "heavy_rain",
+          "dataset_split": "development",
+          "windows": 30,
+          "cases": 5,
+          "regions": 2
+        },
+        {
+          "hazard": "heavy_rain",
+          "dataset_split": "independent_test",
+          "windows": 18,
+          "cases": 4,
+          "regions": 3
+        },
+        {
+          "hazard": "heatwave",
+          "dataset_split": "development",
+          "windows": 48,
+          "cases": 16,
+          "regions": 3
+        },
+        {
+          "hazard": "heatwave",
+          "dataset_split": "independent_test",
+          "windows": 6,
+          "cases": 1,
+          "regions": 2
+        }
+      ],
+      "query_mode": "live_neo4j"
+    },
+    "generate_dual_reports": {
+      "report_count": 29,
+      "truth_accessed": false
+    },
+    "lock_llm_advisories": {
+      "rows": 87,
+      "sha256": "132b070fbe257f9bd60656b844eb7c68d3b84bca1952622a550ad5ddfb3d1783",
+      "truth_accessed": false
+    },
+    "post_lock_verification": {
+      "schema_version": "dual_prediction_post_lock_verification_v1",
+      "prediction_lock_sha256": "132b070fbe257f9bd60656b844eb7c68d3b84bca1952622a550ad5ddfb3d1783",
+      "truth_opened_only_after_lock": true,
+      "groups": [
+        {
+          "hazard": "heavy_rain",
+          "dataset_split": "development",
+          "target_windows": 9,
+          "positive_windows": 5,
+          "negative_windows": 4,
+          "system": {
+            "hits": 5,
+            "misses": 0,
+            "false_alarms": 0,
+            "correct_negatives": 4,
+            "recall": 1.0,
+            "specificity": 1.0,
+            "balanced_accuracy": 1.0
+          },
+          "llm_advisory": {
+            "hits": 4,
+            "misses": 1,
+            "false_alarms": 0,
+            "correct_negatives": 4,
+            "recall": 0.8,
+            "specificity": 1.0,
+            "balanced_accuracy": 0.9
+          },
+          "llm_changed_windows": 2
+        },
+        {
+          "hazard": "heavy_rain",
+          "dataset_split": "independent_test",
+          "target_windows": 11,
+          "positive_windows": 5,
+          "negative_windows": 6,
+          "system": {
+            "hits": 5,
+            "misses": 0,
+            "false_alarms": 0,
+            "correct_negatives": 6,
+            "recall": 1.0,
+            "specificity": 1.0,
+            "balanced_accuracy": 1.0
+          },
+          "llm_advisory": {
+            "hits": 5,
+            "misses": 0,
+            "false_alarms": 1,
+            "correct_negatives": 5,
+            "recall": 1.0,
+            "specificity": 0.8333333333333334,
+            "balanced_accuracy": 0.9166666666666667
+          },
+          "llm_changed_windows": 1
+        },
+        {
+          "hazard": "heatwave",
+          "dataset_split": "development",
+          "target_windows": 37,
+          "positive_windows": 14,
+          "negative_windows": 23,
+          "system": {
+            "hits": 9,
+            "misses": 5,
+            "false_alarms": 8,
+            "correct_negatives": 15,
+            "recall": 0.6428571428571429,
+            "specificity": 0.6521739130434783,
+            "balanced_accuracy": 0.6475155279503106
+          },
+          "llm_advisory": {
+            "hits": 14,
+            "misses": 0,
+            "false_alarms": 19,
+            "correct_negatives": 4,
+            "recall": 1.0,
+            "specificity": 0.17391304347826086,
+            "balanced_accuracy": 0.5869565217391304
+          },
+          "llm_changed_windows": 23
+        },
+        {
+          "hazard": "heatwave",
+          "dataset_split": "independent_test",
+          "target_windows": 4,
+          "positive_windows": 4,
+          "negative_windows": 0,
+          "system": {
+            "hits": 4,
+            "misses": 0,
+            "false_alarms": 0,
+            "correct_negatives": 0,
+            "recall": 1.0,
+            "specificity": null,
+            "balanced_accuracy": null
+          },
+          "llm_advisory": {
+            "hits": 4,
+            "misses": 0,
+            "false_alarms": 0,
+            "correct_negatives": 0,
+            "recall": 1.0,
+            "specificity": null,
+            "balanced_accuracy": null
+          },
+          "llm_changed_windows": 2
+        }
+      ]
+    },
+    "finalize": {
+      "path": "handoff/reports/dual_prediction_batch_v1/batch_manifest.json",
+      "sha256": "262ce4f90c522571702c41e721379d0f5f888194560120d910e7d46f265d834c"
+    }
+  }
+}

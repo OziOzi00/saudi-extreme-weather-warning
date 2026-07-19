@@ -1,0 +1,345 @@
+{
+  "system_timeline": {
+    "query_mode": "live_neo4j",
+    "truth_accessed": false,
+    "case_id": "20180709_00",
+    "region_id": "SA-04",
+    "hazard": "heatwave",
+    "dataset_split": "dual_prediction_batch_v1_development",
+    "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+    "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+    "timeline": [
+      {
+        "case_id": "20180709_00",
+        "hazard": "heatwave",
+        "dataset_split": "dual_prediction_batch_v1_development",
+        "truth_accessed": false,
+        "region_id": "SA-04",
+        "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+        "lead_time_hours": 24,
+        "base_method": "pooled_median_loco",
+        "knowledge_mode": "temporal_or_spatial",
+        "base_risk_level": "medium",
+        "knowledge_triggered": false,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+        "forecast_features": {
+          "candidate_tmax_degc": 48.923501,
+          "hot_day_threshold_degc": 47.249969
+        }
+      },
+      {
+        "case_id": "20180709_00",
+        "hazard": "heatwave",
+        "dataset_split": "dual_prediction_batch_v1_development",
+        "truth_accessed": false,
+        "region_id": "SA-04",
+        "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+        "lead_time_hours": 48,
+        "base_method": "pooled_median_loco",
+        "knowledge_mode": "temporal_or_spatial",
+        "base_risk_level": "high",
+        "knowledge_triggered": false,
+        "joint_final_risk_level": "high",
+        "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+        "forecast_features": {
+          "candidate_tmax_degc": 47.972978000000005,
+          "hot_day_threshold_degc": 47.249969
+        }
+      },
+      {
+        "case_id": "20180709_00",
+        "hazard": "heatwave",
+        "dataset_split": "dual_prediction_batch_v1_development",
+        "truth_accessed": false,
+        "region_id": "SA-04",
+        "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+        "lead_time_hours": 72,
+        "base_method": "pooled_median_loco",
+        "knowledge_mode": "temporal_or_spatial",
+        "base_risk_level": "high",
+        "knowledge_triggered": false,
+        "joint_final_risk_level": "high",
+        "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+        "forecast_features": {
+          "candidate_tmax_degc": 47.88748,
+          "hot_day_threshold_degc": 47.249969
+        }
+      }
+    ]
+  },
+  "forecast_indicators": [
+    {
+      "lead_time_hours": 24,
+      "indicators": {
+        "daily_precip_total": {
+          "unit": "mm",
+          "minimum": 0.0,
+          "weighted_mean": 0.37583495,
+          "spatial_p95": 0.52304499,
+          "maximum": 0.5732004
+        },
+        "t2m_c": {
+          "unit": "degC",
+          "minimum": 35.981537,
+          "weighted_mean": 39.189224,
+          "spatial_p95": 40.364766,
+          "maximum": 41.728516
+        },
+        "tmax_c": {
+          "unit": "degC",
+          "minimum": 38.118225,
+          "weighted_mean": 45.974701,
+          "spatial_p95": 47.452081,
+          "maximum": 48.143402
+        },
+        "tmin_c": {
+          "unit": "degC",
+          "minimum": 30.111206,
+          "weighted_mean": 32.613517,
+          "spatial_p95": 35.350041,
+          "maximum": 36.001465
+        },
+        "wind10_speed": {
+          "unit": "m s-1",
+          "minimum": 1.9000541,
+          "weighted_mean": 5.0821569,
+          "spatial_p95": 7.9687439,
+          "maximum": 9.378211
+        },
+        "pwat": {
+          "unit": "kg m-2",
+          "minimum": 14.991596,
+          "weighted_mean": 23.681737,
+          "spatial_p95": 31.339131,
+          "maximum": 35.161723
+        },
+        "ivt": {
+          "unit": "kg m-1 s-1",
+          "minimum": 63.455929,
+          "weighted_mean": 190.29767,
+          "spatial_p95": 233.24761,
+          "maximum": 252.51198
+        },
+        "wind850_speed": {
+          "unit": "m s-1",
+          "minimum": 3.1546547,
+          "weighted_mean": 10.901953,
+          "spatial_p95": 17.388399,
+          "maximum": 18.694996
+        },
+        "wind_shear_850_200": {
+          "unit": "m s-1",
+          "minimum": 5.9687696,
+          "weighted_mean": 18.196101,
+          "spatial_p95": 22.470877,
+          "maximum": 22.91441
+        },
+        "omega500": {
+          "unit": "Pa s-1",
+          "minimum": -0.074706949,
+          "weighted_mean": -0.0045625407,
+          "spatial_p95": 0.046403611,
+          "maximum": 0.083701603
+        },
+        "geopotential_height500": {
+          "unit": "gpm",
+          "minimum": 5867.1426,
+          "weighted_mean": 5889.6742,
+          "spatial_p95": 5909.0516,
+          "maximum": 5912.1807
+        }
+      }
+    },
+    {
+      "lead_time_hours": 48,
+      "indicators": {
+        "daily_precip_total": {
+          "unit": "mm",
+          "minimum": 0.10788047,
+          "weighted_mean": 0.42547435,
+          "spatial_p95": 0.55444722,
+          "maximum": 0.70564473
+        },
+        "t2m_c": {
+          "unit": "degC",
+          "minimum": 35.11145,
+          "weighted_mean": 38.415442,
+          "spatial_p95": 39.712186,
+          "maximum": 41.370819
+        },
+        "tmax_c": {
+          "unit": "degC",
+          "minimum": 36.995361,
+          "weighted_mean": 45.269685,
+          "spatial_p95": 46.501558,
+          "maximum": 47.531647
+        },
+        "tmin_c": {
+          "unit": "degC",
+          "minimum": 29.298309,
+          "weighted_mean": 31.748669,
+          "spatial_p95": 34.540291,
+          "maximum": 36.078949
+        },
+        "wind10_speed": {
+          "unit": "m s-1",
+          "minimum": 0.63155824,
+          "weighted_mean": 4.9620263,
+          "spatial_p95": 7.9289121,
+          "maximum": 8.7330847
+        },
+        "pwat": {
+          "unit": "kg m-2",
+          "minimum": 16.058907,
+          "weighted_mean": 21.764732,
+          "spatial_p95": 31.526064,
+          "maximum": 34.28893
+        },
+        "ivt": {
+          "unit": "kg m-1 s-1",
+          "minimum": 51.542665,
+          "weighted_mean": 135.50443,
+          "spatial_p95": 176.32064,
+          "maximum": 190.6916
+        },
+        "wind850_speed": {
+          "unit": "m s-1",
+          "minimum": 1.7611914,
+          "weighted_mean": 9.7756383,
+          "spatial_p95": 16.43989,
+          "maximum": 17.204376
+        },
+        "wind_shear_850_200": {
+          "unit": "m s-1",
+          "minimum": 14.020237,
+          "weighted_mean": 24.363549,
+          "spatial_p95": 28.126987,
+          "maximum": 30.238459
+        },
+        "omega500": {
+          "unit": "Pa s-1",
+          "minimum": -0.054104775,
+          "weighted_mean": 0.0038122868,
+          "spatial_p95": 0.036739297,
+          "maximum": 0.062498257
+        },
+        "geopotential_height500": {
+          "unit": "gpm",
+          "minimum": 5867.1592,
+          "weighted_mean": 5882.0185,
+          "spatial_p95": 5904.9511,
+          "maximum": 5909.7852
+        }
+      }
+    },
+    {
+      "lead_time_hours": 72,
+      "indicators": {
+        "daily_precip_total": {
+          "unit": "mm",
+          "minimum": 0.062003884,
+          "weighted_mean": 0.43902705,
+          "spatial_p95": 0.54766337,
+          "maximum": 0.61399484
+        },
+        "t2m_c": {
+          "unit": "degC",
+          "minimum": 34.09314,
+          "weighted_mean": 38.536903,
+          "spatial_p95": 39.918871,
+          "maximum": 41.191925
+        },
+        "tmax_c": {
+          "unit": "degC",
+          "minimum": 36.254395,
+          "weighted_mean": 45.210724,
+          "spatial_p95": 46.41606,
+          "maximum": 47.837372
+        },
+        "tmin_c": {
+          "unit": "degC",
+          "minimum": 29.295837,
+          "weighted_mean": 32.592187,
+          "spatial_p95": 34.727698,
+          "maximum": 36.351501
+        },
+        "wind10_speed": {
+          "unit": "m s-1",
+          "minimum": 0.90788692,
+          "weighted_mean": 3.686651,
+          "spatial_p95": 7.1607524,
+          "maximum": 7.9169607
+        },
+        "pwat": {
+          "unit": "kg m-2",
+          "minimum": 17.529552,
+          "weighted_mean": 25.117069,
+          "spatial_p95": 33.662607,
+          "maximum": 36.621873
+        },
+        "ivt": {
+          "unit": "kg m-1 s-1",
+          "minimum": 29.851794,
+          "weighted_mean": 95.135207,
+          "spatial_p95": 147.5487,
+          "maximum": 151.50887
+        },
+        "wind850_speed": {
+          "unit": "m s-1",
+          "minimum": 0.84733391,
+          "weighted_mean": 5.1479478,
+          "spatial_p95": 12.159943,
+          "maximum": 14.933863
+        },
+        "wind_shear_850_200": {
+          "unit": "m s-1",
+          "minimum": 9.2376728,
+          "weighted_mean": 21.842363,
+          "spatial_p95": 28.989254,
+          "maximum": 31.362123
+        },
+        "omega500": {
+          "unit": "Pa s-1",
+          "minimum": -0.076624967,
+          "weighted_mean": -0.010087326,
+          "spatial_p95": 0.014476961,
+          "maximum": 0.044255644
+        },
+        "geopotential_height500": {
+          "unit": "gpm",
+          "minimum": 5866.5254,
+          "weighted_mean": 5878.4468,
+          "spatial_p95": 5901.2264,
+          "maximum": 5905.0444
+        }
+      }
+    }
+  ],
+  "method_status": {
+    "selected_joint_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+    "development_gate_passed": false,
+    "operating_status": "research_only_blocked",
+    "formal_warning_allowed": false,
+    "development_metrics": {
+      "observed_hot_day_recall": 0.6428571428571429,
+      "observed_nonhot_day_specificity": 0.6521739130434783,
+      "event_case_detection_fraction": 0.6666666666666666,
+      "control_case_rejection_fraction": 0.8571428571428571
+    }
+  },
+  "provenance": {
+    "prediction_lock_path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_development.csv",
+    "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+    "selection_lock_path": "manifests/joint_pipeline_selection_lock_v2.json",
+    "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+    "neo4j_query_mode": "live_neo4j",
+    "dataset_split": "development"
+  },
+  "constraints": [
+    "系统联合预测是不可修改事实。",
+    "LLM必须另外给出可单独评分的综合预测意见。",
+    "预测阶段禁止读取事件/对照标签、同期观测、命中、漏报、误报和灾害答案。",
+    "两类预测都不是正式业务预警。"
+  ]
+}
