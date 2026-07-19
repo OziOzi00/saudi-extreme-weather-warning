@@ -197,7 +197,7 @@ def build_prediction_bundle(
     risk_path: Path,
     regions_path: Path,
     generated_at: str,
-    consistency_rules_path: Path = Path("configs/knowledge_consistency_rules_v1.yaml"),
+    consistency_rules_path: Path = Path("configs/knowledge_consistency_rules_v2.yaml"),
     static_context_path: Path | None = Path(
         "handoff/knowledge_prior/static_context_v1.json"
     ),
@@ -412,7 +412,7 @@ def main() -> None:
     parser.add_argument(
         "--consistency-rules",
         type=Path,
-        default=Path("configs/knowledge_consistency_rules_v1.yaml"),
+        default=Path("configs/knowledge_consistency_rules_v2.yaml"),
     )
     parser.add_argument(
         "--static-context",

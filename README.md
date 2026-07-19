@@ -8,14 +8,14 @@
 MAZU 2025 历史指标 → 分析分布并冻结风险规则
 
 GraphCast 2020 历史预报 → MAZU-like 指标 → 已冻结的风险规则 → 风险 JSON
-                                                        ├→ 无真值预测图谱 → Forecast Agent 报告
+                                                        ├→ 无真值预测图谱 → 影子纠错 → Forecast Agent 报告
                                                         └→ 结果锁定后才连接 IMERG / SSOD / GHCN / 灾害记录
                                                                                  → 验证图谱 → Verification 报告
 ```
 
 MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来预报模型。当前回放实验读取已预计算的 GraphCast 2020 历史预报；v1 不训练天气模型，也不自行运行完整 GraphCast。GraphCast 数据保持原生 `0.25 degree` 网格，绝不表述为 `0.1 degree` 预报能力。
 
-## 真实项目状态（2026-07-18）
+## 真实项目状态（2026-07-19）
 
 - **阶段版本已收束**：当前成果作为 `v0.1.0-prototype` 稳定研究原型发布；提供无需原始数据的一键验收、机器可读快照、正向案例和已知漏报案例。它不是实时业务预报服务。
 - **已完成（成员 A）**：GraphCast → MAZU-like 主流程，以及 catalog 预检查、可恢复缓存、原子写入、NetCDF 自动验收、ADM1 摘要、SHA-256 溯源和一键交付；并协助完成 MAZU 2025 统计与 B 侧草案。
@@ -33,11 +33,12 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **正式development链路已形成**：15份冻结暴雨Risk JSON、15份受控报告，以及69节点/98关系的图谱bundle均已生成并验收。
 - **独立暴雨评估已锁定完成**：54/54条IMERG配对accepted；冻结P95门槛得到6命中、0漏报、0空报、12正确否定。结果样本较小，规则不得回调。
 - **Neo4j本地实机联调已完成**：Community 2026.06.0精确导入综合暴雨bundle，87个节点、152条关系、6个约束及三组固定查询全部通过；这是development联调，不是生产部署。
-- **Agent 已拆分为预测态与验证态**：默认入口生成 `agent_forecast_report_v2`，只能读取冻结 Risk JSON 和无真值 `prediction_kg_bundle_v2`；旧 `agent_report_v1` 仅用于结果锁定后的事后验证。`gpt-5.6-luna` 已真实生成一份 `truth_accessed=false` 的暴雨预测报告，但这不等同于模型气象能力已独立验证。
-- **预测前静态知识已接入但仅限解释**：WorldClim 2.1的ADM1地形与1970–2000月降水基线已按`available_at`接入，当前 `knowledge_prior=context_only`、风险值为空。旧内部一致性候选虽补回2个漏报却对4个对照产生3个误关注，已降级为`development_gate_failed_diagnostic_only`；它可保留冲突记录，但默认关注级别不再从`routine`升为`watch`。
+- **Agent 已拆分为预测态与验证态**：默认入口生成 `agent_forecast_report_v3`，只能读取冻结 Risk JSON 和无真值 `prediction_kg_bundle_v2`，并以独立字段保存基础风险与影子建议；旧 `agent_report_v1` 仅用于结果锁定后的事后验证。`gpt-5.6-luna` 已真实生成一份 `truth_accessed=false` 的暴雨预测报告，但这不等同于模型气象能力已独立验证。
+- **预测前静态知识与影子纠错已接入**：WorldClim 2.1的ADM1地形与1970–2000月降水基线保持`context_only`。旧`support>=2`候选因3个对照误关注淘汰；统一基准选择“主降水/medium阈值比≥0.50且支持条件≥2”的v2影子方案。它在development补回1个漏报窗且未新增对照误报，但只来自1个事件案例，因此只能输出`triggered_not_activated`和并列建议，不改Risk JSON或默认关注级别。
 - **细空间预测诊断候选已复验并淘汰**：预注册的P99/最大值/超阈面积热点条件在15份development暴雨预测中触发0次，对两个漏报没有改善；漏报窗的预测最大值也低于5毫米，说明只更换P95聚合无法修复模型整片低估。该候选未接入Agent关注逻辑。
 - **高温v4分层诊断已执行**：不改47/49°C阈值、不混入区域最大值、不使用已评估SA-08拟合；按lead中位偏差修正在同步观测天气真值上达到高温日4/6、非高温日8/9，优于pooled方法，只获得进入下一批全新prospective development的资格，高温规则仍为draft/blocked。
-- **高温v5跨年前瞻样本已在预测访问前锁定**：扩展2018年SSOD观测并仅凭观测选出3个事件和3个同区域对照，固定只测试`lead_specific_median`；6个起报时间均无本地预测产物，2018 GraphCast数组尚未读取，独立高温仍封存。
+- **高温v5跨年前瞻评估已完成但未通过**：输入锁定后完成2018年72/72缓存和18/18份MAZU-like；固定候选虽命中5/6个高温日，但非高温日仅8/12正确否定、对照案例仅2/3拒绝，高温继续blocked，独立高温仍封存。
+- **整体规则与图谱统一基准已完成**：统一16个已开放高温development案例、暴雨development及既有独立结论，比较12组高温、2组暴雨基础规则和5组图谱候选。暴雨v2保持唯一正式规则；高温无候选通过全部门槛；图谱v2仅作为未激活影子建议。完整结论见[整体链条规则与图谱纠错综合评估](docs/2026-07-19_整体链条规则与图谱纠错综合评估.md)。
 - **灾害影响层描述性评估已完成**：9条经复核正例合并为6个案例—区域单位，冻结中高风险覆盖5/6；没有可靠无影响负例，因此不能计算误报率、特异度或完整准确率。
 - **唯一影响漏报已完成归因**：`20200501_00 / SA-09`的lead024为明确天气低估；lead048显示区域P95规则的局地尺度盲区并伴随天气低估。4个对照仍未取得合格无影响证据。
 - **仍待正式完成**：补充新的高温development证据并在新预注册方案下继续研究偏差；补充可靠影响负例及更广泛影响证据。
@@ -103,6 +104,12 @@ pip install -e ".[knowledge]"
 powershell -ExecutionPolicy Bypass -File scripts/run_forecast_knowledge_development.ps1
 ```
 
+统一候选基准可单独复建为：
+
+```powershell
+python -m saudi_warning.risk.benchmark_integrated_candidates
+```
+
 成员 A 新增个例的批处理命令见 [成员 A 批处理说明](docs/成员A批处理说明.md)。成员 B/C 的任务和当前完成边界见 [团队协作流程](docs/团队协作流程.md)。
 
 成员 A 的完整交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_a_delivery.ps1`；默认以版本化 demo catalog 复验现有三份 lead。当前批准案例位于 `configs/case_catalog_candidates.csv`，正式批处理必须保持冻结的 development/independent_test 划分。
@@ -120,6 +127,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_forecast_knowledge_developm
 ## 文档索引
 
 - [统一技术路线](docs/统一技术路线_v1.md)
+- [整体链条规则与图谱纠错综合评估](docs/2026-07-19_整体链条规则与图谱纠错综合评估.md)
 - [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [高温 development 误差诊断](docs/2026-07-18_高温development误差诊断.md)
 - [当前高温规则与问题说明](docs/当前高温规则与问题说明.md)

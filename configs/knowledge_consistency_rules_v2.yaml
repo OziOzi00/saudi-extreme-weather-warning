@@ -1,0 +1,42 @@
+version: knowledge_consistency_shadow_v2_20260719
+status: development_selected_shadow_not_validated
+scope: forecast_internal_consistency_shadow_correction
+truth_access: forbidden
+may_change_meteorological_risk: false
+may_change_attention_level: false
+assessment_path: manifests/integrated_candidate_benchmark_v1.json
+
+heavy_rain:
+  possible_underestimation:
+    required_risk_level: low
+    minimum_primary_contradictions: 1
+    minimum_supporting_conditions: 2
+    minimum_primary_to_threshold_ratio: 0.50
+    conflict_flag: possible_underestimation
+    candidate_attention_level: watch
+    effective_attention_level: routine
+    shadow_suggested_risk_level: medium
+    rationale_zh: >-
+      冻结暴雨规则仍为低风险，但区域降水P95已达到中风险阈值的至少50%，
+      且至少两个水汽或动力条件达到支持阈值。development回顾中该单窗条件
+      补回1个漏报且未新增误报，但证据只来自1个事件案例，因此仅作为影子纠错候选。
+
+missing_primary:
+  conflict_flag: insufficient_primary_evidence
+  attention_level: watch
+  rationale_zh: 主气象指标缺失，风险结果需要人工复核。
+
+shadow_correction:
+  status_when_triggered: triggered_not_activated
+  status_when_not_triggered: not_triggered
+  may_overwrite_base_risk: false
+  activation_requirements:
+    minimum_distinct_corrected_event_cases: 2
+    allowed_new_false_alarms: 0
+    new_prospective_or_independent_validation: required
+
+limitations:
+  - 该候选由已经打开的development结果回顾性选出，不是预注册前瞻结论。
+  - 既有暴雨独立集早已用于冻结v2评估，重复压力测试不能验证新纠错候选。
+  - 影子建议必须与冻结Risk JSON并列展示，不得覆盖基础风险或默认关注级别。
+  - 不得读取同期观测、影响真值、新闻或Verification输出。

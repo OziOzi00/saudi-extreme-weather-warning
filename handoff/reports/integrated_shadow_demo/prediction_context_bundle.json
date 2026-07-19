@@ -1,0 +1,301 @@
+{
+  "schema_version": "prediction_kg_bundle_v2",
+  "generated_at": "2026-07-19T04:00:00Z",
+  "knowledge_role": "prediction_context",
+  "temporal_mode": "retrospective_transfer_replay",
+  "knowledge_cutoff": "2020-05-01T00:00:00Z",
+  "truth_access": "forbidden",
+  "truth_accessed": false,
+  "limitations": [
+    "MAZU 2025 and the frozen rule are later method references, so this is a retrospective transfer replay rather than a literal 2020 operational forecast.",
+    "No same-event observation, impact, source, verification result, or future regional case is present in this snapshot.",
+    "WorldClim terrain and monthly climatology are context-only and cannot identify an event day or change meteorological risk.",
+    "Exposure, vulnerability, and validated pre-cutoff historical-event priors are not yet available."
+  ],
+  "nodes": [
+    {
+      "label": "ForecastCase",
+      "id": "20200501_00",
+      "properties": {
+        "initial_time": "2020-05-01T00:00:00Z",
+        "temporal_mode": "retrospective_transfer_replay",
+        "knowledge_cutoff": "2020-05-01T00:00:00Z"
+      }
+    },
+    {
+      "label": "ForecastWindow",
+      "id": "20200501_00_048",
+      "properties": {
+        "initial_time": "2020-05-01T00:00:00Z",
+        "lead_time_hours": 48,
+        "valid_start_time": "2020-05-02T00:00:00Z",
+        "valid_end_time": "2020-05-03T00:00:00Z"
+      }
+    },
+    {
+      "label": "Region",
+      "id": "SA-09",
+      "properties": {
+        "region_id": "SA-09",
+        "region_name_en": "Jazan Region",
+        "region_name_ar": "منطقة جازان",
+        "admin_level": "ADM1",
+        "country_iso3": "SAU",
+        "boundary_year_represented": "2017",
+        "availability_basis": "static_reference_assumed_available"
+      }
+    },
+    {
+      "label": "RiskAssessment",
+      "id": "20200501_00_048:SA-09:heavy_rain",
+      "properties": {
+        "indicator_summary": {
+          "reference_period": "MAM",
+          "precip_spatial_p95_mm": 2.8983252,
+          "precip_medium_threshold_mm": 5.0,
+          "precip_high_threshold_mm": 10.0,
+          "precipitation_stage": "below_medium",
+          "pwat_weighted_mean": 44.220799,
+          "ivt_weighted_mean": 77.053787,
+          "wind850_speed_weighted_mean": 1.9868161,
+          "omega500_weighted_mean_pa_s-1": -0.0045434943,
+          "support_count": 2
+        },
+        "contradicting_evidence": [
+          {
+            "indicator": "daily_precip_total",
+            "metric": "spatial_p95",
+            "value": 2.8983252,
+            "comparison": ">=",
+            "threshold": 5.0,
+            "unit": "mm",
+            "role": "primary",
+            "reference_period": "MAM"
+          },
+          {
+            "indicator": "ivt",
+            "metric": "weighted_mean",
+            "value": 77.053787,
+            "comparison": ">=",
+            "threshold": 98.274788,
+            "unit": "kg m-1 s-1",
+            "role": "support",
+            "reference_period": "MAM"
+          },
+          {
+            "indicator": "wind850_speed",
+            "metric": "weighted_mean",
+            "value": 1.9868161,
+            "comparison": ">=",
+            "threshold": 3.6882299,
+            "unit": "m s-1",
+            "role": "support",
+            "reference_period": "MAM"
+          }
+        ],
+        "region_name": "Jazan Region",
+        "lead_time_hours": 48,
+        "valid_end_time": "2020-05-03T00:00:00Z",
+        "supporting_evidence": [
+          {
+            "indicator": "pwat",
+            "metric": "weighted_mean",
+            "value": 44.220799,
+            "comparison": ">=",
+            "threshold": 39.97816,
+            "unit": "kg m-2",
+            "role": "support",
+            "reference_period": "MAM"
+          },
+          {
+            "indicator": "omega500",
+            "metric": "weighted_mean",
+            "value": -0.0045434943,
+            "comparison": "<",
+            "threshold": 0.0,
+            "unit": "Pa s-1",
+            "role": "support"
+          }
+        ],
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "missing_evidence": [],
+        "hazard": "heavy_rain",
+        "source_file": "handoff/mazu_like/mazu_like_20200501_00_lead048.nc",
+        "description_zh": "候选暴雨规则草案：降水阶段 below_medium，辅助支持 2/4。",
+        "confidence": "medium",
+        "risk_score": 0.0,
+        "risk_level": "low",
+        "valid_start_time": "2020-05-02T00:00:00Z",
+        "case_id": "20200501_00_048",
+        "rule_status": "frozen",
+        "region_id": "SA-09",
+        "initial_time": "2020-05-01T00:00:00Z"
+      }
+    },
+    {
+      "label": "Rule",
+      "id": "heavy_rain_graphcast_scale_v2",
+      "properties": {
+        "rule_id": "heavy_rain_graphcast_scale_v2",
+        "rule_status": "frozen",
+        "reference_role": "method_reference"
+      }
+    },
+    {
+      "label": "ConsistencyRule",
+      "id": "knowledge_consistency_shadow_v2_20260719",
+      "properties": {
+        "version": "knowledge_consistency_shadow_v2_20260719",
+        "status": "development_selected_shadow_not_validated",
+        "scope": "forecast_internal_consistency_shadow_correction",
+        "truth_access": "forbidden",
+        "may_change_meteorological_risk": false,
+        "input_path": "configs/knowledge_consistency_rules_v2.yaml",
+        "input_sha256": "576f70115fe39863c1f74d28ce60e60ffbf867de252f53de51d49084ce6dcfb1"
+      }
+    },
+    {
+      "label": "StaticPriorProfile",
+      "id": "SA-09:month05:worldclim21",
+      "properties": {
+        "region_id": "SA-09",
+        "region_name_en": "Jazan Region",
+        "month": 5,
+        "prior_status": "context_only",
+        "confidence": "low",
+        "terrain": {
+          "cell_count": 49,
+          "mean_m": 326.232,
+          "p10_m": 11.0,
+          "p50_m": 108.0,
+          "p90_m": 1246.0,
+          "max_m": 1563.0,
+          "p90_minus_p10_m": 1235.0,
+          "share_above_1000m": 0.122244
+        },
+        "precipitation_climatology": {
+          "cell_count": 49,
+          "mean_mm": 10.908,
+          "p90_mm": 19.0,
+          "max_mm": 23.0
+        },
+        "temporal": {
+          "reference_period_start": "1970-01-01T00:00:00Z",
+          "reference_period_end": "2000-12-31T23:59:59Z",
+          "available_at": "2020-03-15T00:00:00Z",
+          "valid_from": "2020-03-15T00:00:00Z",
+          "valid_to": null,
+          "recorded_at": "2026-07-18T10:55:50Z"
+        },
+        "resolution_arc_minutes": 10
+      }
+    },
+    {
+      "label": "PriorSource",
+      "id": "WORLDCLIM21_ELEV_10M",
+      "properties": {
+        "role": "terrain_context",
+        "title": "WorldClim 2.1 elevation derived from SRTM",
+        "source_url": "https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_elev.zip",
+        "landing_page_url": "https://www.worldclim.org/data/worldclim21.html",
+        "archive_name": "wc2.1_10m_elev.zip",
+        "archive_sha256": "6a9f4e9a37f289d594ed1567b63be344a4dacf247f0b69756e81df031087e3bd",
+        "available_at": "2020-03-15T00:00:00Z",
+        "reference_period_start": "1970-01-01T00:00:00Z",
+        "reference_period_end": "2000-12-31T23:59:59Z",
+        "recorded_at": "2026-07-18T10:55:50Z",
+        "unit": "m",
+        "license_or_terms": "WorldClim research and related activities; cite Fick and Hijmans (2017)",
+        "citation": "Fick, S.E. and Hijmans, R.J. (2017), doi:10.1002/joc.5086"
+      }
+    },
+    {
+      "label": "PriorSource",
+      "id": "WORLDCLIM21_PREC_10M",
+      "properties": {
+        "role": "precipitation_climatology",
+        "title": "WorldClim 2.1 monthly precipitation climatology 1970-2000",
+        "source_url": "https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_10m_prec.zip",
+        "landing_page_url": "https://www.worldclim.org/data/worldclim21.html",
+        "archive_name": "wc2.1_10m_prec.zip",
+        "archive_sha256": "1090f578f6402672a2b6438e252156f6cf867a25002a8ad6ffcbfa19e516ddc6",
+        "available_at": "2020-03-15T00:00:00Z",
+        "reference_period_start": "1970-01-01T00:00:00Z",
+        "reference_period_end": "2000-12-31T23:59:59Z",
+        "recorded_at": "2026-07-18T10:55:50Z",
+        "unit": "mm/month",
+        "license_or_terms": "WorldClim research and related activities; cite Fick and Hijmans (2017)",
+        "citation": "Fick, S.E. and Hijmans, R.J. (2017), doi:10.1002/joc.5086"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "type": "HAS_WINDOW",
+      "start_label": "ForecastCase",
+      "start_id": "20200501_00",
+      "end_label": "ForecastWindow",
+      "end_id": "20200501_00_048"
+    },
+    {
+      "type": "ASSESSED_AS",
+      "start_label": "ForecastWindow",
+      "start_id": "20200501_00_048",
+      "end_label": "RiskAssessment",
+      "end_id": "20200501_00_048:SA-09:heavy_rain"
+    },
+    {
+      "type": "CONCERNS",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_048:SA-09:heavy_rain",
+      "end_label": "Region",
+      "end_id": "SA-09"
+    },
+    {
+      "type": "USES_RULE",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_048:SA-09:heavy_rain",
+      "end_label": "Rule",
+      "end_id": "heavy_rain_graphcast_scale_v2"
+    },
+    {
+      "type": "CHECKED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_048:SA-09:heavy_rain",
+      "end_label": "ConsistencyRule",
+      "end_id": "knowledge_consistency_shadow_v2_20260719"
+    },
+    {
+      "type": "CONTEXTUALIZED_BY",
+      "start_label": "RiskAssessment",
+      "start_id": "20200501_00_048:SA-09:heavy_rain",
+      "end_label": "StaticPriorProfile",
+      "end_id": "SA-09:month05:worldclim21"
+    },
+    {
+      "type": "DERIVED_FROM",
+      "start_label": "StaticPriorProfile",
+      "start_id": "SA-09:month05:worldclim21",
+      "end_label": "PriorSource",
+      "end_id": "WORLDCLIM21_ELEV_10M"
+    },
+    {
+      "type": "DERIVED_FROM",
+      "start_label": "StaticPriorProfile",
+      "start_id": "SA-09:month05:worldclim21",
+      "end_label": "PriorSource",
+      "end_id": "WORLDCLIM21_PREC_10M"
+    }
+  ],
+  "provenance": {
+    "risk_path": "handoff/risk_results/development_heavy_rain/risk_20200501_00_048_SA-09_heavy_rain.json",
+    "risk_sha256": "c017d3239bde88f1c9ecfe147a33bce875ba4dddaffb7206d34f768215adbda4",
+    "regions_path": "configs/region_registry.csv",
+    "regions_sha256": "8c87345b3a2aa34d67b8c28371cc32e0487afab7f0fa03fce6d4cac1c74b8253",
+    "consistency_rules_path": "configs/knowledge_consistency_rules_v2.yaml",
+    "consistency_rules_sha256": "576f70115fe39863c1f74d28ce60e60ffbf867de252f53de51d49084ce6dcfb1",
+    "static_context_path": "handoff/knowledge_prior/static_context_v1.json",
+    "static_context_sha256": "7584153c217547fb6b86e892a8f13015c0a4a564c6351d18631005f3fdb512cb"
+  },
+  "content_sha256": "29f3a3184bd63a5b1da7ba2eaa9a268d9304621634e1b9162ea0a8ecf8c7828d"
+}

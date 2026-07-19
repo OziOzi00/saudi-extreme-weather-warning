@@ -1,0 +1,4 @@
+method,source_group,target_days,observed_hot_days,observed_hot_day_recall,observed_nonhot_days,observed_nonhot_day_specificity,mae_degc
+blend075_pooled_loco,2018_cross_year_prospective,18,6,0.8333333333333334,12,0.9166666666666666,1.5276311666666673
+blend075_pooled_loco,2020_prospective_sa08,4,2,0.0,2,1.0,1.9947494374999994
+blend075_pooled_loco,2020_retrospective_sa04,15,6,0.16666666666666666,9,1.0,1.353194333333334

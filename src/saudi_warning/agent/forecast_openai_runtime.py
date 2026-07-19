@@ -24,7 +24,7 @@ except ImportError as exc:  # pragma: no cover
 
 
 class ForecastReportModel(BaseModel):
-    schema_version: Literal["agent_forecast_report_v2"] = "agent_forecast_report_v2"
+    schema_version: Literal["agent_forecast_report_v3"] = "agent_forecast_report_v3"
     report_mode: Literal["forecast"] = "forecast"
     truth_accessed: Literal[False] = False
     case_id: str
@@ -46,6 +46,11 @@ class ForecastReportModel(BaseModel):
         "duration_state_uncertain",
     ]
     attention_level: Literal["routine", "watch", "urgent"]
+    shadow_correction_status: Literal[
+        "not_available", "not_triggered", "triggered_not_activated"
+    ]
+    shadow_suggested_risk_level: Literal["low", "medium", "high"] | None
+    shadow_may_overwrite_base_risk: Literal[False] = False
     status_disclosure_zh: str
     executive_summary_zh: str
     weather_evidence_zh: str
@@ -138,8 +143,9 @@ def _model(packet: dict[str, Any], model: str) -> tuple[Agent, set[str]]:
 Risk JSON预测视图是风险等级、分数、置信度和规则状态的唯一权威，不得修改。
 knowledge_prior为not_available时必须明确说明先验不足，不能用常识或同期事件补造。
 knowledge_prior为context_only时只能解释区域地形和长期月气候背景，必须保持risk为null，不能把静态背景写成具体事件预测。
-consistency_check中的possible_underestimation已因development误关注过多而降级为diagnostic_only；
-必须保留工具给出的effective attention_level，不能把候选watch写成默认关注级别，也不能证明模型错误。
+consistency_check中的影子纠错候选尚未取得新前瞻或独立验证；必须原样说明其shadow状态，
+并把shadow_correction_status、shadow_suggested_risk_level、shadow_may_overwrite_base_risk原样复制到结构化报告。
+保留工具给出的effective attention_level，不能把候选watch写成默认关注级别、改写Risk JSON或证明模型错误。
 必须说明这是MAZU 2025方法参考到2020案例的迁移回放，不是实时业务预警。
 cited_prior_source_ids只能使用工具明确返回的预测前来源；当前为空时必须返回空数组。
 knowledge_prior为context_only时，cited_prior_source_ids必须完整复制工具返回的全部source_ids，不能漏引。

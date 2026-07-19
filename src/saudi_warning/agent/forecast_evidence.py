@@ -52,6 +52,19 @@ def _consistency_check(
         for item in risk.get("missing_evidence", [])
         if item.get("role") == "primary"
     ]
+    underestimation = config["heavy_rain"]["possible_underestimation"]
+    summary = risk.get("indicator_summary", {})
+    primary_value = summary.get("precip_spatial_p95_mm")
+    primary_threshold = summary.get("precip_medium_threshold_mm")
+    primary_ratio = (
+        float(primary_value) / float(primary_threshold)
+        if primary_value is not None
+        and primary_threshold not in {None, 0}
+        else None
+    )
+    minimum_primary_ratio = float(
+        underestimation.get("minimum_primary_to_threshold_ratio", 0.0)
+    )
     conflict = "none"
     rationale = "主指标与辅助证据没有触发预注册前的保守冲突提示。"
     if missing_primary:
@@ -60,19 +73,17 @@ def _consistency_check(
     elif (
         risk.get("hazard") == "heavy_rain"
         and risk.get("risk_level")
-        == config["heavy_rain"]["possible_underestimation"]["required_risk_level"]
+        == underestimation["required_risk_level"]
         and len(primary_contradictions)
         >= int(
-            config["heavy_rain"]["possible_underestimation"][
-                "minimum_primary_contradictions"
-            ]
+            underestimation["minimum_primary_contradictions"]
         )
         and len(supporting)
         >= int(
-            config["heavy_rain"]["possible_underestimation"][
-                "minimum_supporting_conditions"
-            ]
+            underestimation["minimum_supporting_conditions"]
         )
+        and primary_ratio is not None
+        and primary_ratio >= minimum_primary_ratio
     ):
         conflict = str(
             config["heavy_rain"]["possible_underestimation"]["conflict_flag"]
@@ -90,12 +101,14 @@ def _consistency_check(
         candidate_attention = str(config["missing_primary"]["attention_level"])
         attention = candidate_attention
     elif conflict == "possible_underestimation":
-        section = config["heavy_rain"]["possible_underestimation"]
+        section = underestimation
         candidate_attention = str(section["candidate_attention_level"])
         if config.get("may_change_attention_level") is True:
             attention = candidate_attention
         else:
             attention = str(section["effective_attention_level"])
+    shadow = config.get("shadow_correction", {})
+    shadow_triggered = conflict == "possible_underestimation" and bool(shadow)
     return {
         "schema_version": "forecast_consistency_check_v1",
         "rule_version": config["version"],
@@ -104,14 +117,30 @@ def _consistency_check(
         "attention_level": attention,
         "candidate_attention_level": candidate_attention,
         "attention_gate_status": (
-            "development_gate_failed_diagnostic_only"
-            if conflict == "possible_underestimation"
-            and config.get("may_change_attention_level") is False
+            "shadow_not_validated"
+            if shadow_triggered and config.get("may_change_attention_level") is False
+            else "development_gate_failed_diagnostic_only"
+            if conflict == "possible_underestimation" and config.get("may_change_attention_level") is False
             else "active"
         ),
         "supporting_condition_count": len(supporting),
         "primary_contradiction_count": len(primary_contradictions),
         "missing_primary_count": len(missing_primary),
+        "primary_to_threshold_ratio": primary_ratio,
+        "minimum_primary_to_threshold_ratio": minimum_primary_ratio,
+        "shadow_correction_status": (
+            shadow.get("status_when_triggered", "triggered_not_activated")
+            if shadow_triggered
+            else shadow.get("status_when_not_triggered", "not_triggered")
+        ),
+        "shadow_suggested_risk_level": (
+            underestimation.get("shadow_suggested_risk_level")
+            if shadow_triggered
+            else None
+        ),
+        "shadow_may_overwrite_base_risk": shadow.get(
+            "may_overwrite_base_risk", False
+        ),
         "rationale_zh": rationale,
         "may_change_risk_level": False,
     }
@@ -124,7 +153,7 @@ def build_forecast_evidence_packet(
     schema_path: Path = Path("schemas/risk_result.schema.json"),
     regions_path: Path = Path("configs/region_registry.csv"),
     consistency_rules_path: Path = Path(
-        "configs/knowledge_consistency_rules_v1.yaml"
+        "configs/knowledge_consistency_rules_v2.yaml"
     ),
     static_context_path: Path | None = Path(
         "handoff/knowledge_prior/static_context_v1.json"
@@ -145,7 +174,10 @@ def build_forecast_evidence_packet(
     consistency_rules = yaml.safe_load(
         consistency_rules_path.read_text(encoding="utf-8")
     )
-    if consistency_rules.get("status") != "development_gate_failed_diagnostic_only":
+    if consistency_rules.get("status") not in {
+        "development_gate_failed_diagnostic_only",
+        "development_selected_shadow_not_validated",
+    }:
         raise ValueError("unexpected consistency-rule status")
     if consistency_rules.get("truth_access") != "forbidden":
         raise ValueError("consistency rules must forbid truth access")
@@ -214,7 +246,7 @@ def build_forecast_evidence_packet(
         "Risk JSON中的verification字段已从预测视图剔除，不得在预测报告中复述。",
         "风险等级、分数、置信度和规则状态必须与Risk JSON一致。",
         "知识先验不可用时必须明确写unknown/not_available，不得用同期真值补齐。",
-        "未通过development门槛的一致性诊断只保留审计，不得提高默认关注级别、证明模型错误或改写气象风险。",
+        "未通过新验证的影子纠错只保留并列建议，不得提高默认关注级别、证明模型错误或改写气象风险。",
         "本项目使用MAZU 2025方法参考回放2020案例，属于迁移回放，不是字面意义上的2020实时业务预报。",
     ]
     return {

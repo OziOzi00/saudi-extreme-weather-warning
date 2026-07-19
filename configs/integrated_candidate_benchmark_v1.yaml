@@ -1,0 +1,82 @@
+version: integrated_candidate_benchmark_v1_20260719
+status: retrospective_development_benchmark_not_preregistered
+scope: development_candidate_comparison
+
+data_policy:
+  candidate_selection_split: development
+  heavy_rain_independent_use: report_existing_frozen_v2_and_nonblind_stress_only
+  heatwave_independent_access: forbidden
+  same_data_retuning_may_claim_prospective_validation: false
+
+heatwave:
+  correction_clip_degc:
+    minimum: -4.0
+    maximum: 4.0
+  ridge_raw_center_degc: 45.0
+  region_lead_shrinkage_k: 6.0
+  candidates:
+    - raw_spatial_p95
+    - pooled_median_loco
+    - lead_median_loco
+    - region_median_loco
+    - region_lead_shrinkage_loco
+    - ridge_state_loco_lambda1
+    - ridge_state_loco_lambda10
+    - ridge_state_loco_lambda100
+    - blend025_pooled_loco
+    - blend050_pooled_loco
+    - blend075_pooled_loco
+    - maximum_pooled_loco
+  gates:
+    minimum_observed_hot_day_recall: 0.60
+    minimum_observed_nonhot_day_specificity: 0.80
+    minimum_event_case_detection_fraction: 0.666667
+    required_control_case_rejection_fraction: 1.0
+  ranking:
+    passing_candidates_first: true
+    order:
+      - minimum_of_recall_and_specificity
+      - balanced_accuracy
+      - event_case_detection_fraction
+      - control_case_rejection_fraction
+      - negative_mae
+      - lower_complexity
+
+heavy_rain:
+  base_candidates:
+    - v1_base
+    - v2_base
+  knowledge_candidates:
+    support2_any:
+      minimum_support_count: 2
+      minimum_primary_ratio: 0.0
+    ratio_040_support2:
+      minimum_support_count: 2
+      minimum_primary_ratio: 0.40
+    ratio_050_support2:
+      minimum_support_count: 2
+      minimum_primary_ratio: 0.50
+    ratio_060_support2:
+      minimum_support_count: 2
+      minimum_primary_ratio: 0.60
+    persistence_ratio050_support2:
+      minimum_support_count: 2
+      minimum_primary_ratio: 0.25
+      case_maximum_primary_ratio: 0.50
+      minimum_eligible_windows_per_case: 2
+  gates:
+    minimum_target_window_recall: 0.60
+    minimum_target_window_specificity: 0.75
+    minimum_event_case_detection_fraction: 0.66
+    required_control_case_rejection_fraction: 1.0
+  activation_guard:
+    minimum_distinct_corrected_event_cases: 2
+    allowed_new_false_alarms: 0
+    prospective_or_new_independent_validation_required: true
+
+knowledge_graph:
+  selected_design_role: shadow_correction_candidate
+  may_overwrite_frozen_risk: false
+  may_be_shown_to_agent: true
+  prediction_time_evidence_only: true
+  truth_access: forbidden

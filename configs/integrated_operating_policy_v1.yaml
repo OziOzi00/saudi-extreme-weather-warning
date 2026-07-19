@@ -1,0 +1,39 @@
+version: integrated_operating_policy_v1_20260719
+status: research_prototype_guarded
+
+pipeline:
+  - GraphCast
+  - MAZU-like
+  - base_risk_rule
+  - truth_sealed_prediction_knowledge_graph
+  - shadow_knowledge_correction
+  - Forecast_Agent_report
+  - post_lock_Verification_Agent
+
+hazards:
+  heavy_rain:
+    base_rule: configs/heavy_rain_rules_v2.yaml
+    base_rule_status: frozen
+    independent_evaluation: one_time_completed
+    knowledge_shadow: configs/knowledge_consistency_rules_v2.yaml
+    knowledge_shadow_may_override_base: false
+  heatwave:
+    base_rule: configs/heatwave_rules_v2.yaml
+    base_rule_status: draft_blocked
+    best_retrospective_benchmark: blend075_pooled_loco
+    benchmark_is_deployable: false
+    independent_evaluation: sealed_not_opened
+    formal_risk_json_allowed: false
+
+reporting:
+  forecast_entry: scripts/run_agent_report.ps1
+  forecast_truth_access: forbidden
+  verification_entry: scripts/run_agent_verification_report.ps1
+  base_risk_and_shadow_must_be_separate: true
+  research_replay_not_official_warning: true
+
+decision:
+  official_heavy_rain_rule: heavy_rain_graphcast_scale_v2
+  official_heatwave_rule: none
+  selected_shadow_design: v2_kg_ratio_050_support2
+  shadow_activation_status: report_only_not_validated

@@ -21,6 +21,9 @@ REQUIRED_FIELDS = {
     "knowledge_prior_risk",
     "conflict_flag",
     "attention_level",
+    "shadow_correction_status",
+    "shadow_suggested_risk_level",
+    "shadow_may_overwrite_base_risk",
     "generation_mode",
     "status_disclosure_zh",
     "executive_summary_zh",
@@ -39,8 +42,8 @@ def validate_forecast_report(
     missing = sorted(REQUIRED_FIELDS - set(report))
     if missing:
         errors.append("missing required fields: " + ", ".join(missing))
-    if report.get("schema_version") != "agent_forecast_report_v2":
-        errors.append("schema_version must be agent_forecast_report_v2")
+    if report.get("schema_version") != "agent_forecast_report_v3":
+        errors.append("schema_version must be agent_forecast_report_v3")
     if report.get("report_mode") != "forecast":
         errors.append("report_mode must be forecast")
     if report.get("truth_accessed") is not False:
@@ -74,6 +77,15 @@ def validate_forecast_report(
         errors.append("conflict_flag must preserve the deterministic check")
     if report.get("attention_level") != check["attention_level"]:
         errors.append("attention_level must preserve the deterministic check")
+    for field in (
+        "shadow_correction_status",
+        "shadow_suggested_risk_level",
+        "shadow_may_overwrite_base_risk",
+    ):
+        if report.get(field) != check.get(field):
+            errors.append(f"{field} must preserve the deterministic check")
+    if report.get("shadow_may_overwrite_base_risk") is not False:
+        errors.append("shadow correction must not overwrite base risk")
     allowed_sources = {
         source["id"] for source in packet["graph"].get("prior_sources", [])
     }
@@ -112,7 +124,9 @@ def deterministic_forecast_report(packet: dict[str, Any]) -> dict[str, Any]:
         f"{risk['hazard']}气象风险为{risk['risk_level']}，置信度为{risk['confidence']}。"
     )
     if check["conflict_flag"] != "none":
-        if check.get("attention_gate_status") == "development_gate_failed_diagnostic_only":
+        if check.get("attention_gate_status") == "shadow_not_validated":
+            summary += "触发影子纠错候选，但它尚未取得新的前瞻或独立验证，默认关注级别不变。"
+        elif check.get("attention_gate_status") == "development_gate_failed_diagnostic_only":
             summary += "存在未通过development门槛的内部诊断记录，默认关注级别不变。"
         else:
             summary += "预测内部证据存在需人工关注的一致性冲突，但风险等级保持不变。"
@@ -129,7 +143,11 @@ def deterministic_forecast_report(packet: dict[str, Any]) -> dict[str, Any]:
         )
     else:
         knowledge_text = prior["reason_zh"] + check["rationale_zh"]
-    if check.get("attention_gate_status") == "development_gate_failed_diagnostic_only":
+    if check.get("attention_gate_status") == "shadow_not_validated":
+        diagnostic_action = (
+            "影子纠错建议仅供人工复核；在取得新的前瞻或独立证据前，不覆盖冻结Risk JSON。"
+        )
+    elif check.get("attention_gate_status") == "development_gate_failed_diagnostic_only":
         diagnostic_action = (
             "保留possible_underestimation作为失败候选审计，不提升默认关注级别；"
             "如获得全新development证据再重新预注册。"
@@ -139,7 +157,7 @@ def deterministic_forecast_report(packet: dict[str, Any]) -> dict[str, Any]:
             "若存在有效possible_underestimation或主指标缺失，进行人工气象复核。"
         )
     return {
-        "schema_version": "agent_forecast_report_v2",
+        "schema_version": "agent_forecast_report_v3",
         "report_mode": "forecast",
         "truth_accessed": False,
         "case_id": risk["case_id"],
@@ -154,6 +172,11 @@ def deterministic_forecast_report(packet: dict[str, Any]) -> dict[str, Any]:
         "knowledge_prior_risk": prior["risk_level"],
         "conflict_flag": check["conflict_flag"],
         "attention_level": check["attention_level"],
+        "shadow_correction_status": check["shadow_correction_status"],
+        "shadow_suggested_risk_level": check["shadow_suggested_risk_level"],
+        "shadow_may_overwrite_base_risk": check[
+            "shadow_may_overwrite_base_risk"
+        ],
         "generation_mode": "deterministic",
         "status_disclosure_zh": (
             "无真值预测模式；本报告未读取同期观测、灾害影响、新闻真值或事后验证。"
@@ -212,6 +235,10 @@ def render_forecast_report(report: dict[str, Any], packet: dict[str, Any]) -> st
         + "`",
         f"- 冲突标记：`{report['conflict_flag']}`",
         f"- 综合关注级别：`{report['attention_level']}`",
+        f"- 影子纠错状态：`{report['shadow_correction_status']}`",
+        "- 影子建议风险：`"
+        + str(report["shadow_suggested_risk_level"] or "none")
+        + "`",
         "",
         report["knowledge_context_zh"],
         "",

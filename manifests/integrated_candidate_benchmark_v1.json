@@ -1,0 +1,83 @@
+{
+  "schema_version": "integrated_candidate_benchmark_v1",
+  "scope": "development_candidate_comparison",
+  "candidate_selection_split": "development",
+  "heatwave": {
+    "opened_development_cases": 16,
+    "opened_target_days": 37,
+    "selected_development_method": null,
+    "best_available_development_method": "blend075_pooled_loco",
+    "best_available_metrics": {
+      "method": "blend075_pooled_loco",
+      "target_days": 37,
+      "observed_hot_days": 14,
+      "observed_hot_day_hits": 6,
+      "observed_hot_day_recall": 0.42857142857142855,
+      "observed_nonhot_days": 23,
+      "observed_nonhot_day_correct_negatives": 22,
+      "observed_nonhot_day_specificity": 0.9565217391304348,
+      "balanced_accuracy": 0.6925465838509317,
+      "event_cases": 9,
+      "event_case_detections": 3,
+      "event_case_detection_fraction": 0.3333333333333333,
+      "control_cases": 7,
+      "control_case_correct_rejections": 7,
+      "control_case_rejection_fraction": 1.0,
+      "mae_degc": 1.5074128040540546,
+      "complexity_rank": 3,
+      "passes_all_gates": false
+    },
+    "candidate_can_freeze": false,
+    "independent_heatwave_opened": false,
+    "interpretation": "no_candidate_passed_all_development_gates"
+  },
+  "heavy_rain": {
+    "selected_official_base_rule": "heavy_rain_graphcast_scale_v2",
+    "official_base_status": "frozen_with_existing_one_time_independent_evaluation",
+    "selected_shadow_knowledge_candidate": "v2_kg_ratio_050_support2",
+    "best_observed_development_knowledge_candidate": "v2_kg_persistence_ratio050_support2",
+    "shadow_candidate_activation_eligible": false,
+    "shadow_candidate_may_overwrite_frozen_risk": false,
+    "independent_stress": {
+      "method": "v2_kg_ratio_050_support2",
+      "dataset_split": "independent_test",
+      "event_target_windows": 5,
+      "hits": 5,
+      "misses": 0,
+      "target_window_recall": 1.0,
+      "control_target_windows": 6,
+      "false_alarms": 0,
+      "correct_negatives": 6,
+      "target_window_specificity": 1.0,
+      "event_cases": 2,
+      "event_case_detections": 2,
+      "event_case_detection_fraction": 1.0,
+      "control_cases": 2,
+      "control_case_correct_rejections": 2,
+      "control_case_rejection_fraction": 1.0,
+      "knowledge_trigger_count": 0,
+      "distinct_corrected_event_cases": 0,
+      "new_false_alarm_count": 0,
+      "passes_base_rule_gates": true,
+      "interpretation": "nonblind_reuse_stress_test_not_candidate_selection"
+    }
+  },
+  "knowledge_graph": {
+    "recommended_role": "shadow_correction_candidate",
+    "truth_access": false,
+    "base_risk_mutation_enabled": false,
+    "agent_may_report_shadow_candidate": true
+  },
+  "limitations": [
+    "This is a retrospective development benchmark, not a preregistered prospective comparison.",
+    "The heavy-rain independent set was already opened for frozen v2; reuse here is explicitly nonblind and cannot validate a new knowledge candidate.",
+    "The independent heatwave case remains sealed and was not read."
+  ],
+  "artifacts": {
+    "heatwave_details": "handoff/model_selection/heatwave_candidate_details.csv",
+    "heatwave_assessment": "handoff/model_selection/heatwave_candidate_assessment.csv",
+    "heatwave_group_stability": "handoff/model_selection/heatwave_best_by_source_group.csv",
+    "heavy_rain_details": "handoff/model_selection/heavy_rain_candidate_details.csv",
+    "heavy_rain_assessment": "handoff/model_selection/heavy_rain_candidate_assessment.csv"
+  }
+}

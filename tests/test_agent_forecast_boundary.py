@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 import pytest
+from jsonschema import Draft202012Validator
 
 from saudi_warning.agent.forecast_evidence import build_forecast_evidence_packet
 from saudi_warning.agent.forecast_output import (
@@ -23,7 +24,7 @@ RISK = (
     / "handoff"
     / "risk_results"
     / "development_heavy_rain"
-    / "risk_20200501_00_024_SA-09_heavy_rain.json"
+    / "risk_20200501_00_048_SA-09_heavy_rain.json"
 )
 GENERATED_AT = "2026-07-18T12:00:00Z"
 
@@ -68,8 +69,14 @@ def test_forecast_packet_seals_truth_and_flags_internal_disagreement() -> None:
     assert packet["consistency_check"]["candidate_attention_level"] == "watch"
     assert packet["consistency_check"]["attention_level"] == "routine"
     assert packet["consistency_check"]["attention_gate_status"] == (
-        "development_gate_failed_diagnostic_only"
+        "shadow_not_validated"
     )
+    assert packet["consistency_check"]["primary_to_threshold_ratio"] > 0.5
+    assert packet["consistency_check"]["shadow_correction_status"] == (
+        "triggered_not_activated"
+    )
+    assert packet["consistency_check"]["shadow_suggested_risk_level"] == "medium"
+    assert packet["consistency_check"]["shadow_may_overwrite_base_risk"] is False
     assert packet["consistency_check"]["may_change_risk_level"] is False
 
 
@@ -79,6 +86,9 @@ def test_clean_forecast_report_cannot_claim_same_event_truth() -> None:
 
     assert validate_forecast_report(report, packet) == []
     assert report["truth_accessed"] is False
+    assert report["shadow_correction_status"] == "triggered_not_activated"
+    assert report["shadow_suggested_risk_level"] == "medium"
+    assert report["shadow_may_overwrite_base_risk"] is False
     markdown = render_forecast_report(report, packet)
     assert "SRC-WATAN-20200502" not in markdown
     assert "造成1人死亡" not in markdown
@@ -87,6 +97,18 @@ def test_clean_forecast_report_cannot_claim_same_event_truth() -> None:
     assert "possible_underestimation" in markdown
     assert "综合关注级别：`routine`" in markdown
     assert "WORLDCLIM21_ELEV_10M" in markdown
+
+
+def test_forecast_report_v3_matches_machine_readable_schema() -> None:
+    packet = _packet()
+    report = deterministic_forecast_report(packet)
+    schema = json.loads(
+        (ROOT / "schemas/agent_forecast_report_v3.schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    Draft202012Validator(schema).validate(report)
 
 
 def test_forecast_packet_without_static_context_stays_not_available(

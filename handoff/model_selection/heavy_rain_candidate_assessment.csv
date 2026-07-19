@@ -1,0 +1,8 @@
+method,dataset_split,event_target_windows,hits,misses,target_window_recall,control_target_windows,false_alarms,correct_negatives,target_window_specificity,event_cases,event_case_detections,event_case_detection_fraction,control_cases,control_case_correct_rejections,control_case_rejection_fraction,knowledge_trigger_count,distinct_corrected_event_cases,new_false_alarm_count,passes_base_rule_gates
+v1_base,development,5,1,4,0.2,4,0,4,1.0,3,1,0.3333333333333333,2,2,1.0,0,0,0,False
+v2_base,development,5,3,2,0.6,4,0,4,1.0,3,2,0.6666666666666666,2,2,1.0,0,0,0,True
+v2_kg_support2_any,development,5,5,0,1.0,4,3,1,0.25,3,3,1.0,2,0,0.0,5,1,3,False
+v2_kg_ratio_040_support2,development,5,4,1,0.8,4,1,3,0.75,3,3,1.0,2,1,0.5,2,1,1,False
+v2_kg_ratio_050_support2,development,5,4,1,0.8,4,0,4,1.0,3,3,1.0,2,2,1.0,1,1,0,True
+v2_kg_ratio_060_support2,development,5,3,2,0.6,4,0,4,1.0,3,2,0.6666666666666666,2,2,1.0,0,0,0,True
+v2_kg_persistence_ratio050_support2,development,5,5,0,1.0,4,0,4,1.0,3,3,1.0,2,2,1.0,2,1,0,True
