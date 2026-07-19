@@ -45,6 +45,15 @@ powershell -ExecutionPolicy Bypass -File scripts/run_joint_pipeline_v2.ps1
 
 默认使用Luna，失败或结构化校验不通过时升级到Terra；不会静默退回确定性模板。模型返回后，程序逐项核对案例、区域、lead、基础风险、图谱触发、联合风险、开发门槛和运行状态。真实联调证据见[联合Agent真实Neo4j与Luna/Terra联调](2026-07-19_联合Agent真实Neo4j与LunaTerra联调.md)。
 
+## 当前结项入口：完整编排与双轨报告
+
+当前主线在v5在线报告之上增加了两层可复现入口：
+
+- `scripts/run_full_orchestrator_agent.ps1`：单案例八阶段编排，从预检查、预报物化、契约校验和ADM1汇总，推进到联合推理与预测锁、Neo4j发布查询、在线报告和运行清单收束。控制器只能查看状态并推进下一个合法阶段，不能执行任意命令、跳步、调阈值或读取同期真值。
+- `scripts/run_dual_prediction_batch.ps1`：批量运行暴雨/高温的development与independent_test四组数据，生成`agent_dual_prediction_report_v1`。每份报告同时保留不可修改的系统轨结论和大模型基于五类受控过程证据形成的独立预测意见。
+
+双轨的目的不是让大模型覆盖规则，而是比较两种明确隔离的决策：系统轨由“基础规则＋图谱纠错”确定，大模型轨只能通过决策、时间线、过程指标、方法状态和约束五类工具读取证据。87条窗口级系统结论和大模型意见先分别SHA锁定，之后才允许打开真值评分。最终形成29份报告和957行过程指标；锁后评估显示大模型没有超过暴雨系统，高温虽提高召回但引入更多误报，因此不得替代系统结论。详见[双轨系统与大模型独立预测批量评估](2026-07-19_双轨系统与大模型独立预测批量评估.md)。
+
 预测快照使用`prediction_kg_bundle_v2`，每份报告包含一个ForecastCase、ForecastWindow、Region、RiskAssessment、冻结Rule和候选ConsistencyRule；满足截止时间时还可包含context-only的StaticPriorProfile及PriorSource。快照结构明确禁止：
 
 - `HistoricalEvent`；

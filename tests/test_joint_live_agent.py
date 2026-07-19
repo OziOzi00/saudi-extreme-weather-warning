@@ -8,6 +8,7 @@ from saudi_warning.agent.run_joint_live_report import validate_live_report
 from saudi_warning.knowledge_graph.joint_runtime import (
     FORBIDDEN_COLUMNS,
     prediction_rows,
+    prediction_row_counts,
 )
 
 
@@ -63,6 +64,19 @@ def test_joint_graph_loader_rejects_truth_columns() -> None:
         raise AssertionError("truth-bearing rows must be rejected")
 
 
+def test_joint_graph_audit_counts_only_current_write_set() -> None:
+    rows = [
+        {
+            "window_key": f"window-{lead}",
+            "case_key": "case-a",
+            "region_key": "region-a",
+        }
+        for lead in (24, 48, 72)
+    ]
+    rows.append(dict(rows[0]))
+    assert prediction_row_counts(rows) == {"windows": 3, "cases": 1, "regions": 1}
+
+
 def test_live_report_guardrail_preserves_neo4j_timeline() -> None:
     timeline = [
         {
@@ -106,9 +120,7 @@ def test_live_report_guardrail_preserves_neo4j_timeline() -> None:
         "operating_status": "research_candidate",
         "formal_warning_allowed": False,
         "generation_mode": "openai_luna",
-        "timeline_analysis": [
-            {**item, "signal_analysis_zh": "受控分析"} for item in timeline
-        ],
+        "timeline_analysis": [{**item, "signal_analysis_zh": "受控分析"} for item in timeline],
         "executive_summary_zh": "综合结论",
         "spatial_temporal_analysis_zh": "时空分析",
         "knowledge_graph_analysis_zh": "图谱分析",
@@ -124,9 +136,7 @@ def test_live_report_guardrail_preserves_neo4j_timeline() -> None:
 
 def test_live_agent_schema_is_valid_json() -> None:
     schema = json.loads(
-        (ROOT / "schemas/agent_joint_forecast_report_v5.schema.json").read_text(
-            encoding="utf-8"
-        )
+        (ROOT / "schemas/agent_joint_forecast_report_v5.schema.json").read_text(encoding="utf-8")
     )
     assert schema["properties"]["truth_accessed"]["const"] is False
     assert schema["properties"]["neo4j_query_mode"]["const"] == "live_neo4j"
@@ -134,9 +144,7 @@ def test_live_agent_schema_is_valid_json() -> None:
 
 def test_live_integration_manifest_hashes_real_reports() -> None:
     manifest = json.loads(
-        (ROOT / "manifests/joint_agent_live_integration_v1.json").read_text(
-            encoding="utf-8"
-        )
+        (ROOT / "manifests/joint_agent_live_integration_v1.json").read_text(encoding="utf-8")
     )
     assert manifest["status"] == "passed"
     assert manifest["runtime"]["neo4j_bolt_connected"] is True
@@ -148,9 +156,7 @@ def test_live_integration_manifest_hashes_real_reports() -> None:
         item = manifest[section]
         report_path = ROOT / item["report_json"]
         report = json.loads(report_path.read_text(encoding="utf-8"))
-        assert hashlib.sha256(report_path.read_bytes()).hexdigest() == item[
-            "report_json_sha256"
-        ]
+        assert hashlib.sha256(report_path.read_bytes()).hexdigest() == item["report_json_sha256"]
         assert report["generation_mode"] == mode
         assert report["neo4j_query_mode"] == "live_neo4j"
         assert report["truth_accessed"] is False

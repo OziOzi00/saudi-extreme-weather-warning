@@ -90,9 +90,7 @@ def prediction_rows(
                 "base_risk_level": str(item["base_risk_level"]),
                 "knowledge_triggered": _as_bool(item["knowledge_triggered"]),
                 "joint_final_risk_level": str(item["joint_final_risk_level"]),
-                "forecast_features_json": json.dumps(
-                    features, ensure_ascii=False, sort_keys=True
-                ),
+                "forecast_features_json": json.dumps(features, ensure_ascii=False, sort_keys=True),
                 "selected_rule": selected_rule,
                 "prediction_lock_sha256": prediction_lock_sha256,
             }
@@ -113,8 +111,7 @@ def upsert_joint_predictions(
         "FOR (n:JointPredictionRegion) REQUIRE n.id IS UNIQUE",
         "CREATE CONSTRAINT joint_forecast_window_id IF NOT EXISTS "
         "FOR (n:JointForecastWindow) REQUIRE n.id IS UNIQUE",
-        "CREATE CONSTRAINT joint_rule_id IF NOT EXISTS "
-        "FOR (n:JointRule) REQUIRE n.id IS UNIQUE",
+        "CREATE CONSTRAINT joint_rule_id IF NOT EXISTS FOR (n:JointRule) REQUIRE n.id IS UNIQUE",
     ]
     query = """
 UNWIND $rows AS row
@@ -156,19 +153,17 @@ MERGE (w)-[:USES_JOINT_RULE]->(rule)
             for statement in constraints:
                 session.run(statement).consume()
             session.run(query, rows=rows).consume()
-            counts = session.run(
-                """
-MATCH (w:JointForecastWindow {prediction_lock_sha256: $sha})
-RETURN count(w) AS windows,
-       count(DISTINCT w.case_id) AS cases,
-       count(DISTINCT w.region_id) AS regions
-""",
-                sha=rows[0]["prediction_lock_sha256"],
-            ).single()
+    return prediction_row_counts(rows)
+
+
+def prediction_row_counts(rows: list[dict[str, Any]]) -> dict[str, int]:
+    """Count only the current write set, independent of older graph namespaces."""
+    if not rows:
+        return {"windows": 0, "cases": 0, "regions": 0}
     return {
-        "windows": int(counts["windows"]),
-        "cases": int(counts["cases"]),
-        "regions": int(counts["regions"]),
+        "windows": len({str(row["window_key"]) for row in rows}),
+        "cases": len({str(row["case_key"]) for row in rows}),
+        "regions": len({str(row["region_key"]) for row in rows}),
     }
 
 
@@ -211,7 +206,10 @@ ORDER BY w.lead_time_hours
     with driver:
         driver.verify_connectivity()
         with driver.session() as session:
-            records = [dict(record) for record in session.run(query, case_key=case_key, region_id=region_id)]
+            records = [
+                dict(record)
+                for record in session.run(query, case_key=case_key, region_id=region_id)
+            ]
     if not records:
         raise ValueError("Neo4j returned no joint prediction context")
     for record in records:

@@ -13,7 +13,7 @@
     "finalize": "completed"
   },
   "created_at": "2026-07-19T06:39:01.658352Z",
-  "updated_at": "2026-07-19T07:17:03.838733Z",
+  "updated_at": "2026-07-19T07:59:23.505385Z",
   "stage_results": {
     "materialize_and_validate_forecasts": {
       "case_count": 26,
@@ -66,7 +66,7 @@
         {
           "hazard": "heavy_rain",
           "dataset_split": "development",
-          "windows": 30,
+          "windows": 15,
           "cases": 5,
           "regions": 2
         },
@@ -216,7 +216,7 @@
     },
     "finalize": {
       "path": "handoff/reports/dual_prediction_batch_v1/batch_manifest.json",
-      "sha256": "262ce4f90c522571702c41e721379d0f5f888194560120d910e7d46f265d834c"
+      "sha256": "00887ab203c15f5f80f5a11914c92298975ba0fc5d593ee041b2da155f653998"
     }
   }
 }
