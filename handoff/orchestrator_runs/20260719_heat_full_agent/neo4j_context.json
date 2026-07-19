@@ -1,0 +1,71 @@
+{
+  "SA-04": {
+    "query_mode": "live_neo4j",
+    "truth_accessed": false,
+    "case_id": "20200729_00",
+    "region_id": "SA-04",
+    "hazard": "heatwave",
+    "dataset_split": "20260719_heat_full_agent",
+    "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+    "prediction_lock_sha256": "2421ac6277487bbafde04d4699c356ca230202b9776fd05261f8de59b3cb6089",
+    "timeline": [
+      {
+        "case_id": "20200729_00",
+        "hazard": "heatwave",
+        "dataset_split": "20260719_heat_full_agent",
+        "truth_accessed": false,
+        "region_id": "SA-04",
+        "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+        "lead_time_hours": 24,
+        "base_method": "pooled_median_loco",
+        "knowledge_mode": "temporal_or_spatial",
+        "base_risk_level": "medium",
+        "knowledge_triggered": false,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "2421ac6277487bbafde04d4699c356ca230202b9776fd05261f8de59b3cb6089",
+        "forecast_features": {
+          "candidate_tmax_degc": 48.8784,
+          "hot_day_threshold_degc": 47.249969
+        }
+      },
+      {
+        "case_id": "20200729_00",
+        "hazard": "heatwave",
+        "dataset_split": "20260719_heat_full_agent",
+        "truth_accessed": false,
+        "region_id": "SA-04",
+        "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+        "lead_time_hours": 48,
+        "base_method": "pooled_median_loco",
+        "knowledge_mode": "temporal_or_spatial",
+        "base_risk_level": "high",
+        "knowledge_triggered": false,
+        "joint_final_risk_level": "high",
+        "prediction_lock_sha256": "2421ac6277487bbafde04d4699c356ca230202b9776fd05261f8de59b3cb6089",
+        "forecast_features": {
+          "candidate_tmax_degc": 50.505766,
+          "hot_day_threshold_degc": 47.249969
+        }
+      },
+      {
+        "case_id": "20200729_00",
+        "hazard": "heatwave",
+        "dataset_split": "20260719_heat_full_agent",
+        "truth_accessed": false,
+        "region_id": "SA-04",
+        "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
+        "lead_time_hours": 72,
+        "base_method": "pooled_median_loco",
+        "knowledge_mode": "temporal_or_spatial",
+        "base_risk_level": "high",
+        "knowledge_triggered": false,
+        "joint_final_risk_level": "high",
+        "prediction_lock_sha256": "2421ac6277487bbafde04d4699c356ca230202b9776fd05261f8de59b3cb6089",
+        "forecast_features": {
+          "candidate_tmax_degc": 50.005681,
+          "hot_day_threshold_degc": 47.249969
+        }
+      }
+    ]
+  }
+}

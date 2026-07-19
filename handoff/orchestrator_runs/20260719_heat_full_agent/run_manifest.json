@@ -1,0 +1,64 @@
+{
+  "schema_version": "controlled_orchestrator_run_manifest_v1",
+  "status": "passed",
+  "truth_accessed": false,
+  "request": {
+    "run_id": "20260719_heat_full_agent",
+    "case_id": "20200729_00",
+    "initial_time": "2020-07-29T00:00:00Z",
+    "hazard": "heatwave",
+    "region_ids": [
+      "SA-04"
+    ],
+    "focus_lead_time_hours": 48,
+    "model": "gpt-5.6-terra",
+    "escalation_model": "gpt-5.6-luna",
+    "cache_dir": "data/raw/graphcast_2020",
+    "mazu_dir": "handoff/mazu_like",
+    "output_root": "handoff/orchestrator_runs"
+  },
+  "completed_stages": [
+    "preflight",
+    "forecast_materialization",
+    "contract_validation",
+    "region_summary",
+    "joint_inference_and_lock",
+    "neo4j_publish_and_query",
+    "live_agent_reports"
+  ],
+  "artifacts": [
+    {
+      "path": "handoff/orchestrator_runs/20260719_heat_full_agent/adm1_indicator_summary.csv",
+      "sha256": "908056029ce35b19088b0b1b1d333c1557225bf70d5983e4e04edb0bae2d28b0",
+      "size_bytes": 6945
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_heat_full_agent/heatwave_prediction_lock.csv",
+      "sha256": "2421ac6277487bbafde04d4699c356ca230202b9776fd05261f8de59b3cb6089",
+      "size_bytes": 519
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_heat_full_agent/heatwave_SA-04_lead048.evidence.json",
+      "sha256": "c1d3fe48659b15e629630d598ef4b94de9e2d3f1d84a73f0f1302b30b590af2f",
+      "size_bytes": 5059
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_heat_full_agent/heatwave_SA-04_lead048.json",
+      "sha256": "6c7098180417789db36d837ae30b00ceff8ccd3cf934984d57ac9db9e2211ada",
+      "size_bytes": 6682
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_heat_full_agent/heatwave_SA-04_lead048.md",
+      "sha256": "6b5ad0dadce038d46a292618e6300a3383dad3430bf3918c6bad4b0c88e071d6",
+      "size_bytes": 6315
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_heat_full_agent/neo4j_context.json",
+      "sha256": "0a5072252a7e67bdd9e6227f5f75ad095a9541a3ce174499507f871f4056fc62",
+      "size_bytes": 2865
+    }
+  ],
+  "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+  "created_at": "2026-07-19T06:16:13.070923Z",
+  "completed_at": "2026-07-19T06:17:27.042299Z"
+}

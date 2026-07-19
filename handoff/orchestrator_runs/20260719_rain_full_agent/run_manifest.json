@@ -1,0 +1,64 @@
+{
+  "schema_version": "controlled_orchestrator_run_manifest_v1",
+  "status": "passed",
+  "truth_accessed": false,
+  "request": {
+    "run_id": "20260719_rain_full_agent",
+    "case_id": "20200501_00",
+    "initial_time": "2020-05-01T00:00:00Z",
+    "hazard": "heavy_rain",
+    "region_ids": [
+      "SA-09"
+    ],
+    "focus_lead_time_hours": 48,
+    "model": "gpt-5.6-luna",
+    "escalation_model": "gpt-5.6-terra",
+    "cache_dir": "data/raw/graphcast_2020",
+    "mazu_dir": "handoff/mazu_like",
+    "output_root": "handoff/orchestrator_runs"
+  },
+  "completed_stages": [
+    "preflight",
+    "forecast_materialization",
+    "contract_validation",
+    "region_summary",
+    "joint_inference_and_lock",
+    "neo4j_publish_and_query",
+    "live_agent_reports"
+  ],
+  "artifacts": [
+    {
+      "path": "handoff/orchestrator_runs/20260719_rain_full_agent/adm1_indicator_summary.csv",
+      "sha256": "9f19d772aa7bda4dc7844dfd896d08178ed562b883c57900e85fce9675889e5b",
+      "size_bytes": 6827
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_prediction_lock.csv",
+      "sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+      "size_bytes": 474
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.evidence.json",
+      "sha256": "13386a2048550f7391362359063718a59aac440074861af32e80f3766fd0c439",
+      "size_bytes": 4806
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.json",
+      "sha256": "78edab30e517ec17090d64cc3320f6edcadb3a9d5d3828cef31c5ca542b1b93f",
+      "size_bytes": 6451
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.md",
+      "sha256": "32beda3eba4f56d7ac945740f5d4f26c335918e4b070bfd44395f616793d83d9",
+      "size_bytes": 6104
+    },
+    {
+      "path": "handoff/orchestrator_runs/20260719_rain_full_agent/neo4j_context.json",
+      "sha256": "79325e6e6b17585ff4f4c89b4f4c491a1bfb7f3b87b0264e4f777dd0382af86f",
+      "size_bytes": 2707
+    }
+  ],
+  "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+  "created_at": "2026-07-19T06:13:59.734797Z",
+  "completed_at": "2026-07-19T06:15:12.642291Z"
+}

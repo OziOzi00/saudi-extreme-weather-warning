@@ -1,0 +1,4 @@
+case_id,prediction_case_id,region_id,lead_time_hours,base_method,knowledge_mode,base_risk_level,knowledge_triggered,joint_final_risk_level,primary_ratio,support_count
+20200501_00,20200501_00_024,SA-09,24,v2_base,cross_window_persistence,low,True,medium,0.302582,2
+20200501_00,20200501_00_048,SA-09,48,v2_base,cross_window_persistence,low,True,medium,0.57966504,2
+20200501_00,20200501_00_072,SA-09,72,v2_base,cross_window_persistence,low,True,medium,0.5287658399999999,1

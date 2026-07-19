@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "run_id": "20260719_rain_full_agent",
+  "completed_stage_count": 8,
+  "truth_accessed": false,
+  "summary_zh": "当前案例的全部 8 个受控编排阶段均已完成，最终状态检查通过，next_stage 为 null。未访问同期真值。",
+  "controller_model": "gpt-5.6-luna",
+  "tool_trace": [
+    "inspect",
+    "preflight",
+    "forecast_materialization",
+    "contract_validation",
+    "region_summary",
+    "joint_inference_and_lock",
+    "neo4j_publish_and_query",
+    "live_agent_reports",
+    "finalize_manifest",
+    "inspect"
+  ]
+}

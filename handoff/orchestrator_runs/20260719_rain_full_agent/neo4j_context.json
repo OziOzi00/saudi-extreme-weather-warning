@@ -1,0 +1,71 @@
+{
+  "SA-09": {
+    "query_mode": "live_neo4j",
+    "truth_accessed": false,
+    "case_id": "20200501_00",
+    "region_id": "SA-09",
+    "hazard": "heavy_rain",
+    "dataset_split": "20260719_rain_full_agent",
+    "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+    "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+    "timeline": [
+      {
+        "case_id": "20200501_00",
+        "hazard": "heavy_rain",
+        "dataset_split": "20260719_rain_full_agent",
+        "truth_accessed": false,
+        "region_id": "SA-09",
+        "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+        "lead_time_hours": 24,
+        "base_method": "v2_base",
+        "knowledge_mode": "cross_window_persistence",
+        "base_risk_level": "low",
+        "knowledge_triggered": true,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+        "forecast_features": {
+          "primary_ratio": 0.302582,
+          "support_count": 2.0
+        }
+      },
+      {
+        "case_id": "20200501_00",
+        "hazard": "heavy_rain",
+        "dataset_split": "20260719_rain_full_agent",
+        "truth_accessed": false,
+        "region_id": "SA-09",
+        "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+        "lead_time_hours": 48,
+        "base_method": "v2_base",
+        "knowledge_mode": "cross_window_persistence",
+        "base_risk_level": "low",
+        "knowledge_triggered": true,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+        "forecast_features": {
+          "primary_ratio": 0.57966504,
+          "support_count": 2.0
+        }
+      },
+      {
+        "case_id": "20200501_00",
+        "hazard": "heavy_rain",
+        "dataset_split": "20260719_rain_full_agent",
+        "truth_accessed": false,
+        "region_id": "SA-09",
+        "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+        "lead_time_hours": 72,
+        "base_method": "v2_base",
+        "knowledge_mode": "cross_window_persistence",
+        "base_risk_level": "low",
+        "knowledge_triggered": true,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+        "forecast_features": {
+          "primary_ratio": 0.5287658399999999,
+          "support_count": 1.0
+        }
+      }
+    ]
+  }
+}

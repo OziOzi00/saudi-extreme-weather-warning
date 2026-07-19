@@ -1,0 +1,488 @@
+{
+  "schema_version": "controlled_orchestrator_state_v1",
+  "truth_accessed": false,
+  "request": {
+    "run_id": "20260719_rain_full_agent",
+    "case_id": "20200501_00",
+    "initial_time": "2020-05-01T00:00:00Z",
+    "hazard": "heavy_rain",
+    "region_ids": [
+      "SA-09"
+    ],
+    "focus_lead_time_hours": 48,
+    "model": "gpt-5.6-luna",
+    "escalation_model": "gpt-5.6-terra",
+    "cache_dir": "data/raw/graphcast_2020",
+    "mazu_dir": "handoff/mazu_like",
+    "output_root": "handoff/orchestrator_runs"
+  },
+  "status": "complete",
+  "stages": {
+    "preflight": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:14:05.163510Z",
+      "completed_at": "2026-07-19T06:14:05.171514Z",
+      "result": {
+        "case_id_matches_initial_time": true,
+        "regions_validated": [
+          "SA-09"
+        ],
+        "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+        "truth_accessed": false
+      }
+    },
+    "forecast_materialization": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:14:06.509074Z",
+      "completed_at": "2026-07-19T06:14:06.830294Z",
+      "result": {
+        "status": "skipped",
+        "message": "all lead outputs already exist and passed validation",
+        "files": {
+          "24": "handoff/mazu_like/mazu_like_20200501_00_lead024.nc",
+          "48": "handoff/mazu_like/mazu_like_20200501_00_lead048.nc",
+          "72": "handoff/mazu_like/mazu_like_20200501_00_lead072.nc"
+        }
+      }
+    },
+    "contract_validation": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:14:08.663457Z",
+      "completed_at": "2026-07-19T06:14:08.689542Z",
+      "result": {
+        "valid": true,
+        "file_sha256": {
+          "24": "9d37a0f948c52de3b7257b569b105d6f7960240d109baebd28b1aa8b99e6435b",
+          "48": "80c6fc83d2658e22ed2989f0878c5175ad3ef8949b65af4e7c76946062b37bf1",
+          "72": "82c68459c554d6175db7112e8940e278a1a332c477ca9fec707bd92ab9f8f338"
+        },
+        "reports": {
+          "24": {
+            "path": "D:/桌面/沙特极端气象预测/handoff/mazu_like/mazu_like_20200501_00_lead024.nc",
+            "valid": true,
+            "errors": [],
+            "warnings": [],
+            "metadata": {
+              "file_size_bytes": 370764,
+              "initial_time": "2020-05-01T00:00:00Z",
+              "lead_time_hours": 24,
+              "valid_start_time": "2020-05-01T00:00:00Z",
+              "valid_end_time": "2020-05-02T00:00:00Z",
+              "forecast_model": "GraphCast",
+              "source_resolution": "0.25 degree",
+              "indicator_version": "mazu_like_v1",
+              "latitude_count": 73,
+              "longitude_count": 97
+            },
+            "indicators": {
+              "daily_precip_total": {
+                "unit": "mm",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.0,
+                "maximum": 19.039871215820312,
+                "out_of_range_count": 0
+              },
+              "t2m_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 6.36785888671875,
+                "maximum": 37.1060791015625,
+                "out_of_range_count": 0
+              },
+              "tmax_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 10.714569091796875,
+                "maximum": 42.3394775390625,
+                "out_of_range_count": 0
+              },
+              "tmin_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 2.1951904296875,
+                "maximum": 32.74969482421875,
+                "out_of_range_count": 0
+              },
+              "wind10_speed": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.4251101315021515,
+                "maximum": 9.271993637084961,
+                "out_of_range_count": 0
+              },
+              "pwat": {
+                "unit": "kg m-2",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 6.227233816080187,
+                "maximum": 57.404762557624565,
+                "out_of_range_count": 0
+              },
+              "ivt": {
+                "unit": "kg m-1 s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 16.28727289523512,
+                "maximum": 295.26954140281276,
+                "out_of_range_count": 0
+              },
+              "wind850_speed": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.5253738164901733,
+                "maximum": 13.423653602600098,
+                "out_of_range_count": 0
+              },
+              "wind_shear_850_200": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 2.694633960723877,
+                "maximum": 61.82157516479492,
+                "out_of_range_count": 0
+              },
+              "omega500": {
+                "unit": "Pa s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": -0.7086495757102966,
+                "maximum": 0.6604216694831848,
+                "out_of_range_count": 0
+              },
+              "geopotential_height500": {
+                "unit": "gpm",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 5691.65087890625,
+                "maximum": 5909.20751953125,
+                "out_of_range_count": 0
+              }
+            }
+          },
+          "48": {
+            "path": "D:/桌面/沙特极端气象预测/handoff/mazu_like/mazu_like_20200501_00_lead048.nc",
+            "valid": true,
+            "errors": [],
+            "warnings": [],
+            "metadata": {
+              "file_size_bytes": 370764,
+              "initial_time": "2020-05-01T00:00:00Z",
+              "lead_time_hours": 48,
+              "valid_start_time": "2020-05-02T00:00:00Z",
+              "valid_end_time": "2020-05-03T00:00:00Z",
+              "forecast_model": "GraphCast",
+              "source_resolution": "0.25 degree",
+              "indicator_version": "mazu_like_v1",
+              "latitude_count": 73,
+              "longitude_count": 97
+            },
+            "indicators": {
+              "daily_precip_total": {
+                "unit": "mm",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.0,
+                "maximum": 15.921889305114746,
+                "out_of_range_count": 0
+              },
+              "t2m_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 8.287200927734375,
+                "maximum": 35.743133544921875,
+                "out_of_range_count": 0
+              },
+              "tmax_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 11.9681396484375,
+                "maximum": 41.67535400390625,
+                "out_of_range_count": 0
+              },
+              "tmin_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 4.14178466796875,
+                "maximum": 31.068572998046875,
+                "out_of_range_count": 0
+              },
+              "wind10_speed": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.35820019245147705,
+                "maximum": 8.718381881713867,
+                "out_of_range_count": 0
+              },
+              "pwat": {
+                "unit": "kg m-2",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 7.405714377889751,
+                "maximum": 59.15516965863166,
+                "out_of_range_count": 0
+              },
+              "ivt": {
+                "unit": "kg m-1 s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 12.734358479086469,
+                "maximum": 234.52391241186808,
+                "out_of_range_count": 0
+              },
+              "wind850_speed": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.3735477924346924,
+                "maximum": 12.556015014648438,
+                "out_of_range_count": 0
+              },
+              "wind_shear_850_200": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 1.733339786529541,
+                "maximum": 56.16081619262695,
+                "out_of_range_count": 0
+              },
+              "omega500": {
+                "unit": "Pa s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": -0.48163819313049316,
+                "maximum": 0.732265830039978,
+                "out_of_range_count": 0
+              },
+              "geopotential_height500": {
+                "unit": "gpm",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 5700.20654296875,
+                "maximum": 5902.17626953125,
+                "out_of_range_count": 0
+              }
+            }
+          },
+          "72": {
+            "path": "D:/桌面/沙特极端气象预测/handoff/mazu_like/mazu_like_20200501_00_lead072.nc",
+            "valid": true,
+            "errors": [],
+            "warnings": [],
+            "metadata": {
+              "file_size_bytes": 370764,
+              "initial_time": "2020-05-01T00:00:00Z",
+              "lead_time_hours": 72,
+              "valid_start_time": "2020-05-03T00:00:00Z",
+              "valid_end_time": "2020-05-04T00:00:00Z",
+              "forecast_model": "GraphCast",
+              "source_resolution": "0.25 degree",
+              "indicator_version": "mazu_like_v1",
+              "latitude_count": 73,
+              "longitude_count": 97
+            },
+            "indicators": {
+              "daily_precip_total": {
+                "unit": "mm",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.0,
+                "maximum": 14.886275291442871,
+                "out_of_range_count": 0
+              },
+              "t2m_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 7.242584228515625,
+                "maximum": 36.214508056640625,
+                "out_of_range_count": 0
+              },
+              "tmax_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 11.906982421875,
+                "maximum": 42.490692138671875,
+                "out_of_range_count": 0
+              },
+              "tmin_c": {
+                "unit": "degC",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 1.88946533203125,
+                "maximum": 31.945892333984375,
+                "out_of_range_count": 0
+              },
+              "wind10_speed": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.41189396381378174,
+                "maximum": 8.146003723144531,
+                "out_of_range_count": 0
+              },
+              "pwat": {
+                "unit": "kg m-2",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 10.079962477097801,
+                "maximum": 60.198672677156665,
+                "out_of_range_count": 0
+              },
+              "ivt": {
+                "unit": "kg m-1 s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 9.082515491843317,
+                "maximum": 255.12476308114952,
+                "out_of_range_count": 0
+              },
+              "wind850_speed": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 0.36669284105300903,
+                "maximum": 11.14293384552002,
+                "out_of_range_count": 0
+              },
+              "wind_shear_850_200": {
+                "unit": "m s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 3.477635383605957,
+                "maximum": 56.91980743408203,
+                "out_of_range_count": 0
+              },
+              "omega500": {
+                "unit": "Pa s-1",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": -0.5339871644973755,
+                "maximum": 1.1617364883422852,
+                "out_of_range_count": 0
+              },
+              "geopotential_height500": {
+                "unit": "gpm",
+                "finite_count": 7081,
+                "total_count": 7081,
+                "missing_fraction": 0.0,
+                "minimum": 5715.40234375,
+                "maximum": 5907.91796875,
+                "out_of_range_count": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "region_summary": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:14:10.171987Z",
+      "completed_at": "2026-07-19T06:14:14.489226Z",
+      "result": {
+        "path": "handoff/orchestrator_runs/20260719_rain_full_agent/adm1_indicator_summary.csv",
+        "rows": 33,
+        "sha256": "9f19d772aa7bda4dc7844dfd896d08178ed562b883c57900e85fce9675889e5b"
+      }
+    },
+    "joint_inference_and_lock": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:14:15.867054Z",
+      "completed_at": "2026-07-19T06:14:15.891949Z",
+      "result": {
+        "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_prediction_lock.csv",
+        "rows": 3,
+        "sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+        "truth_accessed": false
+      }
+    },
+    "neo4j_publish_and_query": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:14:17.321425Z",
+      "completed_at": "2026-07-19T06:14:22.236035Z",
+      "result": {
+        "query_mode": "live_neo4j",
+        "counts": {
+          "windows": 3,
+          "cases": 1,
+          "regions": 1
+        },
+        "context_path": "handoff/orchestrator_runs/20260719_rain_full_agent/neo4j_context.json",
+        "context_sha256": "79325e6e6b17585ff4f4c89b4f4c491a1bfb7f3b87b0264e4f777dd0382af86f",
+        "truth_accessed": false
+      }
+    },
+    "live_agent_reports": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:14:23.893142Z",
+      "completed_at": "2026-07-19T06:15:10.623650Z",
+      "result": {
+        "reports": [
+          {
+            "region_id": "SA-09",
+            "report_json": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.json",
+            "report_markdown": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.md",
+            "evidence": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.evidence.json",
+            "generation_mode": "openai_luna",
+            "joint_final_risk_level": "medium",
+            "report_sha256": "78edab30e517ec17090d64cc3320f6edcadb3a9d5d3828cef31c5ca542b1b93f"
+          }
+        ],
+        "truth_accessed": false
+      }
+    },
+    "finalize_manifest": {
+      "status": "completed",
+      "started_at": "2026-07-19T06:15:12.634752Z",
+      "completed_at": "2026-07-19T06:15:12.643262Z",
+      "result": {
+        "path": "handoff/orchestrator_runs/20260719_rain_full_agent/run_manifest.json",
+        "sha256": "babda599593f15b047a2f9b4b518399038492d3eb3340c683b65a481c4383972"
+      }
+    }
+  },
+  "created_at": "2026-07-19T06:13:59.734797Z",
+  "updated_at": "2026-07-19T06:15:12.643262Z"
+}
