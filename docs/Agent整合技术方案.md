@@ -39,6 +39,12 @@ powershell -ExecutionPolicy Bypass -File scripts/run_joint_pipeline_v2.ps1
 
 暴雨当前为`research_candidate`，高温因未通过development全部门槛固定为`research_only_blocked`。两者的`formal_warning_allowed`均为false。旧Forecast v3用于复现上一轮影子方案，不再代表当前联合研究主线。
 
+### v5真实在线运行
+
+`scripts/run_joint_agent_live.ps1`已把联合v4决策接到真实运行的Neo4j和Luna/Terra。它先校验预测锁SHA，再把无真值窗口写入独立`JointPrediction*`标签，随后从Neo4j查询完整时间线。Agent必须调用决策、图谱时间线、方法状态、溯源和约束五个工具，输出`agent_joint_forecast_report_v5`。
+
+默认使用Luna，失败或结构化校验不通过时升级到Terra；不会静默退回确定性模板。模型返回后，程序逐项核对案例、区域、lead、基础风险、图谱触发、联合风险、开发门槛和运行状态。真实联调证据见[联合Agent真实Neo4j与Luna/Terra联调](2026-07-19_联合Agent真实Neo4j与LunaTerra联调.md)。
+
 预测快照使用`prediction_kg_bundle_v2`，每份报告包含一个ForecastCase、ForecastWindow、Region、RiskAssessment、冻结Rule和候选ConsistencyRule；满足截止时间时还可包含context-only的StaticPriorProfile及PriorSource。快照结构明确禁止：
 
 - `HistoricalEvent`；

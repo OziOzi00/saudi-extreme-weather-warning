@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_joint_forecast_report_v5.schema.json",
+  "title": "Live Neo4j-backed joint forecast Agent report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "report_mode", "truth_accessed", "neo4j_query_mode",
+    "case_id", "region_id", "hazard", "focus_lead_time_hours",
+    "selected_joint_rule", "base_risk_level", "knowledge_triggered",
+    "joint_final_risk_level", "development_gate_passed", "operating_status",
+    "formal_warning_allowed", "generation_mode", "executive_summary_zh",
+    "timeline_analysis", "spatial_temporal_analysis_zh",
+    "knowledge_graph_analysis_zh", "uncertainty_analysis_zh",
+    "limitations_zh", "recommended_actions_zh", "provenance_summary_zh"
+  ],
+  "properties": {
+    "schema_version": {"const": "agent_joint_forecast_report_v5"},
+    "report_mode": {"const": "joint_forecast_live"},
+    "truth_accessed": {"const": false},
+    "neo4j_query_mode": {"const": "live_neo4j"},
+    "case_id": {"type": "string"},
+    "region_id": {"type": "string"},
+    "hazard": {"enum": ["heavy_rain", "heatwave"]},
+    "focus_lead_time_hours": {"type": "integer"},
+    "selected_joint_rule": {"type": "string"},
+    "base_risk_level": {"enum": ["low", "medium", "high"]},
+    "knowledge_triggered": {"type": "boolean"},
+    "joint_final_risk_level": {"enum": ["low", "medium", "high"]},
+    "development_gate_passed": {"type": "boolean"},
+    "operating_status": {"enum": ["research_candidate", "research_only_blocked"]},
+    "formal_warning_allowed": {"const": false},
+    "generation_mode": {"enum": ["openai_luna", "openai_terra"]},
+    "executive_summary_zh": {"type": "string", "minLength": 1},
+    "timeline_analysis": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["lead_time_hours", "base_risk_level", "knowledge_triggered", "joint_final_risk_level", "signal_analysis_zh"],
+        "properties": {
+          "lead_time_hours": {"type": "integer"},
+          "base_risk_level": {"enum": ["low", "medium", "high"]},
+          "knowledge_triggered": {"type": "boolean"},
+          "joint_final_risk_level": {"enum": ["low", "medium", "high"]},
+          "signal_analysis_zh": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "spatial_temporal_analysis_zh": {"type": "string", "minLength": 1},
+    "knowledge_graph_analysis_zh": {"type": "string", "minLength": 1},
+    "uncertainty_analysis_zh": {"type": "string", "minLength": 1},
+    "limitations_zh": {"type": "array", "items": {"type": "string"}},
+    "recommended_actions_zh": {"type": "array", "items": {"type": "string"}},
+    "provenance_summary_zh": {"type": "string", "minLength": 1}
+  }
+}

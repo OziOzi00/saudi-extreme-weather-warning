@@ -1,0 +1,43 @@
+{
+  "schema_version": "joint_agent_live_integration_v1",
+  "status": "passed",
+  "tested_at": "2026-07-19T12:49:58+08:00",
+  "runtime": {
+    "neo4j_query_mode": "live_neo4j",
+    "neo4j_bolt_connected": true,
+    "truth_accessed": false,
+    "risk_fields_guarded": true,
+    "required_agent_tool_count": 5
+  },
+  "heavy_rain": {
+    "case_id": "20200501_00",
+    "region_id": "SA-09",
+    "lead_time_hours": 48,
+    "model": "gpt-5.6-luna",
+    "generation_mode": "openai_luna",
+    "joint_final_risk_level": "medium",
+    "neo4j_import_counts": {"windows": 15, "cases": 5, "regions": 2},
+    "report_json": "handoff/reports/joint_pipeline_live/heavy_rain_luna_live.json",
+    "report_json_sha256": "6794f18ddaba1043951a895d37a848733d0d06aa834f2f3dd43dafa3469658b7",
+    "report_markdown": "handoff/reports/joint_pipeline_live/heavy_rain_luna_live.md",
+    "report_markdown_sha256": "7293a5ee0c873483e96ce3dff3dc5f42ebe7c4a760ee1691629f3232a1acc87d",
+    "evidence_packet": "handoff/reports/joint_pipeline_live/heavy_rain_luna_live.evidence.json",
+    "evidence_packet_sha256": "c9a0ea4dd416b02f0af644fa5882df01f26d13fb172c48bf89a7511cc4880657"
+  },
+  "heatwave": {
+    "case_id": "20200729_00",
+    "region_id": "SA-04",
+    "lead_time_hours": 48,
+    "model": "gpt-5.6-terra",
+    "generation_mode": "openai_terra",
+    "joint_final_risk_level": "high",
+    "neo4j_import_counts": {"windows": 6, "cases": 1, "regions": 2},
+    "report_json": "handoff/reports/joint_pipeline_live/heatwave_terra_live.json",
+    "report_json_sha256": "1a2dc0af1d7f5cb54d96c287f29e8c45c163a47641cee9d5a90bd5f444c1ad05",
+    "report_markdown": "handoff/reports/joint_pipeline_live/heatwave_terra_live.md",
+    "report_markdown_sha256": "d7e838b5227a596fa05754d7fc21eb7bfde4abdbeab90feaae48fb206a2648b4",
+    "evidence_packet": "handoff/reports/joint_pipeline_live/heatwave_terra_live.evidence.json",
+    "evidence_packet_sha256": "2ea8a147969019238d6dcd7ed0630c7b778909073b2e303eeea8bcba4cc41fca"
+  },
+  "interpretation": "Both model paths queried a running Neo4j instance and returned schema-validated truth-free reports. This proves runtime integration, not weather-skill validation or production readiness."
+}

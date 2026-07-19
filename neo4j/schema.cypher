@@ -5,3 +5,7 @@ CREATE CONSTRAINT historical_event_id IF NOT EXISTS FOR (n:HistoricalEvent) REQU
 CREATE CONSTRAINT risk_assessment_id IF NOT EXISTS FOR (n:RiskAssessment) REQUIRE n.id IS UNIQUE;
 CREATE CONSTRAINT rule_id IF NOT EXISTS FOR (n:Rule) REQUIRE n.id IS UNIQUE;
 CREATE CONSTRAINT evidence_id IF NOT EXISTS FOR (n:Evidence) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT joint_prediction_case_id IF NOT EXISTS FOR (n:JointPredictionCase) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT joint_prediction_region_id IF NOT EXISTS FOR (n:JointPredictionRegion) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT joint_forecast_window_id IF NOT EXISTS FOR (n:JointForecastWindow) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT joint_rule_id IF NOT EXISTS FOR (n:JointRule) REQUIRE n.id IS UNIQUE;

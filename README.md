@@ -39,6 +39,7 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **高温v4分层诊断已执行**：不改47/49°C阈值、不混入区域最大值、不使用已评估SA-08拟合；按lead中位偏差修正在同步观测天气真值上达到高温日4/6、非高温日8/9，优于pooled方法，只获得进入下一批全新prospective development的资格，高温规则仍为draft/blocked。
 - **高温v5跨年前瞻评估已完成但未通过**：输入锁定后完成2018年72/72缓存和18/18份MAZU-like；固定候选虽命中5/6个高温日，但非高温日仅8/12正确否定、对照案例仅2/3拒绝，高温继续blocked；该轮结束时独立高温仍封存。
 - **规则—图谱联合搜索已完成**：暴雨234组中选出通过development门槛的整体研究方案（事件窗5/5、对照4/4），既有独立划分非盲回放为5/5与6/6但图谱触发0次；高温2316组无一通过全部门槛，最佳候选仍blocked。完整结论见[联合规则—图谱整体搜索与全链回放](docs/2026-07-19_联合规则图谱整体搜索与全链回放.md)。
+- **联合Agent在线链已真实接通**：无真值联合预测已参数化写入本地Neo4j；Luna真实生成暴雨报告，Terra真实生成高温报告，两者均查询在线24/48/72小时图谱、调用全部五个受控工具并通过风险字段守卫。结果见[联合Agent真实Neo4j与Luna/Terra联调](docs/2026-07-19_联合Agent真实Neo4j与LunaTerra联调.md)。
 - **灾害影响层描述性评估已完成**：9条经复核正例合并为6个案例—区域单位，冻结中高风险覆盖5/6；没有可靠无影响负例，因此不能计算误报率、特异度或完整准确率。
 - **唯一影响漏报已完成归因**：`20200501_00 / SA-09`的lead024为明确天气低估；lead048显示区域P95规则的局地尺度盲区并伴随天气低估。4个对照仍未取得合格无影响证据。
 - **仍待正式完成**：补充新的高温development证据并在新预注册方案下继续研究偏差；补充可靠影响负例及更广泛影响证据。
@@ -116,6 +117,12 @@ python -m saudi_warning.risk.benchmark_integrated_candidates
 powershell -ExecutionPolicy Bypass -File scripts/run_joint_pipeline_v2.ps1
 ```
 
+Neo4j服务已启动且本地忽略的Agent/Neo4j环境文件已配置时，可运行真实联合Agent：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_joint_agent_live.ps1
+```
+
 成员 A 新增个例的批处理命令见 [成员 A 批处理说明](docs/成员A批处理说明.md)。成员 B/C 的任务和当前完成边界见 [团队协作流程](docs/团队协作流程.md)。
 
 成员 A 的完整交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_a_delivery.ps1`；默认以版本化 demo catalog 复验现有三份 lead。当前批准案例位于 `configs/case_catalog_candidates.csv`，正式批处理必须保持冻结的 development/independent_test 划分。
@@ -135,6 +142,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_joint_pipeline_v2.ps1
 - [统一技术路线](docs/统一技术路线_v1.md)
 - [整体链条规则与图谱纠错综合评估](docs/2026-07-19_整体链条规则与图谱纠错综合评估.md)
 - [联合规则—图谱整体搜索与全链回放](docs/2026-07-19_联合规则图谱整体搜索与全链回放.md)
+- [联合Agent真实Neo4j与Luna/Terra联调](docs/2026-07-19_联合Agent真实Neo4j与LunaTerra联调.md)
 - [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [高温 development 误差诊断](docs/2026-07-18_高温development误差诊断.md)
 - [当前高温规则与问题说明](docs/当前高温规则与问题说明.md)

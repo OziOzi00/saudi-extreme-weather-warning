@@ -1,0 +1,120 @@
+{
+  "schema_version": "joint_live_agent_evidence_packet_v1",
+  "truth_accessed": false,
+  "joint_decision": {
+    "case_id": "20200501_00",
+    "region_id": "SA-09",
+    "hazard": "heavy_rain",
+    "lead_time_hours": 48,
+    "selected_joint_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+    "base_risk_level": "low",
+    "knowledge_triggered": true,
+    "joint_final_risk_level": "medium",
+    "development_gate_passed": true,
+    "operating_status": "research_candidate",
+    "formal_warning_allowed": false,
+    "forecast_features": {
+      "primary_ratio": 0.57966504,
+      "support_count": 2
+    }
+  },
+  "neo4j_context": {
+    "query_mode": "live_neo4j",
+    "truth_accessed": false,
+    "case_id": "20200501_00",
+    "region_id": "SA-09",
+    "hazard": "heavy_rain",
+    "dataset_split": "development",
+    "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+    "prediction_lock_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+    "timeline": [
+      {
+        "case_id": "20200501_00",
+        "hazard": "heavy_rain",
+        "dataset_split": "development",
+        "truth_accessed": false,
+        "region_id": "SA-09",
+        "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+        "lead_time_hours": 24,
+        "base_method": "v2_base",
+        "knowledge_mode": "cross_window_persistence",
+        "base_risk_level": "low",
+        "knowledge_triggered": true,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+        "forecast_features": {
+          "primary_ratio": 0.302582,
+          "support_count": 2.0
+        }
+      },
+      {
+        "case_id": "20200501_00",
+        "hazard": "heavy_rain",
+        "dataset_split": "development",
+        "truth_accessed": false,
+        "region_id": "SA-09",
+        "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+        "lead_time_hours": 48,
+        "base_method": "v2_base",
+        "knowledge_mode": "cross_window_persistence",
+        "base_risk_level": "low",
+        "knowledge_triggered": true,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+        "forecast_features": {
+          "primary_ratio": 0.57966504,
+          "support_count": 2.0
+        }
+      },
+      {
+        "case_id": "20200501_00",
+        "hazard": "heavy_rain",
+        "dataset_split": "development",
+        "truth_accessed": false,
+        "region_id": "SA-09",
+        "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+        "lead_time_hours": 72,
+        "base_method": "v2_base",
+        "knowledge_mode": "cross_window_persistence",
+        "base_risk_level": "low",
+        "knowledge_triggered": true,
+        "joint_final_risk_level": "medium",
+        "prediction_lock_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+        "forecast_features": {
+          "primary_ratio": 0.5287658399999999,
+          "support_count": 1.0
+        }
+      }
+    ]
+  },
+  "method_status": {
+    "passes_all_development_gates": true,
+    "operating_status": "research_candidate",
+    "formal_warning_allowed": false,
+    "development_metrics": {
+      "target_window_recall": 1.0,
+      "target_window_specificity": 1.0,
+      "event_case_detection_fraction": 1.0,
+      "control_case_rejection_fraction": 1.0
+    },
+    "policy_reason_zh": "新图谱纠错只在一个development事件中产生增益，旧独立集没有纠错触发。"
+  },
+  "provenance": {
+    "prediction_lock_path": "handoff/model_selection/joint_v2/locked_development_joint_heavy_rain_predictions.csv",
+    "prediction_lock_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+    "selection_lock_path": "manifests/joint_pipeline_selection_lock_v2.json",
+    "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+    "neo4j_query_mode": "live_neo4j",
+    "neo4j_import_counts": {
+      "windows": 15,
+      "cases": 5,
+      "regions": 2
+    }
+  },
+  "constraints": [
+    "不得读取或推测同期观测、灾害影响、新闻、命中、漏报和事后验证。",
+    "不得修改基础风险、图谱触发状态或联合最终风险。",
+    "必须分析Neo4j返回的全部24/48/72小时窗口。",
+    "当前产物是历史迁移研究回放，不是正式业务预警。"
+  ]
+}

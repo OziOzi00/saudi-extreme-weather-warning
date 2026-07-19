@@ -1,0 +1,59 @@
+{
+  "schema_version": "agent_joint_forecast_report_v5",
+  "report_mode": "joint_forecast_live",
+  "truth_accessed": false,
+  "neo4j_query_mode": "live_neo4j",
+  "case_id": "20200501_00",
+  "region_id": "SA-09",
+  "hazard": "heavy_rain",
+  "focus_lead_time_hours": 48,
+  "selected_joint_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+  "base_risk_level": "low",
+  "knowledge_triggered": true,
+  "joint_final_risk_level": "medium",
+  "development_gate_passed": true,
+  "operating_status": "research_candidate",
+  "formal_warning_allowed": false,
+  "generation_mode": "openai_luna",
+  "executive_summary_zh": "本次为SA-09区域、heavy_rain hazard的无真值联合预测研究回放。基础模型在24/48/72小时均为low；跨窗口持久性图谱均触发，并依据锁定规则将联合最终风险保持为medium。风险在三个提前量上没有发生等级变化，但图谱支持强度随窗口表现不同：24小时primary_ratio为0.302582、support_count为2；48小时为0.57966504、support_count为2；72小时为0.52876584、support_count为1。48小时为联合决策焦点。该结果可用于研究候选和分级准备，不构成正式业务预警。",
+  "timeline_analysis": [
+    {
+      "lead_time_hours": 24,
+      "base_risk_level": "low",
+      "knowledge_triggered": true,
+      "joint_final_risk_level": "medium",
+      "signal_analysis_zh": "24小时窗口：基础风险为low；图谱以cross_window_persistence触发，primary_ratio为0.302582、support_count为2，并按锁定联合规则得到medium。该窗口临近性较高，适合研究性准备，但不能据此断言同期已有观测或灾害。"
+    },
+    {
+      "lead_time_hours": 48,
+      "base_risk_level": "low",
+      "knowledge_triggered": true,
+      "joint_final_risk_level": "medium",
+      "signal_analysis_zh": "48小时窗口：基础风险为low；图谱持续触发，primary_ratio为0.57966504、support_count为2，为三个窗口中primary_ratio最高的窗口，并按同一锁定规则得到medium。因此作为焦点提前量开展优先复核和情景准备，但仍属于无真值研究预测。"
+    },
+    {
+      "lead_time_hours": 72,
+      "base_risk_level": "low",
+      "knowledge_triggered": true,
+      "joint_final_risk_level": "medium",
+      "signal_analysis_zh": "72小时窗口：基础风险为low；图谱仍以cross_window_persistence触发，primary_ratio为0.52876584、support_count为1，联合最终风险按工具规则保持medium。相较24/48小时支持计数较少，应加强不确定性标注和误报控制，不得将远期信号解释为确定性灾害。"
+    }
+  ],
+  "spatial_temporal_analysis_zh": "空间上，本次工具结果仅指向SA-09，未返回可进一步推断的行政范围或空间扩展信息。时间上，24、48、72小时三个提前量的基础风险均为low，联合最终风险均为medium，说明在当前锁定规则下风险等级跨窗口稳定，没有出现由短期到远期的等级升降。证据强度方面，48小时primary_ratio高于24小时和72小时；72小时support_count较低，表明远期支持结构更简约。上述差异只用于解释证据组合和准备优先级，不改变工具给出的风险等级。",
+  "knowledge_graph_analysis_zh": "Neo4j实时查询返回的三个窗口均采用cross_window_persistence，且knowledge_triggered均为true。图谱贡献表现为在基础风险为low的情况下，依据selected_joint_rule中的持久性比例和支持计数，将联合结果确定为medium；这属于规则化证据组合，不代表图谱单独证明了实际降雨或灾害。48小时窗口的primary_ratio最高（0.57966504），support_count为2，因此作为焦点窗口；72小时support_count降至1，提示远期支持较弱，但按锁定规则联合等级仍为medium。",
+  "uncertainty_analysis_zh": "不确定性主要来自无真值约束、开发数据集属性、图谱纠错增益案例有限，以及72小时support_count较低。工具明确禁止读取或推测同期观测、灾害影响、新闻、命中、漏报和事后验证，因此本报告只解释预测信号、规则和证据组合，不能评估现实命中或影响。development_gate_passed为true仅表示开发门槛事实已通过，不等于生产验证；operating_status为research_candidate且formal_warning_allowed为false，故结论应限于研究候选、分级准备和后续独立验证。",
+  "limitations_zh": [
+    "这是无真值预测模式，未访问同期观测、灾害影响、新闻、命中、漏报或事后验证，不能据此宣称预测已被现实结果确认。",
+    "当前产物是历史迁移研究回放，不是正式业务预警；formal_warning_allowed为false。",
+    "虽然development_gate_passed为true且开发指标记录为完整通过，但方法状态说明新图谱纠错增益只在一个development事件中产生，旧独立集没有纠错触发，因此图谱独立纠错增益仍需新的独立案例验证。",
+    "报告仅使用Neo4j返回的区域、窗口、风险字段和锁定元数据；未推断未返回的气象数值、影响范围或来源。",
+    "72小时窗口support_count为1，远期证据组合相对有限；风险等级仍严格保持工具返回的medium，未作人工升级或降级。"
+  ],
+  "recommended_actions_zh": [
+    "24小时：按medium联合风险开展研究性准备，检查内部响应资源和信息发布流程，但不得发布正式预警或声称已有实际影响。",
+    "48小时：作为焦点窗口，优先复核跨窗口持久性证据和support_count为2的组合，进行情景化资源预置与人工复核。",
+    "72小时：保留medium等级用于远期准备，同时明确support_count仅为1，避免将较弱远期支持解释为确定性事件。",
+    "在进入生产或正式预警流程前，补充新的独立案例，专门检验图谱是否提供稳定的独立纠错增益，并持续执行误报控制。"
+  ],
+  "provenance_summary_zh": "数据来自正在运行的Neo4j实时查询，query_mode为live_neo4j；返回5个cases、2个regions和15个windows。预测锁定文件为handoff/model_selection/joint_v2/locked_development_joint_heavy_rain_predictions.csv，prediction_lock_sha256为e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f；选择锁定文件为manifests/joint_pipeline_selection_lock_v2.json，selection_lock_sha256为8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545。"
+}
