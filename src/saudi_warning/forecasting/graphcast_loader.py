@@ -8,6 +8,14 @@ import numpy as np
 import xarray as xr
 
 
+GRAPHCAST_2018_ZARR = (
+    "https://storage.googleapis.com/weatherbench2/datasets/graphcast/2018/"
+    "date_range_2017-11-16_2019-02-01_12_hours_derived.zarr"
+)
+GRAPHCAST_2018_GCS_PATH = (
+    "weatherbench2/datasets/graphcast/2018/"
+    "date_range_2017-11-16_2019-02-01_12_hours_derived.zarr"
+)
 GRAPHCAST_2020_ZARR = (
     "https://storage.googleapis.com/weatherbench2/datasets/graphcast/2020/"
     "date_range_2019-11-16_2021-02-01_12_hours_derived.zarr"
@@ -16,6 +24,10 @@ GRAPHCAST_2020_GCS_PATH = (
     "weatherbench2/datasets/graphcast/2020/"
     "date_range_2019-11-16_2021-02-01_12_hours_derived.zarr"
 )
+GRAPHCAST_GCS_PATHS = {
+    2018: GRAPHCAST_2018_GCS_PATH,
+    2020: GRAPHCAST_2020_GCS_PATH,
+}
 
 # This deliberately exceeds Saudi Arabia slightly; member B/C applies the national mask later.
 SAUDI_CONTEXT_BBOX = {"lat_min": 15.0, "lat_max": 33.0, "lon_min": 33.0, "lon_max": 57.0}
@@ -44,14 +56,37 @@ def required_variables() -> Sequence[str]:
     )
 
 
-def open_graphcast_2020() -> xr.Dataset:
-    """Open the public consolidated Zarr metadata without downloading global fields.
+def graphcast_gcs_path(archive_year: int) -> str:
+    """Return the locked public WeatherBench path for a supported replay archive."""
+    try:
+        return GRAPHCAST_GCS_PATHS[archive_year]
+    except KeyError as error:
+        supported = ", ".join(str(year) for year in sorted(GRAPHCAST_GCS_PATHS))
+        raise ValueError(
+            f"unsupported GraphCast replay archive {archive_year}; expected {supported}"
+        ) from error
+
+
+def open_graphcast_archive(archive_year: int) -> xr.Dataset:
+    """Open public consolidated Zarr metadata without downloading global fields.
 
     The anonymous GCS mapper accesses WeatherBench directly. Array chunks are fetched
     only when a selected subset is loaded by :func:`load_case_subset`.
     """
-    mapper = gcsfs.GCSFileSystem(token="anon").get_mapper(GRAPHCAST_2020_GCS_PATH)
+    mapper = gcsfs.GCSFileSystem(token="anon").get_mapper(
+        graphcast_gcs_path(archive_year)
+    )
     return xr.open_zarr(mapper, consolidated=True)
+
+
+def open_graphcast_2018() -> xr.Dataset:
+    """Open the preregistered WeatherBench GraphCast 2018 replay archive."""
+    return open_graphcast_archive(2018)
+
+
+def open_graphcast_2020() -> xr.Dataset:
+    """Open the existing WeatherBench GraphCast 2020 replay archive."""
+    return open_graphcast_archive(2020)
 
 
 def load_case_subset(initial_time: str, max_lead_hours: int = 24) -> xr.Dataset:
@@ -68,7 +103,12 @@ def load_case_subset(initial_time: str, max_lead_hours: int = 24) -> xr.Dataset:
     # The public WeatherBench coordinate is stored as integer hours, even though
     # its semantic meaning is a forecast timedelta.
     lead_steps = [int(step.removesuffix("h")) for step in requested_lead_steps(max_lead_hours)]
-    return load_case_with_cache(initial_time, lead_steps)
+    archive_year = int(initial_time[:4])
+    return load_case_with_cache(
+        initial_time,
+        lead_steps,
+        cache_dir=Path(f"data/raw/graphcast_{archive_year}"),
+    )
 
 
 def _case_stamp(initial_time: str) -> str:
@@ -135,7 +175,8 @@ def load_case_with_cache(
         else:
             if path.exists():
                 _quarantine_invalid_cache(path)
-            source = source if source is not None else open_graphcast_2020()
+            archive_year = int(initial_time[:4])
+            source = source if source is not None else open_graphcast_archive(archive_year)
             cropped = (
                 source[list(required_variables())]
                 .sel(

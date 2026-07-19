@@ -69,6 +69,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument(
+        "--pattern",
+        default="mazu_like_*.nc",
+        help="Input filename glob. Use a narrower pattern for a sealed evaluation batch.",
+    )
+    parser.add_argument(
         "--geojson",
         type=Path,
         default=Path("data/reference/saudi_adm1_geoboundaries_2017.geojson"),
@@ -87,9 +92,11 @@ def main() -> None:
 
     with args.registry.open(encoding="utf-8", newline="") as stream:
         registry = {row["region_id"]: row["region_name_en"] for row in csv.DictReader(stream)}
-    files = sorted(args.input_dir.glob("mazu_like_*.nc"))
+    files = sorted(args.input_dir.glob(args.pattern))
     if not files:
-        raise FileNotFoundError(f"no mazu_like_*.nc files found in {args.input_dir}")
+        raise FileNotFoundError(
+            f"no files matching {args.pattern!r} found in {args.input_dir}"
+        )
     rows = []
     for path in files:
         rows.extend(summarize_file(path, args.geojson, registry))

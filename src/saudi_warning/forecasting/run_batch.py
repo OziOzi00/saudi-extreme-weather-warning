@@ -27,6 +27,7 @@ from saudi_warning.forecasting.validation import (
 LEADS = (24, 48, 72)
 REQUIRED_STEPS = tuple(range(6, 73, 6))
 CASE_ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+SUPPORTED_REPLAY_YEARS = {2018, 2020}
 
 
 @dataclass(frozen=True)
@@ -68,9 +69,11 @@ def load_catalog(path: Path) -> list[CaseRecord]:
         except ValueError as error:
             raise ValueError(f"invalid initial_time at row {row_number}: {initial_time}") from error
         initial = initial.astimezone(timezone.utc)
-        if initial.year != 2020:
+        if initial.year not in SUPPORTED_REPLAY_YEARS:
+            supported = ", ".join(str(year) for year in sorted(SUPPORTED_REPLAY_YEARS))
             raise ValueError(
-                f"initial_time must be in the v1 GraphCast 2020 replay year: {initial_time}"
+                f"initial_time must use a supported GraphCast replay year "
+                f"({supported}): {initial_time}"
             )
         clock = (initial.minute, initial.second, initial.microsecond)
         if initial.hour not in {0, 12} or any(clock):

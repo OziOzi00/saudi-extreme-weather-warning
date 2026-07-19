@@ -1,4 +1,9 @@
-from saudi_warning.forecasting.graphcast_loader import requested_lead_steps
+import pytest
+
+from saudi_warning.forecasting.graphcast_loader import (
+    graphcast_gcs_path,
+    requested_lead_steps,
+)
 from saudi_warning.forecasting.indicator_converter import _window_steps, ensure_supported_lead
 
 
@@ -13,3 +18,10 @@ def test_supported_leads_are_accepted() -> None:
 
 def test_lead_24_window_is_six_to_24_hours() -> None:
     assert _window_steps(24) == ["6h", "12h", "18h", "24h"]
+
+
+def test_graphcast_replay_paths_are_explicitly_versioned() -> None:
+    assert "/2018/" in graphcast_gcs_path(2018)
+    assert "/2020/" in graphcast_gcs_path(2020)
+    with pytest.raises(ValueError, match="unsupported"):
+        graphcast_gcs_path(2021)

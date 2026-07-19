@@ -24,3 +24,16 @@ def test_catalog_rejects_duplicate_case_id(tmp_path: Path) -> None:
     )
     with pytest.raises(ValueError, match="duplicate"):
         load_catalog(catalog)
+
+
+def test_catalog_accepts_preregistered_2018_replay(tmp_path: Path) -> None:
+    catalog = tmp_path / "cases.csv"
+    catalog.write_text(
+        "case_id,initial_time,event_type\ncase_2018,2018-06-01T00:00:00Z,heatwave\n",
+        encoding="utf-8",
+    )
+    [case] = load_catalog(catalog)
+    assert case.initial_time == "2018-06-01T00:00:00Z"
+    assert output_paths(tmp_path, case.initial_time)[24].name == (
+        "mazu_like_20180601_00_lead024.nc"
+    )

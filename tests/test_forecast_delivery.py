@@ -62,7 +62,7 @@ def test_validator_reports_missing_indicator_bad_unit_and_range(tmp_path: Path) 
         ),
         ("a,2020-08-20T06:00:00Z\n", "00 or 12 UTC"),
         ("a,2020-08-20T00:00:00+03:00\n", "ending in Z"),
-        ("a,2021-08-20T00:00:00Z\n", "2020 replay year"),
+        ("a,2021-08-20T00:00:00Z\n", "supported GraphCast replay year"),
     ],
 )
 def test_catalog_preflight_rejects_output_collisions_and_invalid_cycles(
