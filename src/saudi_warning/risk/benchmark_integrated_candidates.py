@@ -405,7 +405,9 @@ def _support_count(path: Path) -> int:
     return int(match.group(1))
 
 
-def load_rain_rows(root: Path, split: str) -> pd.DataFrame:
+def load_rain_rows(
+    root: Path, split: str, *, target_only: bool = True
+) -> pd.DataFrame:
     if split == "development":
         v2_path = root / "handoff/risk_dry_runs/development_v2_rule_review.csv"
         risk_dir = root / "handoff/risk_results/development_heavy_rain"
@@ -415,10 +417,14 @@ def load_rain_rows(root: Path, split: str) -> pd.DataFrame:
     else:
         raise ValueError(f"unsupported rain split: {split}")
     v2 = pd.read_csv(v2_path)
-    v2 = v2[(v2["hazard"] == "heavy_rain") & (v2["evaluation_scope"] == "target_window")].copy()
+    v2 = v2[v2["hazard"] == "heavy_rain"].copy()
+    if target_only:
+        v2 = v2[v2["evaluation_scope"] == "target_window"].copy()
     if split == "development":
         v1 = pd.read_csv(root / "handoff/risk_dry_runs/development_rule_review.csv")
-        v1 = v1[(v1["hazard"] == "heavy_rain") & (v1["evaluation_scope"] == "target_window")]
+        v1 = v1[v1["hazard"] == "heavy_rain"].copy()
+        if target_only:
+            v1 = v1[v1["evaluation_scope"] == "target_window"].copy()
         key = ["case_id", "prediction_case_id", "region_id", "lead_time_hours"]
         v1_positive = v1[key + ["risk_level"]].copy()
         v1_positive["v1_positive"] = v1_positive["risk_level"].isin(["medium", "high"])

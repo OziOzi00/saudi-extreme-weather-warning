@@ -27,6 +27,18 @@ powershell -ExecutionPolicy Bypass -File scripts/run_agent_report.ps1 `
 - `outputs/forecast_report.md`；
 - `outputs/prediction_context_bundle.json`。
 
+## 联合研究入口：Forecast Agent v4
+
+当评估对象是完整的“风险规则＋图谱纠错”预测器时，使用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_joint_pipeline_v2.ps1
+```
+
+`agent_joint_forecast_report_v4`不再把图谱永远限制为并列影子建议，而是读取已经SHA锁定的`joint_final_risk`。报告必须同时保留`base_risk_level`、`knowledge_triggered`和`joint_final_risk_level`，因此图谱如何改变结论仍可追溯。预测锁不含观测、案例角色、灾害影响或评分答案；Verification仍只能在预测锁定后运行。
+
+暴雨当前为`research_candidate`，高温因未通过development全部门槛固定为`research_only_blocked`。两者的`formal_warning_allowed`均为false。旧Forecast v3用于复现上一轮影子方案，不再代表当前联合研究主线。
+
 预测快照使用`prediction_kg_bundle_v2`，每份报告包含一个ForecastCase、ForecastWindow、Region、RiskAssessment、冻结Rule和候选ConsistencyRule；满足截止时间时还可包含context-only的StaticPriorProfile及PriorSource。快照结构明确禁止：
 
 - `HistoricalEvent`；

@@ -1,0 +1,42 @@
+{
+  "schema_version": "agent_joint_forecast_report_v4",
+  "report_mode": "joint_forecast",
+  "truth_accessed": false,
+  "dataset_split": "development",
+  "evaluation_character": "retrospective_development",
+  "hazard": "heavy_rain",
+  "case_id": "20200501_00",
+  "region_id": "SA-09",
+  "lead_time_hours": 48,
+  "selected_joint_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
+  "base_method": "v2_base",
+  "knowledge_mode": "cross_window_persistence",
+  "base_risk_level": "low",
+  "knowledge_triggered": true,
+  "joint_final_risk_level": "medium",
+  "decision_change": "upgraded",
+  "development_gate_passed": true,
+  "operating_status": "research_candidate",
+  "formal_warning_allowed": false,
+  "forecast_features": {
+    "primary_ratio": 0.57966504,
+    "support_count": 2
+  },
+  "conclusion_zh": "20200501_00 / SA-09 / +48h 的 heavy_rain 联合风险为 medium。开发门槛已通过，当前状态为 research_candidate，不能直接视为正式业务预警。",
+  "knowledge_reasoning_zh": "图谱一致性规则已触发：cross_window_persistence 将基础风险从 low 调整为 medium。该调整只使用锁定预测特征，未读取同期真值。",
+  "limitations_zh": [
+    "本报告只读取无真值预测锁；命中、漏报和误报只能在锁定后的验证阶段计算。",
+    "联合候选是在已打开的development样本上回顾性选择，存在样本量小和选择偏差风险。",
+    "暴雨图谱增益只来自一个development事件，独立回放中未触发纠错。"
+  ],
+  "recommended_actions_zh": [
+    "保留基础风险与联合风险两列，供人工追溯图谱是否改变了结论。",
+    "继续收集新的前瞻案例，重点验证图谱触发时是否稳定减少漏报且不新增误报。"
+  ],
+  "provenance": {
+    "prediction_lock_path": "handoff/model_selection/joint_v2/locked_development_joint_heavy_rain_predictions.csv",
+    "prediction_lock_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+    "selection_lock_path": "manifests/joint_pipeline_selection_lock_v2.json",
+    "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545"
+  }
+}

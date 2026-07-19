@@ -1,0 +1,55 @@
+version: joint_pipeline_candidate_search_v2_20260719
+status: retrospective_development_joint_search
+selection_split: development
+
+truth_policy:
+  forecast_features_only_during_inference: true
+  development_truth_use: score_after_candidate_output
+  heavy_rain_independent_use: post_selection_nonblind_full_chain_replay
+  heatwave_independent_use: post_selection_full_chain_replay
+  candidate_may_read_independent_truth: false
+
+heavy_rain:
+  base_methods:
+    - v1_base
+    - v2_base
+  single_window:
+    primary_ratio_thresholds: [0.0, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.70, 0.80]
+    support_count_thresholds: [1, 2, 3, 4]
+  persistence:
+    primary_ratio_thresholds: [0.0, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.60]
+    support_count_thresholds: [1, 2, 3, 4]
+    minimum_eligible_windows: [2, 3]
+  gates:
+    minimum_target_window_recall: 0.80
+    minimum_target_window_specificity: 0.80
+    minimum_event_case_detection_fraction: 0.666667
+    required_control_case_rejection_fraction: 1.0
+
+heatwave:
+  base_config: configs/integrated_candidate_benchmark_v1.yaml
+  near_threshold_margins_degc: [0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 2.00, 2.50]
+  temporal_minimum_near_windows: [2, 3]
+  spatial_maximum_margins_degc: [0.0, 0.5, 1.0]
+  knowledge_modes:
+    - none
+    - temporal_near_threshold
+    - spatial_hotspot
+    - temporal_or_spatial
+    - temporal_and_spatial
+  gates:
+    minimum_observed_hot_day_recall: 0.60
+    minimum_observed_nonhot_day_specificity: 0.80
+    minimum_event_case_detection_fraction: 0.666667
+    required_control_case_rejection_fraction: 1.0
+
+selection:
+  passing_gates_required_for_formal_selection: true
+  rank_order:
+    - minimum_class_skill
+    - balanced_accuracy
+    - event_case_detection_fraction
+    - control_case_rejection_fraction
+    - fewer_knowledge_upgrades
+    - lower_complexity
+  same_development_retuning_is_not_prospective_validation: true

@@ -1,0 +1,40 @@
+version: joint_operating_policy_v2_20260719
+status: integrated_research_pipeline
+
+pipeline:
+  - GraphCast
+  - MAZU-like
+  - base_weather_rule
+  - multi_window_prediction_knowledge_graph
+  - joint_final_risk
+  - Forecast_Agent_report
+  - prediction_lock
+  - post_lock_Verification
+
+selection:
+  config: configs/joint_pipeline_candidate_search_v2.yaml
+  lock: manifests/joint_pipeline_selection_lock_v2.json
+  evaluation: manifests/joint_pipeline_full_chain_evaluation_v2.json
+  candidate_counts:
+    heavy_rain: 234
+    heatwave: 2316
+
+hazards:
+  heavy_rain:
+    selected_joint_rule: joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3
+    development_passed_all_gates: true
+    joint_research_output_enabled: true
+    production_claim_allowed: false
+    reason: 新图谱纠错只在一个development事件中产生增益，旧独立集没有纠错触发。
+  heatwave:
+    selected_best_available_joint_rule: joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0
+    development_passed_all_gates: false
+    joint_research_output_enabled: true
+    formal_warning_allowed: false
+    reason: development特异度和对照拒绝未通过，独立划分缺少对照。
+
+reporting:
+  base_and_knowledge_contributions_must_be_separate: true
+  joint_final_risk_must_be_explicit: true
+  truth_access_in_forecast: forbidden
+  research_replay_not_official_warning: true

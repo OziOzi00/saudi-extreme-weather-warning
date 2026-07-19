@@ -7,8 +7,8 @@
 ```text
 MAZU 2025 历史指标 → 分析分布并冻结风险规则
 
-GraphCast 2020 历史预报 → MAZU-like 指标 → 已冻结的风险规则 → 风险 JSON
-                                                        ├→ 无真值预测图谱 → 影子纠错 → Forecast Agent 报告
+GraphCast 2020 历史预报 → MAZU-like 指标 → 基础风险规则 → 无真值预测图谱
+                                                        → 图谱一致性纠错 → 联合最终风险 → Forecast Agent 报告
                                                         └→ 结果锁定后才连接 IMERG / SSOD / GHCN / 灾害记录
                                                                                  → 验证图谱 → Verification 报告
 ```
@@ -21,7 +21,7 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **已完成（成员 A）**：GraphCast → MAZU-like 主流程，以及 catalog 预检查、可恢复缓存、原子写入、NetCDF 自动验收、ADM1 摘要、SHA-256 溯源和一键交付；并协助完成 MAZU 2025 统计与 B 侧草案。
 - **已完成的演示交接个例**：`2020-08-20T00:00:00Z` 的 lead024、lead048、lead072，位于 [`handoff/mazu_like/`](handoff/mazu_like/)；它仅是流程演示，不声明为已确认极端灾害事件。
 - **观测、案例与证据已继续推进**：目录现有10个事件、6个对照和1个demo；IMERG/GHCN/SSOD筛选已完成；影响真值仍保持逐条复核和天气层/影响层分离。
-- **案例已批准**：成员 A 在单人继续推进的工作方式下，已批准20个真实案例并冻结为15个development、5个independent_test；高温前瞻扩展没有打开独立高温案例。
+- **案例已批准**：成员 A 在单人继续推进的工作方式下，已批准20个真实案例并冻结为15个development、5个independent_test；高温独立案例直到本轮联合方案完成development选择锁后才用于回放。
 - **A侧正式批处理与交付收尾已完成**：20个批准案例的240个GraphCast时次缓存齐全，加demo共252个；60份批准案例NetCDF加3份demo全部通过验收，ADM1摘要为9009行，63/63份交付文件均记录SHA-256。
 - **B/C 归属任务已继续推进**：A 已代为完成 GHCN/IMERG 观测准备、对照筛选、灾害证据复核、案例批准材料和知识图谱开发骨架；这些产物可复验，但不表示 B/C 本人已验收。
 - **B侧development配对已闭合**：15个development案例形成225/225条accepted配对，其中45条IMERG、180条NOAA SSODv2；GHCN缺少`OBS-TIME`，只作数值旁证。
@@ -34,11 +34,11 @@ MAZU 2025 是开发和标定后半段流程的历史指标数据，不是未来�
 - **独立暴雨评估已锁定完成**：54/54条IMERG配对accepted；冻结P95门槛得到6命中、0漏报、0空报、12正确否定。结果样本较小，规则不得回调。
 - **Neo4j本地实机联调已完成**：Community 2026.06.0精确导入综合暴雨bundle，87个节点、152条关系、6个约束及三组固定查询全部通过；这是development联调，不是生产部署。
 - **Agent 已拆分为预测态与验证态**：默认入口生成 `agent_forecast_report_v3`，只能读取冻结 Risk JSON 和无真值 `prediction_kg_bundle_v2`，并以独立字段保存基础风险与影子建议；旧 `agent_report_v1` 仅用于结果锁定后的事后验证。`gpt-5.6-luna` 已真实生成一份 `truth_accessed=false` 的暴雨预测报告，但这不等同于模型气象能力已独立验证。
-- **预测前静态知识与影子纠错已接入**：WorldClim 2.1的ADM1地形与1970–2000月降水基线保持`context_only`。旧`support>=2`候选因3个对照误关注淘汰；统一基准选择“主降水/medium阈值比≥0.50且支持条件≥2”的v2影子方案。它在development补回1个漏报窗且未新增对照误报，但只来自1个事件案例，因此只能输出`triggered_not_activated`和并列建议，不改Risk JSON或默认关注级别。
+- **预测前知识已按联合预测器口径接入**：旧v2影子方案保留审计；当前v3联合图谱可依据同案例—区域24/48/72小时预测关系产生`joint_final_risk`，但预测锁严格排除同期真值和评分答案。
 - **细空间预测诊断候选已复验并淘汰**：预注册的P99/最大值/超阈面积热点条件在15份development暴雨预测中触发0次，对两个漏报没有改善；漏报窗的预测最大值也低于5毫米，说明只更换P95聚合无法修复模型整片低估。该候选未接入Agent关注逻辑。
 - **高温v4分层诊断已执行**：不改47/49°C阈值、不混入区域最大值、不使用已评估SA-08拟合；按lead中位偏差修正在同步观测天气真值上达到高温日4/6、非高温日8/9，优于pooled方法，只获得进入下一批全新prospective development的资格，高温规则仍为draft/blocked。
-- **高温v5跨年前瞻评估已完成但未通过**：输入锁定后完成2018年72/72缓存和18/18份MAZU-like；固定候选虽命中5/6个高温日，但非高温日仅8/12正确否定、对照案例仅2/3拒绝，高温继续blocked，独立高温仍封存。
-- **整体规则与图谱统一基准已完成**：统一16个已开放高温development案例、暴雨development及既有独立结论，比较12组高温、2组暴雨基础规则和5组图谱候选。暴雨v2保持唯一正式规则；高温无候选通过全部门槛；图谱v2仅作为未激活影子建议。完整结论见[整体链条规则与图谱纠错综合评估](docs/2026-07-19_整体链条规则与图谱纠错综合评估.md)。
+- **高温v5跨年前瞻评估已完成但未通过**：输入锁定后完成2018年72/72缓存和18/18份MAZU-like；固定候选虽命中5/6个高温日，但非高温日仅8/12正确否定、对照案例仅2/3拒绝，高温继续blocked；该轮结束时独立高温仍封存。
+- **规则—图谱联合搜索已完成**：暴雨234组中选出通过development门槛的整体研究方案（事件窗5/5、对照4/4），既有独立划分非盲回放为5/5与6/6但图谱触发0次；高温2316组无一通过全部门槛，最佳候选仍blocked。完整结论见[联合规则—图谱整体搜索与全链回放](docs/2026-07-19_联合规则图谱整体搜索与全链回放.md)。
 - **灾害影响层描述性评估已完成**：9条经复核正例合并为6个案例—区域单位，冻结中高风险覆盖5/6；没有可靠无影响负例，因此不能计算误报率、特异度或完整准确率。
 - **唯一影响漏报已完成归因**：`20200501_00 / SA-09`的lead024为明确天气低估；lead048显示区域P95规则的局地尺度盲区并伴随天气低估。4个对照仍未取得合格无影响证据。
 - **仍待正式完成**：补充新的高温development证据并在新预注册方案下继续研究偏差；补充可靠影响负例及更广泛影响证据。
@@ -110,6 +110,12 @@ powershell -ExecutionPolicy Bypass -File scripts/run_forecast_knowledge_developm
 python -m saudi_warning.risk.benchmark_integrated_candidates
 ```
 
+当前联合研究主线可一键重跑开发搜索、独立回放和无真值联合报告：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_joint_pipeline_v2.ps1
+```
+
 成员 A 新增个例的批处理命令见 [成员 A 批处理说明](docs/成员A批处理说明.md)。成员 B/C 的任务和当前完成边界见 [团队协作流程](docs/团队协作流程.md)。
 
 成员 A 的完整交付可使用 `powershell -ExecutionPolicy Bypass -File scripts/run_a_delivery.ps1`；默认以版本化 demo catalog 复验现有三份 lead。当前批准案例位于 `configs/case_catalog_candidates.csv`，正式批处理必须保持冻结的 development/independent_test 划分。
@@ -128,6 +134,7 @@ python -m saudi_warning.risk.benchmark_integrated_candidates
 
 - [统一技术路线](docs/统一技术路线_v1.md)
 - [整体链条规则与图谱纠错综合评估](docs/2026-07-19_整体链条规则与图谱纠错综合评估.md)
+- [联合规则—图谱整体搜索与全链回放](docs/2026-07-19_联合规则图谱整体搜索与全链回放.md)
 - [可视化演示系统](docs/2026-07-18_可视化演示系统.md)
 - [高温 development 误差诊断](docs/2026-07-18_高温development误差诊断.md)
 - [当前高温规则与问题说明](docs/当前高温规则与问题说明.md)

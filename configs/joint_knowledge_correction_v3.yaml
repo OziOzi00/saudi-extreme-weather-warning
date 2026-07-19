@@ -1,0 +1,35 @@
+version: joint_knowledge_correction_v3_20260719
+status: development_selected_joint_research_rules
+inference_truth_access: forbidden
+selection_lock: manifests/joint_pipeline_selection_lock_v2.json
+
+heavy_rain:
+  base_rule: heavy_rain_graphcast_scale_v2
+  knowledge_mode: cross_window_persistence
+  evaluate_all_forecast_leads: [24, 48, 72]
+  minimum_primary_to_medium_threshold_ratio: 0.25
+  minimum_supporting_condition_count: 1
+  minimum_eligible_windows_in_same_case_region: 3
+  corrected_final_risk_when_base_low: medium
+  may_change_joint_research_output: true
+  development_status: passed_all_gates
+  validation_status: existing_independent_replay_preserved_base_results_but_triggered_zero_times
+  limitation: development增益来自同一个事件案例，尚无新的独立纠错触发证据。
+
+heatwave:
+  base_method: pooled_median_loco
+  knowledge_mode: temporal_or_spatial
+  near_threshold_margin_degc: 1.0
+  minimum_near_windows_in_same_case_region: 3
+  spatial_maximum_margin_degc: 0.0
+  corrected_final_risk_when_base_low: medium
+  may_change_joint_research_output: true
+  development_status: failed_specificity_and_control_rejection_gates
+  formal_warning_allowed: false
+  limitation: 独立划分只有事件、没有高温对照，不能验证误报控制。
+
+guardrails:
+  - 推理必须先读取同一案例和区域的全部24/48/72小时预测，不得使用事后目标窗标签决定持续性。
+  - 预测锁中不得出现观测值、事件角色、命中漏报标签或灾害影响真值。
+  - development评分只能在联合预测输出生成后执行。
+  - 高温联合候选不得因独立事件4/4而升级为正式规则。
