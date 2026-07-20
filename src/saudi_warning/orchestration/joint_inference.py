@@ -234,6 +234,6 @@ def build_runtime_prediction_lock(
         raise ValueError(f"unsupported hazard: {hazard}")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     temporary = output_path.with_suffix(output_path.suffix + ".tmp")
-    frame.to_csv(temporary, index=False)
+    frame.to_csv(temporary, index=False, lineterminator="\n")
     temporary.replace(output_path)
     return frame

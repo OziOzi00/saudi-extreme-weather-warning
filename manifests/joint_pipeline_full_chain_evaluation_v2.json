@@ -1,11 +1,11 @@
 {
   "schema_version": "joint_pipeline_full_chain_evaluation_v2",
-  "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+  "selection_lock_sha256": "bf3042bb27939b8a1c5b44c1e11c46f2e1efc6d4ea41036390b73acd740c52a1",
   "prediction_locks": {
     "heavy_rain_path": "handoff/model_selection/joint_v2/locked_joint_heavy_rain_predictions.csv",
-    "heavy_rain_sha256": "6903d6f6e98f4fdface2a14f2fba905bf25926ba889ba9886ed4a9c323c84578",
+    "heavy_rain_sha256": "bd2738f46319d88ab15d84d916a24cc248ffb616af550768e08d8d804adb522b",
     "heatwave_path": "handoff/model_selection/joint_v2/locked_joint_heatwave_predictions.csv",
-    "heatwave_sha256": "42ffbc31f74ddefeb964cb05d64dc5e288bff4e011e280af19fed16cab092704",
+    "heatwave_sha256": "b04254f50693fba8c4197360780f9c00697dab03f41fcfef66200ad777a21884",
     "truth_fields_present_in_prediction_locks": false
   },
   "heavy_rain": {

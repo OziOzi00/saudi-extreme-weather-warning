@@ -342,13 +342,17 @@ def main() -> None:
     for path in (args.output_json, args.output_markdown, args.evidence_output):
         path.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     args.output_markdown.write_text(
-        render_markdown(report, packet), encoding="utf-8"
+        render_markdown(report, packet), encoding="utf-8", newline="\n"
     )
     args.evidence_output.write_text(
-        json.dumps(packet, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(packet, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     print(f"wrote {args.output_json}")
     print(f"wrote {args.output_markdown}")

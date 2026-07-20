@@ -12,10 +12,10 @@ rationale:
 locked_inputs:
   layered_details:
     path: handoff/weather_verification/heatwave_v4_layered_details.csv
-    sha256: 24ab05720e15a56fff88b551d5c14fae9e4eeb199cf1e15e8cc33e0b2e72096b
+    sha256: b6996e9422658639edcf40840154ea126aa8ee7c896e241c9d0ebeee6bc62136
   original_assessment:
     path: manifests/heatwave_v4_layered_assessment.json
-    sha256: 29074de195876bb8426f89d6f07b5ee51dfccb87812d0f4b7b58bf2ef692a9ac
+    sha256: 38417472e710ee4e997663a4e6928d7a9953d9b4770ac3baa29a96f840e8e613
 
 candidate_methods:
   - pooled_median

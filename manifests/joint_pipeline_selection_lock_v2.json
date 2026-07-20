@@ -151,21 +151,21 @@
   },
   "truth_free_development_prediction_locks": {
     "heavy_rain_path": "handoff/model_selection/joint_v2/locked_development_joint_heavy_rain_predictions.csv",
-    "heavy_rain_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+    "heavy_rain_sha256": "5c0751e3bafcc53749dc1875f3649677f482f725a7f6d8bdfd1c71f2dc7e5e8c",
     "heatwave_path": "handoff/model_selection/joint_v2/locked_development_joint_heatwave_predictions.csv",
-    "heatwave_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+    "heatwave_sha256": "b0421027421894ca69b9742fe9efa300adab9ad63ebd29b2cfe0b8c94edae763",
     "truth_fields_present": false
   },
   "input_sha256": {
     "configs/joint_pipeline_candidate_search_v2.yaml": "49ec65fa78cfcc1fc7fecb5e91bef320f4cf6858525e05111d7a25b64fa9b5ce",
     "configs/integrated_candidate_benchmark_v1.yaml": "52c5e87cb1da6d27f9271881389b1c5af2a76bd8fb02f82c67a2c1b66d64e349",
-    "src/saudi_warning/risk/select_joint_pipeline.py": "0c59899177e7cff14487e0dd644922bb7ab6400f3be87e1125a29d42ed89505e",
+    "src/saudi_warning/risk/select_joint_pipeline.py": "50d1b27927f25f3fc2555bc262a6165663f9c254620caea45508c2d973bd73ff",
     "src/saudi_warning/risk/benchmark_integrated_candidates.py": "fa68986158df848f51971de69d45853e12773585fc01497c7f5b1301c7bd3e87",
-    "handoff/risk_dry_runs/development_v2_rule_review.csv": "8c350c273b1fdb5344fe8253b72b8427803f59dca94f945af67ca9a7d4c1e60b",
-    "handoff/risk_dry_runs/development_rule_review.csv": "8240a67126cf3f2cffbb55809aef374eb8d755fccee0628d4c3f5bbb1bd778e3",
-    "handoff/weather_verification/heatwave_development_diagnostics.csv": "e111e0cb2112b50d088a3114d92bc863789aa625fec2b6d5c28efd0271c183d6",
-    "handoff/weather_verification/heatwave_v3_prospective_details.csv": "3efe7d578939f62dbe9e0c255105c0bb80c8a1094e80e8b4ad33e728bc8c45b3",
-    "handoff/weather_verification/heatwave_v5_prospective_details.csv": "6a2b7dc0fd39ed6a7cc2757352f3b8977640dce131c4934da25efacedc70cce8"
+    "handoff/risk_dry_runs/development_v2_rule_review.csv": "dad37277d56607cb4b0fc770cdeeacc46e21f436c772911da1b52ea1d261893d",
+    "handoff/risk_dry_runs/development_rule_review.csv": "3c036623b5cc142b4ce1aa93382b4a5f2a99b00d7c94b19dac7ff8fee0dc2601",
+    "handoff/weather_verification/heatwave_development_diagnostics.csv": "9bd5f3f276fc2c6b8e25c352f34e644c254f9105f44c94cd5ff12e2af80e79e0",
+    "handoff/weather_verification/heatwave_v3_prospective_details.csv": "7a1b6abbe46f302202301175b014b1883a5e8aff7bf88780c7b810448c5dedb3",
+    "handoff/weather_verification/heatwave_v5_prospective_details.csv": "b905844e5aa117aba6a13b497cf138e4011b95666ed3ae9cf5459b37a4287487"
   },
   "limitations": [
     "Candidate search is retrospective on all opened development batches.",

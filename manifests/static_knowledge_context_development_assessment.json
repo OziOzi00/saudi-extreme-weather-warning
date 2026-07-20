@@ -38,10 +38,10 @@
   "may_change_frozen_risk": false,
   "inputs": {
     "review_path": "handoff/risk_dry_runs/development_v2_rule_review.csv",
-    "review_sha256": "8c350c273b1fdb5344fe8253b72b8427803f59dca94f945af67ca9a7d4c1e60b",
+    "review_sha256": "dad37277d56607cb4b0fc770cdeeacc46e21f436c772911da1b52ea1d261893d",
     "risk_dir": "handoff/risk_results/development_heavy_rain",
     "risk_file_count": 15,
     "spatial_diagnostics_path": "handoff/knowledge_prior/development_spatial_diagnostics_v1.json",
-    "spatial_diagnostics_sha256": "e7f43f4a8f299652660008c6f2eb40859e96d495affbfd1be30ec1f957cb311c"
+    "spatial_diagnostics_sha256": "c9ed269805d209274a83a5bdd8412ece9d56b6f41c537bf3287250f6e74dd040"
   }
 }

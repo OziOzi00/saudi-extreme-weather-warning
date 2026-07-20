@@ -7,7 +7,7 @@
     "hazard": "heatwave",
     "dataset_split": "dual_prediction_batch_v1_development",
     "selected_rule": "joint_heat_pooled_median_loco_kg_temporal_or_spatial_margin1p0_windows3_maxmargin0p0",
-    "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+    "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
     "timeline": [
       {
         "case_id": "20200908_00",
@@ -22,7 +22,7 @@
         "base_risk_level": "low",
         "knowledge_triggered": false,
         "joint_final_risk_level": "low",
-        "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+        "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
         "forecast_features": {
           "candidate_tmax_degc": 45.922332,
           "hot_day_threshold_degc": 47.0
@@ -41,7 +41,7 @@
         "base_risk_level": "low",
         "knowledge_triggered": false,
         "joint_final_risk_level": "low",
-        "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+        "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
         "forecast_features": {
           "candidate_tmax_degc": 46.164531,
           "hot_day_threshold_degc": 47.0
@@ -60,7 +60,7 @@
         "base_risk_level": "low",
         "knowledge_triggered": false,
         "joint_final_risk_level": "low",
-        "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+        "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
         "forecast_features": {
           "candidate_tmax_degc": 45.776162,
           "hot_day_threshold_degc": 47.0
@@ -330,9 +330,9 @@
   },
   "provenance": {
     "prediction_lock_path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_development.csv",
-    "prediction_lock_sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
+    "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
     "selection_lock_path": "manifests/joint_pipeline_selection_lock_v2.json",
-    "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+    "selection_lock_sha256": "bf3042bb27939b8a1c5b44c1e11c46f2e1efc6d4ea41036390b73acd740c52a1",
     "neo4j_query_mode": "live_neo4j",
     "dataset_split": "development"
   },

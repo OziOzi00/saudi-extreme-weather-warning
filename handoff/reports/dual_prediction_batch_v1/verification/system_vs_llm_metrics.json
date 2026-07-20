@@ -1,6 +1,6 @@
 {
   "schema_version": "dual_prediction_post_lock_verification_v1",
-  "prediction_lock_sha256": "132b070fbe257f9bd60656b844eb7c68d3b84bca1952622a550ad5ddfb3d1783",
+  "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
   "truth_opened_only_after_lock": true,
   "groups": [
     {

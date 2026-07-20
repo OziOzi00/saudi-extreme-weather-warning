@@ -90,7 +90,11 @@ def _load_json(path: Path) -> dict[str, Any]:
 def _write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary.write_text(
+        json.dumps(value, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     temporary.replace(path)
 
 
@@ -252,7 +256,7 @@ class DualBatch:
             ["initial_time", "lead_time_hours", "region_id", "indicator"]
         )
         output = self.output_dir / "adm1_full_process_data.csv"
-        frame.to_csv(output, index=False)
+        frame.to_csv(output, index=False, lineterminator="\n")
         expected = len(units) * 3 * 11
         if len(frame) != expected:
             raise ValueError(f"expected {expected} full-process rows, found {len(frame)}")
@@ -331,7 +335,7 @@ class DualBatch:
             pd.testing.assert_frame_equal(left, right, check_dtype=False)
             output = lock_dir / f"{hazard}_{split}.csv"
             rebuilt_columns = [column for column in reference.columns if column in rebuilt.columns]
-            rebuilt[rebuilt_columns].to_csv(output, index=False)
+            rebuilt[rebuilt_columns].to_csv(output, index=False, lineterminator="\n")
             comparisons.append(
                 {
                     "hazard": hazard,
@@ -631,7 +635,9 @@ class DualBatch:
             evidence_path = prefix.with_suffix(".evidence.json")
             _write_json(json_path, report)
             markdown_path.parent.mkdir(parents=True, exist_ok=True)
-            markdown_path.write_text(self._render(report), encoding="utf-8")
+            markdown_path.write_text(
+                self._render(report), encoding="utf-8", newline="\n"
+            )
             _write_json(evidence_path, packet)
             completed.append(
                 {
@@ -649,7 +655,9 @@ class DualBatch:
                     "report_sha256": _hash(json_path),
                 }
             )
-            pd.DataFrame(completed).to_csv(progress_path, index=False)
+            pd.DataFrame(completed).to_csv(
+                progress_path, index=False, lineterminator="\n"
+            )
             print(f"report {len(completed)}/{len(units)} {key} model={used_model}", flush=True)
         return {"report_count": len(completed), "truth_accessed": False}
 
@@ -685,7 +693,7 @@ class DualBatch:
         ):
             raise ValueError("advisory lock must contain 29 units x 3 windows")
         output = self.output_dir / "llm_advisory_prediction_lock.csv"
-        frame.to_csv(output, index=False)
+        frame.to_csv(output, index=False, lineterminator="\n")
         return {"rows": len(frame), "sha256": _hash(output), "truth_accessed": False}
 
     def _metrics(self, details: pd.DataFrame, hazard: str, split: str) -> dict[str, Any]:
@@ -757,7 +765,7 @@ class DualBatch:
             if merged["llm_advisory_risk_level"].isna().any():
                 raise ValueError(f"missing advisory rows for {hazard}/{split}")
             output = details_dir / f"{hazard}_{split}_scored_details.csv"
-            merged.to_csv(output, index=False)
+            merged.to_csv(output, index=False, lineterminator="\n")
             metrics.append(self._metrics(merged, hazard, split))
         result = {
             "schema_version": "dual_prediction_post_lock_verification_v1",

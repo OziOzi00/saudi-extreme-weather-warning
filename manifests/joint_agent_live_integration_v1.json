@@ -18,11 +18,11 @@
     "joint_final_risk_level": "medium",
     "neo4j_import_counts": {"windows": 15, "cases": 5, "regions": 2},
     "report_json": "handoff/reports/joint_pipeline_live/heavy_rain_luna_live.json",
-    "report_json_sha256": "6794f18ddaba1043951a895d37a848733d0d06aa834f2f3dd43dafa3469658b7",
+    "report_json_sha256": "7f7e0d93620641439e4866e6742e4be9c891b764cb5d2f82c200e6c825d29b01",
     "report_markdown": "handoff/reports/joint_pipeline_live/heavy_rain_luna_live.md",
-    "report_markdown_sha256": "7293a5ee0c873483e96ce3dff3dc5f42ebe7c4a760ee1691629f3232a1acc87d",
+    "report_markdown_sha256": "38b460ce8fce5aa65c4acc1e1fa48f042a8ebcef9061d39582f00c11ce769d60",
     "evidence_packet": "handoff/reports/joint_pipeline_live/heavy_rain_luna_live.evidence.json",
-    "evidence_packet_sha256": "c9a0ea4dd416b02f0af644fa5882df01f26d13fb172c48bf89a7511cc4880657"
+    "evidence_packet_sha256": "f6bbb8dd75a70ca86bf879bf08c6feccf726a909438eff41421408fe2f1a2b8e"
   },
   "heatwave": {
     "case_id": "20200729_00",
@@ -33,11 +33,11 @@
     "joint_final_risk_level": "high",
     "neo4j_import_counts": {"windows": 6, "cases": 1, "regions": 2},
     "report_json": "handoff/reports/joint_pipeline_live/heatwave_terra_live.json",
-    "report_json_sha256": "1a2dc0af1d7f5cb54d96c287f29e8c45c163a47641cee9d5a90bd5f444c1ad05",
+    "report_json_sha256": "c74059d6baf8f93aee413465994d4cc8533706b7051d646d5eb0bfc654f6ae5f",
     "report_markdown": "handoff/reports/joint_pipeline_live/heatwave_terra_live.md",
-    "report_markdown_sha256": "d7e838b5227a596fa05754d7fc21eb7bfde4abdbeab90feaae48fb206a2648b4",
+    "report_markdown_sha256": "353e16c6733660542a579954af74306675c4a43b63afccfb0337a3564b8723e3",
     "evidence_packet": "handoff/reports/joint_pipeline_live/heatwave_terra_live.evidence.json",
-    "evidence_packet_sha256": "2ea8a147969019238d6dcd7ed0630c7b778909073b2e303eeea8bcba4cc41fca"
+    "evidence_packet_sha256": "e06ee2bd9294d50123db9b4dbae47b44e4f3b3e73b3ce2c2b2bab383570a68b5"
   },
   "interpretation": "Both model paths queried a running Neo4j instance and returned schema-validated truth-free reports. This proves runtime integration, not weather-skill validation or production readiness."
 }

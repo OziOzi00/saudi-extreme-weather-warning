@@ -124,7 +124,9 @@ def main() -> None:
     result = assess(load_config(args.config))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
-        json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(result, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     print(args.output)
     print(f"selected={result['selected_method_for_next_prospective_development']}")

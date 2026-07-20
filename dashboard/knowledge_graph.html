@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>沙特极端天气知识图谱</title>
+  <style>
+    :root{--bg:#07141c;--card:#0c202a;--card2:#102b35;--line:#294d59;--text:#edf7f6;--muted:#8ba9b1;--evidence:#4bb8d8;--event:#f08a72;--case:#5bd9c7;--region:#73d69a;--risk:#efc86d;--rule:#b68aff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#123846 0,transparent 34%),linear-gradient(145deg,#06121a,#091a23);color:var(--text);font-family:Inter,"Microsoft YaHei","Noto Sans SC",sans-serif;min-height:100vh}
+    header{padding:28px 38px 22px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px;border-bottom:1px solid rgba(120,178,190,.18)}.eyebrow{margin:0 0 7px;color:var(--case);font-size:11px;font-weight:800;letter-spacing:.18em}h1{margin:0;font-size:clamp(28px,3.3vw,46px)}.subtitle{margin:9px 0 0;color:var(--muted);font-size:13px}.head-badges{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.badge{padding:9px 12px;border:1px solid rgba(123,181,193,.28);background:rgba(13,41,52,.76);border-radius:10px;font-size:12px;font-weight:750}.badge strong{color:var(--case)}
+    main{width:min(1760px,96vw);margin:16px auto 28px}.toolbar{display:flex;gap:10px;align-items:end;flex-wrap:wrap;padding:14px;border:1px solid rgba(110,168,180,.24);border-radius:14px;background:rgba(9,29,39,.84);margin-bottom:12px}.toolbar label{color:var(--muted);font-size:11px}.toolbar select,.toolbar input,.toolbar button{display:block;margin-top:5px;background:#102c37;color:var(--text);border:1px solid #315864;border-radius:9px;padding:9px 11px;font:inherit;font-size:12px}.toolbar select{min-width:220px}.toolbar input{min-width:210px}.toolbar button{cursor:pointer;font-weight:750;margin-top:0}.toolbar button:hover{border-color:var(--case)}.toolbar .primary{background:var(--case);color:#062027;border-color:var(--case)}.toolbar .spacer{flex:1}.scope{color:var(--muted);font-size:11px;padding:0 4px 9px}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:12px}.graph-card,.side{border:1px solid rgba(110,168,180,.24);background:rgba(6,22,30,.88);border-radius:17px;overflow:hidden;box-shadow:0 22px 64px rgba(0,0,0,.22)}.card-head{padding:14px 17px;display:flex;justify-content:space-between;gap:18px;align-items:center;background:rgba(13,39,50,.84);border-bottom:1px solid rgba(110,168,180,.18)}.card-head h2{font-size:15px;margin:0}.legend{display:flex;flex-wrap:wrap;gap:11px;color:var(--muted);font-size:10px}.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.canvas{overflow:auto;position:relative}.canvas svg{display:block;width:100%;min-width:1100px;height:auto;background-image:linear-gradient(rgba(75,122,134,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(75,122,134,.055) 1px,transparent 1px);background-size:32px 32px}
+    .lane{fill:#4e737d;font-size:10px;font-weight:800;letter-spacing:.13em}.edge{fill:none;stroke:#456b76;stroke-width:1.35;opacity:.42;marker-end:url(#arrow)}.edge.highlight{stroke:#eef7f5;stroke-width:2.4;opacity:.94}.edge.dim{opacity:.055}.edge-label{fill:#6f929a;font-size:8px;opacity:0}.edge.highlight+.edge-label{opacity:1}.node{cursor:pointer;transition:opacity .18s}.node.dim{opacity:.09}.node circle{stroke:#07141c;stroke-width:2.5;filter:drop-shadow(0 5px 8px rgba(0,0,0,.36))}.node:hover circle,.node.selected circle{stroke:#fff;stroke-width:3}.node text{fill:#dcebea;font-size:9px;pointer-events:none}.node .main-label{font-size:10px;font-weight:800}.node .count{fill:#07141c;font-size:9px;font-weight:900;text-anchor:middle}.empty{fill:#91aeb5;font-size:16px;text-anchor:middle}
+    .side{padding:19px;min-height:650px}.side .eyebrow{font-size:9px}.side h2{margin:5px 0 7px;font-size:20px}.side .type{display:inline-block;padding:6px 9px;border-radius:999px;background:#183844;color:#acd0d6;font-size:10px;font-weight:800}.side .desc{color:var(--muted);font-size:12px;line-height:1.65;margin:14px 0}.props{margin:0;max-height:410px;overflow:auto}.props div{padding:9px 0;border-bottom:1px solid rgba(116,171,182,.15)}.props dt{color:var(--muted);font-size:10px}.props dd{margin:4px 0 0;font-size:12px;line-height:1.5;word-break:break-word}.hint{margin-top:15px;padding:12px;background:rgba(91,217,199,.07);border:1px solid rgba(91,217,199,.23);border-radius:10px;color:#c8e2df;font-size:11px;line-height:1.7}
+    .footer{padding:12px 16px;color:var(--muted);font-size:10px;border-top:1px solid rgba(110,168,180,.16);display:flex;justify-content:space-between;gap:15px}.node-count{color:var(--case);font-weight:800}
+    @media(max-width:1000px){header{display:block;padding:24px}.head-badges{justify-content:flex-start;margin-top:16px}.layout{grid-template-columns:1fr}.side{min-height:auto}.toolbar .spacer{display:none}}
+  </style>
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">NEO4J KNOWLEDGE GRAPH · ACTUAL REPOSITORY DATA</p><h1>沙特极端天气知识图谱</h1><p class="subtitle">只展示具体节点和关系，不展示GraphCast—Agent流程 · 数据来自正式Neo4j评估bundle</p></div>
+    <div class="head-badges"><span class="badge"><strong id="head-nodes">87</strong> 节点</span><span class="badge"><strong id="head-relations">152</strong> 关系</span><span class="badge"><strong>6</strong> 约束</span><span class="badge">Neo4j实机验证通过</span></div>
+  </header>
+  <main>
+    <section class="toolbar">
+      <label>查看范围<select id="case-select"><option value="">完整知识图谱</option></select></label>
+      <label>搜索节点<input id="search" placeholder="案例、区域、事件、来源…"></label>
+      <button id="all-button" class="primary">显示全图</button><button id="fit-button">重新布局</button><button id="export-button">导出SVG</button>
+      <span class="spacer"></span><span id="scope" class="scope">正在载入正式图谱……</span>
+    </section>
+    <section class="layout">
+      <article class="graph-card">
+        <div class="card-head"><h2>Neo4j节点—关系全图</h2><div class="legend"><span><i style="background:var(--evidence)"></i>Evidence</span><span><i style="background:var(--event)"></i>HistoricalEvent</span><span><i style="background:var(--case)"></i>ForecastCase</span><span><i style="background:var(--risk)"></i>RiskAssessment</span><span><i style="background:var(--rule)"></i>Rule</span><span><i style="background:var(--region)"></i>Region</span></div></div>
+        <div class="canvas"><svg id="graph" viewBox="0 0 1500 820" role="img" aria-label="沙特极端天气知识图谱"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5a7f89"></path></marker></defs><g id="lanes"></g><g id="edges"></g><g id="nodes"></g></svg></div>
+        <div class="footer"><span>来源：handoff/knowledge_graph/heavy_rain_evaluation_bundle.json</span><span id="visible-count" class="node-count">—</span></div>
+      </article>
+      <aside class="side"><p class="eyebrow">NODE INSPECTOR</p><h2 id="node-title">点击一个节点</h2><span id="node-type" class="type">知识图谱实体</span><p id="node-desc" class="desc">选择节点后，这里会展示它在Neo4j中的真实属性和所有直接关系。</p><dl id="properties" class="props"></dl><div class="hint"><strong>使用方法：</strong><br>默认展示87个真实节点。选择一个案例可只看该案例关联的风险、区域、历史事件、规则和证据；点击节点会高亮其直接关系。</div></aside>
+    </section>
+  </main>
+  <script src="data/dashboard_data.js"></script>
+  <script>
+    const graphData=window.DASHBOARD_DATA.knowledge_graph;
+    const colors={Evidence:"#4bb8d8",HistoricalEvent:"#f08a72",ForecastCase:"#5bd9c7",Region:"#73d69a",RiskAssessment:"#efc86d",Rule:"#b68aff"};
+    const columns={Evidence:100,HistoricalEvent:350,ForecastCase:600,RiskAssessment:900,Rule:1190,Region:1370};
+    const names={Evidence:"证据来源",HistoricalEvent:"历史事件",ForecastCase:"预报案例",RiskAssessment:"风险评估",Rule:"规则",Region:"行政区"};
+    const key=n=>`${n.label}:${n.id}`;const nodeMap=new Map(graphData.nodes.map(n=>[key(n),n]));
+    const relationNodes=r=>[`${r.start_label}:${r.start_id}`,`${r.end_label}:${r.end_id}`];
+    let visibleNodes=[...graphData.nodes],visibleRelations=[...graphData.relations],positions=new Map(),selectedKey="";
+    document.getElementById("head-nodes").textContent=graphData.nodes.length;document.getElementById("head-relations").textContent=graphData.relations.length;
+
+    const caseSelect=document.getElementById("case-select");
+    graphData.nodes.filter(n=>n.label==="ForecastCase").sort((a,b)=>a.id.localeCompare(b.id)).forEach(n=>{const option=document.createElement("option");option.value=key(n);option.textContent=`${n.id} · ${n.properties.hazard||"unspecified"} · ${n.properties.dataset_split||"—"}`;caseSelect.appendChild(option)});
+
+    function caseSubgraph(caseKey){
+      if(!caseKey)return {nodes:[...graphData.nodes],relations:[...graphData.relations]};
+      const keep=new Set([caseKey]);const caseNode=nodeMap.get(caseKey);const eventKey=caseNode?.properties?.event_id?`HistoricalEvent:${caseNode.properties.event_id}`:"";
+      if(eventKey)keep.add(eventKey);
+      graphData.relations.forEach(r=>{const [a,b]=relationNodes(r);if((r.type==="BASED_ON"&&b===caseKey)||(r.type==="CONCERNS"&&a===caseKey)||(r.type==="VALID_FOR"&&a===caseKey)){keep.add(a);keep.add(b)}});
+      const riskKeys=new Set([...keep].filter(k=>k.startsWith("RiskAssessment:")));
+      graphData.relations.forEach(r=>{const [a,b]=relationNodes(r);if(riskKeys.has(a)||a===eventKey){keep.add(a);keep.add(b)}});
+      const relations=graphData.relations.filter(r=>{const [a,b]=relationNodes(r);return keep.has(a)&&keep.has(b)});return {nodes:[...keep].map(k=>nodeMap.get(k)).filter(Boolean),relations};
+    }
+
+    function layout(nodes){
+      const groups={};nodes.forEach(n=>(groups[n.label]??=[]).push(n));const map=new Map();
+      Object.entries(groups).forEach(([label,items])=>{items.sort((a,b)=>a.id.localeCompare(b.id));const top=75,bottom=760,step=(bottom-top)/Math.max(1,items.length-1);items.forEach((n,i)=>map.set(key(n),{x:columns[label]||750,y:items.length===1?410:top+i*step}))});return map;
+    }
+    function shortLabel(n){if(n.label==="RiskAssessment")return n.id.replace(":heavy_rain","").replace("_00_","_");if(n.label==="Evidence")return n.id.replace("SRC-","");if(n.label==="HistoricalEvent")return n.id.replace("EVT-2020-","").replace("CTRL-2020-","");return n.id}
+    function svgEl(name,attrs={}){const el=document.createElementNS("http://www.w3.org/2000/svg",name);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));return el}
+    function render(){
+      positions=layout(visibleNodes);const edgeLayer=document.getElementById("edges"),nodeLayer=document.getElementById("nodes"),laneLayer=document.getElementById("lanes");edgeLayer.replaceChildren();nodeLayer.replaceChildren();laneLayer.replaceChildren();
+      Object.entries(columns).forEach(([label,x])=>{if(!visibleNodes.some(n=>n.label===label))return;const text=svgEl("text",{x,y:35,class:"lane","text-anchor":"middle"});text.textContent=`${names[label]} · ${visibleNodes.filter(n=>n.label===label).length}`;laneLayer.appendChild(text)});
+      visibleRelations.forEach((r,index)=>{const [a,b]=relationNodes(r),p1=positions.get(a),p2=positions.get(b);if(!p1||!p2)return;const bend=Math.max(36,Math.abs(p2.x-p1.x)*.42);const path=svgEl("path",{d:`M${p1.x} ${p1.y} C${p1.x+bend} ${p1.y},${p2.x-bend} ${p2.y},${p2.x} ${p2.y}`,class:"edge","data-a":a,"data-b":b,"data-index":index});edgeLayer.appendChild(path);const tx=(p1.x+p2.x)/2,ty=(p1.y+p2.y)/2;const label=svgEl("text",{x:tx,y:ty,class:"edge-label","text-anchor":"middle"});label.textContent=r.type;edgeLayer.appendChild(label)});
+      visibleNodes.forEach(n=>{const p=positions.get(key(n)),g=svgEl("g",{class:"node",transform:`translate(${p.x} ${p.y})`,"data-key":key(n)});const radius=n.label==="Rule"?14:n.label==="ForecastCase"?12:n.label==="HistoricalEvent"?11:n.label==="Region"?10:8;g.appendChild(svgEl("circle",{r:radius,fill:colors[n.label]||"#ccc"}));const count=visibleRelations.filter(r=>relationNodes(r).includes(key(n))).length;if(radius>=11){const c=svgEl("text",{y:3,class:"count"});c.textContent=count;g.appendChild(c)}const label=svgEl("text",{x:radius+5,y:3,class:"main-label"});label.textContent=shortLabel(n).slice(0,28);g.appendChild(label);g.addEventListener("click",()=>selectNode(key(n)));nodeLayer.appendChild(g)});
+      document.getElementById("visible-count").textContent=`当前显示 ${visibleNodes.length} 个节点 / ${visibleRelations.length} 条关系`;document.getElementById("scope").textContent=caseSelect.value?"当前为单案例关联子图":"当前为完整Neo4j知识图谱";
+    }
+    function selectNode(k){selectedKey=k;const neighbor=new Set([k]);visibleRelations.forEach(r=>{const [a,b]=relationNodes(r);if(a===k||b===k){neighbor.add(a);neighbor.add(b)}});document.querySelectorAll(".node").forEach(el=>{el.classList.toggle("selected",el.dataset.key===k);el.classList.toggle("dim",!neighbor.has(el.dataset.key))});document.querySelectorAll(".edge").forEach(el=>{const hit=el.dataset.a===k||el.dataset.b===k;el.classList.toggle("highlight",hit);el.classList.toggle("dim",!hit)});showDetails(nodeMap.get(k))}
+    function showDetails(n){document.getElementById("node-title").textContent=shortLabel(n);document.getElementById("node-type").textContent=n.label;const direct=visibleRelations.filter(r=>relationNodes(r).includes(key(n)));document.getElementById("node-desc").textContent=`该节点有 ${direct.length} 条当前可见直接关系：${[...new Set(direct.map(r=>r.type))].join("、")||"无"}。`;const props=document.getElementById("properties");props.replaceChildren();Object.entries(n.properties||{}).forEach(([name,value])=>{const row=document.createElement("div"),dt=document.createElement("dt"),dd=document.createElement("dd");dt.textContent=name;dd.textContent=typeof value==="object"?JSON.stringify(value):String(value);row.append(dt,dd);props.appendChild(row)})}
+    function setScope(caseKey){const subset=caseSubgraph(caseKey);visibleNodes=subset.nodes;visibleRelations=subset.relations;selectedKey="";render()}
+    caseSelect.onchange=()=>setScope(caseSelect.value);document.getElementById("all-button").onclick=()=>{caseSelect.value="";setScope("")};document.getElementById("fit-button").onclick=()=>render();
+    document.getElementById("search").oninput=e=>{const q=e.target.value.trim().toLowerCase();if(!q){document.querySelectorAll(".node").forEach(n=>n.classList.remove("dim"));return}document.querySelectorAll(".node").forEach(el=>{const node=nodeMap.get(el.dataset.key);const hay=`${node.id} ${node.label} ${JSON.stringify(node.properties)}`.toLowerCase();el.classList.toggle("dim",!hay.includes(q))})};
+    document.getElementById("export-button").onclick=()=>{const svg=document.getElementById("graph").cloneNode(true);svg.setAttribute("xmlns","http://www.w3.org/2000/svg");const defs=svg.querySelector("defs"),style=document.createElementNS("http://www.w3.org/2000/svg","style");style.textContent=document.querySelector("style").textContent;defs.appendChild(style);const blob=new Blob([new XMLSerializer().serializeToString(svg)],{type:"image/svg+xml"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=caseSelect.value?`${caseSelect.value.split(":")[1]}_知识图谱.svg`:"沙特极端天气完整知识图谱.svg";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+    render();
+  </script>
+</body>
+</html>

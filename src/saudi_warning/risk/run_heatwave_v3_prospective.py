@@ -42,7 +42,7 @@ DETAIL_FIELDS = [
 def _write_csv(path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -252,7 +252,9 @@ def main() -> None:
     _write_csv(args.detail_output, details, DETAIL_FIELDS)
     _write_csv(args.audit_output, audit, AUDIT_FIELDS)
     args.assessment_output.write_text(
-        json.dumps(assessment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(assessment, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     print(json.dumps(assessment, ensure_ascii=False, indent=2))
 

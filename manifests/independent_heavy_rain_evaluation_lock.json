@@ -5,9 +5,9 @@
   "rule_file": "configs/heavy_rain_rules_v2.yaml",
   "rule_sha256": "0c4d86017f306bcce87a86984df295acb8445cfce0e249919045fd770699b2f1",
   "observation_file_manifest": "manifests/imerg_v07b_daily_files.csv",
-  "observation_file_manifest_sha256": "eea34d45d8d2b09b4e18880919693718cd56b00c6e9fff3ab91e15d27393befe",
+  "observation_file_manifest_sha256": "7aeaae2b3d6ad2387d7c2d0e05038e44990aa10fedd44dba48aa71a1916c0fd4",
   "observation_summary": "manifests/imerg_2020_saudi_daily_summary.csv",
-  "observation_summary_sha256": "a94e41911cde3e8d66115bb8c2f5f96c3ecd7466e6db57e51bde2785e6020cbb",
+  "observation_summary_sha256": "f47c2a4527899b3790af1e5dcca750f4a16c73cb4a10809e3eb329f0c48175df",
   "case_ids": [
     "20200711_00",
     "20200725_00",

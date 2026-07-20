@@ -5,517 +5,517 @@
   "forecast_windows": 87,
   "truth_accessed_during_prediction": false,
   "truth_opened_only_after_advisory_lock": true,
-  "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+  "selection_lock_sha256": "bf3042bb27939b8a1c5b44c1e11c46f2e1efc6d4ea41036390b73acd740c52a1",
   "artifacts": [
     {
       "path": "handoff/reports/dual_prediction_batch_v1/adm1_full_process_data.csv",
-      "sha256": "7a09702d39e00cba3ee82303a51dd499cc378332b53abf943e538f9c23d9990e",
-      "size_bytes": 196509
+      "sha256": "849975389cb62c364fe8627a57f020cc03d3764ac3e1c37213e24dc6ee024cb3",
+      "size_bytes": 195551
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/forecast_materialization.json",
-      "sha256": "7c184df847555194a7468569d40ba27927674f4abbc8224e847554da4df96e22",
-      "size_bytes": 15431
+      "sha256": "233cf331ce6b86f48c90a4880f4d5db8147fb03d32c7731cc34b6d97ede02416",
+      "size_bytes": 15039
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/llm_advisory_prediction_lock.csv",
-      "sha256": "132b070fbe257f9bd60656b844eb7c68d3b84bca1952622a550ad5ddfb3d1783",
-      "size_bytes": 6583
+      "sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
+      "size_bytes": 6495
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/neo4j_publish_audit.json",
-      "sha256": "b541da3a653d665bb252664b08d79ba6fb5b74ff9c3688f510ada0c0638d7c31",
-      "size_bytes": 539
+      "sha256": "175d8ccbd8ae4e8f9fbb8de318812c3f4fbd831bb86cadc52fc1ca1ef1344e3c",
+      "size_bytes": 509
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/report_progress.csv",
-      "sha256": "db8bcc6695b5281a53cfd0e8abdfe28c616a1fd8a7da2a6a2a91f6621575c606",
-      "size_bytes": 7527
+      "sha256": "5837692b4cd36acb184fe4638e75b4ff6c84e35bee44e712ea2c1bd02563b6c1",
+      "size_bytes": 7497
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180601_00_SA-04.evidence.json",
-      "sha256": "06a4e62b62fc812d65a76a42600d34b1f7865ea4c0cf8e61c906835f7eb01575",
-      "size_bytes": 11375
+      "sha256": "6ee1ba4887c051149ec73dcb0835e4721a92e769528e6c20a9432c99055b7537",
+      "size_bytes": 11030
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180601_00_SA-04.json",
-      "sha256": "9ea16798db29e02f9a489c2af015f9f0e43a129bf6d11195f5e4979420d70b6c",
-      "size_bytes": 8791
+      "sha256": "59b9316e08c2bca91659dbb8f82ebe6ea7264cf4b78863b252b52007d0a07fe6",
+      "size_bytes": 8704
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180601_00_SA-04.md",
-      "sha256": "5d82d1a5993794ab621efe23a5be92a7fd1b8f0c60c2b4790b4f5b49bca67dfb",
-      "size_bytes": 6664
+      "sha256": "4d2f7f2ad82235d88f432df1bfd21b9d939371e8621149fd99d947b9134221e6",
+      "size_bytes": 6608
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180614_00_SA-04.evidence.json",
-      "sha256": "97efd60e90bb1c96cf9b955f500bb1dfd9adb31ac886765c088b034c8f31f176",
-      "size_bytes": 11364
+      "sha256": "a95465f8cabeb10b70e43dd5c129e97fe57b2f0d646f1b39ed63c40fb99cf4ac",
+      "size_bytes": 11019
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180614_00_SA-04.json",
-      "sha256": "38d458ddbd6682d9518037d10a49f4dd2500d5655857f8db2a599a8127636464",
-      "size_bytes": 7721
+      "sha256": "2b35d7e97361f069506ec8d42a518b6890425dff1938d633e6dc8aed8cabc734",
+      "size_bytes": 7635
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180614_00_SA-04.md",
-      "sha256": "441d6966bf13f92c0835f7d8f0f8161ee5de6d036ee801bffe44d1092ba9930a",
-      "size_bytes": 5788
+      "sha256": "632685427d351a4694a50813f7f2bf3b60406d9678abaf647060384557f98f66",
+      "size_bytes": 5733
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180619_00_SA-03.evidence.json",
-      "sha256": "b3cfd650d19c447e32a57fa3efa6504ab89e01203f8d0eb96f8925dfaabb2e03",
-      "size_bytes": 11325
+      "sha256": "9081dce6e73bcc9c43b2bcc272c1d59d4303b3a257bff5c6e88d5c121c261efd",
+      "size_bytes": 10980
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180619_00_SA-03.json",
-      "sha256": "8ab256a97bd72778e9422fc5c9aa615cc3acf4c1849a93cfd7ab0a99233d3582",
-      "size_bytes": 7969
+      "sha256": "7cd0394c299e5c84f95802d4f9f23230254041583e42306d616e29f51298bf83",
+      "size_bytes": 7887
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180619_00_SA-03.md",
-      "sha256": "6fc70fac89b6572d895dcd94f419ad5a0716a2e02f90e5bd11e486bc08fc023f",
-      "size_bytes": 6043
+      "sha256": "4cd8d1f5c6e13e22e2a89e951c764b1f8834d05161905d690fd56e94d6cb6cec",
+      "size_bytes": 5989
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180623_00_SA-03.evidence.json",
-      "sha256": "34b7923f169da278aaeab3a559912ee6eb932c9fd62ba58b4c26b93fb0a2c15a",
-      "size_bytes": 11343
+      "sha256": "2b73741440f62bc20496541493f47e93b5cf567efa7eb579092651193095f9f8",
+      "size_bytes": 10998
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180623_00_SA-03.json",
-      "sha256": "53964ab1b5e7890b2aeccba4b15b7c595cb73f4bee072c3dd71d74a0984a73f8",
-      "size_bytes": 7691
+      "sha256": "1c13e2204ab2ed638a92a3685a5ca01627082aac56ac0b8387afec3ad1b06cda",
+      "size_bytes": 7605
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180623_00_SA-03.md",
-      "sha256": "7b805ab397173e368e20ecd1ca784365b95a7e8826bad3f313a3fdcdec7ec4ed",
-      "size_bytes": 5759
+      "sha256": "c1d27c5651a4f0b8a7dfa8cf74ef16fd19db25c9cc01f09092b4f6f0fe31c645",
+      "size_bytes": 5704
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180709_00_SA-04.evidence.json",
-      "sha256": "994e385851c1a04dee783863f1db82db8e79c61ce09d51573894aca2f5363daa",
-      "size_bytes": 11384
+      "sha256": "a70c139ddf573ad001b6991fa59c7cfc6e309681da271a8bf53fbcbb9a4adf5d",
+      "size_bytes": 11039
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180709_00_SA-04.json",
-      "sha256": "d271506319e23103ad8bbb66f04266243f7ccae1a86667bac73ef87a0dc1a5ac",
-      "size_bytes": 8336
+      "sha256": "e061029e011aceea04cc4ace53ea9dde25f5175055f9e352b2dad2d2a1249864",
+      "size_bytes": 8247
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180709_00_SA-04.md",
-      "sha256": "3e9620895ea771f3cdbceeb0ccffc6d5c83862545ff1a0559b2ad5d57dbf162e",
-      "size_bytes": 6344
+      "sha256": "b241edb19a4ff66448ca388490e778e59a5f12d45b6f736abde937187dbc244d",
+      "size_bytes": 6289
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180719_00_SA-04.evidence.json",
-      "sha256": "3a678b99f852993397b84c1c6edec13204c8293614d3ba07c186b154c9a4a639",
-      "size_bytes": 11362
+      "sha256": "d889afe75b03bbc4f2e64387f6b2f82183be2cf8dae5244f1e8d5dde33f47c8f",
+      "size_bytes": 11017
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180719_00_SA-04.json",
-      "sha256": "e106b584e98cd0b9598c6e4ba7f52992943a5e00a4baa02963bfe07971af5c04",
-      "size_bytes": 8438
+      "sha256": "f3a77b80a234bd15bd047ea98e16908ba4cc75e0f2492ded2952155391053232",
+      "size_bytes": 8351
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20180719_00_SA-04.md",
-      "sha256": "2460cdb8ed2debf94706233f40988900ed53b2cc808b93bba53fba6009efcf25",
-      "size_bytes": 6433
+      "sha256": "058411587c4fed56e74ba90761eaa2cde0b2d5f3de450b003adf530adcecbc77",
+      "size_bytes": 6377
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200619_00_SA-04.evidence.json",
-      "sha256": "551f484e65e73ea41b0cf663551d74b447a0246dead4613b2b4a929683da0ef4",
-      "size_bytes": 11340
+      "sha256": "58d789e1a8f35077398123b6dce36b39896f87663845b2ad3bb588893819107a",
+      "size_bytes": 10995
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200619_00_SA-04.json",
-      "sha256": "a94320e1d340f4303ce735b03f7c7721185370a93536030b7bc1ba834fa5228d",
-      "size_bytes": 8859
+      "sha256": "60fb5d7f1d1aff73e65b6d780120961e3b505537636d07c80fb87ee764462829",
+      "size_bytes": 8771
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200619_00_SA-04.md",
-      "sha256": "711b56157bd8e0fdd153af9ef852476e3e75ec6eccedb99922ce13d29a732818",
-      "size_bytes": 6684
+      "sha256": "6b0827c03dfd6be586ea0135469cff1f6e952f3a2f9a258509487ffd1dd19d24",
+      "size_bytes": 6629
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200622_00_SA-04.evidence.json",
-      "sha256": "f34ca838c004725d7fae0a07a1e0135a56c36a9dbf451f4532fa4c06c532810b",
-      "size_bytes": 11342
+      "sha256": "06181192c708809192f54b7a1f7062d3479c849ef72f36a093f9de0265ca8409",
+      "size_bytes": 10997
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200622_00_SA-04.json",
-      "sha256": "8872b5a5e9970504e5c20cae32cb328afee31fd255415215bcd8d24ce525aa31",
-      "size_bytes": 8317
+      "sha256": "799a50cdee9542df08c540aebc6048d5bf2bef1863e3c627d3a12489057975cd",
+      "size_bytes": 8232
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200622_00_SA-04.md",
-      "sha256": "ac07030eb554b7e3a3e5f588dc866ece5372a5a12c57074a3aa699af68cfa5b2",
-      "size_bytes": 6200
+      "sha256": "4663ce2ce78810f966d11895b4038923025f2a5322cc115e5bef493c5c6b3b79",
+      "size_bytes": 6146
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200623_00_SA-08.evidence.json",
-      "sha256": "2e09a1109e4b4684aa06c947536533ee8e23c8c25b8e965e08c26d1d1857c8ed",
-      "size_bytes": 11348
+      "sha256": "3c1df0b9ba1f2313d5e7fa5d5dad74bfd26fe917f5bc774736d184506ac0d926",
+      "size_bytes": 11003
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200623_00_SA-08.json",
-      "sha256": "11f930f7bfe0764f3c70794e5494fd6ab2e9ade6500ba95d590363943c2f6389",
-      "size_bytes": 7627
+      "sha256": "5cb8c941f183efb335492b7363901cc67a7e91ce53de7e58fcc8f26d3c02b5af",
+      "size_bytes": 7541
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200623_00_SA-08.md",
-      "sha256": "80485e3cef1a135a61bca3298b9b51783e00e8766fb87c90bfbc00bf468bbfdd",
-      "size_bytes": 5691
+      "sha256": "57e7d50404fa836fa7aef886d4345760f2c31a3c4c52c300021be460b70ab75d",
+      "size_bytes": 5636
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200627_00_SA-04.evidence.json",
-      "sha256": "b96f517a7a434f7aebf6013554b434c0bdf7906f6736cdef3c1d9025c855aca7",
-      "size_bytes": 11360
+      "sha256": "03beb9c51f6ff40e537e9797222703d0be55bee1ec86f6b4da83d8340e90018e",
+      "size_bytes": 11015
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200627_00_SA-04.json",
-      "sha256": "d25befdcb942bb44669a91d962da2a6c6ebf5e33c336aec1cbd2006b7efae3bd",
-      "size_bytes": 8956
+      "sha256": "d5f66d272d2bd4504bdd32865a7e34e7d26ba19fabb82c7311e657896373648f",
+      "size_bytes": 8869
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200627_00_SA-04.md",
-      "sha256": "42e37f146ad47f78381cd2806412c1e9a24ea4449db77b1b555b24eda6e09d80",
-      "size_bytes": 6703
+      "sha256": "31cdc8fe390e89f4f6f197857c9d0f68390c3db151624218957e4d50836aa717",
+      "size_bytes": 6647
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200702_00_SA-08.evidence.json",
-      "sha256": "f898560ee716fd883c58b145e043c9ea72e746e99952b5c71e652b346ef4ddbc",
-      "size_bytes": 11352
+      "sha256": "b28f0a820cedf4cf6d42af467ba3568cb10b3a9e08a65f19c795de0cf357416b",
+      "size_bytes": 11007
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200702_00_SA-08.json",
-      "sha256": "815aeeae148960bdf6a8a1d371d0f8746d83dd1ea201a96da9e2d21b74496bdb",
-      "size_bytes": 7347
+      "sha256": "736d83b45c6703cd04ea272da2b8c6c3039054652874e70781cd5bfb50ef4edd",
+      "size_bytes": 7258
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200702_00_SA-08.md",
-      "sha256": "85c16f399504960dd9dfd2e13b18e7271208c031679f22209df76048900d2ebd",
-      "size_bytes": 5409
+      "sha256": "0499ea64091ae93ae4b23f903d56fafb244841f45f1f984b50b53dc27081a9a5",
+      "size_bytes": 5353
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200706_00_SA-04.evidence.json",
-      "sha256": "e762337146ea58b8d3efeb0e1135bb99d8e467556247709f48424f15897dcd17",
-      "size_bytes": 11355
+      "sha256": "f51b2bcb690e09e91b8ee82680d1483ab78fc9c367e6ab41eaba9d6a6f112783",
+      "size_bytes": 11010
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200706_00_SA-04.json",
-      "sha256": "f83e5aad4a36d99d9fbca6b9eba1984a59725bd14cdca76b0455e0b419cdb1ca",
-      "size_bytes": 8368
+      "sha256": "3e0f2e28e9a62cd36766eb8b103058c12d677cb7a36b2e4e6b622cb555c248e7",
+      "size_bytes": 8283
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200706_00_SA-04.md",
-      "sha256": "c9776dfa920f81f1d5ec85ebcd34ecaed8289f1145688951df2315e97cbb8490",
-      "size_bytes": 6493
+      "sha256": "85101053a6c7bd7ebb7324e70863ca25fff5a29d736ea84e67735de12a7551e0",
+      "size_bytes": 6439
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200715_00_SA-04.evidence.json",
-      "sha256": "e13b97b0102031ad9bfd63581812282a72dba3233e992af60addb16519455b80",
-      "size_bytes": 11369
+      "sha256": "7d8bfbbf5d45501549599bc47973c3b7459b581ce6604e20203f40c870006ea7",
+      "size_bytes": 11024
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200715_00_SA-04.json",
-      "sha256": "3dda22bda9f154555e57a7567f8857f86d8590ac91e5d8c3a7493288f28c3581",
-      "size_bytes": 8025
+      "sha256": "c5343a8dac78069ef6b3921c5d6d11f5b81950bdd32939833d4ed7eac76e4275",
+      "size_bytes": 7938
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200715_00_SA-04.md",
-      "sha256": "96ca506a72fc3d4aba5100ad22d5b94db84cb89ad9dd9781822c2a01145f5358",
-      "size_bytes": 6074
+      "sha256": "aee09b976b731fa9527af7be9e023d12f048d2052cf1b9a8d208e230a3dafb84",
+      "size_bytes": 6018
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200806_00_SA-04.evidence.json",
-      "sha256": "637a6383545f025600a0a36f4a58d8652e7435f8d5234e8349c091911677a266",
-      "size_bytes": 11373
+      "sha256": "34a6c6fedc180578029b4b931c8b69daf23fb72ae503cae5e1dc286e5cc10da4",
+      "size_bytes": 11028
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200806_00_SA-04.json",
-      "sha256": "ed10ced30e9a537ab441b3b46549ca39cba6627ca628884c8d918ec86e683417",
-      "size_bytes": 7735
+      "sha256": "9471cb9cb990dca6988313db7db43c924a26155bf05cf8f916334f33b83acf0d",
+      "size_bytes": 7646
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200806_00_SA-04.md",
-      "sha256": "c36383d19a6da17f8a39bea13beece6485ea873956113927d530de547a256c35",
-      "size_bytes": 5428
+      "sha256": "ebce1c66642d23ab8533c7511d7025c41e202f3d535b43eea738ba4ebc81500f",
+      "size_bytes": 5373
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200908_00_SA-04.evidence.json",
-      "sha256": "d0340b4823b1dc04a44109cb0545b13faadd7d96e62fc5e20027f828b54202b8",
-      "size_bytes": 11326
+      "sha256": "5c7a3cb868dc96d98bcc059063e63f9fb21a22093ad5f1499a11e472185c9423",
+      "size_bytes": 10981
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200908_00_SA-04.json",
-      "sha256": "4d3849a98eadc134f4ff3b6671aa2e4d3e04d443793d5acd65bfb9731a8d2eba",
-      "size_bytes": 8477
+      "sha256": "d29458c8aa6b65ef5fe2f142ba13f5cd381765b5025318d6bdd9dca566813d27",
+      "size_bytes": 8384
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200908_00_SA-04.md",
-      "sha256": "f4d8f571edffd903e17d7d54e85fd2b5005f98236744a2ca9b304c0079713972",
-      "size_bytes": 6316
+      "sha256": "09bf6f1b0c4dc134e56ac094487b87a1459e7fee0338f4d39087be0e4d79dbdf",
+      "size_bytes": 6260
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200927_00_SA-04.evidence.json",
-      "sha256": "f90d90e3bb840fb22be7f5487fa4452f21d723607d01a27f9fbb30738963d612",
-      "size_bytes": 11325
+      "sha256": "77f149f4f90f95aa9d8688a49347f770884d62b149dd3d501313790f81de615b",
+      "size_bytes": 10980
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200927_00_SA-04.json",
-      "sha256": "86b9727444d0001a6a8e880705d664b52116aa2472d7a19867fdcd08ab2d888c",
-      "size_bytes": 7949
+      "sha256": "2015841019b9d2bc10539e6424550796f8b665ce7bab804ec8a3c601cf24575e",
+      "size_bytes": 7863
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/development/20200927_00_SA-04.md",
-      "sha256": "8f56a7cc4490da0b01246e6b3dbe92b32411ac2ffbb39b69a7e923429db0dbcc",
-      "size_bytes": 5868
+      "sha256": "da966c05de8f639cc217149bb9e34ecd8deba44f3f35eaa545f9814f6968b72d",
+      "size_bytes": 5813
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/independent_test/20200729_00_SA-04.evidence.json",
-      "sha256": "1d8ae36c5074a73c46fb0ef577791e2d08a47f41c52a35ff70d7e58b826d0c18",
-      "size_bytes": 11389
+      "sha256": "3af13bec87339e2400dabf3d1698aa710eff2792d29fb0bf530b95a0ca6fd47f",
+      "size_bytes": 11044
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/independent_test/20200729_00_SA-04.json",
-      "sha256": "5cb28b4b627422e14e94f931503fa55ba9cf010a7280849992ab652ee2ab8f83",
-      "size_bytes": 7554
+      "sha256": "1d0baff081c792874a1d0df6df7f75519a6d873a5ea4d9ea8855c659a5a6c8e6",
+      "size_bytes": 7469
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/independent_test/20200729_00_SA-04.md",
-      "sha256": "587551850a60d5ccf3804be69a156a9428e7fed07ecd2b6eb1b56b465e7d220a",
-      "size_bytes": 5712
+      "sha256": "a907f26b0ce42790e75708e0a42bdf0c0cb60c776f878514404b0193994273ff",
+      "size_bytes": 5658
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/independent_test/20200729_00_SA-08.evidence.json",
-      "sha256": "c3c76d67384769917c675bd790ba3ffc67b11cf61d2dbf6ee9b07be88e108aaf",
-      "size_bytes": 11403
+      "sha256": "b02ef27812a72b539409db6998f387ff571b9ff2d24b486200b6f55e9fc5be6d",
+      "size_bytes": 11058
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/independent_test/20200729_00_SA-08.json",
-      "sha256": "148b177d7859c5403c198ca6f0d47010f2dbbef46c19589ed6184ea5f3564332",
-      "size_bytes": 7722
+      "sha256": "79e58a4a15d54817f8c6e39a632160909ede600047abf74962d9703e10cfbbc2",
+      "size_bytes": 7637
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heatwave/independent_test/20200729_00_SA-08.md",
-      "sha256": "c9124b29065953025fe471005453bc27138c7931a5715918d1eb3b920bc79053",
-      "size_bytes": 5922
+      "sha256": "2ca157f633e5286e58eb46e5b66f51342b7bc387555b01d58f7b411be5acb4db",
+      "size_bytes": 5868
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200501_00_SA-09.evidence.json",
-      "sha256": "6b8e2694fe277b59918e4bc3e2a5d76d0deb91e395909ef65934a7278747ea97",
-      "size_bytes": 11117
+      "sha256": "09f0a9347a85a8d035e8656e89d02b07e0b9f0ab559557c0ad019e8bdddc2edd",
+      "size_bytes": 10772
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200501_00_SA-09.json",
-      "sha256": "04a46be7c7be4b6f8a091803b19b08ff950c6694a85fac4fd3a5833bb051bee6",
-      "size_bytes": 8164
+      "sha256": "35fd0a7625cf1e90fe5e2e986a7f60a9777806df24f2b1ff776a6215bcbd90c4",
+      "size_bytes": 8074
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200501_00_SA-09.md",
-      "sha256": "0199df282473cd8f077c9f1e3ba2d1d2b003a7afecfb0ca8f62d13c8dd5e2743",
-      "size_bytes": 5930
+      "sha256": "1d09d19a80d8b978ee0c105f894ef0a561e5948d558aedbb29af1c06389eee47",
+      "size_bytes": 5874
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200505_00_SA-09.evidence.json",
-      "sha256": "6a4c84eefe36c8e8c3b93b502dae6563f2ded1844965ac84d692cbe999fa80f2",
-      "size_bytes": 11105
+      "sha256": "4b3e5046f748542ddacced11774cbb600b29cdc5d76e1a101b45743269ad380b",
+      "size_bytes": 10760
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200505_00_SA-09.json",
-      "sha256": "5b5ed807110a1ff6924a436949e6f2562c8e135d8772fac4af56221988d07d47",
-      "size_bytes": 8889
+      "sha256": "f7e276d72c4f113415309d6606615da24c153f9d8c33a72b534cee355b19165b",
+      "size_bytes": 8798
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200505_00_SA-09.md",
-      "sha256": "c47eb8fc6d7c2b2fe91d00bae6a72f82b6b96ceeb4dde72299a030d9eff6eef8",
-      "size_bytes": 6709
+      "sha256": "4feb54f45f5aea8fcd32a3594e929fe07587f897873aafdfc5e754273df0ba42",
+      "size_bytes": 6653
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200515_00_SA-09.evidence.json",
-      "sha256": "05e3d9d95268231bcd5b60534026ea14a6be02585db7dc40af3bbdb127a8eda4",
-      "size_bytes": 11110
+      "sha256": "57b1753f685b1df991f839b2cc75cbdb0f9a080a47629d97d01f222d5e4daa42",
+      "size_bytes": 10765
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200515_00_SA-09.json",
-      "sha256": "cef3578011ba2bf999b1d17645cce837758e4e87237872feef251aec72c394c3",
-      "size_bytes": 7555
+      "sha256": "c51aa47bb4b0127cbfe960e9ed490930bb8c2f727becc12e589b6e14e54cd9e5",
+      "size_bytes": 7468
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20200515_00_SA-09.md",
-      "sha256": "1c574eafd9ea6a5dbe51480fe16cbf1f6719abf51d41a809623eb3c57abc92e1",
-      "size_bytes": 5678
+      "sha256": "50c6a950300a72462d34a3a0b93ee72b11ffed1186802b572ae8f9e824ea4b9e",
+      "size_bytes": 5623
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20201109_00_SA-03.evidence.json",
-      "sha256": "1d07d013f46786b7da22a3b1dc22804b06ad42021520db9bd4b2404d05f9afc2",
-      "size_bytes": 11088
+      "sha256": "337fa3ce17d25cd1e187089d401ed8ca483d0d1f5be8c55eb7791200fcaa0670",
+      "size_bytes": 10743
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20201109_00_SA-03.json",
-      "sha256": "d20a360d9f1d2d5ac0e1dd776198e313920ab306c8924f00cb5af5e40fff22ac",
-      "size_bytes": 7876
+      "sha256": "da756f0c88273452b92807d3124570e1001d2c8e4f3e8f1120779a45c15a4727",
+      "size_bytes": 7786
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20201109_00_SA-03.md",
-      "sha256": "bd3998527fdcfb7bc9158ba4b1c2fab2a20452c79cd05e27175b718fa2e891a4",
-      "size_bytes": 5688
+      "sha256": "9cd08c78ab63502bc3dd64f109cd8e22fbb3da7a6cbd953976b89d83d48d1122",
+      "size_bytes": 5632
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20201119_00_SA-03.evidence.json",
-      "sha256": "afeb0c0b0f0109930d8bd56337c1d37249a9ed40fcd3811ad6a2985cce5dc083",
-      "size_bytes": 11096
+      "sha256": "bb2b313e5c99dbe6ec6adf93433bc19ee4aa58f075a19ea4623d18678a62bea0",
+      "size_bytes": 10751
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20201119_00_SA-03.json",
-      "sha256": "fd58d2401a5abc6e7847e329c7d614dc278979d4a1cc10c0bf219c0447083e91",
-      "size_bytes": 8254
+      "sha256": "b86d507ed74d01ab44c8ef546fb04b7197deb12c9957d8ca67b236a5cffe23d6",
+      "size_bytes": 8164
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/development/20201119_00_SA-03.md",
-      "sha256": "7eaf1961145fffeb9c3be5ba11aec137958ce7a67ba455a60ab1561e780351b4",
-      "size_bytes": 5985
+      "sha256": "707b521d8da5605da4091bbcf365a8ba84929d3637bb3356847f55bca18e776f",
+      "size_bytes": 5929
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-09.evidence.json",
-      "sha256": "9392cbec73dd8e317aaa8c38923419e83cf51df4b296293f6e9c70bf08cfa114",
-      "size_bytes": 11137
+      "sha256": "0b4cea12a4b6bd4eac07f756ab60fc26a9f11946a94eab937998e46b00114d06",
+      "size_bytes": 10792
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-09.json",
-      "sha256": "ea6fed445ad869555924a549ff2cd6dd17621b5879276a29efc11f0aec5f01db",
-      "size_bytes": 7914
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-09.md",
-      "sha256": "2c03c11584483d8a85cddd9b78e7a4f3a5250fda54968736821176ede49440b6",
-      "size_bytes": 5781
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-14.evidence.json",
-      "sha256": "157591aa313d5eb12c3b177acde6c60d81b7c989cdf9c7f7017469a680a362d6",
-      "size_bytes": 11122
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-14.json",
-      "sha256": "11c579548124ba127387f3c7499ece74462f5b156a421a6df39571831fe06555",
-      "size_bytes": 7196
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-14.md",
-      "sha256": "78955562fa1776201a2aa801521278b858e3537b4ae35f2a34e0b46a0b99b79c",
-      "size_bytes": 5235
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-09.evidence.json",
-      "sha256": "005b40566d7486ff298b1bb27ef2f532def824ed6bd4ec6f96e38f5b01121599",
-      "size_bytes": 11141
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-09.json",
-      "sha256": "04eb4e2d68157bb729350c2cd69a92da1117da7cb79c071c55ff398cc32e2a74",
-      "size_bytes": 7820
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-09.md",
-      "sha256": "df3c5a711e88e0225df4f9dd8a002f17cc1da15079189c09d272510189455e48",
-      "size_bytes": 5516
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-14.evidence.json",
-      "sha256": "144f62bcc12cf7d7d7926c96bb6c67a63665f9b4308fa9843bc32f597226119d",
-      "size_bytes": 11145
-    },
-    {
-      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-14.json",
-      "sha256": "612f3c6036fb78dcf40460d9f63f9628cb154ca7d364351f9fbf987ddd046aee",
+      "sha256": "2f4be61bdc5e38eff61dab2b3f693c96746ee7c853b245b195f84dcd4d462f0a",
       "size_bytes": 7825
     },
     {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-09.md",
+      "sha256": "782aecaca317adbffe2de0b7caec64e46ab88b33f7d6aa220a0426aa1d76f545",
+      "size_bytes": 5725
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-14.evidence.json",
+      "sha256": "71fb69601082440b5978bb6dd757776246a0b27f4717455558f49b4a61e9057f",
+      "size_bytes": 10777
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-14.json",
+      "sha256": "edc169023becca66af7218b2b59dee1aac5e66cedf96e78a3ae7449d473ff6dd",
+      "size_bytes": 7108
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200711_00_SA-14.md",
+      "sha256": "a3fd685e081693f1c61908685b0b8ffbee59007b364be0a15616ffc8ba0513bb",
+      "size_bytes": 5179
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-09.evidence.json",
+      "sha256": "ffb40a6d07d34b2174652116b9e7041af6933609189dc91449cf1a28b603790d",
+      "size_bytes": 10796
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-09.json",
+      "sha256": "f8db6395dd7e8e7ed301cb7fc048ee5af770ffec4cfdd2d5735c8fbe2580fcd4",
+      "size_bytes": 7732
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-09.md",
+      "sha256": "4cb55307cd05e19d0d93655eeb08546b2c4fb529eea0c0b56c5af57387a7a894",
+      "size_bytes": 5460
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-14.evidence.json",
+      "sha256": "c13f5e4ed7cf52e3a5dfbd1cd0a0f1c599154d596a4b07edbcf40229c4826792",
+      "size_bytes": 10800
+    },
+    {
+      "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-14.json",
+      "sha256": "054a77c1f62270b33a47645559d06c9b569244c8cc54880c1258e38304b74de7",
+      "size_bytes": 7739
+    },
+    {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20200725_00_SA-14.md",
-      "sha256": "f3f45c14c702732d1041c027e7b38abf336618dea68932389827a6783d650210",
-      "size_bytes": 5609
+      "sha256": "f1d12bbe85f3353625a155f9f787d9d94e85ccfe843f5a0d47d2e9fef8371e52",
+      "size_bytes": 5553
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20201112_00_SA-02.evidence.json",
-      "sha256": "e42f71e995f1ebe6548c8e473cdf3aa8b366968b31ab463dd793ab97d042d3b1",
-      "size_bytes": 11141
+      "sha256": "b92e02fe1e3eaddba1bbc587316e16375d2a50d8770fb6d6a52bf6204ff13387",
+      "size_bytes": 10796
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20201112_00_SA-02.json",
-      "sha256": "d9fcc277aad915ca9def182547644b8de0709e6afe6425156439d8ac120eb31a",
-      "size_bytes": 8410
+      "sha256": "e454fca9fff94da9e46efe4ebad5bd0aa4e766fa1ca7bf93f866e2b017408c47",
+      "size_bytes": 8324
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20201112_00_SA-02.md",
-      "sha256": "a24cd6528b0121d837e896347b215f70ca48abeda3dcc294a34a414871643271",
-      "size_bytes": 6101
+      "sha256": "dea6820e670625f0fec560dc446b25edd5fe0eafd4f06d7364a3850a7a33153f",
+      "size_bytes": 6046
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20201125_00_SA-02.evidence.json",
-      "sha256": "f5a4a2159219d5b64376387faa470934a5d2cf101122a60af0afb2d693711be4",
-      "size_bytes": 11121
+      "sha256": "cd8598f2f527b3a657c5c0f526713075f4b8e5dc7bb5a465830ebaa4cd2b2edc",
+      "size_bytes": 10776
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20201125_00_SA-02.json",
-      "sha256": "3dab34d4ef1a1c69879c1533f3f0c79d7cb184503a934ea91cfe3db62d1e1753",
-      "size_bytes": 9044
+      "sha256": "12329e66163f255ed47c4a51f591ba35866a05e34b3c94ed626634a312b40ada",
+      "size_bytes": 8955
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/reports/heavy_rain/independent_test/20201125_00_SA-02.md",
-      "sha256": "19124598c321aef35e395622225257cfd651b189fb43c6de90e1ac838c569144",
-      "size_bytes": 6613
+      "sha256": "959d839affa1fbf66d65a88f2f2c1d8fcc6b3cda2d4c5d732b00cf352cc5f780",
+      "size_bytes": 6557
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_development.csv",
-      "sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047",
-      "size_bytes": 5086
+      "sha256": "b0421027421894ca69b9742fe9efa300adab9ad63ebd29b2cfe0b8c94edae763",
+      "size_bytes": 5037
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_independent_test.csv",
-      "sha256": "b4e9ce511fe9f77ae8b4daca29e534f6bd06cc7a77f05eec10e771c8167d2d0d",
-      "size_bytes": 854
+      "sha256": "03c08a7348cadb16b024fe49c932d3fd7b87a60bed1115caf8e4b9a0c28896a3",
+      "size_bytes": 847
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_development.csv",
-      "sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
-      "size_bytes": 1706
+      "sha256": "5c0751e3bafcc53749dc1875f3649677f482f725a7f6d8bdfd1c71f2dc7e5e8c",
+      "size_bytes": 1690
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_independent_test.csv",
-      "sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6",
-      "size_bytes": 1980
+      "sha256": "441a38ed1ff038b1ffe94f6bd3064fc76bd93d4c192d2224f039068d5119ea70",
+      "size_bytes": 1961
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/system_replay_audit.json",
-      "sha256": "ca01ad3eac0965f4fb086f578adf3dbe86b05960c5e47b45656aa78d30d93609",
-      "size_bytes": 1332
+      "sha256": "57f5621b6355dda9acd12624f5cc59e400b88f849da4846b7a31ad47137c8732",
+      "size_bytes": 1298
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/verification/heatwave_development_scored_details.csv",
-      "sha256": "8363a07b0fbc1f6a907bdfe295441399823935dfe720818ae040847763417ffd",
-      "size_bytes": 18345
+      "sha256": "46282268c6b48be0f56a0953d52606daf2e6217a25f13a6a2bf428fa0201d7f2",
+      "size_bytes": 18296
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/verification/heatwave_independent_test_scored_details.csv",
-      "sha256": "6039f8409ec30e5544c34ac46271c8f48bcdf7a6ad5dc523ec7a628d92fca058",
-      "size_bytes": 3160
+      "sha256": "37fef785fbff5558713c97f8956eb2e69e47995cb49d181b14ac9490c49e51b0",
+      "size_bytes": 3153
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/verification/heavy_rain_development_scored_details.csv",
-      "sha256": "b86930503fd60c1a8db88a867ec48812075b73bec8fe68a5bfdaf2046836723c",
-      "size_bytes": 8024
+      "sha256": "336ac84e335e43d9daf342d46d8caa3cfaaf6d61c2f4d1920ba37d3a5d014b51",
+      "size_bytes": 8008
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/verification/heavy_rain_independent_test_scored_details.csv",
-      "sha256": "36d4ddba94a41edbf3f3921ca1d48112be012adf0c122e3ff491dc71c00bf03a",
-      "size_bytes": 9656
+      "sha256": "ee3487afd66a593c06dc349853c814792cec38cb990751a8a5e14a78084f8e8e",
+      "size_bytes": 9637
     },
     {
       "path": "handoff/reports/dual_prediction_batch_v1/verification/system_vs_llm_metrics.json",
-      "sha256": "47336cea336623b54fc53ab989749ff17de3a074d7a58b80f5266a4b5a662f4b",
-      "size_bytes": 2949
+      "sha256": "e54e0ad03c4f448a88b990e10e2e48984e9e21cfd28806e2471566b074ddbd5b",
+      "size_bytes": 2838
     }
   ],
   "completed_at": "2026-07-19T07:59:23.500397Z"

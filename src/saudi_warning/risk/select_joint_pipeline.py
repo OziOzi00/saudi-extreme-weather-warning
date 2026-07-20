@@ -544,10 +544,20 @@ def run(
     selected_heat = heat_ranked.iloc[0].to_dict()
     heat_operating_points = _heat_operating_points(heat_ranked)
     output_dir.mkdir(parents=True, exist_ok=True)
-    rain_ranked.to_csv(output_dir / "joint_heavy_rain_candidate_assessment.csv", index=False)
-    heat_ranked.to_csv(output_dir / "joint_heatwave_candidate_assessment.csv", index=False)
+    rain_ranked.to_csv(
+        output_dir / "joint_heavy_rain_candidate_assessment.csv",
+        index=False,
+        lineterminator="\n",
+    )
+    heat_ranked.to_csv(
+        output_dir / "joint_heatwave_candidate_assessment.csv",
+        index=False,
+        lineterminator="\n",
+    )
     heat_operating_points.to_csv(
-        output_dir / "joint_heatwave_operating_points.csv", index=False
+        output_dir / "joint_heatwave_operating_points.csv",
+        index=False,
+        lineterminator="\n",
     )
     selected_rain_details = rain_details[
         rain_details["method"] == selected_rain["method"]
@@ -556,10 +566,14 @@ def run(
         heat_details["method"] == selected_heat["method"]
     ].copy()
     selected_rain_details.to_csv(
-        output_dir / "selected_joint_heavy_rain_development_details.csv", index=False
+        output_dir / "selected_joint_heavy_rain_development_details.csv",
+        index=False,
+        lineterminator="\n",
     )
     selected_heat_details.to_csv(
-        output_dir / "selected_joint_heatwave_development_details.csv", index=False
+        output_dir / "selected_joint_heatwave_development_details.csv",
+        index=False,
+        lineterminator="\n",
     )
     selected_rain_details["base_risk_level"] = selected_rain_details["risk_level"]
     selected_rain_details["joint_final_risk_level"] = np.where(
@@ -585,7 +599,7 @@ def run(
             "primary_ratio",
             "support_count",
         ]
-    ].to_csv(rain_prediction_path, index=False)
+    ].to_csv(rain_prediction_path, index=False, lineterminator="\n")
     selected_heat_details["base_risk_level"] = np.select(
         [
             selected_heat_details["base_candidate_positive"].astype(bool),
@@ -619,7 +633,7 @@ def run(
             "knowledge_triggered",
             "joint_final_risk_level",
         ]
-    ].to_csv(heat_prediction_path, index=False)
+    ].to_csv(heat_prediction_path, index=False, lineterminator="\n")
 
     inputs = [
         config_path,
@@ -669,7 +683,9 @@ def run(
     }
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     lock_path.write_text(
-        json.dumps(lock, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(lock, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     return lock
 

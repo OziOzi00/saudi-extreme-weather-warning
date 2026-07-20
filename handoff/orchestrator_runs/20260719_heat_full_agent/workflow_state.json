@@ -424,7 +424,7 @@
       "result": {
         "path": "handoff/orchestrator_runs/20260719_heat_full_agent/adm1_indicator_summary.csv",
         "rows": 33,
-        "sha256": "908056029ce35b19088b0b1b1d333c1557225bf70d5983e4e04edb0bae2d28b0"
+        "sha256": "617b9f588c7a0556dbc9e644fbfa05af5320684f50073f8085e1a45212a6ca06"
       }
     },
     "joint_inference_and_lock": {
@@ -434,7 +434,7 @@
       "result": {
         "path": "handoff/orchestrator_runs/20260719_heat_full_agent/heatwave_prediction_lock.csv",
         "rows": 3,
-        "sha256": "2421ac6277487bbafde04d4699c356ca230202b9776fd05261f8de59b3cb6089",
+        "sha256": "089cd19409a54fd18efeb68e4c81766944e5402bb05e2e119d319336866847b9",
         "truth_accessed": false
       }
     },
@@ -450,7 +450,7 @@
           "regions": 1
         },
         "context_path": "handoff/orchestrator_runs/20260719_heat_full_agent/neo4j_context.json",
-        "context_sha256": "0a5072252a7e67bdd9e6227f5f75ad095a9541a3ce174499507f871f4056fc62",
+        "context_sha256": "2c17e5daee8540049dc9decc76372c59677480d0edee1c4807e7c17e9b9097c0",
         "truth_accessed": false
       }
     },
@@ -479,7 +479,7 @@
       "completed_at": "2026-07-19T06:17:27.043470Z",
       "result": {
         "path": "handoff/orchestrator_runs/20260719_heat_full_agent/run_manifest.json",
-        "sha256": "0828d062b7d10621187a3310425cd92d26e3496ca8e487f812efa04395710e73"
+        "sha256": "3a6cc4c7c3ccbaf1c14c76207eebdf97df677366795de49db260165e9b4fce7f"
       }
     }
   },

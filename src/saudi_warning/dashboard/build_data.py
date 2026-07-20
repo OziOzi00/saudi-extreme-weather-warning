@@ -128,6 +128,9 @@ def build_bundle(root: Path = ROOT) -> dict[str, Any]:
 
     impact = _read_json(root / "manifests" / "impact_layer_assessment.json")
     neo4j = _read_json(root / "manifests" / "neo4j_live_verification.json")
+    knowledge_graph = _read_json(
+        root / "handoff" / "knowledge_graph" / "heavy_rain_evaluation_bundle.json"
+    )
 
     return {
         "meta": {
@@ -194,6 +197,12 @@ def build_bundle(root: Path = ROOT) -> dict[str, Any]:
             "title": "Jazan 已知影响事件漏报",
             "records": misses,
             "scope_note": "用于误差归因，不代表独立测试集性能。",
+        },
+        "knowledge_graph": {
+            "source": "handoff/knowledge_graph/heavy_rain_evaluation_bundle.json",
+            "schema_version": knowledge_graph["schema_version"],
+            "nodes": knowledge_graph["nodes"],
+            "relations": knowledge_graph["relations"],
         },
     }
 

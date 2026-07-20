@@ -286,7 +286,9 @@ def run(
         "support_count",
     ]
     rain_prediction_path = output_dir / "locked_joint_heavy_rain_predictions.csv"
-    rain_selected[rain_prediction_columns].to_csv(rain_prediction_path, index=False)
+    rain_selected[rain_prediction_columns].to_csv(
+        rain_prediction_path, index=False, lineterminator="\n"
+    )
     heat_selected["base_risk_level"] = np.select(
         [
             heat_selected["base_candidate_positive"].astype(bool),
@@ -321,12 +323,18 @@ def run(
         "joint_final_risk_level",
     ]
     heat_prediction_path = output_dir / "locked_joint_heatwave_predictions.csv"
-    heat_selected[heat_prediction_columns].to_csv(heat_prediction_path, index=False)
+    heat_selected[heat_prediction_columns].to_csv(
+        heat_prediction_path, index=False, lineterminator="\n"
+    )
     rain_selected.to_csv(
-        output_dir / "independent_joint_heavy_rain_details.csv", index=False
+        output_dir / "independent_joint_heavy_rain_details.csv",
+        index=False,
+        lineterminator="\n",
     )
     heat_selected.to_csv(
-        output_dir / "independent_joint_heatwave_details.csv", index=False
+        output_dir / "independent_joint_heatwave_details.csv",
+        index=False,
+        lineterminator="\n",
     )
     manifest = {
         "schema_version": "joint_pipeline_full_chain_evaluation_v2",
@@ -357,6 +365,7 @@ def run(
     manifest_path.write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     return manifest
 

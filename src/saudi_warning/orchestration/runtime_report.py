@@ -168,10 +168,16 @@ def generate_runtime_report(
     for path in (output_json, output_markdown, evidence_output):
         path.parent.mkdir(parents=True, exist_ok=True)
     output_json.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
-    output_markdown.write_text(render_markdown(report, packet), encoding="utf-8")
+    output_markdown.write_text(
+        render_markdown(report, packet), encoding="utf-8", newline="\n"
+    )
     evidence_output.write_text(
-        json.dumps(packet, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(packet, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     return report, used_model

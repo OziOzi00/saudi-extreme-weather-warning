@@ -289,13 +289,13 @@
   ],
   "provenance": {
     "risk_path": "handoff/risk_results/development_heavy_rain/risk_20200501_00_048_SA-09_heavy_rain.json",
-    "risk_sha256": "c017d3239bde88f1c9ecfe147a33bce875ba4dddaffb7206d34f768215adbda4",
+    "risk_sha256": "5161e087036194686c206c7628a5d57deeeb5d0254d6c26645c2207db47b3ef2",
     "regions_path": "configs/region_registry.csv",
     "regions_sha256": "8c87345b3a2aa34d67b8c28371cc32e0487afab7f0fa03fce6d4cac1c74b8253",
     "consistency_rules_path": "configs/knowledge_consistency_rules_v2.yaml",
     "consistency_rules_sha256": "576f70115fe39863c1f74d28ce60e60ffbf867de252f53de51d49084ce6dcfb1",
     "static_context_path": "handoff/knowledge_prior/static_context_v1.json",
-    "static_context_sha256": "7584153c217547fb6b86e892a8f13015c0a4a564c6351d18631005f3fdb512cb"
+    "static_context_sha256": "60e910c470d5c312802e4d4208212ff69aaeb808a9ee139ec5ef94c7f232178b"
   },
   "content_sha256": "29f3a3184bd63a5b1da7ba2eaa9a268d9304621634e1b9162ea0a8ecf8c7828d"
 }

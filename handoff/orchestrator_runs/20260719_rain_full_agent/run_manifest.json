@@ -29,36 +29,36 @@
   "artifacts": [
     {
       "path": "handoff/orchestrator_runs/20260719_rain_full_agent/adm1_indicator_summary.csv",
-      "sha256": "9f19d772aa7bda4dc7844dfd896d08178ed562b883c57900e85fce9675889e5b",
-      "size_bytes": 6827
+      "sha256": "50bda94935d6c021613c5c725f59c795496fbee85933132d6fa3cdd5de9af9ec",
+      "size_bytes": 6793
     },
     {
       "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_prediction_lock.csv",
-      "sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
-      "size_bytes": 474
+      "sha256": "441579678ebfacb58f6f3877c761923afe078d871622d6b302db775f1eb8f714",
+      "size_bytes": 470
     },
     {
       "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.evidence.json",
-      "sha256": "13386a2048550f7391362359063718a59aac440074861af32e80f3766fd0c439",
-      "size_bytes": 4806
+      "sha256": "3fd602cfb2ca32e08c9050081d33ad62a45a50a79a5b70312c76af57e40b7ae8",
+      "size_bytes": 4685
     },
     {
       "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.json",
-      "sha256": "78edab30e517ec17090d64cc3320f6edcadb3a9d5d3828cef31c5ca542b1b93f",
-      "size_bytes": 6451
+      "sha256": "05e28c802e465a93758a7563c291af9f08f700021d27388a08cc923f319c5fc0",
+      "size_bytes": 6391
     },
     {
       "path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_SA-09_lead048.md",
-      "sha256": "32beda3eba4f56d7ac945740f5d4f26c335918e4b070bfd44395f616793d83d9",
-      "size_bytes": 6104
+      "sha256": "b431429c0de4392a4687d5d703113b38618b7b7629ce2ae5e98c9cea6312c142",
+      "size_bytes": 6040
     },
     {
       "path": "handoff/orchestrator_runs/20260719_rain_full_agent/neo4j_context.json",
-      "sha256": "79325e6e6b17585ff4f4c89b4f4c491a1bfb7f3b87b0264e4f777dd0382af86f",
-      "size_bytes": 2707
+      "sha256": "bf05a61562c3d67bb663099a7420586cb9dfbff0c0ab0be3f1a4a0b2a245848d",
+      "size_bytes": 2636
     }
   ],
-  "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+  "selection_lock_sha256": "bf3042bb27939b8a1c5b44c1e11c46f2e1efc6d4ea41036390b73acd740c52a1",
   "created_at": "2026-07-19T06:13:59.734797Z",
   "completed_at": "2026-07-19T06:15:12.642291Z"
 }

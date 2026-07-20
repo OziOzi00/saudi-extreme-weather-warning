@@ -5,7 +5,7 @@
     "rows": 15,
     "reference_decisions_reproduced": true,
     "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_development.csv",
-    "sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f"
+    "sha256": "5c0751e3bafcc53749dc1875f3649677f482f725a7f6d8bdfd1c71f2dc7e5e8c"
   },
   {
     "hazard": "heavy_rain",
@@ -13,7 +13,7 @@
     "rows": 18,
     "reference_decisions_reproduced": true,
     "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_independent_test.csv",
-    "sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6"
+    "sha256": "441a38ed1ff038b1ffe94f6bd3064fc76bd93d4c192d2224f039068d5119ea70"
   },
   {
     "hazard": "heatwave",
@@ -21,7 +21,7 @@
     "rows": 48,
     "reference_decisions_reproduced": true,
     "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_development.csv",
-    "sha256": "3f88b1d7afa24e2731e67f3b42a47ef546a9801e879bc53ff1057b6fe945e047"
+    "sha256": "b0421027421894ca69b9742fe9efa300adab9ad63ebd29b2cfe0b8c94edae763"
   },
   {
     "hazard": "heatwave",
@@ -29,6 +29,6 @@
     "rows": 6,
     "reference_decisions_reproduced": true,
     "path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heatwave_independent_test.csv",
-    "sha256": "b4e9ce511fe9f77ae8b4daca29e534f6bd06cc7a77f05eec10e771c8167d2d0d"
+    "sha256": "03c08a7348cadb16b024fe49c932d3fd7b87a60bed1115caf8e4b9a0c28896a3"
   }
 ]

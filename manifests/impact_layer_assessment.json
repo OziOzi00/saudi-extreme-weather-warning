@@ -40,7 +40,7 @@
     },
     "catalog": {
       "path": "configs/case_catalog_candidates.csv",
-      "sha256": "e9aebdc52d28bba8c7899cb7b19450e7597cfe7f2ca0e5b3172e079b0549379c"
+      "sha256": "fce0dbf265670cea6859d0079f421b808cbba2bc4e17b78da2b8d156a2e00756"
     },
     "development_risk_directory": "handoff/risk_results/development_heavy_rain",
     "independent_risk_directory": "handoff/risk_results/independent_heavy_rain",

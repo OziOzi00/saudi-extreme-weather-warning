@@ -27,15 +27,15 @@
   "input_fingerprints": {
     "ssod_daily_summary": {
       "path": "manifests/ssod_v2_saudi_2020_daily_summary.csv",
-      "sha256": "030308228dbb95794163c1188cd1ee0b26cb4d44b5e7416acd97b4f7d43369ba"
+      "sha256": "71c4c95381cbe37052ff380efe1cbdf57d88602049e379c60527ae5545db85bf"
     },
     "baseline_case_catalog": {
       "path": "configs/case_catalog_candidates.csv",
-      "sha256": "4a9979f6d4f9d7f56e7da0a8ca9fd5fefc99b77c754848965371c6e448c3be03"
+      "sha256": "fce0dbf265670cea6859d0079f421b808cbba2bc4e17b78da2b8d156a2e00756"
     },
     "development_diagnostic": {
       "path": "manifests/heatwave_development_diagnostic_summary.json",
-      "sha256": "624702ac2657e38ca2c1e7db8d500d12944b8e858a123b4e77b1972b085faa98"
+      "sha256": "13a20cbbdae8def1bea02ef8b7a6cac8c935fce92b704a0c571900188ce09ed4"
     },
     "base_rule": {
       "path": "configs/heatwave_rules_v2.yaml",
@@ -43,7 +43,7 @@
     },
     "bias_assessment": {
       "path": "manifests/heatwave_bias_cv_v2_assessment.csv",
-      "sha256": "501dee4a341e3d1658534078de6079a099b3484451c26e88506baaea75282315"
+      "sha256": "37430043ffb1a604eaeaf0d813a5f16919ee99a8145a2e723153be4f48b0886d"
     }
   },
   "selection_file": "manifests/heatwave_v3_prospective_selection.csv",

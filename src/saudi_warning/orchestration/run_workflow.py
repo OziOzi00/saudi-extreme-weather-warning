@@ -68,7 +68,9 @@ def main() -> None:
             raise SystemExit("orchestration Agent failed: " + "; ".join(failures))
     controller_path = workflow.run_dir / "controller_result.json"
     controller_path.write_text(
-        json.dumps(controller, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(controller, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     print(f"run_status={workflow.state()['status']}")
     print(f"state={workflow.state_path}")

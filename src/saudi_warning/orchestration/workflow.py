@@ -117,7 +117,9 @@ class ControlledWorkflow:
         state["updated_at"] = utc_now()
         temporary = self.state_path.with_suffix(".json.tmp")
         temporary.write_text(
-            json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+            json.dumps(state, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
         )
         temporary.replace(self.state_path)
 
@@ -253,7 +255,7 @@ class ControlledWorkflow:
             )
         rows = [row for row in rows if row["region_id"] in set(self.request.region_ids)]
         output = self.run_dir / "adm1_indicator_summary.csv"
-        pd.DataFrame(rows).to_csv(output, index=False)
+        pd.DataFrame(rows).to_csv(output, index=False, lineterminator="\n")
         expected = len(self.request.region_ids) * 3 * 11
         if len(rows) != expected:
             raise ValueError(f"expected {expected} ADM1 indicator rows, found {len(rows)}")
@@ -310,7 +312,9 @@ class ControlledWorkflow:
             )
         context_path = self.run_dir / "neo4j_context.json"
         context_path.write_text(
-            json.dumps(contexts, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+            json.dumps(contexts, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
         )
         return {
             "query_mode": "live_neo4j",
@@ -414,5 +418,9 @@ class ControlledWorkflow:
             "completed_at": utc_now(),
         }
         path = self.run_dir / "run_manifest.json"
-        path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        path.write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
         return {"path": path.relative_to(self.root).as_posix(), "sha256": file_hash(path)}

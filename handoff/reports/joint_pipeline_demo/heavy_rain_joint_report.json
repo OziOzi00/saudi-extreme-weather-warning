@@ -35,8 +35,8 @@
   ],
   "provenance": {
     "prediction_lock_path": "handoff/model_selection/joint_v2/locked_development_joint_heavy_rain_predictions.csv",
-    "prediction_lock_sha256": "e7e0816f29aa7341bc3f7be279b59b184e9183d17d245e67e31cab08807f615f",
+    "prediction_lock_sha256": "5c0751e3bafcc53749dc1875f3649677f482f725a7f6d8bdfd1c71f2dc7e5e8c",
     "selection_lock_path": "manifests/joint_pipeline_selection_lock_v2.json",
-    "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545"
+    "selection_lock_sha256": "bf3042bb27939b8a1c5b44c1e11c46f2e1efc6d4ea41036390b73acd740c52a1"
   }
 }

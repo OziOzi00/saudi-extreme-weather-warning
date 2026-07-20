@@ -11,13 +11,13 @@ locked_inputs:
     sha256: 810a829a0a2e3afc25a73f52022e5f05468f36e9492bc4d6cef20df9d3ca09c1
   calibration_pairs:
     path: handoff/weather_verification/heatwave_bias_cv_v2_pairs.csv
-    sha256: 0759fd83c41b6d058afeaaad29df375d624dca422654fc8edd4a86f56fa24c90
+    sha256: 3694e6b386b3516f0fa595c4dfd8e0894bedbbcf3396b2703e81cbbbb72a2897
   development_diagnostics:
     path: handoff/weather_verification/heatwave_development_diagnostics.csv
-    sha256: e111e0cb2112b50d088a3114d92bc863789aa625fec2b6d5c28efd0271c183d6
+    sha256: 9bd5f3f276fc2c6b8e25c352f34e644c254f9105f44c94cd5ff12e2af80e79e0
   rule_review:
     path: handoff/risk_dry_runs/heatwave_bias_cv_v2_rule_review.csv
-    sha256: 27f721c974bcdedfda774d0335b35cfb67fa803ff41ad7e72d37b4d0f5829823
+    sha256: 3181c642136cbd1a561b02cd494e352a376808a4779edbf4544e882705b01b6f
 
 approved_retrospective_case_ids:
   - "20200619_00"

@@ -315,9 +315,13 @@ def main() -> None:
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_markdown.parent.mkdir(parents=True, exist_ok=True)
     args.output_json.write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
-    args.output_markdown.write_text(render_markdown(report), encoding="utf-8")
+    args.output_markdown.write_text(
+        render_markdown(report), encoding="utf-8", newline="\n"
+    )
     print(f"wrote {args.output_json}")
     print(f"wrote {args.output_markdown}")
     print("truth_accessed=false")

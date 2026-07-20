@@ -18,19 +18,19 @@
   "input_fingerprints": {
     "ssod_source_manifest": {
       "path": "manifests/ssod_v2_saudi_2018_files.csv",
-      "sha256": "5d283828d3ec0676271cf458338605bddbe494e00b3b5b99fcede309723e61ba"
+      "sha256": "66bdfba9af43d111c521ea904aba90991785916bfb7b6d1e78ba1bb4b33f2ad0"
     },
     "ssod_daily_summary": {
       "path": "manifests/ssod_v2_saudi_2018_daily_summary.csv",
-      "sha256": "8df563212711197cfebf2cb52db96dcdcefbbd1a8fd431ce51def922e442ccbd"
+      "sha256": "998bfda6ca736aeb3793b01713289de1cc4a96f22fd853f4de13559715e9e963"
     },
     "ssod_station_regions": {
       "path": "manifests/ssod_v2_saudi_2018_station_regions.csv",
-      "sha256": "f72cc354bae5981fb0e8ce78240e6c6dd1771e668b58e8b3e36a88fecb766859"
+      "sha256": "e4a4d974474e21795200536146410019dd09d32056ec20c284d3adce76e45562"
     },
     "mazu_2025_statistics": {
       "path": "handoff/mazu_statistics/mazu_2025_adm1_descriptive_stats.csv",
-      "sha256": "4beab1c9d64de7295a12f89effe254172903ff7901b44dd2892527cde92798bb"
+      "sha256": "cfaa6aed9a9307670b240f5305ed4c22ae2c6223c7e658c2c761e1ffc4ea2738"
     },
     "base_rule": {
       "path": "configs/heatwave_rules_v2.yaml",
@@ -38,11 +38,11 @@
     },
     "method_selection_assessment": {
       "path": "manifests/heatwave_v4_1_weather_gate_assessment.json",
-      "sha256": "6d7682877baeea1cb6eb592ebb9b5c6622230f814f78be2b0f3a61dc6e136b1a"
+      "sha256": "513dd9649d48a6df0c94cf75a5430bdf0be9755bc7150469e7de6f59bf50dd80"
     },
     "calibration_pairs": {
       "path": "handoff/weather_verification/heatwave_bias_cv_v2_pairs.csv",
-      "sha256": "0759fd83c41b6d058afeaaad29df375d624dca422654fc8edd4a86f56fa24c90"
+      "sha256": "3694e6b386b3516f0fa595c4dfd8e0894bedbbcf3396b2703e81cbbbb72a2897"
     },
     "baseline_case_catalog": {
       "path": "configs/case_catalog_candidates.csv",

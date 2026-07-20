@@ -213,10 +213,12 @@ def run(
     rows = build_candidate_rows(summaries, selection, config)
     assessment = assess_candidate(rows, config)
     detail_output.parent.mkdir(parents=True, exist_ok=True)
-    rows.to_csv(detail_output, index=False)
+    rows.to_csv(detail_output, index=False, lineterminator="\n")
     assessment_output.parent.mkdir(parents=True, exist_ok=True)
     assessment_output.write_text(
-        json.dumps(assessment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(assessment, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     return assessment
 

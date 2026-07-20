@@ -26,7 +26,7 @@
     "hazard": "heavy_rain",
     "dataset_split": "20260719_rain_full_agent",
     "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
-    "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+    "prediction_lock_sha256": "441579678ebfacb58f6f3877c761923afe078d871622d6b302db775f1eb8f714",
     "timeline": [
       {
         "case_id": "20200501_00",
@@ -41,7 +41,7 @@
         "base_risk_level": "low",
         "knowledge_triggered": true,
         "joint_final_risk_level": "medium",
-        "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+        "prediction_lock_sha256": "441579678ebfacb58f6f3877c761923afe078d871622d6b302db775f1eb8f714",
         "forecast_features": {
           "primary_ratio": 0.302582,
           "support_count": 2.0
@@ -60,7 +60,7 @@
         "base_risk_level": "low",
         "knowledge_triggered": true,
         "joint_final_risk_level": "medium",
-        "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+        "prediction_lock_sha256": "441579678ebfacb58f6f3877c761923afe078d871622d6b302db775f1eb8f714",
         "forecast_features": {
           "primary_ratio": 0.57966504,
           "support_count": 2.0
@@ -79,7 +79,7 @@
         "base_risk_level": "low",
         "knowledge_triggered": true,
         "joint_final_risk_level": "medium",
-        "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+        "prediction_lock_sha256": "441579678ebfacb58f6f3877c761923afe078d871622d6b302db775f1eb8f714",
         "forecast_features": {
           "primary_ratio": 0.5287658399999999,
           "support_count": 1.0
@@ -101,9 +101,9 @@
   },
   "provenance": {
     "prediction_lock_path": "handoff/orchestrator_runs/20260719_rain_full_agent/heavy_rain_prediction_lock.csv",
-    "prediction_lock_sha256": "291caf4875825aa0f27dc5a291c4af1cb5319117fed158b14d0643471497c536",
+    "prediction_lock_sha256": "441579678ebfacb58f6f3877c761923afe078d871622d6b302db775f1eb8f714",
     "selection_lock_path": "manifests/joint_pipeline_selection_lock_v2.json",
-    "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+    "selection_lock_sha256": "bf3042bb27939b8a1c5b44c1e11c46f2e1efc6d4ea41036390b73acd740c52a1",
     "neo4j_query_mode": "live_neo4j",
     "neo4j_import_counts": {
       "windows": 3,

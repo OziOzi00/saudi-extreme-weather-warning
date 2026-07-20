@@ -180,10 +180,12 @@ def run(config_path: Path, row_output: Path, assessment_output: Path) -> dict[st
     rows = _candidate_rows(pairs, diagnostics, review, config)
     assessment = _assess(rows, config)
     row_output.parent.mkdir(parents=True, exist_ok=True)
-    rows.to_csv(row_output, index=False)
+    rows.to_csv(row_output, index=False, lineterminator="\n")
     assessment_output.parent.mkdir(parents=True, exist_ok=True)
     assessment_output.write_text(
-        json.dumps(assessment, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(assessment, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     return assessment
 

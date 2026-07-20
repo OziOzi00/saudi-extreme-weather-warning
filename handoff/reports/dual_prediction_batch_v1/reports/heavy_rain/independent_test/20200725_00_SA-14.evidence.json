@@ -7,7 +7,7 @@
     "hazard": "heavy_rain",
     "dataset_split": "dual_prediction_batch_v1_independent_test",
     "selected_rule": "joint_rain_v2_base_kg_persistence_ratio0p25_support1_windows3",
-    "prediction_lock_sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6",
+    "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
     "timeline": [
       {
         "case_id": "20200725_00",
@@ -22,7 +22,7 @@
         "base_risk_level": "low",
         "knowledge_triggered": false,
         "joint_final_risk_level": "low",
-        "prediction_lock_sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6",
+        "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
         "forecast_features": {
           "primary_ratio": 0.2786783,
           "support_count": 2.0
@@ -41,7 +41,7 @@
         "base_risk_level": "medium",
         "knowledge_triggered": false,
         "joint_final_risk_level": "medium",
-        "prediction_lock_sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6",
+        "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
         "forecast_features": {
           "primary_ratio": 1.72559096,
           "support_count": 3.0
@@ -60,7 +60,7 @@
         "base_risk_level": "high",
         "knowledge_triggered": false,
         "joint_final_risk_level": "high",
-        "prediction_lock_sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6",
+        "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
         "forecast_features": {
           "primary_ratio": 3.2158394,
           "support_count": 3.0
@@ -330,9 +330,9 @@
   },
   "provenance": {
     "prediction_lock_path": "handoff/reports/dual_prediction_batch_v1/system_prediction_locks/heavy_rain_independent_test.csv",
-    "prediction_lock_sha256": "1ac65855766813b3221697ae67eeb2aa7235d6d488f288e266d611b2814331c6",
+    "prediction_lock_sha256": "2ff5818f15c1fc6917324dc0b81b4295267251c7a4ae8dd2cb4c7dadf288d9e1",
     "selection_lock_path": "manifests/joint_pipeline_selection_lock_v2.json",
-    "selection_lock_sha256": "8d3526d9f6528378d274129ad424cba39904a5cfcce2e164fc62fe7b4ca55545",
+    "selection_lock_sha256": "bf3042bb27939b8a1c5b44c1e11c46f2e1efc6d4ea41036390b73acd740c52a1",
     "neo4j_query_mode": "live_neo4j",
     "dataset_split": "independent_test"
   },
